@@ -1,5 +1,4 @@
 import BurgerMenu from "components/tron/BurgerMenu";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
