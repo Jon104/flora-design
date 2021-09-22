@@ -116,6 +116,25 @@ const LeftPanel = styled.img`
   background-image: url("./LeftPanelPicture.jpeg");
 `;
 
+const menuItems = [
+  {
+    name: "Crayons Ensemble",
+    link: "/ensemble",
+  },
+  {
+    name: "Crée pour moi",
+    link: "/moi",
+  },
+  {
+    name: "Création sur panache",
+    link: "/panache",
+  },
+  {
+    name: "Cours, fournitures et prêt-à-partir",
+    link: "/todo",
+  },
+];
+
 const Container = styled.div`
   padding: 10rem;
 `;
