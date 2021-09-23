@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Link from 'next/link'
 import styled, { css } from "styled-components";
 
 const Label = styled.label`
@@ -176,9 +175,9 @@ const BurgerMenu = () => {
           <Container>
             {menuItems.map((item, index) => (
               <MenuItem key={index} isChecked={isChecked}>
-                <Link href={item.link}>
+                <a href={item.link}>
                   {item.name}
-                </Link>                
+                </a>                
               </MenuItem>
             ))}
           </Container>
