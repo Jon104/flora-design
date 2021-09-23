@@ -142,7 +142,7 @@ const Container = styled.div`
 const MenuItem = styled.div`
   display: flex;
   justify-content: flex-end;
-  font-size: 56px;
+  font-size: 50px;
   padding: 32px 16px;
   color: #ffffff;
   font-variant-caps: small-caps;
