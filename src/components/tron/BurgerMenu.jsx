@@ -157,6 +157,11 @@ const MenuItem = styled.div`
     `};
 `;
 
+const Title = styled.a`
+    text-decoration: none;
+    color: #ffffff
+`
+
 const BurgerMenu = () => {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -175,9 +180,9 @@ const BurgerMenu = () => {
           <Container>
             {menuItems.map((item, index) => (
               <MenuItem key={index} isChecked={isChecked}>
-                <a href={item.link}>
+                <Title href={item.link}>
                   {item.name}
-                </a>                
+                </Title>                
               </MenuItem>
             ))}
           </Container>
