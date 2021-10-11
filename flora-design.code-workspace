@@ -1,20 +1,12 @@
 {
-  "folders": [
-    {
-      "path": "../../.."
-    }
-  ],
-  "settings": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true
-    },
-    "[javascriptreact]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+		"editor.formatOnPaste": true,
+		"editor.formatOnSave": true
+	}
 }
