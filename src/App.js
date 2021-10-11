@@ -1,5 +1,4 @@
 import BurgerMenu from "components/tron/BurgerMenu";
-import "./App.css";
 import { ThemeProvider, createGlobalStyle } from "styled-components"
 import Landing from "./pages/Landing";
 
