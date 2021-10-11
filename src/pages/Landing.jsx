@@ -21,19 +21,15 @@ const TopImage = styled.img`
 
 const Container = styled.div`
   position: relative;
-  margin: 5% 5%;
+  margin: 7% 1%;
   z-index: 2;
 `;
 
 const Title = styled.p`
-  margin: 7%;
-  font-size: 36px;
+  padding-left: 5%;
+  font-size: 70px;
   color: #9F2E0E;
-`;
-
-const Subtitle = styled.p`
-  font-size: 32px;
-  color: #9F2E0E;
+  text-shadow:1px 1px 5px #9F2E0E;
 `;
 
 const Landing = () => {
@@ -42,13 +38,7 @@ const Landing = () => {
       <Logo src="./img/logo.png" alt="Logo" />
       <TopImage src="./img/landing.jpg" alt="Landing page" />
       <Container>
-        <Title>CRÉONS ENSEMBLE, EN ART-CONNEXION</Title>
-        <Subtitle>
-          Parce qu'une oeuvre créée à partir de ton essence, est bien plus porteuse de sens!
-          <Subtitle>
-            Ici, le processus que je te propose, c’est l’expérience ultime Flora Design! C’est un processus de co-création. C’est une expérience d’Art-connexion. C'est une rencontre intime avec moi. C'est un voyage à l'intérieur de toi.
-          </Subtitle>
-        </Subtitle> 
+        <Title>ART TEXTILE INSPIRÉ DE LA NATURE</Title>
       </Container>
       
     </>
