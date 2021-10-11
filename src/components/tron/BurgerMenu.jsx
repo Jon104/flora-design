@@ -23,11 +23,6 @@ const basicDiv = css`
   background: #fff;
   transition: transform 0.45s cubic-bezier(0.9, -0.6, 0.3, 1.6),
     width 0.2s ease 0.2s;
-  ${(props) =>
-    props.isChecked &&
-    css`
-      background-color: rgba(0, 0, 0, 0.7);
-    `}
 `;
 
 const BottomLine = styled.div`
@@ -37,7 +32,7 @@ const BottomLine = styled.div`
   margin: -2px 0 0 0;
   width: 40px;
   transform-origin: 50% 50%;
-  ${(props) =>
+  ${props =>
     props.isChecked &&
     css`
       transform: rotate(-45deg);
@@ -51,7 +46,7 @@ const MiddleLine = styled.div`
   left: 0;
   width: 20px;
   transform-origin: 0 50%;
-  ${(props) =>
+  ${props =>
     props.isChecked &&
     css`
       width: 19px;
@@ -68,7 +63,7 @@ const TopLine = styled.div`
   transform-origin: 100% 50%;
   transform: translate(-12px, 0);
   width: 28px;
-  ${(props) =>
+  ${props =>
     props.isChecked &&
     css`
       width: 19px;
@@ -85,8 +80,9 @@ const Drawer = styled.div`
   width: 0%;
   background-color: #ffffff;
   transition: width 0.8s cubic-bezier(0.2, -0.6, 0.3, 1.6) 0.1s;
+  z-index: 10;
 
-  ${(props) =>
+  ${props =>
     props.isChecked &&
     css`
       width: 100%;
@@ -98,21 +94,20 @@ const RightPanel = styled.div`
   right: 0;
   height: 100vh;
   width: 58%;
-  background-color: #808080;
+  background-color: ${({theme}) => theme.primary};
   box-shadow: 0px 0px 20  px red;
   z-index: 100;
 `;
 
 const LeftPanel = styled.img`
   position: absolute;
-  top: 50%;
-  left: -25%;
-  transform: translate(50%, -50%);
-  height: 100vh;
-  width: 45%;
-  z-index: 99;
-  opacity: 0.8;
-  background-image: url("./LeftPanelPicture.jpeg");
+    top: -50%;
+    left: -20%;
+    height: 400vh;
+    width: 70%;
+    z-index: 20;
+
+  background-image: url("./img/burger_panel.jpg");
 `;
 
 const menuItems = [
@@ -149,7 +144,7 @@ const MenuItem = styled.div`
 	transition: opacity 0.5s;
   transition-delay: 0s;
 
-  ${(props) =>
+  ${props =>
     props.isChecked &&
     css`
       opacity: 1;
