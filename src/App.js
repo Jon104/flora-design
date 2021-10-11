@@ -1,12 +1,29 @@
 import BurgerMenu from "components/tron/BurgerMenu";
 import "./App.css";
+import { ThemeProvider, createGlobalStyle } from "styled-components"
+import Landing from "./pages/Landing";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family:
+      Lato
+  }
+  `
+
+const theme = {
+  primary: "#9F2E0E"
+}
 
 function App() {
   return (
-    <div className="App">
-      <BurgerMenu />
-      <header className="App-header"></header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <BurgerMenu />
+        <Landing />
+        <GlobalStyle />
+      </div>
+    </ThemeProvider>
   );
 }
 
