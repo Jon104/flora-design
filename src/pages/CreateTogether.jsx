@@ -36,7 +36,7 @@ const Subtitle = styled.p`
   color: #9F2E0E;
 `;
 
-const Landing = () => {
+const CreateTogether = () => {
   return (
     <>
       <Logo src="./img/logo.png" alt="Logo" />
@@ -55,4 +55,4 @@ const Landing = () => {
   )
 }
 
-export default Landing;
+export default CreateTogether;
