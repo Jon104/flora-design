@@ -182,6 +182,52 @@ const BubbleSubtitle = styled.p`
   }
 `;
 
+const QuotesPreFooter = styled.div`
+  display: block;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 160px;
+  left: 0px;
+  padding: 1rem 0rem;
+
+  background: #F2E8DA;
+`;
+
+const QuotesPreFooterContainer = styled.div`
+  width: 50%;
+`;
+
+const Quote = styled.p`
+  display: block;
+  position: relative;
+  font-family: Lato;
+  font-style: italic;
+  font-size: 26px;
+  text-align: center;
+  letter-spacing: 0.3px;
+
+  color: #9F2E0E;
+
+  @media (max-width: 1300px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 20px;
+  }
+
+`;
+
+const Footer = styled.div`
+  width: 100%;
+  position: relative;
+  height: 160px;
+  left: 0px;
+
+  background: #9F2E0E;
+`;
+
 const Landing = () => {
   return (
     <>
@@ -203,7 +249,18 @@ const Landing = () => {
         </LeftPanel>
         <RightPanel src="./img/landing_middle_view.jpg" alt="Landing middle section" />
       </MiddleSection>
-      
+      <QuotesPreFooter>
+        <QuotesPreFooterContainer>
+          <Quote>
+            "L'art est un pas de la nature vers l'Infini"
+          </Quote>
+          <Quote>
+            — Khalil Gibran, Le sable et l'écume
+          </Quote>
+          </QuotesPreFooterContainer>
+      </QuotesPreFooter>
+
+      <Footer />
     </>
   )
 }
