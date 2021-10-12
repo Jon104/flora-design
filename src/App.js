@@ -1,12 +1,13 @@
 import BurgerMenu from "components/tron/BurgerMenu";
 import { ThemeProvider, createGlobalStyle } from "styled-components"
-import Landing from "./pages/Landing";
+import Landing from "./pages/Landing"
 import CreateTogether from "./pages/CreateTogether"
+import MyApproach from "./pages/MyApproach"
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from "react-router-dom"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,6 +29,7 @@ function App() {
           <BurgerMenu />
           <GlobalStyle />
           <Switch>
+            <Route path="/ma-démarche" component={MyApproach} />
             <Route path="/ensemble" component={CreateTogether} />
             <Route path="/" component={Landing} />
         </Switch>

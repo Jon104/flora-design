@@ -101,31 +101,39 @@ const RightPanel = styled.div`
 
 const LeftPanel = styled.img`
   position: absolute;
-    top: -50%;
-    left: -20%;
-    height: 400vh;
-    width: 70%;
-    z-index: 20;
+  top: -50%;
+  left: -20%;
+  height: 400vh;
+  width: 70%;
+  z-index: 20;
 
   background-image: url("./img/burger_panel.jpg");
 `;
 
 const menuItems = [
   {
-    name: "Crayons Ensemble",
+    name: "Ma démarche artistique",
+    link: "/ma-démarche",
+  },
+  {
+    name: "Mes pièces personnalisées",
+    link: "/mes-pièces",
+  },
+  {
+    name: "Créons ensemble, en art-connexion",
     link: "/ensemble",
   },
   {
-    name: "Crée pour moi",
-    link: "/moi",
+    name: "Mes oeuvres sur panache",
+    link: "/panaches",
   },
   {
-    name: "Création sur panache",
-    link: "/panache",
+    name: "Cours et fournitures",
+    link: "/cours",
   },
   {
-    name: "Cours, fournitures et prêt-à-partir",
-    link: "/todo",
+    name: "Création spontanée et prêt-à-partir",
+    link: "/prêt-à-partir",
   },
 ];
 
@@ -136,13 +144,21 @@ const Container = styled.div`
 const MenuItem = styled.div`
   display: flex;
   justify-content: flex-end;
-  font-size: 50px;
-  padding: 32px 16px;
+  padding-bottom: 48px;
   color: #ffffff;
   font-variant-caps: small-caps;
   opacity: 0;
 	transition: opacity 0.5s;
   transition-delay: 0s;
+
+  font-family: Lato;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: right;
+
 
   ${props =>
     props.isChecked &&
