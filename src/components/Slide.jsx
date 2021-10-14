@@ -110,10 +110,8 @@ const Slide = ({ slide, offset }) => {
         }}
       />
       <SlideContentInner>
-          <Title>Tu vois tu lis dans la tête des gens sans même les connaître !! 
-C'est fou!! De se baser seulement sur un questionnaire et wow les 
-créations finales!! Je suis scotchée !</Title>
-          <Subtitle>Marie-Claude, 27 ans</Subtitle>
+          <Title>{slide.testamonial.text}</Title>
+          <Subtitle>{slide.testamonial.source}</Subtitle>
         </SlideContentInner>
     </div>
   );

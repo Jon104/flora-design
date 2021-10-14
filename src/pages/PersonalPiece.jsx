@@ -47,10 +47,14 @@ const Subtitle = styled.p`
 `;
 
 const MiddleSection = styled.div`
-    padding-top: 6%;
+    padding: 20% 0%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1300px) {
+    padding: 6% 0%;
+  }
 `;
 
 const Slides = styled.div`
@@ -95,39 +99,45 @@ const Slides = styled.div`
 
 const slides = [
   {
-    title: "Machu Picchu",
-    subtitle: "Peru",
-    description: "Adventure is never far away",
     image:
-      "https://dsm01pap001files.storage.live.com/y4mWARjK_lQhVyae7VRJ2y884QsGgbYUR8BIzZ6XIBjUJVzoYe7XJGpO4KDSZfuFpE71BW3kgeuFZdSnRT3gqZeDwhqZ1jlOMVhew-wOOCXrXrAFU9BYAhPvWJruvsf38K0-ITCIdnuY662_MSxbJo3S1WFDOphta1_Grvl1hrbOgJzhm3heEsoamNj7-ssFc_U?width=1024&height=1024&cropmode=none"
+      "https://dsm01pap001files.storage.live.com/y4mWARjK_lQhVyae7VRJ2y884QsGgbYUR8BIzZ6XIBjUJVzoYe7XJGpO4KDSZfuFpE71BW3kgeuFZdSnRT3gqZeDwhqZ1jlOMVhew-wOOCXrXrAFU9BYAhPvWJruvsf38K0-ITCIdnuY662_MSxbJo3S1WFDOphta1_Grvl1hrbOgJzhm3heEsoamNj7-ssFc_U?width=1024&height=1024&cropmode=none",
+    testamonial: {
+        source: "Marie-Pier, 27 ans",
+        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
+    }
   },
   {
-    title: "Chamonix",
-    subtitle: "France",
-    description: "Let your dreams come true",
     image:
-      "https://dsm01pap001files.storage.live.com/y4mmkQMpwg5Q7GzRV8kAvEncfZOo4Cc1B4tTldyDm1ypl3Pem2jVY38j1i_q-KIVrOZtijfV5Vhd3DesaPZEvxEC4txtc2-MZRpfukMJTd9o8DNgl7WtOfNxIzg-jZe0xjD-dHp4xngGwrlml6aVKTiHEcO2Jp_mSPOUF1rRt9BGIfoQalqGfi0K0rxKIOq1ANH?width=1024&height=768&cropmode=none"
+      "https://dsm01pap001files.storage.live.com/y4mmkQMpwg5Q7GzRV8kAvEncfZOo4Cc1B4tTldyDm1ypl3Pem2jVY38j1i_q-KIVrOZtijfV5Vhd3DesaPZEvxEC4txtc2-MZRpfukMJTd9o8DNgl7WtOfNxIzg-jZe0xjD-dHp4xngGwrlml6aVKTiHEcO2Jp_mSPOUF1rRt9BGIfoQalqGfi0K0rxKIOq1ANH?width=1024&height=768&cropmode=none",
+      testamonial: {
+        source: "Marie-Pier, 27 ans",
+        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
+    }
   },
   {
-    title: "Mimisa Rocks",
-    subtitle: "Australia",
-    description: "A piece of heaven",
     image:
-      "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none"
+      "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
+      testamonial: {
+        source: "Marie-Pier, 27 ans",
+        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
+    }
   },
   {
-    title: "Four",
-    subtitle: "Australia",
-    description: "A piece of heaven",
     image:
-      "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none"
+      "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
+      testamonial: {
+        source: "Marie-Pier, 27 ans",
+        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
+    }
+  
   },
   {
-    title: "Five",
-    subtitle: "Australia",
-    description: "A piece of heaven",
     image:
-      "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none"
+      "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
+      testamonial: {
+        source: "Marie-Pier, 27 ans",
+        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
+    }
   }
 ];
 

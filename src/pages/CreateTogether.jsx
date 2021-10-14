@@ -49,71 +49,21 @@ const MiddleSection = styled.div`
 
 const MiddleSectionImage = styled.img`
   position: absolute;
-  left: -50%;
+  left: -40%;
   top: 60%;
   max-width: 100%;
   height: auto;
+  opacity: 0.75;
 `;
 
-const Bubble = styled.div`
-  border: 1px solid #F8F8FB;
-  box-shadow: 10px 10px 30px rgba(208, 207, 220, 0.4);
-  border-radius: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 18px 28px 18px 40px;
-  width: 600px;
-  right: 20%;
-  position: absolute;
-  
-  top: 75%;
+const ImageContainer = styled.div`
+  background-color: #D9D8D2;
+  height: 170vh;
+  width: 110%;
+  margin: 5% 5%;
+  z-index: 2;
   text-align: center;
-
-  @media (max-width: 1000px) {
-    width: 370px;
-    right: 10%;
-  }
-  @media (max-width: 1000px) {
-    width: 280px;
-  }
-`;
-
-const BubbleTag = styled.p`
-  font-family: Lato;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 18px;
-  letter-spacing: 0.5px;
-`;
-
-const BubbleTitle = styled.p`
-  font-family: Barlow;
-  font-size: 32px;
-  line-height: 38px;
-  letter-spacing: 0.3px;
-  color: #000000;
-  text-transform: uppercase;
-`;
-
-const BubbleSubtitle = styled.p`
-  font-family: Barlow;
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: #0000000;
-  text-shadow: 1px 1px 5px #000000
-  opacity: 0.8;
-  font-size: 20px;
-  border-radius: nullpx;  
-
-  @media (max-width: 1300px) {
-    font-size: 16px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 14px;
-  }
+  text-shadow: 1px 1px 3px #9F2E0E;
 `;
 
 const CreateTogether = () => {
@@ -144,12 +94,9 @@ const CreateTogether = () => {
         <Subtitle>
           Ultimement, je sais que mettre en lumière les fondements de toi-même, ne peut que t'amener plus de liberté et de clarté intérieure. Te permettre de te sentir plus alignée.
         </Subtitle>
+        <ImageContainer>
         <MiddleSectionImage src="./img/middle_section_long_image.jpeg" />
-        <Bubble>
-          <BubbleTag>Semaine 1</BubbleTag>
-          <BubbleTitle>Respect de la nature</BubbleTitle>
-          <BubbleSubtitle>On prend une quinzaine de minutes au téléphone où je réponds à tes questions et on voit ensemble si la démarche pourrait te convenir. Le tout sans engagement.</BubbleSubtitle>
-        </Bubble>
+        </ImageContainer>
       </MiddleSection>
       
     </>
