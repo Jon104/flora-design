@@ -112,6 +112,10 @@ const LeftPanel = styled.img`
 
 const menuItems = [
   {
+    name: "Accueil",
+    link: "/",
+  },
+  {
     name: "Ma démarche artistique",
     link: "/ma-démarche",
   },
