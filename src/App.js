@@ -3,6 +3,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components"
 import Landing from "./pages/Landing"
 import CreateTogether from "./pages/CreateTogether"
 import MyApproach from "./pages/MyApproach"
+import PersonalPiece from "./pages/PersonalPiece"
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +32,7 @@ function App() {
           <Switch>
             <Route path="/ma-démarche" component={MyApproach} />
             <Route path="/ensemble" component={CreateTogether} />
+            <Route path="/mes-pièces" component={PersonalPiece} />
             <Route path="/" component={Landing} />
         </Switch>
         </div>
