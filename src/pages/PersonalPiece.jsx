@@ -4,6 +4,7 @@ import Slide from "../components/Slide";
 import Fab from "../components/buttons/Fab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStoreAlt } from "@fortawesome/free-solid-svg-icons";
+import { Formik, Form, Field } from "formik";
 
 const Logo = styled.img`
   margin-left: auto;
@@ -279,6 +280,104 @@ const PersonalPiece = () => {
 
       <Drawer isChecked={isChecked}>
         <OffFocusPanel isChecked={isChecked} />
+        <Formik
+          initialValues={{
+            bonusInformation: "",
+            budget: "",
+            completeName: "",
+            email: "",
+            favoriteColors: [],
+            favoriteMotifs: [],
+            moreInfo: "",
+            picturesInspiration: [],
+            picturesRoom: [],
+            projectType: "",
+          }}
+          onSubmit={async (values) => {
+            await new Promise((r) => setTimeout(r, 500));
+            alert(JSON.stringify(values, null, 2));
+          }}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <Form>
+              <label htmlFor="completeName">Nom complet</label>
+              <Field id="completeName" name="completeName" />
+
+              <label htmlFor="email">Courriel</label>
+              <Field id="email" name="email" type="email" />
+
+              <label htmlFor="projectType">Type de projet désiré</label>
+              <select
+                name="color"
+                value={values.color}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{ display: "block" }}
+              >
+                <option value="" label="Select a color" />
+                <option value="red" label="red" />
+                <option value="blue" label="blue" />
+                <option value="green" label="green" />
+              </select>
+
+              <label htmlFor="moreInfo">Précise, au besoin.</label>
+              <Field id="moreInfo" name="moreInfo" />
+
+              <label htmlFor="favoriteMotifs">Quels motifs préfères-tu?</label>
+              {/* add picture grid */}
+
+              <label htmlFor="favoriteColors">
+                Quels couleurs préfères-tu?
+              </label>
+              {/* add picture grid */}
+
+              <label htmlFor="picturesInspiration">
+                Montre-moi tes photos inspirations. Note: Chaque pièce que je
+                crée est unique.
+              </label>
+              {/* add button for picture upload */}
+
+              <label htmlFor="picturesRoom">
+                Montre-moi la pièce dans laquelle ma création ira. Tu peux aussi
+                m’envoyer des photos des éléments déco avec lesquels tu veux
+                agencer.
+              </label>
+              {/* add button for picture upload */}
+
+              <label htmlFor="budget">Quel est ton budget?</label>
+              <select
+                name="budget"
+                value={values.budget}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                style={{ display: "block" }}
+              >
+                <option value="2" label="2-3$" />
+                <option value="8" label="8$" />
+                <option value="300 000 000" label="300 000 000" />
+                <option value="800" label="800 pommes" />
+              </select>
+
+              <label htmlFor="bonusInformation">
+                C’est le moment de me partager ta vide, ta couleur, parce que ce
+                qu’on veut c’est que ta pièce soit unique et parfaite pour toi.
+                Donnes-moi toutes les informations que tu souhaites me partager
+                pour me guider dans ma création.
+              </label>
+              <Field id="bonusInformation" name="bonusInformation" />
+
+              <button type="submit">Submit</button>
+            </Form>
+          )}
+        </Formik>
       </Drawer>
     </>
   );
