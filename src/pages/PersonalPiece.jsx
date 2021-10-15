@@ -1,6 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import Slide from '../components/Slide';
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
+import Slide from "../components/Slide";
+import Fab from "../components/buttons/Fab";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStoreAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Logo = styled.img`
   margin-left: auto;
@@ -26,28 +29,40 @@ const Container = styled.div`
   margin: 5% 5%;
   z-index: 2;
   text-align: center;
-  text-shadow: 1px 1px 3px #9F2E0E;
+  text-shadow: 1px 1px 3px #9f2e0e;
 `;
 
 const Title = styled.p`
-    font-family: Lato;
-    font-style: italic;
-    font-weight: 300;
-    line-height: 43px;
-    letter-spacing: 0.30000001192092896px;
-text-align: center;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 43px;
+  letter-spacing: 0.30000001192092896px;
   font-size: 36px;
-  color: #9F2E0E;
+  color: #9f2e0e;
+
+  ${(props) =>
+    props.primary &&
+    css`
+      color: #ffffff;
+    `};
 `;
 
 const Subtitle = styled.p`
   font-family: Barlow;
   font-size: 32px;
-  color: #9F2E0E;
+  color: #9f2e0e;
+
+  ${(props) =>
+    props.primary &&
+    css`
+      color: #ffffff;
+    `};
 `;
 
 const MiddleSection = styled.div`
-    padding: 20% 0%;
+  padding: 20% 0%;
+  padding-bottom: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,7 +83,7 @@ const Slides = styled.div`
     background: transparent;
     min-width: 30vw;
     min-height: 40vw;
-    color: #9F2E0E;
+    color: #9f2e0e;
 
     border: none;
     color: white;
@@ -97,72 +112,115 @@ const Slides = styled.div`
   }
 `;
 
+const SecondMiddleSection = styled.div`
+  padding: 3% 10%;
+  text-align: left;
+  position: relative;
+  display: block;
+  background: #9f2e0e;
+  height: 800px;
+`;
+
+const Drawer = styled.div`
+  position: fixed;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  width: 0%;
+  background: ${({ theme }) => theme.primary};
+  transition: width 0.8s cubic-bezier(0.2, -0.6, 0.3, 1.6) 0.1s;
+  z-index: 0;
+
+  ${(props) =>
+    props.isChecked &&
+    css`
+      width: 58%;
+    `};
+`;
+
+const OffFocusPanel = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  opacity: 0.6;
+  width: 0%;
+  background: #000000;
+  transition: width 0.8s cubic-bezier(0.2, -0.6, 0.3, 1.6) 0.1s;
+
+  ${(props) =>
+    props.isChecked &&
+    css`
+      width: 42%;
+    `};
+`;
+
 const slides = [
   {
     image:
       "https://dsm01pap001files.storage.live.com/y4mWARjK_lQhVyae7VRJ2y884QsGgbYUR8BIzZ6XIBjUJVzoYe7XJGpO4KDSZfuFpE71BW3kgeuFZdSnRT3gqZeDwhqZ1jlOMVhew-wOOCXrXrAFU9BYAhPvWJruvsf38K0-ITCIdnuY662_MSxbJo3S1WFDOphta1_Grvl1hrbOgJzhm3heEsoamNj7-ssFc_U?width=1024&height=1024&cropmode=none",
     testamonial: {
-        source: "Marie-Pier, 27 ans",
-        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
-    }
+      source: "Marie-Pier, 27 ans",
+      text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
+    },
   },
   {
     image:
       "https://dsm01pap001files.storage.live.com/y4mmkQMpwg5Q7GzRV8kAvEncfZOo4Cc1B4tTldyDm1ypl3Pem2jVY38j1i_q-KIVrOZtijfV5Vhd3DesaPZEvxEC4txtc2-MZRpfukMJTd9o8DNgl7WtOfNxIzg-jZe0xjD-dHp4xngGwrlml6aVKTiHEcO2Jp_mSPOUF1rRt9BGIfoQalqGfi0K0rxKIOq1ANH?width=1024&height=768&cropmode=none",
-      testamonial: {
-        source: "Marie-Pier, 27 ans",
-        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
-    }
+    testamonial: {
+      source: "Marie-Pier, 27 ans",
+      text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
+    },
   },
   {
     image:
       "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
-      testamonial: {
-        source: "Marie-Pier, 27 ans",
-        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
-    }
+    testamonial: {
+      source: "Marie-Pier, 27 ans",
+      text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
+    },
   },
   {
     image:
       "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
-      testamonial: {
-        source: "Marie-Pier, 27 ans",
-        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
-    }
-  
+    testamonial: {
+      source: "Marie-Pier, 27 ans",
+      text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
+    },
   },
   {
     image:
       "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
-      testamonial: {
-        source: "Marie-Pier, 27 ans",
-        text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !"
-    }
-  }
+    testamonial: {
+      source: "Marie-Pier, 27 ans",
+      text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
+    },
+  },
 ];
 
 const initialState = {
-  slideIndex: 0
+  slideIndex: 0,
 };
 
 const slidesReducer = (state, event) => {
   if (event.type === "NEXT") {
     return {
       ...state,
-      slideIndex: (state.slideIndex + 1) % slides.length
+      slideIndex: (state.slideIndex + 1) % slides.length,
     };
   }
   if (event.type === "PREV") {
     return {
       ...state,
       slideIndex:
-        state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1
+        state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1,
     };
   }
 };
 
 const PersonalPiece = () => {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState);
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <>
@@ -171,27 +229,59 @@ const PersonalPiece = () => {
       <Container>
         <Title>CRÉONS ENSEMBLE, EN ART-CONNEXION</Title>
         <Subtitle>
-          Parce qu'une oeuvre créée à partir de ton essence, est bien plus porteuse de sens!
+          Parce qu'une oeuvre créée à partir de ton essence, est bien plus
+          porteuse de sens!
           <Subtitle>
-            Ici, le processus que je te propose, c’est l’expérience ultime Flora Design! C’est un processus de co-création. C’est une expérience d’Art-connexion. C'est une rencontre intime avec moi. C'est un voyage à l'intérieur de toi.
+            Ici, le processus que je te propose, c’est l’expérience ultime Flora
+            Design! C’est un processus de co-création. C’est une expérience
+            d’Art-connexion. C'est une rencontre intime avec moi. C'est un
+            voyage à l'intérieur de toi.
           </Subtitle>
-        </Subtitle> 
+        </Subtitle>
       </Container>
 
       <MiddleSection>
         <Slides>
-            <button onClick={() => dispatch({ type: "NEXT" })} />
+          <button onClick={() => dispatch({ type: "NEXT" })} />
 
-            {[...slides, ...slides, ...slides].map((slide, i) => {
-                let offset = slides.length + (state.slideIndex - i);
-                return <Slide slide={slide} offset={offset} key={i} />;
-            })}
-            <button onClick={() => dispatch({ type: "PREV" })} />
+          {[...slides, ...slides, ...slides].map((slide, i) => {
+            let offset = slides.length + (state.slideIndex - i);
+            return <Slide slide={slide} offset={offset} key={i} />;
+          })}
+          <button onClick={() => dispatch({ type: "PREV" })} />
         </Slides>
       </MiddleSection>
-      
+
+      <SecondMiddleSection>
+        <Title primary>FLORA, CRÉE POUR MOI ... </Title>
+        <Subtitle primary>
+          J’absorbe toutes les informations que tu me donnes, et je crée à
+          partir de ça. Parle-moi de toi, de tes goûts, de ton décor, du style
+          que tu recherches, de tes pièces coup de coeur, de tes motifs et
+          couleurs désirés, de ton budget... je veux tout savoir! Ensuite je te
+          demande de tolérer une part de surprise et de me laisser aller ! Cet
+          espace me permet de me connecter sur ta vibe et sur mon élan créatif
+          pour créer ta pièce unique!
+        </Subtitle>
+        <Subtitle primary>
+          Et si tu n’as pas d’idée précise de ce que tu veux, c’est loin d’être
+          une contrainte pour moi. J’ai toujours la tête pleine d’idées à te
+          proposer !
+        </Subtitle>
+      </SecondMiddleSection>
+
+      <Fab pulse bc="#000232">
+        <FontAwesomeIcon
+          icon={faStoreAlt}
+          onClick={() => setIsChecked(!isChecked)}
+        />
+      </Fab>
+
+      <Drawer isChecked={isChecked}>
+        <OffFocusPanel isChecked={isChecked} />
+      </Drawer>
     </>
-  )
-}
+  );
+};
 
 export default PersonalPiece;
