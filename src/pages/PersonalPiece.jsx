@@ -290,7 +290,7 @@ const PersonalPiece = () => {
           isChecked={isChecked}
           onClick={() => setIsChecked(!isChecked)}
         />
-        <form action="POST" data-netlify="true">
+        <form name="contact" netlify>
           <p>
             <label>
               Your Name: <input type="text" name="name" />
@@ -315,6 +315,7 @@ const PersonalPiece = () => {
               Message: <textarea name="message"></textarea>
             </label>
           </p>
+          <div data-netlify-recaptcha="true" />
           <p>
             <button type="submit">Send</button>
           </p>
