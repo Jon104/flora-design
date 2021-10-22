@@ -4,6 +4,7 @@ import Landing from "./pages/Landing";
 import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./pages/PersonalPiece";
+import Thanks from "./pages/Thanks";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
