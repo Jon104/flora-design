@@ -290,7 +290,7 @@ const PersonalPiece = () => {
           isChecked={isChecked}
           onClick={() => setIsChecked(!isChecked)}
         />
-        <form name="contact" method="POST" netlify>
+        <form name="contact" action="POST" netlify>
           <p>
             <label>
               Your Name: <input type="text" name="name" />
