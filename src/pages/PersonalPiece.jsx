@@ -290,7 +290,7 @@ const PersonalPiece = () => {
           isChecked={isChecked}
           onClick={() => setIsChecked(!isChecked)}
         />
-        <form name="contact" action="POST" netlify netlify-honeypot="bot-field">
+        <form name="contact" netlify>
           <p>
             <label>
               Your Name: <input type="text" name="name" />
