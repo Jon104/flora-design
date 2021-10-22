@@ -290,7 +290,7 @@ const PersonalPiece = () => {
           isChecked={isChecked}
           onClick={() => setIsChecked(!isChecked)}
         />
-        <form name="contact" action="POST" netlify>
+        <form name="contact" action="POST" netlify netlify-honeypot="bot-field">
           <p>
             <label>
               Your Name: <input type="text" name="name" />
@@ -315,7 +315,6 @@ const PersonalPiece = () => {
               Message: <textarea name="message"></textarea>
             </label>
           </p>
-          <div data-netlify-recaptcha="true" />
           <p>
             <button type="submit">Send</button>
           </p>
