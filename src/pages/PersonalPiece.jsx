@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
-import Fab from "../components/buttons/Fab";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStoreAlt } from "@fortawesome/free-solid-svg-icons";
-import { Formik, Form, Field } from "formik";
 import { Box, Button } from "@mui/material";
 
 const Logo = styled.img`
