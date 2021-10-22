@@ -5,6 +5,7 @@ import Fab from "../components/buttons/Fab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStoreAlt } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Form, Field } from "formik";
+import { Box, Button } from "@mui/material";
 
 const Logo = styled.img`
   margin-left: auto;
@@ -161,7 +162,7 @@ const slides = [
     image:
       "https://dsm01pap001files.storage.live.com/y4mWARjK_lQhVyae7VRJ2y884QsGgbYUR8BIzZ6XIBjUJVzoYe7XJGpO4KDSZfuFpE71BW3kgeuFZdSnRT3gqZeDwhqZ1jlOMVhew-wOOCXrXrAFU9BYAhPvWJruvsf38K0-ITCIdnuY662_MSxbJo3S1WFDOphta1_Grvl1hrbOgJzhm3heEsoamNj7-ssFc_U?width=1024&height=1024&cropmode=none",
     testamonial: {
-      source: "Marie-Pier, 27 ans",
+      source: "Marie-Pier",
       text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
     },
   },
@@ -169,7 +170,7 @@ const slides = [
     image:
       "https://dsm01pap001files.storage.live.com/y4mmkQMpwg5Q7GzRV8kAvEncfZOo4Cc1B4tTldyDm1ypl3Pem2jVY38j1i_q-KIVrOZtijfV5Vhd3DesaPZEvxEC4txtc2-MZRpfukMJTd9o8DNgl7WtOfNxIzg-jZe0xjD-dHp4xngGwrlml6aVKTiHEcO2Jp_mSPOUF1rRt9BGIfoQalqGfi0K0rxKIOq1ANH?width=1024&height=768&cropmode=none",
     testamonial: {
-      source: "Marie-Pier, 27 ans",
+      source: "Marie-Pier",
       text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
     },
   },
@@ -177,7 +178,7 @@ const slides = [
     image:
       "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
     testamonial: {
-      source: "Marie-Pier, 27 ans",
+      source: "Marie-Pier",
       text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
     },
   },
@@ -185,7 +186,7 @@ const slides = [
     image:
       "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
     testamonial: {
-      source: "Marie-Pier, 27 ans",
+      source: "Marie-Pier",
       text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
     },
   },
@@ -193,7 +194,7 @@ const slides = [
     image:
       "https://dsm01pap001files.storage.live.com/y4mZJOu_giGua1sKueH5Iu7S5H1-CsD9IxgUMbCo9nufyLe3mFhOiUfS3hlWwXaFaOEZaqNRjVoomRXdhJ_2goTJRNMOYr-GM1Eh4U5BmWtzjSH4SfjXGu8QVLKR3QkfC2yxIvZntuDnIzAAbfdFPL7BPdJmwxKlOQGKuJ94tb9E2lUAv9sxJfhCYJ2RXCir9VF?width=1024&height=768&cropmode=none",
     testamonial: {
-      source: "Marie-Pier, 27 ans",
+      source: "Marie-Pier",
       text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
     },
   },
@@ -269,115 +270,59 @@ const PersonalPiece = () => {
           une contrainte pour moi. J’ai toujours la tête pleine d’idées à te
           proposer !
         </Subtitle>
+        <Box marginTop="80px">
+          <Button
+            onClick={() => setIsChecked(!isChecked)}
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: "#F2E8DA",
+              color: "#9F2E0E",
+              fontSize: 15,
+              height: "3rem",
+              width: "26rem",
+              boxShadow: "10px 10px 30px 0px #D0CFDC66",
+            }}
+          >
+            Élaborons ton projet ensemble
+          </Button>
+        </Box>
       </SecondMiddleSection>
 
-      <Fab pulse bc="#000232">
-        <FontAwesomeIcon
-          icon={faStoreAlt}
+      <Drawer isChecked={isChecked}>
+        <OffFocusPanel
+          isChecked={isChecked}
           onClick={() => setIsChecked(!isChecked)}
         />
-      </Fab>
-
-      <Drawer isChecked={isChecked}>
-        <OffFocusPanel isChecked={isChecked} />
-        <Formik
-          initialValues={{
-            bonusInformation: "",
-            budget: "",
-            completeName: "",
-            email: "",
-            favoriteColors: [],
-            favoriteMotifs: [],
-            moreInfo: "",
-            picturesInspiration: [],
-            picturesRoom: [],
-            projectType: "",
-          }}
-          onSubmit={async (values) => {
-            await new Promise((r) => setTimeout(r, 500));
-            alert(JSON.stringify(values, null, 2));
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-          }) => (
-            <Form>
-              <label htmlFor="completeName">Nom complet</label>
-              <Field id="completeName" name="completeName" />
-
-              <label htmlFor="email">Courriel</label>
-              <Field id="email" name="email" type="email" />
-
-              <label htmlFor="projectType">Type de projet désiré</label>
-              <select
-                name="color"
-                value={values.color}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                style={{ display: "block" }}
-              >
-                <option value="" label="Select a color" />
-                <option value="red" label="red" />
-                <option value="blue" label="blue" />
-                <option value="green" label="green" />
+        <form name="contact" method="POST" data-netlify="true">
+          <p>
+            <label>
+              Your Name: <input type="text" name="name" />
+            </label>
+          </p>
+          <p>
+            <label>
+              Your Email: <input type="email" name="email" />
+            </label>
+          </p>
+          <p>
+            <label>
+              Your Role:{" "}
+              <select name="role[]" multiple>
+                <option value="leader">Leader</option>
+                <option value="follower">Follower</option>
               </select>
-
-              <label htmlFor="moreInfo">Précise, au besoin.</label>
-              <Field id="moreInfo" name="moreInfo" />
-
-              <label htmlFor="favoriteMotifs">Quels motifs préfères-tu?</label>
-              {/* add picture grid */}
-
-              <label htmlFor="favoriteColors">
-                Quels couleurs préfères-tu?
-              </label>
-              {/* add picture grid */}
-
-              <label htmlFor="picturesInspiration">
-                Montre-moi tes photos inspirations. Note: Chaque pièce que je
-                crée est unique.
-              </label>
-              {/* add button for picture upload */}
-
-              <label htmlFor="picturesRoom">
-                Montre-moi la pièce dans laquelle ma création ira. Tu peux aussi
-                m’envoyer des photos des éléments déco avec lesquels tu veux
-                agencer.
-              </label>
-              {/* add button for picture upload */}
-
-              <label htmlFor="budget">Quel est ton budget?</label>
-              <select
-                name="budget"
-                value={values.budget}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                style={{ display: "block" }}
-              >
-                <option value="2" label="2-3$" />
-                <option value="8" label="8$" />
-                <option value="300 000 000" label="300 000 000" />
-                <option value="800" label="800 pommes" />
-              </select>
-
-              <label htmlFor="bonusInformation">
-                C’est le moment de me partager ta vide, ta couleur, parce que ce
-                qu’on veut c’est que ta pièce soit unique et parfaite pour toi.
-                Donnes-moi toutes les informations que tu souhaites me partager
-                pour me guider dans ma création.
-              </label>
-              <Field id="bonusInformation" name="bonusInformation" />
-
-              <button type="submit">Submit</button>
-            </Form>
-          )}
-        </Formik>
+            </label>
+          </p>
+          <p>
+            <label>
+              Message: <textarea name="message"></textarea>
+            </label>
+          </p>
+          <p>
+            <button type="submit">Send</button>
+          </p>
+        </form>
       </Drawer>
     </>
   );
