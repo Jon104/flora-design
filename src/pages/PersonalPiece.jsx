@@ -220,6 +220,19 @@ const PersonalPiece = () => {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState);
   const [isChecked, setIsChecked] = useState(false);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let myForm = document.getElementById("contact");
+    let formData = new FormData(myForm);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch((error) => alert(error));
+  };
+
   return (
     <>
       <Logo src="./img/logo.png" alt="Logo" />
@@ -290,7 +303,7 @@ const PersonalPiece = () => {
           isChecked={isChecked}
           onClick={() => setIsChecked(!isChecked)}
         />
-        <form name="contact" method="POST" data-netlify="true">
+        <form id="contact" name="contact" method="POST" data-netlify="true">
           <p>
             <label>
               Your Name: <input type="text" name="name" />
@@ -316,7 +329,9 @@ const PersonalPiece = () => {
             </label>
           </p>
           <p>
-            <button type="submit">Send</button>
+            <button type="submit" onClick={handleSubmit}>
+              Send
+            </button>
           </p>
         </form>
       </Drawer>
