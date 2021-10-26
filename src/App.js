@@ -29,7 +29,7 @@ function App() {
           <Switch>
             <Route path="/ma-démarche" component={MyApproach} />
             <Route path="/ensemble" component={CreateTogether} />
-            <Route path="/mes-pièces" component={PersonalPiece} />
+            <Route path="/personal-pieces" component={PersonalPiece} />
             <Route path="/thanks" component={Thanks} />
             <Route path="/" component={Landing} />
           </Switch>
