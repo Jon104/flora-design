@@ -291,7 +291,7 @@ const PersonalPiece = () => {
           onClick={() => setIsChecked(!isChecked)}
         />
         <form method="post">
-          <input type="hidden" name="contact" value="contact" />
+          <input type="hidden" name="form-name" value="contact" />
           <p>
             <label>
               Your Name: <input type="text" name="name" />
