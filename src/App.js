@@ -4,6 +4,7 @@ import Landing from "./pages/Landing";
 import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./pages/PersonalPiece";
+import Thanks from "./pages/Thanks";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
@@ -29,6 +30,7 @@ function App() {
             <Route path="/ma-démarche" component={MyApproach} />
             <Route path="/ensemble" component={CreateTogether} />
             <Route path="/personal-pieces" component={PersonalPiece} />
+            <Route path="/thanks" component={Thanks} />
             <Route path="/" component={Landing} />
           </Switch>
         </div>
