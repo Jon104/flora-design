@@ -312,7 +312,7 @@ const PersonalPiece = () => {
           </p>
         </form>
         <form method="post">
-          <input type="hidden" name="test" value="test" />
+          <input type="hidden" name="form-name" value="test" />
           <p>
             <label>
               Your Age: <input type="text" name="age" />
