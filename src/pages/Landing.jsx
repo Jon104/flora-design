@@ -1,131 +1,205 @@
-import styled from 'styled-components';
+import {
+  Box,
+  Grid,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import styled, { css } from "styled-components";
+import Bubble from "../components/Bubble";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
 
-const Logo = styled.img`
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  top: 0;
-  left: 50%;
-  z-index: 100;
+const FooterListItems = [
+  "Accueil",
+  "Ma démarche artistique",
+  "Cours et fourniture",
+  "Créations spontanées et prêt-à-partir",
+];
 
-  @media (max-width: 1300px) {
-    width: 220px;
-  }
-  @media (max-width: 800px) {
-    width: 180px;
-  }
-  @media (max-width: 630px) {
-    width: 130px;
-  }
-`;
+const BubblesContent = [
+  {
+    title: "RESPECT DE LA NATURE",
+    subtitle:
+      "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
+  },
+  {
+    title: "CONNEXION",
+    subtitle:
+      "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
+  },
+  {
+    title: "RESPECT DE LA NATURE",
+    subtitle:
+      "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
+  },
+];
 
-const TopImage = styled.img`
-  position: absolute;
-  left: 0;
-  top: 0;
-  max-width: 100%;
-  height: auto;
-  opacity: 0.4;
-  z-index: 1;
-`;
+const Landing = () => {
+  return (
+    <>
+      <Logo src="./img/logo.png" alt="Logo" />
+      <VideoBackground
+        src="./vid/main_video.m4v"
+        autoPlay
+        playsInline
+        loop
+        muted
+      />
+      <Container>
+        <Title>ART TEXTILE INSPIRÉ DE LA NATURE</Title>
+      </Container>
+      <FlexContainer>
+        <LeftPanel>
+          <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS</MiddleSectionTitle>
+          <MiddleSectionParagraph>
+            Je suis Laurie, maman de 2 garçons. J'habite au coeur des belles
+            montagnes de Stoneham.{" "}
+          </MiddleSectionParagraph>
+          <MiddleSectionParagraph>
+            Plutôt rêveuse, toujours pleine d'idées, pis un peu intense quand je
+            m'embarque dans quelque chose.
+          </MiddleSectionParagraph>
+          <MiddleSectionParagraph>
+            J'espère réussir à te toucher par mon art. Tu remarqueras sans doute
+            ma signature végétale bien à moi. Par mes oeuvres et mes cours de
+            macramé, j'ai pour mission d'aider les femmes à se reconnecter à
+            leur essence !
+          </MiddleSectionParagraph>
+        </LeftPanel>
+        <RightPanel
+          loading="lazy"
+          src="./img/landing_middle_view.jpg"
+          alt="Landing middle section"
+        />
+      </FlexContainer>
+      <Box sx={{ marginBottom: 10, padding: 2 }}>
+        <Grid
+          container
+          direction="row"
+          spacing={3}
+          justifyContent="center"
+          alignItems="center"
+        >
+          {BubblesContent.map((element) => (
+            <Grid item xs={12} md={4}>
+              <Bubble>
+                <BubbleTitle>{element.title}</BubbleTitle>
+                <BubbleSubtitle>{element.subtitle}</BubbleSubtitle>
+              </Bubble>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
 
-const Container = styled.div`
-  position: relative;
-  margin: 7% 1%;
-  z-index: 2;
+      <Box sx={{ padding: 1, background: "#f2e8da" }}>
+        <Quote italic>"L'art est un pas de la nature vers l'Infini"</Quote>
+        <Quote>— Khalil Gibran, Le sable et l'écume</Quote>
+      </Box>
 
-  @media (max-width: 1300px) {
-    margin: 3% 1%;
-  }
-  @media (max-width: 800px) {
-    margin: 0% 1%;
-  }
-`;
+      <Footer>
+        <Box sx={{ paddingBottom: 5, paddingTop: 4 }}>
+          <Grid
+            sx={{
+              paddingRight: 8,
+              paddingLeft: 6,
+            }}
+            container
+            spacing={3}
+          >
+            <Grid item xs={6}>
+              <List
+                sx={{
+                  color: "#ffffff",
+                  fontFamily: "Lato",
+                  fontSize: "25px",
+                  fontWeight: "400",
+                  lineHeight: "30px",
+                  textAlign: "left",
+                }}
+              >
+                <ListItemButton />
+                {FooterListItems.map((text) => (
+                  <ListItemText
+                    primary={text}
+                    sx={{
+                      fontFamily: "Lato",
+                      fontSize: "25px",
+                      fontWeight: "400",
+                      lineHeight: "30px",
+                      textAlign: "left",
+                    }}
+                  />
+                ))}
+              </List>
+            </Grid>
+            <Grid item xs={6}>
+              <FooterText>
+                Pour voir plus de créations, pour avoir des informations sur mes
+                offres saisonnières ou pour discuter avec moi, suivez-moi sur
+                mes réseaux sociaux!
+              </FooterText>
+              <Grid
+                container
+                direction="row"
+                justifyContent="flex-end"
+                alignItems="flex-end"
+              >
+                <Grid item xs={9} />
+                <Grid item xs={3} direction="reverse">
+                  <IconButton
+                    aria-label="instagram picture"
+                    component="span"
+                    onClick={() =>
+                      window.open(
+                        "https://www.instagram.com/flora_design_art_textile/",
+                        "_blank"
+                      )
+                    }
+                  >
+                    <InstagramIcon
+                      sx={{ color: "white", opacity: 0.95 }}
+                      fontSize="large"
+                    />
+                  </IconButton>
 
-const Title = styled.p`
-  padding-left: 5%;
-  font-size: 70px;
-  color: #9F2E0E;
-  text-shadow:1px 1px 5px #9F2E0E;
+                  <IconButton
+                    aria-label="facebook picture"
+                    component="span"
+                    onClick={() =>
+                      window.open(
+                        "https://www.facebook.com/Flora-Design-2473490369540452/",
+                        "_blank"
+                      )
+                    }
+                  >
+                    <FacebookIcon
+                      sx={{ color: "white", opacity: 0.95 }}
+                      fontSize="large"
+                    />
+                  </IconButton>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+      </Footer>
+    </>
+  );
+};
 
-  @media (max-width: 1300px) {
-    font-size: 50px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 40px;
-  }
-  @media (max-width: 800px) {
-    font-size: 28px;
-  }
-  @media (max-width: 630px) {
-    font-size: 22px;
-  }
-`;
+export default Landing;
 
-const MiddleSection = styled.div`
-  position: relative;
-  display: block;
-  height: 100vh;
-  padding-top: 25%;
-  z-index: 5;
-
-  @media (max-width: 1300px) {
-    padding-top: 30%;
-  }
-  @media (max-width: 1000px) {
-    padding-top: 22%;
-  }
-  @media (max-width: 800px) {
-    padding-top: 24%;
-  }
-  @media (max-width: 630px) {
-    padding-top: 20%;
-  }
-`;
-
-const LeftPanel = styled.div`
-  display: inline-block;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  z-index: 20;
-  width: 45%;
-
-  @media (max-width: 800px) {
-    padding-left: 3.5rem;
-    width: 45%;
-  }
-`;
-
-const RightPanel = styled.img`
-  position: absolute;
-  display: inline-block;
-  width: 50%;
-
-  @media (max-width: 1300px) {
-    width: 70%;
-  }
-`;
-
-const MiddleSectionTitle = styled.p`
-  font-size: 36px;
-  color: #9F2E0E;
-
-  @media (max-width: 1300px) {
-    font-size: 26px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 22px;
-  }
-  @media (max-width: 800px) {
-    font-size: 18px;
-  }
-`;
-
-const MiddleSectionParagraph = styled.p`
+const FooterText = styled.p`
+  font-family: Lato;
   font-size: 25px;
-  color: #9F2E0E;
-  font-family: Barlow;
-
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: right;
+  color: #ffffff;
 
   @media (max-width: 1300px) {
     font-size: 20px;
@@ -138,31 +212,12 @@ const MiddleSectionParagraph = styled.p`
   }
 `;
 
-const Bubble = styled.div`
-  border: 1px solid #F8F8FB;
-  box-shadow: 10px 10px 30px rgba(208, 207, 220, 0.4);
-  border-radius: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 18px 28px 18px 40px;
-  width: 428px;
-  position: absolute;
-
-  @media (max-width: 1000px) {
-    width: 370px;
-  }
-  @media (max-width: 1000px) {
-    width: 280px;
-  }
-`;
-
 const BubbleTitle = styled.p`
   position: static;
   font-size: 15px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #9F2E0E;
+  color: #9f2e0e;
 `;
 
 const BubbleSubtitle = styled.p`
@@ -182,33 +237,160 @@ const BubbleSubtitle = styled.p`
   }
 `;
 
-const QuotesPreFooter = styled.div`
-  display: block;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 160px;
-  left: 0px;
-  padding: 1rem 0rem;
+const Logo = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 0;
+  left: 39%;
+  z-index: 2;
 
-  background: #F2E8DA;
+  @media (max-width: 1300px) {
+    width: 220px;
+  }
+  @media (max-width: 800px) {
+    width: 180px;
+  }
+  @media (max-width: 630px) {
+    width: 80px;
+  }
 `;
 
-const QuotesPreFooterContainer = styled.div`
-  width: 50%;
+const VideoBackground = styled.video`
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  z-index: 1;
+
+  @media (min-aspect-ratio: 16/9) {
+    width: 100%;
+    height: auto;
+  }
+  @media (max-aspect-ratio: 16/9) {
+    height: 100vh;
+
+    padding: 0;
+  }
+`;
+
+const Container = styled.div`
+  position: relative;
+  margin: 7% 1%;
+  z-index: 2;
+
+  @media (max-width: 1300px) {
+    margin: 3% 1%;
+  }
+  @media (max-width: 800px) {
+    margin: 0% 1%;
+  }
+`;
+
+const Title = styled.p`
+  padding-top: 20%;
+  padding-left: 5%;
+  font-size: 70px;
+  color: #9f2e0e;
+  text-shadow: 4px 4px 4px #00000040;
+  @media (max-width: 1300px) {
+    font-size: 50px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 40px;
+  }
+  @media (max-width: 800px) {
+    font-size: 28px;
+  }
+  @media (max-width: 630px) {
+    font-size: 22px;
+  }
+`;
+
+const FlexContainer = styled.div`
+  position: relative;
+  display: flex;
+  height: 70vh;
+  padding-top: 25%;
+  padding-bottom: 5%;
+  z-index: 5;
+
+  @media (max-width: 1300px) {
+    padding-top: 30%;
+  }
+  @media (max-width: 1000px) {
+    padding-top: 22%;
+  }
+  @media (max-width: 800px) {
+    padding-top: 24%;
+  }
+  @media (max-width: 630px) {
+    padding-top: 20%;
+  }
+`;
+
+const LeftPanel = styled.div`
+  flex: 1 1 0;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  z-index: 20;
+  min-width: 40%;
+
+  @media (max-width: 800px) {
+    padding-left: 3.5rem;
+    width: 45%;
+  }
+`;
+
+const RightPanel = styled.img`
+  flex: 1 1 0;
+  max-height: 50% @media (max-width: 1300px) {
+    width: 70%;
+  }
+`;
+
+const MiddleSectionTitle = styled.p`
+  font-size: 36px;
+  color: #9f2e0e;
+
+  @media (max-width: 1300px) {
+    font-size: 26px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 22px;
+  }
+  @media (max-width: 800px) {
+    font-size: 18px;
+  }
+`;
+
+const MiddleSectionParagraph = styled.p`
+  font-size: 25px;
+  color: #9f2e0e;
+  font-family: Barlow;
+
+  @media (max-width: 1300px) {
+    font-size: 20px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 18px;
+  }
+  @media (max-width: 800px) {
+    font-size: 14px;
+  }
 `;
 
 const Quote = styled.p`
-  display: block;
-  position: relative;
   font-family: Lato;
-  font-style: italic;
-  font-size: 26px;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 30px;
+  letter-spacing: 0.30000001192092896px;
   text-align: center;
-  letter-spacing: 0.3px;
-
-  color: #9F2E0E;
+  color: #9f2e0e;
 
   @media (max-width: 1300px) {
     font-size: 20px;
@@ -217,52 +399,22 @@ const Quote = styled.p`
     font-size: 20px;
   }
 
+  ${(props) =>
+    props.italic &&
+    css`
+      font-family: Lato;
+      font-size: 25px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 30px;
+      letter-spacing: 0.30000001192092896px;
+      text-align: center;
+    `};
 `;
 
 const Footer = styled.div`
   width: 100%;
-  position: relative;
-  height: 160px;
   left: 0px;
 
-  background: #9F2E0E;
+  background: #9f2e0e;
 `;
-
-const Landing = () => {
-  return (
-    <>
-      <Logo src="./img/logo.png" alt="Logo" />
-      <TopImage src="./img/landing.jpg" alt="Landing page" />
-      <Container>
-        <Title>ART TEXTILE INSPIRÉ DE LA NATURE</Title>
-      </Container>
-      <MiddleSection>
-        <LeftPanel>
-          <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS</MiddleSectionTitle>
-          <MiddleSectionParagraph>Je suis Laurie, maman de 2 garçons. J'habite au coeur des belles montagnes de Stoneham. </MiddleSectionParagraph>
-          <MiddleSectionParagraph>Plutôt rêveuse, toujours pleine d'idées, pis un peu intense quand je m'embarque dans quelque chose.</MiddleSectionParagraph>
-          <MiddleSectionParagraph>J'espère réussir à te toucher par mon art. Tu remarqueras sans doute ma signature végétale bien à moi. Par mes oeuvres et mes cours de macramé,  j'ai pour mission d'aider les femmes à se reconnecter à leur essence !</MiddleSectionParagraph>
-          <Bubble>
-            <BubbleTitle>RESPECT DE LA NATURE</BubbleTitle>
-            <BubbleSubtitle>J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées. </BubbleSubtitle>
-          </Bubble>
-        </LeftPanel>
-        <RightPanel src="./img/landing_middle_view.jpg" alt="Landing middle section" />
-      </MiddleSection>
-      <QuotesPreFooter>
-        <QuotesPreFooterContainer>
-          <Quote>
-            "L'art est un pas de la nature vers l'Infini"
-          </Quote>
-          <Quote>
-            — Khalil Gibran, Le sable et l'écume
-          </Quote>
-          </QuotesPreFooterContainer>
-      </QuotesPreFooter>
-
-      <Footer />
-    </>
-  )
-}
-
-export default Landing;
