@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Bubble from '../components/Bubble'
 
 const Logo = styled.img`
   margin-left: auto;
@@ -20,7 +21,6 @@ const TopImage = styled.img`
 `;
 
 const Container = styled.div`
-  position: relative;
   margin: 5% 5%;
   z-index: 2;
   text-align: center;
@@ -95,8 +95,9 @@ const CreateTogether = () => {
           Ultimement, je sais que mettre en lumière les fondements de toi-même, ne peut que t'amener plus de liberté et de clarté intérieure. Te permettre de te sentir plus alignée.
         </Subtitle>
         <ImageContainer>
-        <MiddleSectionImage src="./img/middle_section_long_image.jpeg" />
+          <MiddleSectionImage src="./img/middle_section_long_image.jpeg" />
         </ImageContainer>
+        <Bubble tag="Semaine 1" title="Respect de la nature" subtitle="On prend une quinzaine de minutes au téléphone où je réponds à tes questions et on voit ensemble si la démarche pourrait te convenir. Le tout sans engagement."/>
       </MiddleSection>
       
     </>
