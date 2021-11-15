@@ -20,7 +20,7 @@ const basicDiv = css`
   position: absolute;
   height: 4px;
   border-radius: 2px;
-  background: #fff;
+  background: #9f2e0e;
   transition: transform 0.45s cubic-bezier(0.9, -0.6, 0.3, 1.6),
     width 0.2s ease 0.2s;
 `;
@@ -37,6 +37,7 @@ const BottomLine = styled.div`
     css`
       transform: rotate(-45deg);
       transition: transform 0.45s cubic-bezier(0.9, -0.6, 0.3, 1.6) 0.1s;
+      background: #fff;
     `};
 `;
 
@@ -53,6 +54,7 @@ const MiddleLine = styled.div`
       transform: translate(6px, 0) rotate(45deg);
       transition: transform 0.45s cubic-bezier(0.9, -0.6, 0.3, 1.6) 0.1s,
         width 0.2s ease;
+      background: #fff;
     `};
 `;
 
@@ -70,6 +72,7 @@ const TopLine = styled.div`
       transform: translate(-6px, 0) rotate(45deg);
       transition: transform 0.45s cubic-bezier(0.9, -0.6, 0.3, 1.6) 0.1s,
         width 0.2s ease;
+      background: #fff;
     `};
 `;
 
