@@ -179,17 +179,14 @@ const menuItems = [
     link: "/panaches",
   },
   {
-    name: "Cours et fournitures",
-    link: "/cours",
-  },
-  {
-    name: "Création spontanée et prêt-à-partir",
-    link: "/prêt-à-partir",
+    name: "Boutique",
+    link: "/boutique",
   },
 ];
 
 const Container = styled.div`
   padding: 10rem;
+  padding-left: 6rem;
 
   @media (max-width: 1000px) {
     padding: 4rem;
