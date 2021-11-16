@@ -133,15 +133,11 @@ const Landing = () => {
                 offres saisonnières ou pour discuter avec moi, suivez-moi sur
                 mes réseaux sociaux!
               </FooterText>
-              <Grid
-                container
-                direction="row"
-                justifyContent="flex-end"
-                alignItems="flex-end"
-              >
-                <Grid item xs={9} />
-                <Grid item xs={3} direction="reverse">
+              <Grid container justifyContent="flex-end">
+                <Grid item>
                   <InstagramButton />
+                </Grid>
+                <Grid item>
                   <FacebookButton />
                 </Grid>
               </Grid>
