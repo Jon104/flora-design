@@ -1,5 +1,44 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
+import InstagramButton from "../buttons/InstagramButton";
+import FacebookButton from "../buttons/FacebookButton";
+import { Grid } from "@mui/material";
+
+const BurgerMenu = () => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  return (
+    <>
+      <Label>
+        <Input onClick={() => setIsChecked(!isChecked)} />
+        <BottomLine isChecked={isChecked} />
+        <MiddleLine isChecked={isChecked} />
+        <TopLine isChecked={isChecked} />
+      </Label>
+
+      <Drawer isChecked={isChecked}>
+        <LeftPanel />
+        <RightPanel>
+          <Container>
+            {menuItems.map((item, index) => (
+              <MenuItem key={index} isChecked={isChecked}>
+                <Title href={item.link}>{item.name}</Title>
+              </MenuItem>
+            ))}
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <InstagramButton />
+              </Grid>
+              <Grid>
+                <FacebookButton />
+              </Grid>
+            </Grid>
+          </Container>
+        </RightPanel>
+      </Drawer>
+    </>
+  );
+};
 
 const Label = styled.label`
   display: block;
@@ -101,6 +140,10 @@ const RightPanel = styled.div`
   background-color: ${({ theme }) => theme.primary};
   box-shadow: 0px 0px 20 px red;
   z-index: 100;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const LeftPanel = styled.img`
@@ -147,11 +190,14 @@ const menuItems = [
 
 const Container = styled.div`
   padding: 10rem;
+
+  @media (max-width: 1000px) {
+    padding: 4rem;
+    padding-top: 5rem;
+  }
 `;
 
 const MenuItem = styled.div`
-  display: flex;
-  justify-content: flex-end;
   padding-bottom: 48px;
   color: #ffffff;
   font-variant-caps: small-caps;
@@ -179,33 +225,5 @@ const Title = styled.a`
   text-decoration: none;
   color: #ffffff;
 `;
-
-const BurgerMenu = () => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  return (
-    <>
-      <Label>
-        <Input onClick={() => setIsChecked(!isChecked)} />
-        <BottomLine isChecked={isChecked} />
-        <MiddleLine isChecked={isChecked} />
-        <TopLine isChecked={isChecked} />
-      </Label>
-
-      <Drawer isChecked={isChecked}>
-        <LeftPanel />
-        <RightPanel>
-          <Container>
-            {menuItems.map((item, index) => (
-              <MenuItem key={index} isChecked={isChecked}>
-                <Title href={item.link}>{item.name}</Title>
-              </MenuItem>
-            ))}
-          </Container>
-        </RightPanel>
-      </Drawer>
-    </>
-  );
-};
 
 export default BurgerMenu;

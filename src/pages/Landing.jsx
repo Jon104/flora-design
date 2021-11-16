@@ -1,15 +1,8 @@
-import {
-  Box,
-  Grid,
-  IconButton,
-  List,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
+import { Box, Grid, List, ListItemButton, ListItemText } from "@mui/material";
 import styled, { css } from "styled-components";
 import Bubble from "../components/Bubble";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramButton from "../components/buttons/InstagramButton";
+import FacebookButton from "../components/buttons/FacebookButton";
 
 const FooterListItems = [
   "Accueil",
@@ -148,37 +141,8 @@ const Landing = () => {
               >
                 <Grid item xs={9} />
                 <Grid item xs={3} direction="reverse">
-                  <IconButton
-                    aria-label="instagram picture"
-                    component="span"
-                    onClick={() =>
-                      window.open(
-                        "https://www.instagram.com/flora_design_art_textile/",
-                        "_blank"
-                      )
-                    }
-                  >
-                    <InstagramIcon
-                      sx={{ color: "white", opacity: 0.95 }}
-                      fontSize="large"
-                    />
-                  </IconButton>
-
-                  <IconButton
-                    aria-label="facebook picture"
-                    component="span"
-                    onClick={() =>
-                      window.open(
-                        "https://www.facebook.com/Flora-Design-2473490369540452/",
-                        "_blank"
-                      )
-                    }
-                  >
-                    <FacebookIcon
-                      sx={{ color: "white", opacity: 0.95 }}
-                      fontSize="large"
-                    />
-                  </IconButton>
+                  <InstagramButton />
+                  <FacebookButton />
                 </Grid>
               </Grid>
             </Grid>
@@ -317,17 +281,30 @@ const FlexContainer = styled.div`
   padding-bottom: 5%;
   z-index: 5;
 
-  @media (max-width: 1300px) {
-    padding-top: 30%;
+  @media (max-width: 1450px) {
+    padding-top: 35%;
+  }
+
+  @media (max-width: 1301px) {
+    padding-top: 45%;
+  }
+  @media (max-width: 1201px) {
+    padding-top: 55%;
   }
   @media (max-width: 1000px) {
-    padding-top: 22%;
+    padding-top: 75%;
   }
   @media (max-width: 800px) {
-    padding-top: 24%;
+    padding-top: 100%;
   }
-  @media (max-width: 630px) {
-    padding-top: 20%;
+  @media (max-width: 700px) {
+    padding-top: 120%;
+  }
+  @media (max-width: 600px) {
+    padding-top: 140%;
+  }
+  @media (max-width: 500px) {
+    padding-top: 160%;
   }
 `;
 
