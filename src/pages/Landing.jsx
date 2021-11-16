@@ -2,25 +2,24 @@ import { Box, Grid } from "@mui/material";
 import styled from "styled-components";
 import Bubble from "../components/Bubble";
 
-const BubblesContent = [
-  {
-    title: "RESPECT DE LA NATURE",
-    subtitle:
-      "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
-  },
-  {
-    title: "CONNEXION",
-    subtitle:
-      "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
-  },
-  {
-    title: "RESPECT DE LA NATURE",
-    subtitle:
-      "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
-  },
-];
-
 const Landing = () => {
+  const BubblesContent = [
+    {
+      title: "Respect de la nature",
+      subtitle:
+        "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
+    },
+    {
+      title: "Connexion",
+      subtitle:
+        "Je crois que l'art offre un moyen unique de s'exprimer, de communiquer entre nous et de se comprendre. Et lorsqu'on est en connexion avec soi-même, on est aussi plus facilement en connexion avec les autres.",
+    },
+    {
+      title: "Simplicité",
+      subtitle:
+        "Je suis une grande fervente du 'acheter moins, acheter mieux'. Parce que vivre dans une maison qui prend vie grâce à quelques trésors choisis avec amour, ça n'a pas de prix.",
+    },
+  ];
   return (
     <>
       <Logo src="./img/logo.png" alt="Logo" />
@@ -36,7 +35,7 @@ const Landing = () => {
       </Container>
       <FlexContainer>
         <LeftPanel>
-          <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS</MiddleSectionTitle>
+          <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS!</MiddleSectionTitle>
           <MiddleSectionParagraph>
             Je suis Laurie, maman de 2 garçons. J'habite au coeur des belles
             montagnes de Stoneham.{" "}
@@ -67,11 +66,8 @@ const Landing = () => {
           alignItems="center"
         >
           {BubblesContent.map((element) => (
-            <Grid item xs={12} md={4}>
-              <Bubble>
-                <BubbleTitle>{element.title}</BubbleTitle>
-                <BubbleSubtitle>{element.subtitle}</BubbleSubtitle>
-              </Bubble>
+            <Grid item xs={10} md={4}>
+              <Bubble title={element.title} content={element.subtitle} />
             </Grid>
           ))}
         </Grid>
@@ -81,31 +77,6 @@ const Landing = () => {
 };
 
 export default Landing;
-
-const BubbleTitle = styled.p`
-  position: static;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: #9f2e0e;
-`;
-
-const BubbleSubtitle = styled.p`
-  font-family: Barlow;
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: #373244;
-  opacity: 0.8;
-  font-size: 20px;
-
-  @media (max-width: 1300px) {
-    font-size: 16px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 14px;
-  }
-`;
 
 const Logo = styled.img`
   margin-left: auto;
