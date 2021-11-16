@@ -38,18 +38,10 @@ const Footer = () => (
                 textAlign: "left",
               }}
             >
-              <ListItemButton />
               {FooterListItems.map((text) => (
-                <ListItemText
-                  primary={text}
-                  sx={{
-                    fontFamily: "Lato",
-                    fontSize: "25px",
-                    fontWeight: "400",
-                    lineHeight: "30px",
-                    textAlign: "left",
-                  }}
-                />
+                <ListItemButton>
+                  <ListItemText primary={text} />
+                </ListItemButton>
               ))}
             </List>
           </Grid>
@@ -117,15 +109,14 @@ const Quote = styled.p`
   @media (max-width: 1300px) {
     font-size: 20px;
   }
-  @media (max-width: 1000px) {
-    font-size: 20px;
+  @media (max-width: 800px) {
+    font-size: 15px;
   }
 
   ${(props) =>
     props.italic &&
     css`
       font-family: Lato;
-      font-size: 25px;
       font-style: italic;
       font-weight: 300;
       line-height: 30px;
