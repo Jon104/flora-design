@@ -17,7 +17,9 @@ const BurgerMenu = () => {
       </Label>
 
       <Drawer isChecked={isChecked}>
-        <LeftPanel />
+        <LeftPanel>
+          <SideImage src="./img/burger_panel.jpg" alt="burger_panel_image" />
+        </LeftPanel>
         <RightPanel>
           <Container>
             {menuItems.map((item, index) => (
@@ -39,6 +41,8 @@ const BurgerMenu = () => {
     </>
   );
 };
+
+const SideImage = styled.img``;
 
 const Label = styled.label`
   display: block;
@@ -146,15 +150,14 @@ const RightPanel = styled.div`
   }
 `;
 
-const LeftPanel = styled.img`
+const LeftPanel = styled.div`
   position: absolute;
-  top: -50%;
-  left: -20%;
-  height: 400vh;
-  width: 70%;
-  z-index: 20;
-
-  background-image: url("./img/burger_panel.jpg");
+  left: 0;
+  height: 100vh;
+  width: 58%;
+  background-color: ${({ theme }) => theme.primary};
+  box-shadow: 0px 0px 20 px red;
+  z-index: 100;
 `;
 
 const menuItems = [
