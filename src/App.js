@@ -5,6 +5,7 @@ import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./pages/PersonalPiece";
 import Thanks from "./pages/Thanks";
+import Footer from "./components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
@@ -33,6 +34,7 @@ function App() {
             <Route path="/thanks" component={Thanks} />
             <Route path="/" component={Landing} />
           </Switch>
+          <Footer />
         </div>
       </ThemeProvider>
     </Router>
