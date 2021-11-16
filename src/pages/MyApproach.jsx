@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import styled from "styled-components";
 
 const Logo = styled.img`
@@ -41,47 +42,41 @@ const Subtitle = styled.p`
 const MiddleSection = styled.div`
   position: relative;
   display: block;
-  height: 1000px;
   margin: 5% 5%;
-  padding-top: 20%;
-  padding-bottom: 18%;
+  padding-top: 10%;
+
+  @media (min-width: 1200px) {
+    padding-top: 16%;
+  }
+  @media (min-width: 800px) {
+    padding-top: 16%;
+  }
 `;
 
 const MiddleSectionImage = styled.img`
   position: absolute;
   left: -50%;
-  top: 60%;
-  max-width: 100%;
-  height: auto;
+  max-width: 160%;
+
+  @media (max-width: 1200px) {
+    left: -60%;
+    max-width: 140%;
+  }
 `;
 
 const Bubble = styled.div`
   border: 1px solid #f8f8fb;
   box-shadow: 10px 10px 30px rgba(208, 207, 220, 0.4);
   border-radius: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
   padding: 18px 28px 18px 40px;
-  width: 600px;
-  right: 20%;
-  position: absolute;
 
   top: 75%;
   text-align: center;
-
-  @media (max-width: 1000px) {
-    width: 370px;
-    right: 10%;
-  }
-  @media (max-width: 1000px) {
-    width: 280px;
-  }
 `;
 
 const BubbleTag = styled.p`
   font-family: Lato;
-  font-size: 15px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: 18px;
@@ -90,8 +85,7 @@ const BubbleTag = styled.p`
 
 const BubbleTitle = styled.p`
   font-family: Barlow;
-  font-size: 32px;
-  line-height: 38px;
+  font-size: 26px;
   letter-spacing: 0.3px;
   color: #000000;
   text-transform: uppercase;
@@ -100,21 +94,64 @@ const BubbleTitle = styled.p`
 const BubbleSubtitle = styled.p`
   font-family: Barlow;
   position: relative;
-  display: flex;
-  align-items: center;
   color: #0000000;
   text-shadow: 1px 1px 5px #000000
   opacity: 0.8;
-  font-size: 20px;
-  border-radius: nullpx;  
+  font-size: 16px;
 
-  @media (max-width: 1300px) {
-    font-size: 16px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 14px;
-  }
 `;
+
+const bubblesContent = [
+  {
+    size: 6,
+    week: "Semaine 1",
+    title: "L'appel découverte (sans engagement",
+    content:
+      "On prend une quinzaine de minutes au téléphone où je réponds à tes questions et on voit ensemble si la démarche pourrait te convenir.",
+  },
+  {
+    size: 6,
+    week: "Semaine 2",
+    title: "La rencontre",
+    content:
+      "Lorsque tu es prête à plonger avec moi, on prend un rendez-vous d'une heure via zoom où le but est de se connecter à ton intérieur. - Première partie en exploration dirigée: parlons de toi. - Deuxième partie avec exercice de visualisation: un voyage au coeur de toi. - Troisième partie de présentation d'activités à faire à la maison: journal créatif, défi artistique que je vais cibler pour toi à partir de notre échange (tu n'as pas besoin d'ête douée en art).",
+  },
+  {
+    size: 6,
+    week: "Semaine 3",
+    title: "La mijoteuse",
+    content:
+      "Tu continues d'observer ce qu'on a ciblé ensemble lors de notre premier rendez-vous. Tu réalises le petit défi que je t'ai proposé. Tu réponds aussi à mes questions sur l'endroit où l'oeuvre ira. De mon côté, je laisse mijoter ce qu'on s'est dit. J'ai un dossier à ton nom ouvert dans ma tête et dans mon carnet, pour y déposer tous mes flashs, inspirations et idées au fur et à mesure.",
+  },
+  {
+    size: 8,
+    week: "Semaine 4",
+    title: "La co-création:",
+    content:
+      "On se revoit pour un autre rendez-vous d'une heure. Tu me dis tout ce que tu as cogité. Tu me présentes ton défi artistique. Je te dis ce que moi j'ai imaginé pour toi. Je t'aide à traduire tout ça en mots et en symboles. Ensemble, on crée à partie de tout ça. On brainstorm, on mélange des idées, on parle concrètement des couleurs, de la taille et des designs. L'oeuvre prend forme dans nos têtes. Le sens se dégage. Je te propose quelques postes de réflexion pour approfondir encore plus le sens de l'oeuvre.",
+  },
+  {
+    size: 8,
+    week: "Semaine 5",
+    title: "La naissance",
+    content:
+      "Je t'invite à me partager d'autres inspirations, réflexions ou flashs que notre dernier rendez-vous aura fait germer. De mon côté, je travaille fort pour que tout ce qu'on a créé ensemble se matérialise à travers mes cordes.",
+  },
+  {
+    size: 12,
+    week: "Semaine 6",
+    title: "Le dévoilement",
+    content:
+      "On se fixe un dernier rendez-vous d'une quinzaine de minutes où je te présente l'oeuvre finale. Je t'explique comment j'ai construit ta pièce. On élabore ce que tout ça représente pour toi.",
+  },
+  {
+    size: 12,
+    week: "Semaine 7",
+    title: "La remise",
+    content:
+      "Tu reçois ta pièce, accompagné d'un certificat d'authenticité et d'un porte-clé souvenir. Ce porte-clé sera un extrait de l'oeuvre finale, et un symbole du processus qu'on a vécu ensembe, que tu pourras traîner partout avec toi! Je te remets aussi un cahier souvenir avec mon design exclusif, dans lequel tu trouveras mes notes sur notre démarche, et que tu pourras ensuite compléter selon ton inspiration. Ensemble, on fait un bilan de l'expérience tu as vécue.",
+  },
+];
 
 const MyApproach = () => {
   return (
@@ -157,15 +194,23 @@ const MyApproach = () => {
           permettre de te sentir plus alignée.
         </Subtitle>
         <MiddleSectionImage src="./img/middle_section_long_image.jpeg" />
-        <Bubble>
-          <BubbleTag>Semaine 1</BubbleTag>
-          <BubbleTitle>Respect de la nature</BubbleTitle>
-          <BubbleSubtitle>
-            On prend une quinzaine de minutes au téléphone où je réponds à tes
-            questions et on voit ensemble si la démarche pourrait te convenir.
-            Le tout sans engagement.
-          </BubbleSubtitle>
-        </Bubble>
+        {bubblesContent.map((element) => (
+          <Grid
+            sx={{ paddingTop: 5 }}
+            container
+            direction="row"
+            justifyContent="flex-end"
+            alignItems="space-around"
+          >
+            <Grid item xs={element.size} sx={{ paddingRight: 4 }}>
+              <Bubble>
+                <BubbleTag>{element.week}</BubbleTag>
+                <BubbleTitle>{element.title}</BubbleTitle>
+                <BubbleSubtitle>{element.content}</BubbleSubtitle>
+              </Bubble>
+            </Grid>
+          </Grid>
+        ))}
       </MiddleSection>
     </>
   );
