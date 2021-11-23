@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Drawer } from "@mui/material";
+import PersonalPieceForm from "components/forms/PersonalPieceForm";
 
 const Logo = styled.img`
   margin-left: auto;
@@ -27,13 +28,11 @@ const Container = styled.div`
   margin: 5% 5%;
   z-index: 2;
   text-align: center;
-  text-shadow: 1px 1px 3px #9f2e0e;
 `;
 
 const Title = styled.p`
   font-family: Lato;
-  font-style: italic;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 43px;
   letter-spacing: 0.30000001192092896px;
   font-size: 36px;
@@ -49,6 +48,7 @@ const Title = styled.p`
 const Subtitle = styled.p`
   font-family: Barlow;
   font-size: 32px;
+  font-weight: 300;
   color: #9f2e0e;
 
   ${(props) =>
@@ -87,9 +87,7 @@ const Slides = styled.div`
     color: white;
     position: absolute;
     font-size: 5rem;
-    width: 5rem;
-    height: 5rem;
-    transition: opacity 0.3s;
+    transition: opacity 1s;
     opacity: 0.7;
     z-index: 5;
 
@@ -102,9 +100,19 @@ const Slides = styled.div`
     }
 
     &:first-child {
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
       left: 0;
     }
     &:last-child {
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 1)
+      );
       right: 0;
     }
   }
@@ -117,40 +125,6 @@ const SecondMiddleSection = styled.div`
   display: block;
   background: #9f2e0e;
   height: 800px;
-`;
-
-const Drawer = styled.div`
-  position: fixed;
-  height: 100vh;
-  right: 0;
-  top: 0;
-  width: 0%;
-  background: ${({ theme }) => theme.primary};
-  transition: width 0.8s cubic-bezier(0.2, -0.6, 0.3, 1.6) 0.1s;
-  z-index: 0;
-
-  ${(props) =>
-    props.isChecked &&
-    css`
-      width: 58%;
-    `};
-`;
-
-const OffFocusPanel = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  opacity: 0.6;
-  width: 0%;
-  background: #000000;
-  transition: width 0.8s cubic-bezier(0.2, -0.6, 0.3, 1.6) 0.1s;
-
-  ${(props) =>
-    props.isChecked &&
-    css`
-      width: 42%;
-    `};
 `;
 
 const slides = [
@@ -218,22 +192,20 @@ const slidesReducer = (state, event) => {
 
 const PersonalPiece = () => {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isOpen, toggleForm] = useState(false);
 
   return (
     <>
       <Logo src="./img/logo.png" alt="Logo" />
       <TopImage src="./img/landing.jpg" alt="Landing page" />
       <Container>
-        <Title>CRÉONS ENSEMBLE, EN ART-CONNEXION</Title>
+        <Title>MES PIÈCES PERSONNALISÉES</Title>
         <Subtitle>
-          Parce qu'une oeuvre créée à partir de ton essence, est bien plus
-          porteuse de sens!
+          Que dirais-tu si je te proposais de représenter un bout de toi à
+          partir de mes cordes et de mon intuition ?!
           <Subtitle>
-            Ici, le processus que je te propose, c’est l’expérience ultime Flora
-            Design! C’est un processus de co-création. C’est une expérience
-            d’Art-connexion. C'est une rencontre intime avec moi. C'est un
-            voyage à l'intérieur de toi.
+            Ma spécialité c'est les grandes pièces personnalisées! J’absorbe
+            toutes les informations que tu me donnes, et je crée à partir de ça.
           </Subtitle>
         </Subtitle>
       </Container>
@@ -268,7 +240,7 @@ const PersonalPiece = () => {
         </Subtitle>
         <Box marginTop="80px">
           <Button
-            onClick={() => setIsChecked(!isChecked)}
+            onClick={() => toggleForm(true)}
             variant="contained"
             size="large"
             sx={{
@@ -285,48 +257,8 @@ const PersonalPiece = () => {
         </Box>
       </SecondMiddleSection>
 
-      <Drawer isChecked={isChecked}>
-        <OffFocusPanel
-          isChecked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
-        />
-        <form method="post">
-          <input type="hidden" name="form-name" value="contact" />
-          <p>
-            <label>
-              Your Name: <input type="text" name="name" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Your Email: <input type="email" name="email" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Message: <textarea name="message" />
-            </label>
-          </p>
-          <p>
-            <button type="submit">Send</button>
-          </p>
-        </form>
-        <form method="post">
-          <input type="hidden" name="form-name" value="test" />
-          <p>
-            <label>
-              Your Age: <input type="text" name="age" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Your MamaSita: <input type="text" name="mamasita" />
-            </label>
-          </p>
-          <p>
-            <button type="submit">Send</button>
-          </p>
-        </form>
+      <Drawer anchor="right" open={isOpen} onClose={() => toggleForm(false)}>
+        <PersonalPieceForm />
       </Drawer>
     </>
   );

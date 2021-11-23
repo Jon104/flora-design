@@ -1,6 +1,7 @@
 import BurgerMenu from "components/tron/BurgerMenu";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Landing from "./pages/Landing";
+import Boutique from "./pages/Boutique";
 import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./pages/PersonalPiece";
@@ -12,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family:
-      Lato
+      "Lato"
   }
   `;
 
@@ -28,6 +29,7 @@ function App() {
           <BurgerMenu />
           <GlobalStyle />
           <Switch>
+            <Route path="/boutique" component={Boutique} />
             <Route path="/ma-démarche" component={MyApproach} />
             <Route path="/ensemble" component={CreateTogether} />
             <Route path="/personal-pieces" component={PersonalPiece} />

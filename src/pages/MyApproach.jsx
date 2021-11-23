@@ -138,7 +138,7 @@ const bubblesContent = [
       "Je t'invite à me partager d'autres inspirations, réflexions ou flashs que notre dernier rendez-vous aura fait germer. De mon côté, je travaille fort pour que tout ce qu'on a créé ensemble se matérialise à travers mes cordes.",
   },
   {
-    size: 12,
+    size: 9,
     week: "Semaine 6",
     title: "Le dévoilement",
     content:
