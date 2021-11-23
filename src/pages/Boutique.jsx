@@ -5,7 +5,7 @@ import { commerce } from "../lib/commerce";
 
 const Boutique = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState({});
+  const [, setCart] = useState({});
 
   const fetchCart = useCallback(() => {
     commerce.cart

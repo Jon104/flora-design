@@ -1,15 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import {
-  ButtonBase,
-  Grid,
-  ImageList,
-  ImageListItem,
-  Slider,
-  Stack,
-} from "@mui/material";
-import styled from "styled-components";
+import { Grid, ImageList, ImageListItem, Slider } from "@mui/material";
 
 const projectTypes = [
   {
@@ -21,12 +13,6 @@ const projectTypes = [
     src: "https://dsm01pap001files.storage.live.com/y4mdnV4meZLqVt25nswUU_wW_7CTQfNUJbxGl3mbwAWBwiBOrBQj_y9L1X4YsYjA49DJ3_GPsbtkOzDWMLFuNpKlz1qrTtZdc0EkRgEMRREPiT8ARhGChFKbCB95jefKzhT3vEjNm5_hI2LPs-judBlrlEK7cskxGKxFtv2FGxL8aROtdV79bC_F4IzeHRf7l1o?width=660&height=393&cropmode=none",
   },
 ];
-
-const ImageSelect = styled.img`
-  &:hover {
-    cursor: pointer;
-  }
-`;
 
 const PersonalPieceForm = () => {
   const [selectedProjectTypes, setProjectTypes] = React.useState([]);
