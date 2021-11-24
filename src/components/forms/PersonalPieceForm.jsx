@@ -1,36 +1,36 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, ImageList, ImageListItem } from "@mui/material";
 
-// const projectTypes = [
-//   {
-//     id: 1,
-//     src: "https://dsm01pap001files.storage.live.com/y4mOX_4Z3QqaFhrtOxAOa7A_iB6LPdtWD4MRZdvuZ2GW_UoJWlAt2CzQU3aRSE2bxumCjkW1HZni23-doNkc8pGuyiIHLQKfiFbiqHXyuPIRg4qLua6OUCQIcn2pSLyKsq_nHH1QFsDKpwPkWT3x1CKkJgeA9VepgD1b8JZRr1fuSwpmv49UGsSQEqWQ3FPODRI?width=637&height=660&cropmode=none",
-//   },
-//   {
-//     id: 2,
-//     src: "https://dsm01pap001files.storage.live.com/y4mdnV4meZLqVt25nswUU_wW_7CTQfNUJbxGl3mbwAWBwiBOrBQj_y9L1X4YsYjA49DJ3_GPsbtkOzDWMLFuNpKlz1qrTtZdc0EkRgEMRREPiT8ARhGChFKbCB95jefKzhT3vEjNm5_hI2LPs-judBlrlEK7cskxGKxFtv2FGxL8aROtdV79bC_F4IzeHRf7l1o?width=660&height=393&cropmode=none",
-//   },
-// ];
+const projectTypes = [
+  {
+    id: 1,
+    src: "https://dsm01pap001files.storage.live.com/y4mOX_4Z3QqaFhrtOxAOa7A_iB6LPdtWD4MRZdvuZ2GW_UoJWlAt2CzQU3aRSE2bxumCjkW1HZni23-doNkc8pGuyiIHLQKfiFbiqHXyuPIRg4qLua6OUCQIcn2pSLyKsq_nHH1QFsDKpwPkWT3x1CKkJgeA9VepgD1b8JZRr1fuSwpmv49UGsSQEqWQ3FPODRI?width=637&height=660&cropmode=none",
+  },
+  {
+    id: 2,
+    src: "https://dsm01pap001files.storage.live.com/y4mdnV4meZLqVt25nswUU_wW_7CTQfNUJbxGl3mbwAWBwiBOrBQj_y9L1X4YsYjA49DJ3_GPsbtkOzDWMLFuNpKlz1qrTtZdc0EkRgEMRREPiT8ARhGChFKbCB95jefKzhT3vEjNm5_hI2LPs-judBlrlEK7cskxGKxFtv2FGxL8aROtdV79bC_F4IzeHRf7l1o?width=660&height=393&cropmode=none",
+  },
+];
 
 const PersonalPieceForm = () => {
-  const [selectedProjectTypes] = React.useState([1, 2]);
+  const [selectedProjectTypes, setSelectedProjectTypes] = React.useState([]);
 
-  // const isProjectSelected = (image) =>
-  //   selectedProjectTypes.find((element) => element.id === image.id);
+  const isProjectSelected = (image) =>
+    selectedProjectTypes.find((element) => element.id === image.id);
 
-  // const handleSelectProject = (image) => {
-  //   const alreadySelected = isProjectSelected(image);
-  //   if (alreadySelected) {
-  //     const index = selectedProjectTypes.findIndex(
-  //       (element) => element.id === image.id
-  //     );
-  //     setProjectTypes(selectedProjectTypes.splice(index, 0));
-  //     return;
-  //   }
-  //   const result = [...selectedProjectTypes, image];
-  //   setProjectTypes(result);
-  // };
+  const handleSelectProject = (image) => {
+    const alreadySelected = isProjectSelected(image);
+    if (alreadySelected) {
+      const index = selectedProjectTypes.findIndex(
+        (element) => element.id === image.id
+      );
+      setSelectedProjectTypes(selectedProjectTypes.splice(index, 0));
+      return;
+    }
+    const result = [...selectedProjectTypes, image];
+    setSelectedProjectTypes(result);
+  };
 
   // const widthMarks = [
   //   {
@@ -108,17 +108,47 @@ const PersonalPieceForm = () => {
                   type="email"
                 />
               </Grid>
-              <Grid item xs="5">
-                <TextField
-                  fullWidth
-                  label="message"
-                  variant="filled"
-                  name="message"
-                  value={selectedProjectTypes}
-                />
+              <Grid item xs="12">
+                <Grid
+                  container
+                  spacing={2}
+                  alignItems="center"
+                  justifyContent="start"
+                >
+                  <Grid sx={{ paddingBottom: 2 }} item xs="12">
+                    <label>Quel type de projet t'intéresse: </label>
+                  </Grid>
+                  <ImageList sx={{ width: 600 }} cols={3} rowHeight={200}>
+                    <input
+                      hidden
+                      name="projectType"
+                      value={selectedProjectTypes}
+                    />
+                    {projectTypes.map((item) => (
+                      <ImageListItem
+                        sx={{
+                          border: 4,
+                          borderColor: isProjectSelected(item)
+                            ? "green"
+                            : "transparent",
+                        }}
+                        key={item.img}
+                        onClick={() => handleSelectProject(item)}
+                      >
+                        <img
+                          src={`${item.src}`}
+                          srcSet={`${item.src}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                          alt={item.id}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
+                </Grid>
               </Grid>
             </Grid>
           </Box>
+
           <p>
             <button type="submit">Send</button>
           </p>
