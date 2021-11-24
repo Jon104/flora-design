@@ -82,129 +82,45 @@ const PersonalPieceForm = () => {
   ];
 
   return (
-    <form method="post" enctype="application/x-www-form-urlencoded">
-      <Box sx={{ padding: 10 }} noValidate autoComplete="off">
-        <input type="hidden" name="personal-piece" value="personal-piece" />
-        <button type="submit">Send</button>
-        <Box paddingBottom={4}>
-          <Grid container spacing={2}>
-            <Grid item xs="5">
-              <TextField
-                required
-                fullWidth
-                variant="filled"
-                id="outlined-required"
-                label="Nom complet"
-                color="primary"
-                name="name"
-              />
-            </Grid>
-            <Grid item xs="5">
-              <TextField
-                fullWidth
-                id="outlined-disabled"
-                variant="filled"
-                label="Courriel"
-                name="email"
-              />
-            </Grid>
-            <Grid item xs="5">
-              <TextField
-                id="outlined-password-input"
-                fullWidth
-                label="whichMotifs"
-                variant="filled"
-                type="textarea"
-                name="whichMotifs"
-              />
-            </Grid>
-          </Grid>
-        </Box>
-
-        <Grid container spacing={2} alignItems="center" justifyContent="start">
-          <Grid sx={{ paddingBottom: 2 }} item xs="12">
-            <label>Quel type de projet t'intéresse: </label>
-          </Grid>
-          <ImageList sx={{ width: 600 }} cols={3} rowHeight={200}>
-            {projectTypes.map((item) => (
-              <ImageListItem
-                sx={{
-                  border: 4,
-                  borderColor: isProjectSelected(item)
-                    ? "green"
-                    : "transparent",
-                }}
-                key={item.img}
-                onClick={() => handleSelectProject(item)}
-              >
-                <img
-                  src={`${item.src}`}
-                  srcSet={`${item.src}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.id}
-                  loading="lazy"
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </Grid>
-
-        <Grid sx={{ paddingBottom: 2 }} item xs="12">
+    <>
+      <form method="post">
+        <input type="hidden" name="form-name" value="contact" />
+        <p>
           <label>
-            Quelles dimensions approximatives souhaites-tu pour ton projet?
+            Your Name: <input type="text" name="name" />
           </label>
-        </Grid>
-        <Grid item xs="12">
-          Largeur
-          <Slider
-            marks={widthMarks}
-            valueLabelDisplay="auto"
-            aria-label="width"
-            defaultValue={[20, 37]}
-            getAriaValueText={valuetext}
-            valueLabelFormat={valuetext}
-          />
-        </Grid>
-        <Grid item xs="6">
-          Hauteur
-          <Slider
-            valueLabelDisplay="auto"
-            aria-label="height"
-            defaultValue={[20, 37]}
-            valueLabelFormat={valuetext}
-          />
-        </Grid>
-
-        <Grid item>
-          <label>Parlons Design!</label>
-        </Grid>
-        <Grid container spacing={2} alignItems="center" justifyContent="start">
-          <Grid sx={{ paddingBottom: 2 }} item xs="12">
-            <label>Quelles couleurs souhaites-tu ? : </label>
-          </Grid>
-          <ImageList sx={{ width: 800 }} cols={3} rowHeight={300}>
-            {colorsPicker.map((item) => (
-              <ImageListItem
-                sx={{
-                  border: 4,
-                  borderColor: isProjectSelected(item)
-                    ? "green"
-                    : "transparent",
-                }}
-                key={item.img}
-                onClick={() => handleSelectProject(item)}
-              >
-                <img
-                  src={`${item.src}`}
-                  srcSet={`${item.src}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.id}
-                  loading="lazy"
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </Grid>
-      </Box>
-    </form>
+        </p>
+        <p>
+          <label>
+            Your Email: <input type="email" name="email" />
+          </label>
+        </p>
+        <p>
+          <label>
+            Message: <textarea name="message" />
+          </label>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
+      </form>
+      <form method="post">
+        <input type="hidden" name="form-name" value="test" />
+        <p>
+          <label>
+            Your Age: <input type="text" name="age" />
+          </label>
+        </p>
+        <p>
+          <label>
+            Your MamaSita: <input type="text" name="mamasita" />
+          </label>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
+      </form>
+    </>
   );
 };
 
