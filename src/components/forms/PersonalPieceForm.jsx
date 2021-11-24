@@ -13,7 +13,7 @@ import TextField from "@mui/material/TextField";
 // ];
 
 const PersonalPieceForm = () => {
-  // const [selectedProjectTypes, setProjectTypes] = React.useState([]);
+  const [selectedProjectTypes] = React.useState([1, 2]);
 
   // const isProjectSelected = (image) =>
   //   selectedProjectTypes.find((element) => element.id === image.id);
@@ -90,12 +90,13 @@ const PersonalPieceForm = () => {
         </p>
         <p>
           <label>
-            Your Email: <input type="email" name="email" />
+            Your Email:
+            <input type="email" name="email" />
           </label>
         </p>
         <p>
           <label>
-            Message: <textarea name="message" />
+            Message: <TextField name="message" value={selectedProjectTypes} />
           </label>
         </p>
         <p>
