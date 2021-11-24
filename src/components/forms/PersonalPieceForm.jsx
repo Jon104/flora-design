@@ -178,7 +178,7 @@ const PersonalPieceForm = () => {
                     <ImageList sx={{ width: 600 }} cols={3} rowHeight={200}>
                       <input
                         hidden
-                        name="projectType"
+                        name="projectTypes"
                         value={selectedProjectTypes}
                       />
                       {projectTypes.map((item) => (
@@ -204,7 +204,7 @@ const PersonalPieceForm = () => {
                       fullWidth
                       variant="filled"
                       label="Précise au besoin"
-                      name="projectType.description"
+                      name="projectTypes.description"
                       type="text"
                     />
                   </Grid>
