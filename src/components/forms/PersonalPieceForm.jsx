@@ -123,22 +123,6 @@ const PersonalPieceForm = () => {
             <button type="submit">Send</button>
           </p>
         </form>
-        <form method="post">
-          <input type="hidden" name="form-name" value="test" />
-          <p>
-            <label>
-              Your Age: <input type="text" name="age" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Your MamaSita: <input type="text" name="mamasita" />
-            </label>
-          </p>
-          <p>
-            <button type="submit">Send</button>
-          </p>
-        </form>
       </Box>
     </>
   );
