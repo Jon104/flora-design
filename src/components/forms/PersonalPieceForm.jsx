@@ -1,6 +1,6 @@
-import * as React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Box, Grid, ImageList, ImageListItem } from "@mui/material";
+import { Box, Grid, ImageList, ImageListItem, Slider } from "@mui/material";
 
 const projectTypes = [
   {
@@ -14,7 +14,9 @@ const projectTypes = [
 ];
 
 const PersonalPieceForm = () => {
-  const [selectedProjectTypes, setSelectedProjectTypes] = React.useState([]);
+  const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
+  const [width] = useState([23, 40]);
+  const [height] = useState([17, 24]);
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -32,14 +34,14 @@ const PersonalPieceForm = () => {
     setSelectedProjectTypes(result);
   };
 
-  // const widthMarks = [
-  //   {
-  //     value: 45,
-  //     label: "Tête de lit moyen",
-  //   },
-  // ];
+  const widthMarks = [
+    {
+      value: 45,
+      label: "Tête de lit moyen",
+    },
+  ];
 
-  // const valuetext = (value) => `${value} po`;
+  const valuetext = (value) => `${value} po`;
 
   // const colorsPicker = [
   //   {
@@ -146,6 +148,35 @@ const PersonalPieceForm = () => {
                   </ImageList>
                 </Grid>
               </Grid>
+            </Grid>
+
+            <Grid sx={{ paddingBottom: 2 }} item xs="12">
+              <label>
+                Quelles dimensions approximatives souhaites-tu pour ton projet?
+              </label>
+            </Grid>
+            <Grid item xs="12">
+              Largeur
+              <input name="width" hidden value={width} />
+              <Slider
+                marks={widthMarks}
+                valueLabelDisplay="auto"
+                aria-label="width"
+                getAriaValueText={valuetext}
+                valueLabelFormat={valuetext}
+                value={width}
+              />
+            </Grid>
+            <Grid item xs="6">
+              Hauteur
+              <input name="height" hidden value={height} />
+              <Slider
+                valueLabelDisplay="auto"
+                aria-label="height"
+                defaultValue={[20, 37]}
+                valueLabelFormat={valuetext}
+                value={height}
+              />
             </Grid>
           </Box>
 
