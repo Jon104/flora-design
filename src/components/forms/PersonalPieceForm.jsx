@@ -71,7 +71,7 @@ const formatTypes = [
   },
   {
     id: 16,
-    src: "15.jpg",
+    src: "16.jpg",
   },
 ];
 
@@ -86,6 +86,90 @@ const lookTypes = [
   },
 ];
 
+const motifTypes = [
+  {
+    id: 19,
+    description: "Les feuilles",
+    src: "19.jpg",
+  },
+  {
+    id: 20,
+    description: "Les fleurs de lotus et autres formes de fleurs",
+    src: "20.jpg",
+  },
+  {
+    id: 21,
+    description: "Les papillons",
+    src: "21.jpg",
+  },
+  {
+    id: 22,
+    description: "Les tresses / torsades enchevêtrées",
+    src: "22.jpg",
+  },
+  {
+    id: 23,
+    description: "Les plumes",
+    src: "23.jpg",
+  },
+  {
+    id: 24,
+    description: "Les pompons",
+    src: "24.jpg",
+  },
+  {
+    id: 25,
+    description: "L'effet dentelle",
+    src: "25.jpg",
+  },
+  {
+    id: 26,
+    description: "Les formes éclatées",
+    src: "26.jpg",
+  },
+  {
+    id: 27,
+    description: "Les zig-zag",
+    src: "27.jpg",
+  },
+  {
+    id: 28,
+    description: "Les petits boutons de rose",
+    src: "28.jpg",
+  },
+  {
+    id: 29,
+    description: "Les insertions pour plantes",
+    src: "29.jpg",
+  },
+  {
+    id: 30,
+    description: "Les arbres de vie / lune / étoile ou autres formes intégrées",
+    src: "30.jpg",
+  },
+  {
+    id: 31,
+    description: "Les insertions de laine merino",
+    src: "31.jpg",
+  },
+  {
+    id: 32,
+    description: "Les dessins abstraits",
+    src: "32.jpg",
+  },
+  {
+    id: 33,
+    description: "Les diamants",
+    src: "33.jpg",
+  },
+  {
+    id: 34,
+    description:
+      "Surprends-moi (j'ai toujours la tête pleine d'idées à te proposer!)",
+    src: "34.jpg",
+  },
+];
+
 const PersonalPieceForm = () => {
   const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
   const [width] = useState([23, 40]);
@@ -93,6 +177,7 @@ const PersonalPieceForm = () => {
   const [selectedColorTypes, setSelectedColorTypes] = useState([]);
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
+  const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -156,6 +241,22 @@ const PersonalPieceForm = () => {
     }
     const result = [...selectedLookTypes, image];
     setSelectedLookTypes(result);
+  };
+
+  const isMotifSelected = (image) =>
+    selectedMotifTypes.find((element) => element.id === image.id);
+
+  const handleSelectMotif = (image) => {
+    const alreadySelected = isMotifSelected(image);
+    if (alreadySelected) {
+      const index = selectedMotifTypes.findIndex(
+        (element) => element.id === image.id
+      );
+      setSelectedMotifTypes(selectedMotifTypes.splice(index, 0));
+      return;
+    }
+    const result = [...selectedLookTypes, image];
+    setSelectedMotifTypes(result);
   };
 
   const widthMarks = [
@@ -403,6 +504,35 @@ const PersonalPieceForm = () => {
                       }}
                       key={item.img}
                       onClick={() => handleSelectLook(item)}
+                    >
+                      <img
+                        src={`./img/personalPieceForm/${item.src}`}
+                        alt={item.id}
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs="12">
+                <label>Quels motifs et effets te plaisent le plus:</label>
+              </Grid>
+              <Grid item xs="12">
+                <ImageList cols={4} rowHeight={400}>
+                  <input hidden name="motifTypes" value={selectedMotifTypes} />
+                  {motifTypes.map((item) => (
+                    <ImageListItem
+                      sx={{
+                        border: 4,
+                        borderColor: isMotifSelected(item)
+                          ? "green"
+                          : "transparent",
+                      }}
+                      key={item.img}
+                      onClick={() => handleSelectMotif(item)}
                     >
                       <img
                         src={`./img/personalPieceForm/${item.src}`}
