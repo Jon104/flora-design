@@ -1,5 +1,6 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
+import { Box, Grid } from "@mui/material";
 
 // const projectTypes = [
 //   {
@@ -81,44 +82,64 @@ const PersonalPieceForm = () => {
 
   return (
     <>
-      <form method="post">
-        <input type="hidden" name="form-name" value="contact" />
-        <p>
-          <label>
-            Your Name: <TextField type="text" name="name" />
-          </label>
-        </p>
-        <p>
-          <label>
-            Your Email:
-            <input type="email" name="email" />
-          </label>
-        </p>
-        <p>
-          <label>
-            Message: <TextField name="message" value={selectedProjectTypes} />
-          </label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
-      </form>
-      <form method="post">
-        <input type="hidden" name="form-name" value="test" />
-        <p>
-          <label>
-            Your Age: <input type="text" name="age" />
-          </label>
-        </p>
-        <p>
-          <label>
-            Your MamaSita: <input type="text" name="mamasita" />
-          </label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
-      </form>
+      <Box sx={{ padding: 10 }}>
+        <form method="post">
+          <input type="hidden" name="form-name" value="contact" />
+          <Box paddingBottom={4}>
+            <Grid container spacing={2}>
+              <Grid item xs="5">
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Nom complet"
+                  color="primary"
+                  name="name"
+                  type="text"
+                />
+              </Grid>
+              <Grid item xs="5">
+                <TextField
+                  fullWidth
+                  id="outlined-disabled"
+                  variant="filled"
+                  label="Courriel"
+                  name="email"
+                  type="email"
+                />
+              </Grid>
+              <Grid item xs="5">
+                <TextField
+                  fullWidth
+                  label="message"
+                  variant="filled"
+                  name="message"
+                  value={selectedProjectTypes}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+          <p>
+            <button type="submit">Send</button>
+          </p>
+        </form>
+        <form method="post">
+          <input type="hidden" name="form-name" value="test" />
+          <p>
+            <label>
+              Your Age: <input type="text" name="age" />
+            </label>
+          </p>
+          <p>
+            <label>
+              Your MamaSita: <input type="text" name="mamasita" />
+            </label>
+          </p>
+          <p>
+            <button type="submit">Send</button>
+          </p>
+        </form>
+      </Box>
     </>
   );
 };
