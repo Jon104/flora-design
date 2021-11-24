@@ -56,11 +56,43 @@ const colorTypes = [
   },
 ];
 
+const formatTypes = [
+  {
+    id: 13,
+    src: "13.jpg",
+  },
+  {
+    id: 14,
+    src: "14.jpg",
+  },
+  {
+    id: 15,
+    src: "15.jpg",
+  },
+  {
+    id: 16,
+    src: "15.jpg",
+  },
+];
+
+const lookTypes = [
+  {
+    id: 17,
+    src: "17.jpg",
+  },
+  {
+    id: 18,
+    src: "18.jpg",
+  },
+];
+
 const PersonalPieceForm = () => {
   const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
   const [width] = useState([23, 40]);
   const [height] = useState([17, 24]);
   const [selectedColorTypes, setSelectedColorTypes] = useState([]);
+  const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
+  const [selectedLookTypes, setSelectedLookTypes] = useState([]);
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -92,6 +124,38 @@ const PersonalPieceForm = () => {
     }
     const result = [...selectedColorTypes, image];
     setSelectedColorTypes(result);
+  };
+
+  const isFormatSelected = (image) =>
+    selectedFormatTypes.find((element) => element.id === image.id);
+
+  const handleSelectFormat = (image) => {
+    const alreadySelected = isFormatSelected(image);
+    if (alreadySelected) {
+      const index = selectedFormatTypes.findIndex(
+        (element) => element.id === image.id
+      );
+      setSelectedFormatTypes(selectedFormatTypes.splice(index, 0));
+      return;
+    }
+    const result = [...selectedFormatTypes, image];
+    setSelectedFormatTypes(result);
+  };
+
+  const isLookSelected = (image) =>
+    selectedLookTypes.find((element) => element.id === image.id);
+
+  const handleSelectLook = (image) => {
+    const alreadySelected = isLookSelected(image);
+    if (alreadySelected) {
+      const index = selectedLookTypes.findIndex(
+        (element) => element.id === image.id
+      );
+      setSelectedLookTypes(selectedLookTypes.splice(index, 0));
+      return;
+    }
+    const result = [...selectedLookTypes, image];
+    setSelectedLookTypes(result);
   };
 
   const widthMarks = [
@@ -251,7 +315,7 @@ const PersonalPieceForm = () => {
                 <label>Quelles couleurs souhaites-tu ?</label>
               </Grid>
               <Grid item xs="12">
-                <ImageList sx={{ width: 1500 }} cols={4} rowHeight={400}>
+                <ImageList cols={4} rowHeight={400}>
                   <input hidden name="colorTypes" value={selectedColorTypes} />
                   {colorTypes.map((item) => (
                     <ImageListItem
@@ -279,6 +343,75 @@ const PersonalPieceForm = () => {
                   name="colorTypes.description"
                   type="text"
                 />
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs="12">
+                <label>Quelles formes de macramé préfères-tu ?</label>
+              </Grid>
+              <Grid item xs="12">
+                <ImageList cols={4} rowHeight={400}>
+                  <input
+                    hidden
+                    name="formatTypes"
+                    value={selectedFormatTypes}
+                  />
+                  {formatTypes.map((item) => (
+                    <ImageListItem
+                      sx={{
+                        border: 4,
+                        borderColor: isFormatSelected(item)
+                          ? "green"
+                          : "transparent",
+                      }}
+                      key={item.img}
+                      onClick={() => handleSelectFormat(item)}
+                    >
+                      <img
+                        src={`./img/personalPieceForm/${item.src}`}
+                        alt={item.id}
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
+                <TextField
+                  fullWidth
+                  variant="filled"
+                  label="Formats - Précise au besoin"
+                  name="formatTypes.description"
+                  type="text"
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs="12">
+                <label>Préfères-tu un look:</label>
+              </Grid>
+              <Grid item xs="12">
+                <ImageList cols={4} rowHeight={400}>
+                  <input hidden name="lookTypes" value={selectedLookTypes} />
+                  {lookTypes.map((item) => (
+                    <ImageListItem
+                      sx={{
+                        border: 4,
+                        borderColor: isLookSelected(item)
+                          ? "green"
+                          : "transparent",
+                      }}
+                      key={item.img}
+                      onClick={() => handleSelectLook(item)}
+                    >
+                      <img
+                        src={`./img/personalPieceForm/${item.src}`}
+                        alt={item.id}
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
               </Grid>
             </Grid>
           </Grid>
