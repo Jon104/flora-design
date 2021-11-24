@@ -84,7 +84,7 @@ const PersonalPieceForm = () => {
     <>
       <Box sx={{ padding: 10 }}>
         <form method="post">
-          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="form-name" value="personal-piece" />
           <Box paddingBottom={4}>
             <Grid container spacing={2}>
               <Grid item xs="5">
