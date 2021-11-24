@@ -1,4 +1,5 @@
 import * as React from "react";
+import TextField from "@mui/material/TextField";
 
 // const projectTypes = [
 //   {
@@ -84,7 +85,7 @@ const PersonalPieceForm = () => {
         <input type="hidden" name="form-name" value="contact" />
         <p>
           <label>
-            Your Name: <input type="text" name="name" />
+            Your Name: <TextField type="text" name="name" />
           </label>
         </p>
         <p>
