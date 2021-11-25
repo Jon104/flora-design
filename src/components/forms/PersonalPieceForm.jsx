@@ -189,38 +189,6 @@ const PersonalPieceForm = () => {
     onDrop,
   });
 
-  const encode = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((k) => {
-      formData.append(k, data[k]);
-    });
-    return formData;
-  };
-
-  const handleSubmit = (e) => {
-    const data = {
-      "form-name": "contact",
-      selectedProjectTypes,
-      width,
-      height,
-      selectedColorTypes,
-      selectedFormatTypes,
-      selectedLookTypes,
-      selectedMotifTypes,
-      file,
-    };
-
-    fetch("/", {
-      method: "POST",
-      // headers: { "Content-Type": 'multipart/form-data; boundary=random' },
-      body: encode(data),
-    })
-      .then(() => console.log("Form Submission Successful!!"))
-      .catch((error) => console.error("Form Submission Failed!"));
-
-    e.preventDefault();
-  };
-
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
 
@@ -352,7 +320,7 @@ const PersonalPieceForm = () => {
   return (
     <>
       <Box sx={{ padding: 10 }}>
-        <form onSubmit={handleSubmit} method="post">
+        <form method="post">
           <input type="hidden" name="form-name" value="personal-piece" />
           <Box sx={{ paddingBottom: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
