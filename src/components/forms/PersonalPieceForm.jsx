@@ -179,14 +179,14 @@ const PersonalPieceForm = () => {
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
-  const [file, setFile] = useState({});
+  // const [file, setFile] = useState({});
 
-  const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles);
-    setFile(acceptedFiles[0]);
-  }, []);
+  // const onDrop = useCallback((acceptedFiles) => {
+  //   console.log(acceptedFiles);
+  //   setFile(acceptedFiles[0]);
+  // }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
+    // onDrop,
   });
 
   const isProjectSelected = (image) =>
