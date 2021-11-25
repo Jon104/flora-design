@@ -590,7 +590,7 @@ const PersonalPieceForm = () => {
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <div {...getRootProps()}>
-                  <input {...getInputProps()} />
+                  <input name="file" {...getInputProps()} />
                   {isDragActive ? (
                     <p>Drop the files here ...</p>
                   ) : (
