@@ -547,7 +547,7 @@ const PersonalPieceForm = () => {
 
             <Grid container spacing={2} alignItems="center">
               <Grid item>
-                <input type="file" name="file" />
+                <input type="file" name="file" multiple />
               </Grid>
             </Grid>
           </Grid>
