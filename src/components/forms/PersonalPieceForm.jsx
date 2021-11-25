@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Box, Grid, ImageList, ImageListItem, Slider } from "@mui/material";
 import { useDropzone } from "react-dropzone";
@@ -179,14 +179,17 @@ const PersonalPieceForm = () => {
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
-  // const [file, setFile] = useState({});
+  const [file, setFile] = useState({});
 
-  // const onDrop = useCallback((acceptedFiles) => {
-  //   console.log(acceptedFiles);
-  //   setFile(acceptedFiles[0]);
-  // }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      console.log(file);
+      setFile(acceptedFiles[0]);
+    },
+    [file]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    // onDrop,
+    onDrop,
   });
 
   const isProjectSelected = (image) =>
@@ -321,7 +324,7 @@ const PersonalPieceForm = () => {
     <>
       <Box sx={{ padding: 10 }}>
         <form method="post">
-          <input type="hidden" name="personal-piece" value="personal-piece" />
+          <input type="hidden" name="form-name" value="personal-piece" />
           <Box sx={{ paddingBottom: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
               <Grid item xs="6">
