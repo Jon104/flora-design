@@ -340,7 +340,7 @@ const PersonalPieceForm = () => {
                     <label>Quel type de projet t'intéresse: </label>
                   </Grid>
                   <Grid item xs="12">
-                    <ImageList sx={{ width: 600 }} cols={3} rowHeight={200}>
+                    <ImageList cols={3} rowHeight={470}>
                       <input
                         hidden
                         name="projectTypes"
@@ -452,7 +452,7 @@ const PersonalPieceForm = () => {
                 <label>Quelles formes de macramé préfères-tu ?</label>
               </Grid>
               <Grid item xs="12">
-                <ImageList cols={4} rowHeight={400}>
+                <ImageList cols={4} rowHeight={500}>
                   <input
                     hidden
                     name="formatTypes"
@@ -542,6 +542,12 @@ const PersonalPieceForm = () => {
                     </ImageListItem>
                   ))}
                 </ImageList>
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2} alignItems="center">
+              <Grid item>
+                <input type="file" name="file" />
               </Grid>
             </Grid>
           </Grid>
