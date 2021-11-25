@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Box, Grid, ImageList, ImageListItem, Slider } from "@mui/material";
 import { useDropzone } from "react-dropzone";
