@@ -24,7 +24,7 @@ const Landing = () => {
     <>
       <Logo src="./img/logo.png" alt="Logo" />
       <VideoBackground
-        src="./vid/main_video.m4v"
+        src="./vid/main_video.mov"
         autoPlay
         playsInline
         loop
