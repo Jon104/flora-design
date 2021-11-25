@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Box, Grid, ImageList, ImageListItem, Slider } from "@mui/material";
+import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
   {
@@ -178,6 +179,47 @@ const PersonalPieceForm = () => {
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
+  const [file, setFile] = useState({});
+
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+    setFile(acceptedFiles[0]);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+  });
+
+  const encode = (data) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((k) => {
+      formData.append(k, data[k]);
+    });
+    return formData;
+  };
+
+  const handleSubmit = (e) => {
+    const data = {
+      "form-name": "contact",
+      selectedProjectTypes,
+      width,
+      height,
+      selectedColorTypes,
+      selectedFormatTypes,
+      selectedLookTypes,
+      selectedMotifTypes,
+      file,
+    };
+
+    fetch("/", {
+      method: "POST",
+      // headers: { "Content-Type": 'multipart/form-data; boundary=random' },
+      body: encode(data),
+    })
+      .then(() => console.log("Form Submission Successful!!"))
+      .catch((error) => console.error("Form Submission Failed!"));
+
+    e.preventDefault();
+  };
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -310,7 +352,7 @@ const PersonalPieceForm = () => {
   return (
     <>
       <Box sx={{ padding: 10 }}>
-        <form method="post">
+        <form onSubmit={handleSubmit} method="post">
           <input type="hidden" name="form-name" value="personal-piece" />
           <Box sx={{ paddingBottom: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
@@ -547,7 +589,16 @@ const PersonalPieceForm = () => {
 
             <Grid container spacing={2} alignItems="center">
               <Grid item>
-                <input type="file" name="file" multiple />
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <p>Drop the files here ...</p>
+                  ) : (
+                    <p>
+                      Drag 'n' drop some files here, or click to select files
+                    </p>
+                  )}
+                </div>
               </Grid>
             </Grid>
           </Grid>
