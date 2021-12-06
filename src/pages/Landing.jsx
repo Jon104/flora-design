@@ -83,7 +83,7 @@ export default Landing;
 const Logo = styled.img`
   margin-left: auto;
   margin-right: auto;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 39%;
   z-index: 2;
@@ -100,7 +100,7 @@ const Logo = styled.img`
 `;
 
 const VideoBackground = styled.video`
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   min-width: 100%;
@@ -155,7 +155,7 @@ const FlexContainer = styled.div`
   position: relative;
   display: flex;
   height: 70vh;
-  padding-top: 70%;
+  padding-top: 25%;
   padding-bottom: 5%;
   z-index: 5;
 
