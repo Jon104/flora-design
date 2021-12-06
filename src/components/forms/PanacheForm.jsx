@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
   Box,
@@ -8,7 +8,7 @@ import {
   ImageListItem,
   Slider,
 } from "@mui/material";
-import { useDropzone } from "react-dropzone";
+// import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
   {
@@ -186,15 +186,15 @@ const PanacheForm = () => {
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
-  const [file, setFile] = useState({});
+  //   const [file, setFile] = useState({});
 
-  const onDrop = useCallback(
-    (acceptedFiles) => {
-      console.log(file);
-      setFile(acceptedFiles[0]);
-    },
-    [file]
-  );
+  //   const onDrop = useCallback(
+  //     (acceptedFiles) => {
+  //       console.log(file);
+  //       setFile(acceptedFiles[0]);
+  //     },
+  //     [file]
+  //   );
   //   const { getRootProps, getInputProps, isDragActive } = useDropzone({
   //     onDrop,
   //   });

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
 import { Box, Button, Drawer } from "@mui/material";
-import PanacheForm from "components/forms/PanacheForm";
+import PanacheForm from "../components/forms/PanacheForm";
 
 const Logo = styled.img`
   margin-left: auto;
