@@ -178,7 +178,7 @@ const motifTypes = [
   },
 ];
 
-const PersonalPieceForm = () => {
+const PanacheForm = () => {
   const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
@@ -331,7 +331,7 @@ const PersonalPieceForm = () => {
     <>
       <Box sx={{ padding: 10, paddingTop: 15 }}>
         <form method="post">
-          <input type="hidden" name="form-name" value="personal-piece" />
+          <input type="hidden" name="form-name" value="panache" />
           <Box sx={{ paddingBottom: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
               <Grid item xs="6">
@@ -352,6 +352,15 @@ const PersonalPieceForm = () => {
                   label="Courriel"
                   name="email"
                   type="email"
+                />
+              </Grid>
+              <Grid item xs="6" sx={{ paddingBottom: 4 }}>
+                <TextField
+                  fullWidth
+                  variant="filled"
+                  label="Photo"
+                  name="photo"
+                  type="text"
                 />
               </Grid>
               <Grid item xs="12" sx={{ marginTop: 6, paddingBottom: 8 }}>
@@ -611,4 +620,4 @@ const PersonalPieceForm = () => {
   );
 };
 
-export default PersonalPieceForm;
+export default PanacheForm;

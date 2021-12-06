@@ -231,14 +231,11 @@ const PersonalPiece = () => {
       <Logo src="./img/logo.png" alt="Logo" />
       <TopImage src="./img/landing.jpg" alt="Landing page" />
       <Container>
-        <Title>MES PIÈCES PERSONNALISÉES</Title>
+        <Title>MES OEUVRES SUR PANACHE</Title>
         <Subtitle>
-          Que dirais-tu si je te proposais de représenter un bout de toi à
-          partir de mes cordes et de mon intuition ?!
-          <Subtitle>
-            Ma spécialité c'est les grandes pièces personnalisées! J’absorbe
-            toutes les informations que tu me donnes, et je crée à partir de ça.
-          </Subtitle>
+          La nature est ma principale source d'inspiration. Et quelle belle
+          façon de rendre hommage à ces majestueux animaux des forêts
+          québécoises que d'utiliser leurs bois pour faire des oeuvres uniques !
         </Subtitle>
       </Container>
       <Box sx={{ paddingBottom: 10 }}>
@@ -258,18 +255,16 @@ const PersonalPiece = () => {
       <SecondMiddleSection>
         <Title primary>FLORA, CRÉE POUR MOI ... </Title>
         <Subtitle primary>
-          J’absorbe toutes les informations que tu me donnes, et je crée à
-          partir de ça. Parle-moi de toi, de tes goûts, de ton décor, du style
-          que tu recherches, de tes pièces coup de coeur, de tes motifs et
-          couleurs désirés, de ton budget... je veux tout savoir! Ensuite je te
-          demande de tolérer une part de surprise et de me laisser aller ! Cet
-          espace me permet de me connecter sur ta vibe et sur mon élan créatif
-          pour créer ta pièce unique!
+          Les bois que j’utilise sont parfois trouvés en forêt (tu sais que les
+          cervidés perdent leur bois naturellement tous les ans?), parfois issus
+          de la chasse (les animaux sont chassés pour leur nourriture, pourquoi
+          ne pas rendre hommage à leur vie en récupérant toutes leurs parties! )
         </Subtitle>
         <Subtitle primary>
-          Et si tu n’as pas d’idée précise de ce que tu veux, c’est loin d’être
-          une contrainte pour moi. J’ai toujours la tête pleine d’idées à te
-          proposer !
+          Je peux aussi travailler à partir de ton propre panache. Dans ce cas,
+          tu peux soit m’apporter ton panache directement chez moi à Stoneham,
+          soit me le livrer. On peut alors estimer autour de 40$ pour la
+          livraison, dépendamment de la taille.
         </Subtitle>
         <Box marginTop="80px">
           <Button

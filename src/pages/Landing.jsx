@@ -57,7 +57,9 @@ const Landing = () => {
           alt="Landing middle section"
         />
       </FlexContainer>
-      <Box sx={{ marginBottom: 10, padding: 2 }}>
+      <Box
+        sx={{ marginBottom: 10, padding: 2, zIndex: 2, position: "relative-" }}
+      >
         <Grid
           container
           direction="row"
@@ -81,7 +83,7 @@ export default Landing;
 const Logo = styled.img`
   margin-left: auto;
   margin-right: auto;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 39%;
   z-index: 2;
@@ -98,7 +100,7 @@ const Logo = styled.img`
 `;
 
 const VideoBackground = styled.video`
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   min-width: 100%;
@@ -149,12 +151,11 @@ const Title = styled.p`
     font-size: 22px;
   }
 `;
-
 const FlexContainer = styled.div`
   position: relative;
   display: flex;
   height: 70vh;
-  padding-top: 25%;
+  padding-top: 70%;
   padding-bottom: 5%;
   z-index: 5;
 

@@ -54,30 +54,6 @@ const SlideContent = styled.div`
     rotateY(calc(0deg * var(--dir)));
 `;
 
-const SlideContentInner = styled.div`
-  height: 20vh;
-  padding: 4% 10%;
-  text-align: center;
-`;
-
-const Title = styled.p`
-  font-size: 36px;
-  color: #9f2e0e;
-  font-family: Lato;
-  font-size: 32px;
-  font-style: italic;
-  font-weight: 300;
-  line-height: 43px;
-  letter-spacing: 0.30000001192092896px;
-  text-align: center;
-`;
-
-const Subtitle = styled.p`
-  font-family: Barlow;
-  font-size: 24px;
-  color: #9f2e0e;
-`;
-
 const Slide = ({ slide, offset }) => {
   const active = offset === 0 ? true : null;
   const ref = useTilt(active);
@@ -102,10 +78,6 @@ const Slide = ({ slide, offset }) => {
           backgroundImage: `url('${slide.image}')`,
         }}
       />
-      <SlideContentInner>
-        <Title>{slide.testamonial.text}</Title>
-        <Subtitle>{slide.testamonial.source}</Subtitle>
-      </SlideContentInner>
     </div>
   );
 };

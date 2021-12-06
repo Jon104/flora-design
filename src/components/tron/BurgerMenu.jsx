@@ -42,7 +42,9 @@ const BurgerMenu = () => {
   );
 };
 
-const SideImage = styled.img``;
+const SideImage = styled.img`
+  height: 100vh;
+`;
 
 const Label = styled.label`
   display: block;
