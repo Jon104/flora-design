@@ -169,21 +169,21 @@ const slides = [
 // ];
 
 const initialState = {
-  slideIndex: 0,
+  slideIndex2: 0,
 };
 
-const slidesReducer = (state, event) => {
+const slides2Reducer = (state, event) => {
   if (event.type === "NEXT") {
     return {
       ...state,
-      slideIndex: (state.slideIndex + 1) % slides.length,
+      slideIndex2: (state.slideIndex + 1) % slides.length,
     };
   }
   if (event.type === "PREV") {
     return {
       ...state,
-      slideIndex:
-        state.slideIndex === 0 ? slides.length - 1 : state.slideIndex - 1,
+      slideIndex2:
+        state.slideIndex2 === 0 ? slides.length - 1 : state.slideIndex2 - 1,
     };
   }
 };
@@ -213,7 +213,7 @@ const slidesReducer = (state, event) => {
 // `;
 
 const Panaches = () => {
-  const [state, dispatch] = React.useReducer(slidesReducer, initialState);
+  const [state, dispatch] = React.useReducer(slides2Reducer, initialState);
   const [isOpen, toggleForm] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState(0);
 
