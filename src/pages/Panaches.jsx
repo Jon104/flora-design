@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
 import { Box, Button, Drawer } from "@mui/material";
-import PersonalPieceForm from "components/forms/PersonalPieceForm";
+import PanacheForm from "components/forms/PanacheForm";
 
 const Logo = styled.img`
   margin-left: auto;
@@ -212,7 +212,7 @@ const slidesReducer = (state, event) => {
 //   color: #9f2e0e;
 // `;
 
-const PersonalPiece = () => {
+const Panaches = () => {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState);
   const [isOpen, toggleForm] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState(0);
@@ -285,10 +285,10 @@ const PersonalPiece = () => {
         </Box>
       </SecondMiddleSection>
       <Drawer anchor="right" open={isOpen} onClose={() => toggleForm(false)}>
-        <PersonalPieceForm closeForm={() => toggleForm(false)} />
+        <PanacheForm closeForm={() => toggleForm(false)} />
       </Drawer>
     </>
   );
 };
 
-export default PersonalPiece;
+export default Panaches;
