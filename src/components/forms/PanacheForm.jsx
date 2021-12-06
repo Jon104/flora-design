@@ -195,9 +195,9 @@ const PanacheForm = () => {
     },
     [file]
   );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-  });
+  //   const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  //     onDrop,
+  //   });
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
