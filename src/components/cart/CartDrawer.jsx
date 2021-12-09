@@ -5,7 +5,12 @@ const CartDrawer = (props) => {
   return (
     <>
       <Drawer anchor="right" open={props.isOpen} onClose={props.onClose}>
-        <Cart cart={props.cart} />
+        <Cart
+          cart={props.cart}
+          onUpdateCartQty={props.onUpdateCartQty}
+          onRemoveFromCart={props.onRemoveFromCart}
+          onEmptyCart={props.onEmptyCart}
+        />
       </Drawer>
     </>
   );

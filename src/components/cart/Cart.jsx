@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
 const Cart = (props) => {
@@ -29,6 +30,8 @@ const Cart = (props) => {
               item={lineItem}
               key={lineItem.id}
               className="cart__inner"
+              onUpdateCartQty={props.onUpdateCartQty}
+              onRemoveFromCart={props.onRemoveFromCart}
             />
           ))}
         <div className="cart__total">
@@ -46,6 +49,14 @@ const Cart = (props) => {
       <h4 className="cart__heading">Your Shopping Cart</h4>
       {renderEmptyCart()}
       {renderCart()}
+      <div className="cart__footer">
+        <button className="cart__btn-empty" onClick={props.onEmptyCart}>
+          Empty cart
+        </button>
+        <Link className="cart__btn-checkout" to="/checkout">
+          Checkout
+        </Link>
+      </div>
     </div>
   );
 };
