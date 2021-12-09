@@ -8,6 +8,9 @@ import {
   ImageListItem,
   Slider,
 } from "@mui/material";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 // import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
@@ -178,8 +181,28 @@ const motifTypes = [
   },
 ];
 
+const panachesInStock = [
+  {
+    id: 35,
+    description: "J'aimerais une pièce sur un petit panache entier",
+    src: "35.jpg",
+  },
+  {
+    id: 36,
+    description: "J'aimerais une pièce sur un seul gros bois",
+    src: "36.jpg",
+  },
+  {
+    id: 37,
+    description:
+      "J'aimerais intégrer un panache de chevreuil à une pièce sur bâton",
+    src: "37.jpg",
+  },
+];
+
 const PanacheForm = () => {
   const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
+  const [selectedPanache, setSelectedPanache] = useState([]);
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
   const [selectedColorTypes, setSelectedColorTypes] = useState([]);
@@ -209,6 +232,22 @@ const PanacheForm = () => {
         (element) => element.id === image.id
       );
       setSelectedProjectTypes(selectedProjectTypes.splice(index, 0));
+      return;
+    }
+    const result = [...selectedProjectTypes, image];
+    setSelectedProjectTypes(result);
+  };
+
+  const isPanacheSelected = (image) =>
+    selectedPanache.find((element) => element.id === image.id);
+
+  const handleSelectPanache = (image) => {
+    const alreadySelected = isPanacheSelected(image);
+    if (alreadySelected) {
+      const index = selectedPanache.findIndex(
+        (element) => element.id === image.id
+      );
+      setSelectedPanache(selectedPanache.splice(index, 0));
       return;
     }
     const result = [...selectedProjectTypes, image];
@@ -358,11 +397,79 @@ const PanacheForm = () => {
                 <TextField
                   fullWidth
                   variant="filled"
-                  label="Photo"
-                  name="photo"
+                  label="Adresse"
+                  name="adresse"
                   type="text"
                 />
               </Grid>
+
+              <Grid container spacing={2} alignItems="center">
+                <Grid item>
+                  <h3>Montre-moi une photo de ton panache</h3>
+                  <input hidden name="file" type="file" />
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={2} alignItems="center">
+                <Grid item>
+                  <h3>Quelles sont ses dimensions</h3>
+                  <input hidden name="size" type="text" />
+                  <TextField
+                    fullWidth
+                    variant="filled"
+                    label="Dimensions"
+                    name="size"
+                    type="text"
+                  />
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={2} alignItems="center">
+                <Grid item>
+                  <h3>Livraison</h3>
+                  <input hidden name="size" type="text" />
+                  <RadioGroup aria-label="livraison" name="radio-buttons-group">
+                    <FormControlLabel
+                      value="stoneham"
+                      control={<Radio />}
+                      label="Je préfère l'apporter en personne à Stoneham"
+                    />
+                    <FormControlLabel
+                      value="livraison"
+                      control={<Radio />}
+                      label="Je préfère le faire livrer? (Prévoir entre 30 et 80$ pour la livraison, dépendamment de la taille)"
+                    />
+                  </RadioGroup>
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={2} alignItems="center">
+                <Grid item>
+                  <h3>J'aimerais réserver un des panaches en stock </h3>
+                  <ImageList cols={4} rowHeight={400}>
+                    <input hidden name="panachesInstock" type="text" />
+                    {panachesInStock.map((item) => (
+                      <ImageListItem
+                        sx={{
+                          border: 4,
+                          borderColor: isPanacheSelected(item)
+                            ? "green"
+                            : "transparent",
+                        }}
+                        key={item.img}
+                        onClick={() => handleSelectPanache(item)}
+                      >
+                        <img
+                          src={`./img/forms/${item.src}`}
+                          alt={item.id}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
+                </Grid>
+              </Grid>
+
               <Grid item xs="12" sx={{ marginTop: 6, paddingBottom: 8 }}>
                 <Grid container spacing={2} alignItems="center">
                   <Grid item xs="12">
