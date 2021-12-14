@@ -16,6 +16,7 @@ import { commerce } from "./lib/commerce";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Box, IconButton } from "@mui/material";
 import CartDrawer from "components/cart/CartDrawer";
+import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -129,11 +130,20 @@ function App() {
       });
   };
 
+  const Logo = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 150px;
+  `;
+
   return (
     <Router>
       <Mui theme={themeMui}>
         <ThemeProvider theme={theme}>
           <div className="App">
+            <Logo src="./img/logo.png" alt="Logo" />
             <Box
               padding={1}
               marginTop={1.5}
@@ -180,9 +190,7 @@ function App() {
                 path="/checkout"
                 exact
                 render={(props) => {
-                  return (
-                    <Checkout {...props} cart={cart} products={products} />
-                  );
+                  return <Checkout {...props} cart={cart} />;
                 }}
               />
               <Route path="/ma-démarche" component={MyApproach} />

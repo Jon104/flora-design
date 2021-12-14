@@ -1,21 +1,11 @@
 import { Box } from "@mui/material";
 import styled from "styled-components";
 
-const Logo = styled.img`
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  top: 0;
-  left: 50%;
-  z-index: 100;
-`;
-
 const Container = styled.div`
   position: relative;
   margin: 5% 5%;
   z-index: 2;
   text-align: center;
-  text-shadow: 1px 1px 3px #9f2e0e;
 `;
 
 const Title = styled.p`
@@ -41,8 +31,7 @@ const MiddleSectionImage = styled.img`
 const MyApproach = () => {
   return (
     <>
-      <Logo src="./img/logo.png" alt="Logo" />
-      <Box paddingX={24}>
+      <Box px={{ xs: 2, sm: 8, md: 24 }} py={{ xs: 16 }}>
         <Container>
           <Title>MA DÉMARCHE ARTISTIQUE</Title>
           <Subtitle>

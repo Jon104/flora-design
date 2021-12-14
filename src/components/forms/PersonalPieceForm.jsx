@@ -4,10 +4,13 @@ import {
   Box,
   Button,
   Grid,
+  IconButton,
   ImageList,
   ImageListItem,
   Slider,
 } from "@mui/material";
+import { isMobile } from "react-device-detect";
+import CloseIcon from "@mui/icons-material/Close";
 // import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
@@ -178,7 +181,7 @@ const motifTypes = [
   },
 ];
 
-const PersonalPieceForm = () => {
+const PersonalPieceForm = ({ onClose }) => {
   const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
@@ -299,7 +302,7 @@ const PersonalPieceForm = () => {
   //   },
   //   {
   //     id: 5,
-  //     src: "https://dsm01pap001files.storage.live.com/y4mtPzK0xR_7G-MQV2_LU4-WdEnr2xYu0dAz_F-hu89N0cG4qxmVDZRIQeMwbMUV02dqGLSOsQe49o9sIvV9312f0CWdSiUJ3FQgIXibW0IsI4sBizGEPT7_FOAP2oFLhW7ZAQpgvbssKVDSvrLXCyRpmhehf_Qieiq-0iF4_KPRYg2zSI64uzlJaClWUBx0IE1?width=660&height=660&cropmode=none",
+  //     src: "https://dsm01pap001files.storage.live.com/y4mtPzK0xR_7G-MQV2_LU4-WdEnr2xYu0dAz_F-hu89N0cG4qxmVDZRIQeMwbMUV02dqGLSOsQe49o9sIvV9310f0CWdSiUJ3FQgIXibW0IsI4sBizGEPT7_FOAP2oFLhW7ZAQpgvbssKVDSvrLXCyRpmhehf_Qieiq-0iF4_KPRYg2zSI64uzlJaClWUBx0IE1?width=660&height=660&cropmode=none",
   //   },
   //   {
   //     id: 6,
@@ -329,12 +332,25 @@ const PersonalPieceForm = () => {
 
   return (
     <>
-      <Box sx={{ padding: 10, paddingTop: 15 }}>
+      <Box px={{ xs: 2, sm: 6 }} py={2}>
+        <Grid container justifyContent="flex-end">
+          <IconButton
+            aria-label="close-form"
+            onClick={onClose}
+            size="large"
+            right
+          >
+            <CloseIcon color="primary" fontSize="inherit" />
+          </IconButton>
+        </Grid>
         <form method="post">
           <input type="hidden" name="form-name" value="personal-piece" />
-          <Box sx={{ paddingBottom: 6 }}>
+          <Box pb={6} py={{ xs: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
-              <Grid item xs="6">
+              <Grid item xs="12">
+                <h3>Qui es-tu?</h3>
+              </Grid>
+              <Grid item xs="12" sm="6">
                 <TextField
                   required
                   fullWidth
@@ -345,7 +361,7 @@ const PersonalPieceForm = () => {
                   type="text"
                 />
               </Grid>
-              <Grid item xs="6" sx={{ paddingBottom: 4 }}>
+              <Grid item xs="12" sm="6" sx={{ paddingBottom: 4 }}>
                 <TextField
                   fullWidth
                   variant="filled"
@@ -358,7 +374,10 @@ const PersonalPieceForm = () => {
                 <Grid container spacing={2} alignItems="center">
                   <Grid item xs="12">
                     <h3>Quel type de projet t'intéresse: </h3>
-                    <ImageList cols={5} rowHeight={280}>
+                    <ImageList
+                      cols={isMobile ? 1 : 3}
+                      rowHeight={isMobile ? 350 : 580}
+                    >
                       <input
                         hidden
                         name="projectTypes"
@@ -369,7 +388,7 @@ const PersonalPieceForm = () => {
                           sx={{
                             border: 4,
                             borderColor: isProjectSelected(item)
-                              ? "green"
+                              ? "#9f2e0e"
                               : "transparent",
                           }}
                           key={item.img}
@@ -432,7 +451,7 @@ const PersonalPieceForm = () => {
                 <h4>Quelles couleurs souhaites-tu ?</h4>
               </Grid>
               <Grid item xs="12">
-                <ImageList cols={4} rowHeight={400}>
+                <ImageList cols={3} rowHeight={580}>
                   <input
                     hidden
                     name="colorTypes"
@@ -443,7 +462,7 @@ const PersonalPieceForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isColorSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}
@@ -476,7 +495,7 @@ const PersonalPieceForm = () => {
               <Grid item xs="12">
                 <h3>Quelles formes de macramé préfères-tu ?</h3>
 
-                <ImageList cols={4} rowHeight={500}>
+                <ImageList cols={3} rowHeight={580}>
                   <input
                     hidden
                     name="formatTypes"
@@ -487,7 +506,7 @@ const PersonalPieceForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isFormatSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}
@@ -520,7 +539,7 @@ const PersonalPieceForm = () => {
               <Grid item xs="12">
                 <h3>Préfères-tu un look:</h3>
 
-                <ImageList cols={4} rowHeight={400}>
+                <ImageList cols={3} rowHeight={580}>
                   <input
                     hidden
                     name="lookTypes"
@@ -531,7 +550,7 @@ const PersonalPieceForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isLookSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}
@@ -556,7 +575,7 @@ const PersonalPieceForm = () => {
             >
               <Grid item xs="12">
                 <h3>Quels motifs et effets te plaisent le plus:</h3>
-                <ImageList cols={4} rowHeight={400}>
+                <ImageList cols={3} rowHeight={580}>
                   <input
                     hidden
                     name="motifTypes"
@@ -567,7 +586,7 @@ const PersonalPieceForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isMotifSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}
@@ -600,10 +619,17 @@ const PersonalPieceForm = () => {
             </Grid> */}
           </Grid>
 
-          <Grid container sx={{ paddingTop: 2 }} xs={12}>
-            <Button size="large" type="submit" variant="contained">
-              Envoyer
-            </Button>
+          <Grid
+            container
+            justifyContent="flex-end"
+            sx={{ paddingTop: 2 }}
+            xs={12}
+          >
+            <Grid item>
+              <Button size="large" type="submit" variant="contained">
+                Envoyer
+              </Button>
+            </Grid>
           </Grid>
         </form>
       </Box>

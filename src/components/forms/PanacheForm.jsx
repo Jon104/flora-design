@@ -453,7 +453,7 @@ const PanacheForm = () => {
                         sx={{
                           border: 4,
                           borderColor: isPanacheSelected(item)
-                            ? "green"
+                            ? "#9f2e0e"
                             : "transparent",
                         }}
                         key={item.img}
@@ -485,7 +485,7 @@ const PanacheForm = () => {
                           sx={{
                             border: 4,
                             borderColor: isProjectSelected(item)
-                              ? "green"
+                              ? "#9f2e0e"
                               : "transparent",
                           }}
                           key={item.img}
@@ -559,7 +559,7 @@ const PanacheForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isColorSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}
@@ -603,7 +603,7 @@ const PanacheForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isFormatSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}
@@ -647,7 +647,7 @@ const PanacheForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isLookSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}
@@ -683,7 +683,7 @@ const PanacheForm = () => {
                       sx={{
                         border: 4,
                         borderColor: isMotifSelected(item)
-                          ? "green"
+                          ? "#9f2e0e"
                           : "transparent",
                       }}
                       key={item.img}

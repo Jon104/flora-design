@@ -2,12 +2,30 @@ import styled, { css } from "styled-components";
 import { Box, Grid, List, ListItemButton, ListItemText } from "@mui/material";
 import InstagramButton from "../components/buttons/InstagramButton";
 import FacebookButton from "../components/buttons/FacebookButton";
+import { Link } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 const FooterListItems = [
-  "Accueil",
-  "Ma démarche artistique",
-  "Cours et fourniture",
-  "Créations spontanées et prêt-à-partir",
+  {
+    name: "Accueil",
+    link: "/",
+  },
+  {
+    name: "Ma démarche artistique",
+    link: "/ma-démarche",
+  },
+  {
+    name: "Créons ensemble, en art-connexion",
+    link: "/ensemble",
+  },
+  {
+    name: "Mes oeuvres sur panache",
+    link: "/panaches",
+  },
+  {
+    name: "Boutique",
+    link: "/boutique",
+  },
 ];
 
 const Footer = () => (
@@ -18,16 +36,9 @@ const Footer = () => (
     </Box>
 
     <Container>
-      <Box sx={{ paddingBottom: 5, paddingTop: 4 }}>
-        <Grid
-          sx={{
-            paddingRight: 8,
-            paddingLeft: 6,
-          }}
-          container
-          spacing={3}
-        >
-          <Grid item xs={6}>
+      <Box sx={{ paddingBottom: 5, paddingTop: 4 }} px={2}>
+        <Grid px={2} container spacing={5}>
+          <Grid item xs={12} sm={6}>
             <List
               sx={{
                 color: "#ffffff",
@@ -35,17 +46,19 @@ const Footer = () => (
                 fontSize: "25px",
                 fontWeight: "400",
                 lineHeight: "30px",
-                textAlign: "left",
               }}
             >
-              {FooterListItems.map((text) => (
-                <ListItemButton>
-                  <ListItemText primary={text} />
+              {FooterListItems.map((item) => (
+                <ListItemButton component={Link} to={item.link}>
+                  <ListItemText
+                    sx={{ textAlign: isMobile ? "center" : "flex-start" }}
+                    primary={item.name}
+                  />
                 </ListItemButton>
               ))}
             </List>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <FooterText>
               Pour voir plus de créations, pour avoir des informations sur mes
               offres saisonnières ou pour discuter avec moi, suivez-moi sur mes

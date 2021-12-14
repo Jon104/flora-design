@@ -22,6 +22,10 @@ const Box = styled.div`
   box-shadow: 10px 10px 30px 0px #d0cfdc66;
   padding: 40px 45px;
   text-align: center;
+
+  @media (max-width: 800px) {
+    padding: 20px 25px;
+  }
 `;
 
 const Title = styled.p`

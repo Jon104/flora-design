@@ -1,65 +1,79 @@
 import { Box, Grid } from "@mui/material";
 import styled from "styled-components";
 import Bubble from "../components/Bubble";
+import { isMobile } from "react-device-detect";
 
 const Landing = () => {
   const BubblesContent = [
     {
-      title: "Respect de la nature",
+      title: "RESPECT DE LA NATURE",
       subtitle:
         "J'aime travailler à partir de matériaux naturels. Que ce soit les bâtons de bois flotté que je sélectionne au bord des rives, les bois d'orignal qui sont trouvés en forêt ou récupérés de la chasse, le coton naturel compostable que je privilégie ou mes cordes de couleurs recyclées.",
     },
     {
-      title: "Connexion",
+      title: "CONNEXION",
       subtitle:
         "Je crois que l'art offre un moyen unique de s'exprimer, de communiquer entre nous et de se comprendre. Et lorsqu'on est en connexion avec soi-même, on est aussi plus facilement en connexion avec les autres.",
     },
     {
-      title: "Simplicité",
+      title: "SIMPLICITÉ",
       subtitle:
         "Je suis une grande fervente du 'acheter moins, acheter mieux'. Parce que vivre dans une maison qui prend vie grâce à quelques trésors choisis avec amour, ça n'a pas de prix.",
     },
   ];
   return (
     <>
-      <Logo src="./img/logo.png" alt="Logo" />
       <VideoBackground
-        src="./vid/main_video.mov"
+        src={isMobile ? "./vid/vertical.mov" : "./vid/main_video.mov"}
         autoPlay
         playsInline
         loop
         muted
       />
-      <Container>
-        <Title>ART TEXTILE INSPIRÉ DE LA NATURE</Title>
-      </Container>
-      <FlexContainer>
-        <LeftPanel>
-          <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS!</MiddleSectionTitle>
-          <MiddleSectionParagraph>
-            Je suis Laurie, maman de 2 garçons. J'habite au coeur des belles
-            montagnes de Stoneham.{" "}
-          </MiddleSectionParagraph>
-          <MiddleSectionParagraph>
-            Plutôt rêveuse, toujours pleine d'idées, pis un peu intense quand je
-            m'embarque dans quelque chose.
-          </MiddleSectionParagraph>
-          <MiddleSectionParagraph>
-            J'espère réussir à te toucher par mon art. Tu remarqueras sans doute
-            ma signature végétale bien à moi. Par mes oeuvres et mes cours de
-            macramé, j'ai pour mission d'aider les femmes à se reconnecter à
-            leur essence !
-          </MiddleSectionParagraph>
-        </LeftPanel>
-        <RightPanel
-          loading="lazy"
-          src="./img/landing_middle_view.jpg"
-          alt="Landing middle section"
-        />
-      </FlexContainer>
-      <Box
-        sx={{ marginBottom: 10, padding: 2, zIndex: 2, position: "relative-" }}
-      >
+
+      <Box px={{ xs: 6, sm: 8, md: 18 }} py={{ xs: 2, md: 10 }}>
+        <Grid container sx={{ height: "95vh" }} alignContent="center">
+          <Grid item xs={12}>
+            <Title>ART TEXTILE INSPIRÉ DE LA NATURE</Title>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box px={{ xs: 6, sm: 8, md: 18 }} paddingTop={{ xs: 10 }}>
+        <Grid container justifyContent="space-around">
+          <Grid item md={5} sm={12}>
+            <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS!</MiddleSectionTitle>
+            <MiddleSectionParagraph>
+              Je suis Laurie, maman de 2 garçons. J'habite au coeur des belles
+              montagnes de Stoneham.
+            </MiddleSectionParagraph>
+            <MiddleSectionParagraph>
+              Plutôt rêveuse, toujours pleine d'idées, pis un peu intense quand
+              je m'embarque dans quelque chose.
+            </MiddleSectionParagraph>
+            <MiddleSectionParagraph>
+              J'espère réussir à te toucher par mon art. Tu remarqueras sans
+              doute ma signature végétale bien à moi. Par mes oeuvres et mes
+              cours de macramé, j'ai pour mission d'aider les femmes à se
+              reconnecter à leur essence !
+            </MiddleSectionParagraph>
+          </Grid>
+          <Grid item md={5} sm={12} pt={{ xs: isMobile ? 8 : 0 }}>
+            <RightPanel
+              loading="lazy"
+              src="./img/landing_middle_view.jpg"
+              alt="Landing middle section"
+            />
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box px={{ xs: 0, sm: 8, md: 18 }} pb={8}>
+        <Grid container p={2} pl={4}>
+          <Grid item>
+            <MiddleSectionTitle>MES VALEURS</MiddleSectionTitle>
+          </Grid>
+        </Grid>
         <Grid
           container
           direction="row"
@@ -79,25 +93,6 @@ const Landing = () => {
 };
 
 export default Landing;
-
-const Logo = styled.img`
-  margin-left: auto;
-  margin-right: auto;
-  position: absolute;
-  top: 0;
-  left: 39%;
-  z-index: 2;
-
-  @media (max-width: 1300px) {
-    width: 220px;
-  }
-  @media (max-width: 800px) {
-    width: 180px;
-  }
-  @media (max-width: 630px) {
-    width: 80px;
-  }
-`;
 
 const VideoBackground = styled.video`
   position: absolute;
@@ -119,25 +114,11 @@ const VideoBackground = styled.video`
   }
 `;
 
-const Container = styled.div`
-  position: relative;
-  margin: 7% 1%;
-  z-index: 2;
-
-  @media (max-width: 1300px) {
-    margin: 3% 1%;
-  }
-  @media (max-width: 800px) {
-    margin: 0% 1%;
-  }
-`;
-
 const Title = styled.p`
-  padding-top: 20%;
-  padding-left: 5%;
-  font-size: 70px;
+  font-size: 50px;
   color: #9f2e0e;
   text-shadow: 4px 4px 4px #00000040;
+
   @media (max-width: 1300px) {
     font-size: 50px;
   }
@@ -145,85 +126,27 @@ const Title = styled.p`
     font-size: 40px;
   }
   @media (max-width: 800px) {
-    font-size: 28px;
-  }
-  @media (max-width: 630px) {
-    font-size: 22px;
-  }
-`;
-const FlexContainer = styled.div`
-  position: relative;
-  display: flex;
-  height: 70vh;
-  padding-top: 25%;
-  padding-bottom: 5%;
-  z-index: 5;
-
-  @media (max-width: 1450px) {
-    padding-top: 35%;
-  }
-
-  @media (max-width: 1301px) {
-    padding-top: 45%;
-  }
-  @media (max-width: 1201px) {
-    padding-top: 55%;
-  }
-  @media (max-width: 1000px) {
-    padding-top: 75%;
-  }
-  @media (max-width: 800px) {
-    padding-top: 100%;
-  }
-  @media (max-width: 700px) {
-    padding-top: 120%;
-  }
-  @media (max-width: 600px) {
-    padding-top: 140%;
-  }
-  @media (max-width: 500px) {
-    padding-top: 160%;
-  }
-`;
-
-const LeftPanel = styled.div`
-  flex: 1 1 0;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  z-index: 20;
-  min-width: 40%;
-
-  @media (max-width: 800px) {
-    padding-left: 3.5rem;
-    width: 45%;
+    font-size: 30px;
   }
 `;
 
 const RightPanel = styled.img`
-  flex: 1 1 0;
-  max-height: 50% @media (max-width: 1300px) {
-    width: 70%;
-  }
+  max-width: 700px;
 `;
 
 const MiddleSectionTitle = styled.p`
   font-size: 36px;
   color: #9f2e0e;
 
-  @media (max-width: 1300px) {
-    font-size: 26px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 22px;
-  }
   @media (max-width: 800px) {
-    font-size: 18px;
+    font-size: 22px;
   }
 `;
 
 const MiddleSectionParagraph = styled.p`
   font-size: 25px;
-  color: #9f2e0e;
+  line-height: 30px;
+  color: #0000000;
   font-family: Barlow;
 
   @media (max-width: 1300px) {
