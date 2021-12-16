@@ -132,10 +132,8 @@ function App() {
 
   const Logo = styled.img`
     position: absolute;
-    top: 0;
-    left: 0;
     z-index: 2;
-    width: 150px;
+    width: 120px;
   `;
 
   return (
