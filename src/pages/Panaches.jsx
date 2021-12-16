@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
 import { Box, Button, Drawer, Grid } from "@mui/material";
 import PanacheForm from "../components/forms/PanacheForm";
-import { TopSection } from "./components/element";
+import { TopSection, SecondMiddleSection, Slides } from "./components/element";
 import { FullImage } from "./components/image";
 import { MainTitle, MainSubtitle } from "./components/typography";
 
@@ -35,90 +35,39 @@ const Subtitle = styled.p`
     `};
 `;
 
-const MiddleSection = styled.div`
-  padding: 17% 0%;
-  padding-bottom: 2%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 1300px) {
-    padding: 6% 0%;
-  }
-`;
-
-const Slides = styled.div`
-  display: grid;
-  > .slide {
-    grid-area: 1 / -1;
-  }
-
-  > button {
-    appearance: none;
-    background: transparent;
-    min-width: 30vw;
-    min-height: 40vw;
-    color: #9f2e0e;
-
-    border: none;
-    color: white;
-    position: absolute;
-    font-size: 5rem;
-    transition: opacity 1s;
-    opacity: 0.7;
-    z-index: 5;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &:first-child {
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 0)
-      );
-      left: 0;
-    }
-    &:last-child {
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 1)
-      );
-      right: 0;
-    }
-  }
-`;
-
-const SecondMiddleSection = styled.div`
-  padding: 3% 10%;
-  text-align: left;
-  position: relative;
-  display: block;
-  background: #9f2e0e;
-  height: 800px;
-`;
-
 const slides = [
   {
-    image: "./img/personalPieceForm/5.jpg",
+    image: "./img/panaches/anick.jpg",
   },
   {
-    image: "./img/personalPieceForm/9.jpg",
+    image: "./img/panaches/cynthia.jpg",
   },
   {
-    image: "./img/personalPieceForm/10.jpg",
+    image: "./img/panaches/jose.jpg",
   },
   {
-    image: "./img/personalPieceForm/15.jpg",
+    image: "./img/panaches/martineA.jpg",
   },
   {
-    image: "./img/personalPieceForm/20.jpg",
+    image: "./img/panaches/martineS.jpg",
+  },
+  {
+    image: "./img/panaches/noname.jpg",
+  },
+  {
+    image: "./img/panaches/rachel.jpg",
+  },
+  {
+    image: "./img/panaches/roxane.jpg",
+  },
+  {
+    image: "./img/panaches/tania.jpg",
+  },
+  {
+    image: "./img/panaches/vero.jpg",
+  },
+  {
+    image: "./img/panaches/viviane.jpg",
   },
 ];
 
@@ -146,14 +95,14 @@ const slides = [
 // ];
 
 const initialState = {
-  slideIndex2: 0,
+  slideIndex2: 5,
 };
 
 const slides2Reducer = (state, event) => {
   if (event.type === "NEXT") {
     return {
       ...state,
-      slideIndex2: (state.slideIndex + 1) % slides.length,
+      slideIndex2: (state.slideIndex2 + 1) % slides.length,
     };
   }
   if (event.type === "PREV") {
@@ -215,12 +164,12 @@ const Panaches = () => {
         </MainSubtitle>
       </TopSection>
 
-      <Box sx={{ marginBottom: 10 }} pt={{ xs: 8 }}>
+      <Box sx={{ marginBottom: 12 }} pt={{ xs: 8 }}>
         <Slides>
           <button onClick={() => onNext()} />
 
           {[...slides, ...slides, ...slides].map((slide, i) => {
-            let offset = slides.length + (state.slideIndex - i);
+            let offset = slides.length + (state.slideIndex2 - i);
             return <Slide slide={slide} offset={offset} key={i} />;
           })}
           <button onClick={() => onPrev()} />
@@ -233,39 +182,41 @@ const Panaches = () => {
             <Title primary>FLORA, CRÉE POUR MOI ... </Title>
           </Grid>
 
-          <Subtitle primary>
-            Les bois que j’utilise sont parfois trouvés en forêt (tu sais que
-            les cervidés perdent leur bois naturellement tous les ans?), parfois
-            issus de la chasse (les animaux sont chassés pour leur nourriture,
-            pourquoi ne pas rendre hommage à leur vie en récupérant toutes leurs
-            parties! )
-          </Subtitle>
+          <Grid item xs={12}>
+            <Subtitle primary>
+              Les bois que j’utilise sont parfois trouvés en forêt (tu sais que
+              les cervidés perdent leur bois naturellement tous les ans?),
+              parfois issus de la chasse (les animaux sont chassés pour leur
+              nourriture, pourquoi ne pas rendre hommage à leur vie en
+              récupérant toutes leurs parties! )
+            </Subtitle>
+          </Grid>
+          <Grid item xs={12}>
+            <Subtitle primary>
+              Je peux aussi travailler à partir de ton propre panache. Dans ce
+              cas, tu peux soit m’apporter ton panache directement chez moi à
+              Stoneham, soit me le livrer. On peut alors estimer autour de 40$
+              pour la livraison, dépendamment de la taille.
+            </Subtitle>
+          </Grid>
+          <Box my={6}>
+            <Button
+              onClick={() => toggleForm(true)}
+              variant="contained"
+              size="large"
+              sx={{
+                backgroundColor: "#F2E8DA",
+                color: "#9F2E0E",
+                fontSize: 15,
+                height: "3rem",
+                width: "26rem",
+                boxShadow: "10px 10px 30px 0px #D0CFDC66",
+              }}
+            >
+              Élaborons ton projet ensemble
+            </Button>
+          </Box>
         </Grid>
-        <Grid item xs={12}>
-          <Subtitle primary>
-            Je peux aussi travailler à partir de ton propre panache. Dans ce
-            cas, tu peux soit m’apporter ton panache directement chez moi à
-            Stoneham, soit me le livrer. On peut alors estimer autour de 40$
-            pour la livraison, dépendamment de la taille.
-          </Subtitle>
-        </Grid>
-        <Box my={6}>
-          <Button
-            onClick={() => toggleForm(true)}
-            variant="contained"
-            size="large"
-            sx={{
-              backgroundColor: "#F2E8DA",
-              color: "#9F2E0E",
-              fontSize: 15,
-              height: "3rem",
-              width: "26rem",
-              boxShadow: "10px 10px 30px 0px #D0CFDC66",
-            }}
-          >
-            Élaborons ton projet ensemble
-          </Button>
-        </Box>
       </SecondMiddleSection>
       <Drawer anchor="right" open={isOpen} onClose={() => toggleForm(false)}>
         <PanacheForm onClose={() => toggleForm(false)} />

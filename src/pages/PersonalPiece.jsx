@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
 import { Box, Button, Drawer, Grid } from "@mui/material";
 import PersonalPieceForm from "components/forms/PersonalPieceForm";
-import { TopSection, SecondMiddleSection } from "./components/element";
+import { TopSection, SecondMiddleSection, Slides } from "./components/element";
 import { FullImage } from "./components/image";
 import { MainTitle, MainSubtitle } from "./components/typography";
 
@@ -50,54 +50,6 @@ const Subtitle = styled.p`
   }
 `;
 
-const Slides = styled.div`
-  display: grid;
-  > .slide {
-    grid-area: 1 / -1;
-  }
-
-  > button {
-    appearance: none;
-    background: transparent;
-    min-width: 30vw;
-    min-height: 40vw;
-    color: #9f2e0e;
-
-    border: none;
-    color: white;
-    position: absolute;
-    font-size: 5rem;
-    transition: opacity 1s;
-    opacity: 0.7;
-    z-index: 5;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &:first-child {
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 1),
-        rgba(255, 255, 255, 0)
-      );
-      left: 0;
-    }
-    &:last-child {
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 1)
-      );
-      right: 0;
-    }
-  }
-`;
-
 const slides = [
   {
     image: "./img/personalPieceForm/5.jpg",
@@ -140,7 +92,7 @@ const slides = [
 // ];
 
 const initialState = {
-  slideIndex: 0,
+  slideIndex: 2,
 };
 
 const slidesReducer = (state, event) => {
@@ -254,8 +206,6 @@ const PersonalPiece = () => {
                 backgroundColor: "#F2E8DA",
                 color: "#9F2E0E",
                 fontSize: 15,
-                height: "3rem",
-                width: "26rem",
                 boxShadow: "10px 10px 30px 0px #D0CFDC66",
               }}
             >

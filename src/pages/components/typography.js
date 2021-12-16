@@ -24,7 +24,7 @@ export const MainTitle = styled.p`
     font-size: 28px;
   }
   @media (max-width: 800px) {
-    font-size: 22px;
+    font-size: 20px;
   }
 `;
 
@@ -53,6 +53,9 @@ export const MainSubtitle = styled.p`
     font-size: 20px;
   }
   @media (max-width: 800px) {
-    font-size: 18px;
+    top: 52%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 14px;
   }
 `;

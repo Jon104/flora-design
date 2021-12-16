@@ -1,4 +1,5 @@
 import { Box, Grid } from "@mui/material";
+import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 
 const Logo = styled.img`
@@ -32,12 +33,20 @@ const Container = styled.div`
 const Title = styled.p`
   font-size: 32px;
   color: #9f2e0e;
+
+  @media (max-width: 600px) {
+    font-size: 28px;
+  }
 `;
 
 const Subtitle = styled.p`
   font-family: Barlow;
   font-size: 28px;
   color: #9f2e0e;
+
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
 `;
 
 const MiddleSection = styled.div`
@@ -56,6 +65,7 @@ const MiddleSection = styled.div`
 
 const MiddleSectionImage = styled.img`
   position: absolute;
+  z-index: 100;
   left: -50%;
   max-width: 160%;
 
@@ -70,7 +80,6 @@ const Bubble = styled.div`
   box-shadow: 10px 10px 30px rgba(208, 207, 220, 0.4);
   border-radius: 40px;
   padding: 18px 28px 18px 40px;
-
   top: 75%;
   text-align: center;
 `;
@@ -173,7 +182,7 @@ const CreateTogether = () => {
         </Subtitle>
       </Container>
 
-      <Box sx={{ paddingTop: 4 }}>
+      <Box sx={{ padding: 2 }}>
         <MiddleSection>
           <Title>Imagine...</Title>
           <Subtitle>
@@ -201,10 +210,14 @@ const CreateTogether = () => {
               sx={{ paddingTop: 5 }}
               container
               direction="row"
-              justifyContent="flex-end"
+              justifyContent={isMobile ? "center" : "flex-end"}
               alignItems="space-around"
             >
-              <Grid item xs={element.size} sx={{ paddingRight: 4 }}>
+              <Grid
+                item
+                xs={isMobile ? 12 : element.size}
+                sx={{ paddingRight: 4 }}
+              >
                 <Bubble>
                   <BubbleTag>{element.week}</BubbleTag>
                   <BubbleTitle>{element.title}</BubbleTitle>

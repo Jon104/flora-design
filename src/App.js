@@ -133,7 +133,11 @@ function App() {
   const Logo = styled.img`
     position: absolute;
     z-index: 2;
-    width: 120px;
+    width: 150px;
+
+    @media (max-width: 600px) {
+      width: 100px;
+    }
   `;
 
   return (
