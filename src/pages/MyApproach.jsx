@@ -16,6 +16,10 @@ const Title = styled.p`
 const Subtitle = styled.p`
   font-family: Barlow;
   font-size: 24px;
+
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
 `;
 
 const MiddleSection = styled.div`
