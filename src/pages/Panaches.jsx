@@ -11,6 +11,7 @@ const Logo = styled.img`
   top: 0;
   left: 50%;
   z-index: 100;
+  visibility: hidden;
 `;
 
 const TopImage = styled.img`
