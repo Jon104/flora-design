@@ -1,35 +1,11 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
-import { Box, Button, Drawer } from "@mui/material";
+import { Box, Button, Drawer, Grid } from "@mui/material";
 import PanacheForm from "../components/forms/PanacheForm";
-
-const Logo = styled.img`
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  top: 0;
-  left: 50%;
-  z-index: 100;
-  visibility: hidden;
-`;
-
-const TopImage = styled.img`
-  position: absolute;
-  left: 0;
-  top: 0;
-  max-width: 100%;
-  height: auto;
-  opacity: 0.4;
-  z-index: 1;
-`;
-
-const Container = styled.div`
-  position: relative;
-  margin: 5% 5%;
-  z-index: 2;
-  text-align: center;
-`;
+import { TopSection } from "./components/element";
+import { FullImage } from "./components/image";
+import { MainTitle, MainSubtitle } from "./components/typography";
 
 const Title = styled.p`
   font-family: Lato;
@@ -229,45 +205,51 @@ const Panaches = () => {
 
   return (
     <>
-      <Logo src="./img/logo.png" alt="Logo" />
-      <TopImage src="./img/landing.jpg" alt="Landing page" />
-      <Container>
-        <Title>MES OEUVRES SUR PANACHE</Title>
-        <Subtitle>
+      <TopSection>
+        <FullImage src="./img/landing.jpg" alt="Landing page" />
+        <MainTitle>MES OEUVRES SUR PANACHE</MainTitle>
+        <MainSubtitle>
           La nature est ma principale source d'inspiration. Et quelle belle
           façon de rendre hommage à ces majestueux animaux des forêts
           québécoises que d'utiliser leurs bois pour faire des oeuvres uniques !
-        </Subtitle>
-      </Container>
-      <Box sx={{ paddingBottom: 10 }}>
-        <MiddleSection>
-          <Slides>
-            <button onClick={() => onNext()} />
+        </MainSubtitle>
+      </TopSection>
 
-            {[...slides, ...slides, ...slides].map((slide, i) => {
-              let offset = slides.length + (state.slideIndex - i);
-              return <Slide slide={slide} offset={offset} key={i} />;
-            })}
-            <button onClick={() => onPrev()} />
-          </Slides>
-        </MiddleSection>
+      <Box sx={{ marginBottom: 10 }} pt={{ xs: 8 }}>
+        <Slides>
+          <button onClick={() => onNext()} />
+
+          {[...slides, ...slides, ...slides].map((slide, i) => {
+            let offset = slides.length + (state.slideIndex - i);
+            return <Slide slide={slide} offset={offset} key={i} />;
+          })}
+          <button onClick={() => onPrev()} />
+        </Slides>
       </Box>
 
       <SecondMiddleSection>
-        <Title primary>FLORA, CRÉE POUR MOI ... </Title>
-        <Subtitle primary>
-          Les bois que j’utilise sont parfois trouvés en forêt (tu sais que les
-          cervidés perdent leur bois naturellement tous les ans?), parfois issus
-          de la chasse (les animaux sont chassés pour leur nourriture, pourquoi
-          ne pas rendre hommage à leur vie en récupérant toutes leurs parties! )
-        </Subtitle>
-        <Subtitle primary>
-          Je peux aussi travailler à partir de ton propre panache. Dans ce cas,
-          tu peux soit m’apporter ton panache directement chez moi à Stoneham,
-          soit me le livrer. On peut alors estimer autour de 40$ pour la
-          livraison, dépendamment de la taille.
-        </Subtitle>
-        <Box marginTop="80px">
+        <Grid container p={6}>
+          <Grid item xs={12}>
+            <Title primary>FLORA, CRÉE POUR MOI ... </Title>
+          </Grid>
+
+          <Subtitle primary>
+            Les bois que j’utilise sont parfois trouvés en forêt (tu sais que
+            les cervidés perdent leur bois naturellement tous les ans?), parfois
+            issus de la chasse (les animaux sont chassés pour leur nourriture,
+            pourquoi ne pas rendre hommage à leur vie en récupérant toutes leurs
+            parties! )
+          </Subtitle>
+        </Grid>
+        <Grid item xs={12}>
+          <Subtitle primary>
+            Je peux aussi travailler à partir de ton propre panache. Dans ce
+            cas, tu peux soit m’apporter ton panache directement chez moi à
+            Stoneham, soit me le livrer. On peut alors estimer autour de 40$
+            pour la livraison, dépendamment de la taille.
+          </Subtitle>
+        </Grid>
+        <Box my={6}>
           <Button
             onClick={() => toggleForm(true)}
             variant="contained"
@@ -286,7 +268,7 @@ const Panaches = () => {
         </Box>
       </SecondMiddleSection>
       <Drawer anchor="right" open={isOpen} onClose={() => toggleForm(false)}>
-        <PanacheForm closeForm={() => toggleForm(false)} />
+        <PanacheForm onClose={() => toggleForm(false)} />
       </Drawer>
     </>
   );

@@ -3,77 +3,9 @@ import styled, { css } from "styled-components";
 import Slide from "../components/Slide";
 import { Box, Button, Drawer, Grid } from "@mui/material";
 import PersonalPieceForm from "components/forms/PersonalPieceForm";
-
-const TopSection = styled.div`
-  position: relative;
-  width: 100%;
-  text-align: center;
-`;
-
-const TopImage = styled.img`
-  position: relative;
-  max-width: 100%;
-  height: auto;
-  opacity: 0.4;
-  z-index: 1;
-`;
-
-const MainTitle = styled.p`
-  position: absolute;
-  top: 24%;
-  width: 100%;
-  font-family: Lato;
-  font-weight: 500;
-  line-height: 43px;
-  letter-spacing: 0.30000001192092896px;
-  font-size: 36px;
-  color: #9f2e0e;
-
-  ${(props) =>
-    props.primary &&
-    css`
-      color: #ffffff;
-    `};
-
-  @media (max-width: 1300px) {
-    font-size: 33px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 28px;
-  }
-  @media (max-width: 800px) {
-    font-size: 22px;
-  }
-`;
-
-const MainSubtitle = styled.p`
-  position: absolute;
-  top: 46%;
-  padding-left: 10rem;
-  padding-right: 10rem;
-  text-align: center;
-  margin: 0 auto;
-  font-family: Barlow;
-  font-size: 32px;
-  font-weight: 300;
-  color: #9f2e0e;
-
-  ${(props) =>
-    props.primary &&
-    css`
-      color: #ffffff;
-    `};
-
-  @media (max-width: 1300px) {
-    font-size: 22px;
-  }
-  @media (max-width: 1000px) {
-    font-size: 20px;
-  }
-  @media (max-width: 800px) {
-    font-size: 18px;
-  }
-`;
+import { TopSection, SecondMiddleSection } from "./components/element";
+import { FullImage } from "./components/image";
+import { MainTitle, MainSubtitle } from "./components/typography";
 
 const Title = styled.p`
   position: relative;
@@ -164,13 +96,6 @@ const Slides = styled.div`
       right: 0;
     }
   }
-`;
-
-const SecondMiddleSection = styled.div`
-  text-align: left;
-  position: relative;
-  display: block;
-  background: #9f2e0e;
 `;
 
 const slides = [
@@ -275,7 +200,7 @@ const PersonalPiece = () => {
   return (
     <>
       <TopSection>
-        <TopImage src="./img/landing.jpg" alt="Landing page" />
+        <FullImage src="./img/landing.jpg" alt="Landing page" />
         <MainTitle>MES PIÈCES PERSONNALISÉES</MainTitle>
         <MainSubtitle>
           Que dirais-tu si je te proposais de représenter un bout de toi à

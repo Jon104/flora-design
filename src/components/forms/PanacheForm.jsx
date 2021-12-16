@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Grid,
+  IconButton,
   ImageList,
   ImageListItem,
   Slider,
@@ -11,6 +12,7 @@ import {
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import CloseIcon from "@mui/icons-material/Close";
 // import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
@@ -200,7 +202,7 @@ const panachesInStock = [
   },
 ];
 
-const PanacheForm = () => {
+const PanacheForm = ({ onClose }) => {
   const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
   const [selectedPanache, setSelectedPanache] = useState([]);
   const [width, setWidth] = useState([23, 40]);
@@ -368,12 +370,25 @@ const PanacheForm = () => {
 
   return (
     <>
-      <Box sx={{ padding: 10, paddingTop: 15 }}>
+      <Box px={{ xs: 2, sm: 6 }} py={2}>
+        <Grid container justifyContent="flex-end">
+          <IconButton
+            aria-label="close-form"
+            onClick={onClose}
+            size="large"
+            right
+          >
+            <CloseIcon color="primary" fontSize="inherit" />
+          </IconButton>
+        </Grid>
         <form method="post">
           <input type="hidden" name="form-name" value="panache" />
-          <Box sx={{ paddingBottom: 6 }}>
+          <Box pb={6} py={{ xs: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
-              <Grid item xs="6">
+              <Grid item xs="12">
+                <h3>Qui es-tu?</h3>
+              </Grid>
+              <Grid item xs="12" sm="6">
                 <TextField
                   required
                   fullWidth
@@ -384,7 +399,7 @@ const PanacheForm = () => {
                   type="text"
                 />
               </Grid>
-              <Grid item xs="6" sx={{ paddingBottom: 4 }}>
+              <Grid item xs="12" sm="6" sx={{ paddingBottom: 4 }}>
                 <TextField
                   fullWidth
                   variant="filled"
@@ -716,7 +731,12 @@ const PanacheForm = () => {
             </Grid> */}
           </Grid>
 
-          <Grid container sx={{ paddingTop: 2 }} xs={12}>
+          <Grid
+            container
+            sx={{ paddingTop: 2 }}
+            xs={12}
+            justifyContent="flex-end"
+          >
             <Button size="large" type="submit" variant="contained">
               Envoyer
             </Button>
