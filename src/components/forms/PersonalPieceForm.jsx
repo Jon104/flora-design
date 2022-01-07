@@ -412,7 +412,10 @@ const PersonalPieceForm = ({ onClose }) => {
                 <h4>Quelles couleurs souhaites-tu ?</h4>
               </Grid>
               <Grid item xs="12">
-                <ImageList cols={3} rowHeight={580}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="colorTypes"
@@ -456,7 +459,10 @@ const PersonalPieceForm = ({ onClose }) => {
               <Grid item xs="12">
                 <h3>Quelles formes de macramé préfères-tu ?</h3>
 
-                <ImageList cols={3} rowHeight={580}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="formatTypes"
@@ -500,7 +506,10 @@ const PersonalPieceForm = ({ onClose }) => {
               <Grid item xs="12">
                 <h3>Préfères-tu un look:</h3>
 
-                <ImageList cols={3} rowHeight={580}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="lookTypes"
@@ -536,7 +545,10 @@ const PersonalPieceForm = ({ onClose }) => {
             >
               <Grid item xs="12">
                 <h3>Quels motifs et effets te plaisent le plus:</h3>
-                <ImageList cols={3} rowHeight={580}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="motifTypes"
