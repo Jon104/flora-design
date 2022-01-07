@@ -18,84 +18,84 @@ import CloseIcon from "@mui/icons-material/Close";
 const projectTypes = [
   {
     id: 1,
-    src: "1.jpg",
+    src: "1.png",
   },
   {
     id: 2,
-    src: "2.jpg",
+    src: "2.png",
   },
 ];
 
 const colorTypes = [
   {
     id: 3,
-    src: "3.jpg",
+    src: "3.png",
   },
   {
     id: 4,
-    src: "4.jpg",
+    src: "4.png",
   },
   {
     id: 5,
-    src: "5.jpg",
+    src: "5.png",
   },
   {
     id: 6,
-    src: "6.jpg",
+    src: "6.png",
   },
   {
     id: 7,
-    src: "7.jpg",
+    src: "7.png",
   },
   {
     id: 8,
-    src: "8.jpg",
+    src: "8.png",
   },
   {
     id: 9,
-    src: "9.jpg",
+    src: "9.png",
   },
   {
     id: 10,
-    src: "10.jpg",
+    src: "10.png",
   },
   {
     id: 11,
-    src: "11.jpg",
+    src: "11.png",
   },
   {
     id: 12,
-    src: "12.jpg",
+    src: "12.png",
   },
 ];
 
 const formatTypes = [
   {
     id: 13,
-    src: "13.jpg",
+    src: "13.png",
   },
   {
     id: 14,
-    src: "14.jpg",
+    src: "14.png",
   },
   {
     id: 15,
-    src: "15.jpg",
+    src: "15.png",
   },
   {
     id: 16,
-    src: "16.jpg",
+    src: "16.png",
   },
 ];
 
 const lookTypes = [
   {
     id: 17,
-    src: "17.jpg",
+    src: "17.png",
   },
   {
     id: 18,
-    src: "18.jpg",
+    src: "18.png",
   },
 ];
 
@@ -103,83 +103,83 @@ const motifTypes = [
   {
     id: 19,
     description: "Les feuilles",
-    src: "19.jpg",
+    src: "19.png",
   },
   {
     id: 20,
     description: "Les fleurs de lotus et autres formes de fleurs",
-    src: "20.jpg",
+    src: "20.png",
   },
   {
     id: 21,
     description: "Les papillons",
-    src: "21.jpg",
+    src: "21.png",
   },
   {
     id: 22,
     description: "Les tresses / torsades enchevêtrées",
-    src: "22.jpg",
+    src: "22.png",
   },
   {
     id: 23,
     description: "Les plumes",
-    src: "23.jpg",
+    src: "23.png",
   },
   {
     id: 24,
     description: "Les pompons",
-    src: "24.jpg",
+    src: "24.png",
   },
   {
     id: 25,
     description: "L'effet dentelle",
-    src: "25.jpg",
+    src: "25.png",
   },
   {
     id: 26,
     description: "Les formes éclatées",
-    src: "26.jpg",
+    src: "26.png",
   },
   {
     id: 27,
     description: "Les zig-zag",
-    src: "27.jpg",
+    src: "27.png",
   },
   {
     id: 28,
     description: "Les petits boutons de rose",
-    src: "28.jpg",
+    src: "28.png",
   },
   {
     id: 29,
     description: "Les insertions pour plantes",
-    src: "29.jpg",
+    src: "29.png",
   },
   {
     id: 30,
     description: "Les arbres de vie / lune / étoile ou autres formes intégrées",
-    src: "30.jpg",
+    src: "30.png",
   },
   {
     id: 31,
     description: "Les insertions de laine merino",
-    src: "31.jpg",
+    src: "31.png",
   },
   {
     id: 32,
     description: "Les dessins abstraits",
-    src: "32.jpg",
+    src: "32.png",
   },
   {
     id: 33,
     description: "Les diamants",
-    src: "33.jpg",
+    src: "33.png",
   },
   {
     id: 34,
     description:
       "Surprends-moi (j'ai toujours la tête pleine d'idées à te proposer!)",
-    src: "34.jpg",
+    src: "34.png",
   },
 ];
 
@@ -187,18 +187,18 @@ const panachesInStock = [
   {
     id: 35,
     description: "J'aimerais une pièce sur un petit panache entier",
-    src: "35.jpg",
+    src: "35.png",
   },
   {
     id: 36,
     description: "J'aimerais une pièce sur un seul gros bois",
-    src: "36.jpg",
+    src: "36.png",
   },
   {
     id: 37,
     description:
       "J'aimerais intégrer un panache de chevreuil à une pièce sur bâton",
-    src: "37.jpg",
+    src: "37.png",
   },
 ];
 
