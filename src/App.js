@@ -17,6 +17,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Box, IconButton } from "@mui/material";
 import CartDrawer from "components/cart/CartDrawer";
 import styled from "styled-components";
+import { groupProductsByCategory } from "services/ProductServices";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -61,7 +62,7 @@ function App() {
   const fetchProducts = useCallback(() => {
     commerce.products
       .list()
-      .then((products) => setProducts(products.data))
+      .then((products) => setProducts(groupProductsByCategory(products.data)))
       .catch((error) => {
         console.log("There was an error fetching the products", error);
       });
@@ -182,7 +183,7 @@ function App() {
                   return (
                     <Boutique
                       {...props}
-                      products={products}
+                      productsByCategory={products}
                       onAddToCart={handleAddToCart}
                     />
                   );
