@@ -1,192 +1,356 @@
-import { useEffect } from "react";
+import { Box, Grid } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Subtitle } from "services/TypoService";
 import { commerce } from "../lib/commerce";
 
 const Checkout = (props) => {
-  // const [checkoutToken, setCheckoutToken] = useState({});
-  // const [customerDetails, setCustomerDetails] = useState({
-  //   firstName: "Jane",
-  //   lastName: "Doe",
-  //   email: "janedoe@email.com",
-  //   // Shipping details
-  //   shippingName: "Jane Doe",
-  //   shippingStreet: "123 Fake St",
-  //   shippingCity: "San Francisco",
-  //   shippingStateProvince: "CA",
-  //   shippingPostalZipCode: "94107",checkoutToken
-  //   shippingCountry: "US",
-  //   // Payment details
-  //   cardNum: "4242 4242 4242 4242",
-  //   expMonth: "11",
-  //   expYear: "2023",
-  //   ccv: "123",
-  //   billingPostalZipcode: "94107",
-  //   // Shipping and fulfillment data
-  //   shippingCountries: {},
-  //   shippingSubdivisions: {},
-  //   shippingOptions: [],
-  //   shippingOption: "",
-  // });
+  const [checkoutToken, setCheckoutToken] = useState({});
+  const [customerDetails, setCustomerDetails] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    // Shipping details
+    shippingName: "",
+    shippingStreet: "",
+    shippingCity: "",
+    shippingStateProvince: "",
+    shippingPostalZipCode: "",
+    shippingCountry: "",
+    // Payment details
+    cardNum: "",
+    expMonth: "",
+    expYear: "",
+    ccv: "",
+    billingPostalZipcode: "",
+  });
+  const [shippingDetails, setShippingDetails] = useState({
+    shippingCountries: {},
+    shippingSubdivisions: {},
+    shippingOptions: [],
+    shippingOption: "",
+  });
+
+  const fetchShippingCountries = (checkoutTokenId) => {
+    commerce.services
+      .localeListShippingCountries(checkoutTokenId)
+      .then((countries) => {
+        setShippingDetails({
+          ...shippingDetails,
+          shippingCountries: countries.countries,
+        });
+      })
+      .catch((error) => {
+        console.log(
+          "There was an error fetching a list of shipping countries",
+          error
+        );
+      });
+  };
+
+  const fetchSubdivisions = (countryCode) => {
+    commerce.services
+      .localeListSubdivisions(countryCode)
+      .then((subdivisions) => {
+        setShippingDetails({
+          ...shippingDetails,
+          shippingSubdivisions: subdivisions.subdivisions,
+        });
+      })
+      .catch((error) => {
+        console.log("There was an error fetching the subdivisions", error);
+      });
+  };
 
   const generateCheckoutToken = () => {
     const { cart } = props;
     if (cart.line_items.length) {
       commerce.checkout
         .generateToken(cart.id, { type: "cart" })
-        // .then((token) => {
-        //  setCheckoutToken(token);
-        //})
+        .then((token) => {
+          setCheckoutToken(token);
+          fetchShippingCountries(token.id);
+          fetchShippingOptions(token.id, customerDetails.shippingCountry);
+        })
         .catch((error) => {
           console.log("There was an error in generating a token", error);
         });
     }
   };
 
+  const fetchShippingOptions = (
+    checkoutTokenId,
+    country,
+    stateProvince = null
+  ) => {
+    commerce.checkout
+      .getShippingOptions(checkoutTokenId, {
+        country: country,
+        region: stateProvince,
+      })
+      .then((options) => {
+        const shippingOption = options[0] || null;
+        setShippingDetails({
+          ...shippingDetails,
+          shippingOptions: options,
+          shippingOption: shippingOption,
+        });
+      })
+      .catch((error) => {
+        console.log("There was an error fetching the shipping methods", error);
+      });
+  };
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => generateCheckoutToken(), []);
+  useEffect(() => {
+    console.log("UseEffect");
+    if (props.cart.line_items) {
+      console.log("ToGenerate");
+      generateCheckoutToken();
+      fetchSubdivisions(customerDetails.shippingCountry);
+    }
+  }, [props.cart]);
 
-  // const renderCheckoutForm = () => {
-  //   return (
-  //     <form className="checkout__form">
-  //       <h4 className="checkout__subheading">Customer information</h4>
+  return (
+    <>
+      <form className="checkout__form">
+        <Box padding={4} pt={16}>
+          <Grid container>
+            <Grid item xs={12}>
+              <Subtitle>Informations client</Subtitle>
+            </Grid>
 
-  //       <label className="checkout__label" htmlFor="firstName">
-  //         First name
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         value={this.state.firstName}
-  //         name="firstName"
-  //         placeholder="Enter your first name"
-  //         required
-  //       />
+            <Grid item xs={6}>
+              <label htmlFor="firstName">Prénom</label>
+              <input
+                type="text"
+                value={customerDetails.firstName}
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    firstName: e.target.value,
+                  })
+                }
+                name="firstName"
+                required
+              />
+            </Grid>
 
-  //       <label className="checkout__label" htmlFor="lastName">
-  //         Last name
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         value={this.state.lastName}
-  //         name="lastName"
-  //         placeholder="Enter your last name"
-  //         required
-  //       />
+            <Grid item xs={6} justifyContent="end">
+              <label htmlFor="lastName">Nom</label>
+              <input
+                type="text"
+                value={customerDetails.lastName}
+                name="lastName"
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    lastName: e.target.value,
+                  })
+                }
+                required
+              />
+            </Grid>
 
-  //       <label className="checkout__label" htmlFor="email">
-  //         Email
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         value={this.state.email}
-  //         name="email"
-  //         placeholder="Enter your email"
-  //         required
-  //       />
+            <Grid item xs={12}>
+              <label htmlFor="email">Courriel</label>
+              <input
+                type="text"
+                value={customerDetails.email}
+                name="email"
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    email: e.target.value,
+                  })
+                }
+                required
+              />
+            </Grid>
 
-  //       <h4 className="checkout__subheading">Shipping details</h4>
+            <Subtitle>Les détails d'expédition</Subtitle>
 
-  //       <label className="checkout__label" htmlFor="shippingName">
-  //         Full name
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         value={this.state.shippingName}
-  //         name="shippingName"
-  //         placeholder="Enter your shipping full name"
-  //         required
-  //       />
+            <Grid item xs={12}>
+              <label htmlFor="shippingName">Nom complet</label>
+              <input
+                type="text"
+                value={customerDetails.shippingName}
+                name="shippingName"
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    shippingName: e.target.value,
+                  })
+                }
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <label htmlFor="shippingStreet">Adresse</label>
+              <input
+                type="text"
+                value={customerDetails.shippingStreet}
+                name="shippingStreet"
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    shippingStreet: e.target.value,
+                  })
+                }
+                required
+              />
+            </Grid>
 
-  //       <label className="checkout__label" htmlFor="shippingStreet">
-  //         Street address
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         value={this.state.shippingStreet}
-  //         name="shippingStreet"
-  //         placeholder="Enter your street address"
-  //         required
-  //       />
+            <Grid item xs={12}>
+              <label htmlFor="shippingCity">Ville</label>
+              <input
+                type="text"
+                value={customerDetails.shippingCity}
+                name="shippingCity"
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    shippingCity: e.target.value,
+                  })
+                }
+                required
+              />
+            </Grid>
 
-  //       <label className="checkout__label" htmlFor="shippingCity">
-  //         City
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         value={this.state.shippingCity}
-  //         name="shippingCity"
-  //         placeholder="Enter your city"
-  //         required
-  //       />
+            <Grid item xs={12}>
+              <label htmlFor="shippingPostalZipCode">Code postal</label>
+              <input
+                type="text"
+                value={customerDetails.shippingPostalZipCode}
+                name="shippingPostalZipCode"
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    shippingPostalZipCode: e.target.value,
+                  })
+                }
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <label className="checkout__label" htmlFor="shippingCountry">
+                Pays
+              </label>
+              <select
+                value={customerDetails.shippingCountry}
+                name="shippingCountry"
+                onChange={(e) =>
+                  setCustomerDetails({
+                    ...customerDetails,
+                    shippingCountry: e.target.value,
+                  })
+                }
+              >
+                <option disabled>Country</option>
+                {Object.keys(shippingDetails.shippingCountries).map((index) => {
+                  return (
+                    <option value={index} key={index}>
+                      {shippingDetails.shippingCountries[index]}
+                    </option>
+                  );
+                })}
+                ;
+              </select>
+            </Grid>
 
-  //       <label className="checkout__label" htmlFor="shippingPostalZipCode">
-  //         Postal/Zip code
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         value={this.state.shippingPostalZipCode}
-  //         name="shippingPostalZipCode"
-  //         placeholder="Enter your postal/zip code"
-  //         required
-  //       />
+            <Grid item xs={12}>
+              <label htmlFor="shippingStateProvince">État/Province</label>
+              <select
+                value={customerDetails.shippingStateProvince}
+                name="shippingStateProvince"
+              >
+                <option className="checkout__option" disabled>
+                  State/province
+                </option>
+                {Object.keys(shippingDetails.shippingSubdivisions).map(
+                  (index) => {
+                    return (
+                      <option value={index} key={index}>
+                        {shippingDetails.shippingSubdivisions[index]}
+                      </option>
+                    );
+                  }
+                )}
+                ;
+              </select>
+            </Grid>
 
-  //       <h4 className="checkout__subheading">Payment information</h4>
+            <Grid item xs={12}>
+              <label className="checkout__label" htmlFor="shippingOption">
+                Mode de livraison
+              </label>
+              <select
+                value={shippingDetails.shippingOption}
+                name="shippingOption"
+                className="checkout__select"
+              >
+                <option disabled>Select a shipping method</option>
+                {shippingDetails.shippingOptions.map((method, index) => {
+                  return (
+                    <option
+                      value={method.id}
+                      key={index}
+                    >{`${method.description} - $${method.price.formatted_with_code}`}</option>
+                  );
+                })}
+                ;
+              </select>
+            </Grid>
 
-  //       <label className="checkout__label" htmlFor="cardNum">
-  //         Credit card number
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         name="cardNum"
-  //         value={this.state.cardNum}
-  //         placeholder="Enter your card number"
-  //       />
+            <Subtitle>Information de paiement</Subtitle>
+            <Grid item xs={12}>
+              <label className="checkout__label" htmlFor="cardNum">
+                Numéro de Carte de Crédit
+              </label>
+              <input
+                type="text"
+                name="cardNum"
+                value={customerDetails.cardNum}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <label htmlFor="expMonth">Expiry month</label>
+              <input
+                type="text"
+                name="expMonth"
+                value={customerDetails.expMonth}
+                placeholder="Card expiry month"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <label htmlFor="expYear">Expiry year</label>
+              <input
+                className="checkout__input"
+                type="text"
+                name="expYear"
+                value={customerDetails.expYear}
+                placeholder="Card expiry year"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <label className="checkout__label" htmlFor="ccv">
+                CCV
+              </label>
+              <input
+                className="checkout__input"
+                type="text"
+                name="ccv"
+                value={customerDetails.ccv}
+                placeholder="CCV (3 digits)"
+              />
+            </Grid>
+            <Grid item xs={12}></Grid>
+          </Grid>
 
-  //       <label className="checkout__label" htmlFor="expMonth">
-  //         Expiry month
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         name="expMonth"
-  //         value={this.state.expMonth}
-  //         placeholder="Card expiry month"
-  //       />
-
-  //       <label className="checkout__label" htmlFor="expYear">
-  //         Expiry year
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         name="expYear"
-  //         value={this.state.expYear}
-  //         placeholder="Card expiry year"
-  //       />
-
-  //       <label className="checkout__label" htmlFor="ccv">
-  //         CCV
-  //       </label>
-  //       <input
-  //         className="checkout__input"
-  //         type="text"
-  //         name="ccv"
-  //         value={this.state.ccv}
-  //         placeholder="CCV (3 digits)"
-  //       />
-
-  //       <button className="checkout__btn-confirm">Confirm order</button>
-  //     </form>
-  //   );
-  // };
-
-  return <></>;
+          <button className="checkout__btn-confirm">Confirm order</button>
+        </Box>
+      </form>
+    </>
+  );
 };
 
 export default Checkout;
