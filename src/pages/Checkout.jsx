@@ -1,10 +1,25 @@
-import { Box, Grid } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { Subtitle } from "services/TypoService";
 import { commerce } from "../lib/commerce";
+import TextField from "@mui/material/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import InputMask from "react-input-mask";
+import React from "react";
+import NumberFormat from "react-number-format";
 
 const Checkout = (props) => {
   const [checkoutToken, setCheckoutToken] = useState({});
+  const handleCreditCardNumberInput = ({ target: { value } }) =>
+    setCustomerDetails({ ...customerDetails, cardNumber: value });
+
   const [customerDetails, setCustomerDetails] = useState({
     firstName: "",
     lastName: "",
@@ -12,12 +27,13 @@ const Checkout = (props) => {
     // Shipping details
     shippingName: "",
     shippingStreet: "",
-    shippingCity: "",
     shippingStateProvince: "",
+    shippingCity: "",
     shippingPostalZipCode: "",
     shippingCountry: "",
+    shippingOption: "",
     // Payment details
-    cardNum: "",
+    cardNumber: "",
     expMonth: "",
     expYear: "",
     ccv: "",
@@ -27,7 +43,6 @@ const Checkout = (props) => {
     shippingCountries: {},
     shippingSubdivisions: {},
     shippingOptions: [],
-    shippingOption: "",
   });
 
   const fetchShippingCountries = (checkoutTokenId) => {
@@ -110,245 +125,384 @@ const Checkout = (props) => {
     }
   }, [props.cart]);
 
+  const CreditCardNumber = (props) => {
+    return (
+      <InputMask
+        mask="(+1) 999 999 9999"
+        value={props.value}
+        onChange={props.onChange}
+      ></InputMask>
+    );
+  };
+
+  const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+    props,
+    ref
+  ) {
+    const { onChange, ...other } = props;
+
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={ref}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        thousandSeparator
+        isNumericString
+      />
+    );
+  });
+
   return (
     <>
-      <form className="checkout__form">
-        <Box padding={4} pt={16}>
-          <Grid container>
-            <Grid item xs={12}>
-              <Subtitle>Informations client</Subtitle>
-            </Grid>
+      <Box>
+        <Box
+          padding={4}
+          pt={16}
+          sx={{
+            width: "50%",
+            display: "inline-block",
+          }}
+        >
+          <form className="checkout__form">
+            <Grid container spacing={2} justifyContent="start">
+              <Grid item xs={12}>
+                <Subtitle>Informations client</Subtitle>
+              </Grid>
 
-            <Grid item xs={6}>
-              <label htmlFor="firstName">Prénom</label>
-              <input
-                type="text"
-                value={customerDetails.firstName}
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    firstName: e.target.value,
-                  })
-                }
-                name="firstName"
-                required
-              />
-            </Grid>
-
-            <Grid item xs={6} justifyContent="end">
-              <label htmlFor="lastName">Nom</label>
-              <input
-                type="text"
-                value={customerDetails.lastName}
-                name="lastName"
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    lastName: e.target.value,
-                  })
-                }
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <label htmlFor="email">Courriel</label>
-              <input
-                type="text"
-                value={customerDetails.email}
-                name="email"
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    email: e.target.value,
-                  })
-                }
-                required
-              />
-            </Grid>
-
-            <Subtitle>Les détails d'expédition</Subtitle>
-
-            <Grid item xs={12}>
-              <label htmlFor="shippingName">Nom complet</label>
-              <input
-                type="text"
-                value={customerDetails.shippingName}
-                name="shippingName"
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    shippingName: e.target.value,
-                  })
-                }
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <label htmlFor="shippingStreet">Adresse</label>
-              <input
-                type="text"
-                value={customerDetails.shippingStreet}
-                name="shippingStreet"
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    shippingStreet: e.target.value,
-                  })
-                }
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <label htmlFor="shippingCity">Ville</label>
-              <input
-                type="text"
-                value={customerDetails.shippingCity}
-                name="shippingCity"
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    shippingCity: e.target.value,
-                  })
-                }
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <label htmlFor="shippingPostalZipCode">Code postal</label>
-              <input
-                type="text"
-                value={customerDetails.shippingPostalZipCode}
-                name="shippingPostalZipCode"
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    shippingPostalZipCode: e.target.value,
-                  })
-                }
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <label className="checkout__label" htmlFor="shippingCountry">
-                Pays
-              </label>
-              <select
-                value={customerDetails.shippingCountry}
-                name="shippingCountry"
-                onChange={(e) =>
-                  setCustomerDetails({
-                    ...customerDetails,
-                    shippingCountry: e.target.value,
-                  })
-                }
-              >
-                <option disabled>Country</option>
-                {Object.keys(shippingDetails.shippingCountries).map((index) => {
-                  return (
-                    <option value={index} key={index}>
-                      {shippingDetails.shippingCountries[index]}
-                    </option>
-                  );
-                })}
-                ;
-              </select>
-            </Grid>
-
-            <Grid item xs={12}>
-              <label htmlFor="shippingStateProvince">État/Province</label>
-              <select
-                value={customerDetails.shippingStateProvince}
-                name="shippingStateProvince"
-              >
-                <option className="checkout__option" disabled>
-                  State/province
-                </option>
-                {Object.keys(shippingDetails.shippingSubdivisions).map(
-                  (index) => {
-                    return (
-                      <option value={index} key={index}>
-                        {shippingDetails.shippingSubdivisions[index]}
-                      </option>
-                    );
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Prénom"
+                  color="primary"
+                  value={customerDetails.firstName}
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      firstName: e.target.value,
+                    })
                   }
-                )}
-                ;
-              </select>
+                  name="firstName"
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Nom"
+                  color="primary"
+                  value={customerDetails.lastName}
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      lastName: e.target.value,
+                    })
+                  }
+                  name="lastName"
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Courriel"
+                  color="primary"
+                  value={customerDetails.email}
+                  name="email"
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      email: e.target.value,
+                    })
+                  }
+                  type="text"
+                />
+              </Grid>
+              <Grid item xs={6} />
+
+              <Grid item xs={12}>
+                <Subtitle>Les détails d'expédition</Subtitle>
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Nom complet"
+                  color="primary"
+                  value={customerDetails.shippingName}
+                  name="shippingName"
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      shippingName: e.target.value,
+                    })
+                  }
+                  type="text"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Adresse"
+                  color="primary"
+                  value={customerDetails.shippingStreet}
+                  name="shippingStreet"
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      shippingStreet: e.target.value,
+                    })
+                  }
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Ville"
+                  color="primary"
+                  value={customerDetails.shippingCity}
+                  name="shippingCity"
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      shippingCity: e.target.value,
+                    })
+                  }
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Code postal"
+                  color="primary"
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="shippingCountry">Pays</InputLabel>
+                  <Select
+                    labelId="shippingCountry"
+                    label="Pays"
+                    value={customerDetails.shippingCountry}
+                    name="shippingCountry"
+                    onChange={(e) =>
+                      setCustomerDetails({
+                        ...customerDetails,
+                        shippingCountry: e.target.value,
+                      })
+                    }
+                  >
+                    {Object.keys(shippingDetails.shippingCountries).map(
+                      (index) => {
+                        return (
+                          <MenuItem key={index} value={index}>
+                            {shippingDetails.shippingCountries[index]}
+                          </MenuItem>
+                        );
+                      }
+                    )}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="shippingStateProvince">
+                    État/Province
+                  </InputLabel>
+                  <Select
+                    labelId="shippingStateProvince"
+                    label="État/Province"
+                    value={customerDetails.shippingStateProvince}
+                    name="shippingStateProvince"
+                    onChange={(e) =>
+                      setCustomerDetails({
+                        ...customerDetails,
+                        shippingStateProvince: e.target.value,
+                      })
+                    }
+                  >
+                    {Object.keys(shippingDetails.shippingSubdivisions).map(
+                      (index) => {
+                        return (
+                          <MenuItem key={index} value={index}>
+                            {shippingDetails.shippingSubdivisions[index]}
+                          </MenuItem>
+                        );
+                      }
+                    )}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="shippingOption">Mode de livraison</InputLabel>
+                  <Select
+                    labelId="shippingOption"
+                    label="Mode de livraison"
+                    value={shippingDetails.shippingOption}
+                    name="shippingOption"
+                    onChange={(e) =>
+                      setShippingDetails({
+                        ...shippingDetails,
+                        shippingOption: e.target.value,
+                      })
+                    }
+                  >
+                    {shippingDetails.shippingOptions.map((method, index) => {
+                      return (
+                        <MenuItem value={method.id} key={index}>
+                          {`${method.description} - $${method.price.formatted_with_code}`}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={6} />
+
+              <Grid item xs={12}>
+                <Subtitle>Information de paiement</Subtitle>
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Numéro de carte de Crédit"
+                  color="primary"
+                  name="cardNumber"
+                  value={customerDetails.cardNumber}
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      cardNumber: e.target.value,
+                    })
+                  }
+                  InputProps={{
+                    inputComponent: NumberFormatCustom,
+                  }}
+                  type="text"
+                />
+              </Grid>
+
+              <Grid item xs={3}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="Expiration"
+                  color="primary"
+                  name="expMonth"
+                  value={customerDetails.expMonth}
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      expMonth: e.target.value,
+                    })
+                  }
+                  type="text"
+                />
+              </Grid>
+              <Grid item xs={3}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="filled"
+                  label="CCV"
+                  color="primary"
+                  name="ccv"
+                  value={customerDetails.ccv}
+                  placeholder="CCV (3 digits)"
+                  onChange={(e) =>
+                    setCustomerDetails({
+                      ...customerDetails,
+                      ccv: e.target.value,
+                    })
+                  }
+                  type="text"
+                />
+              </Grid>
             </Grid>
 
-            <Grid item xs={12}>
-              <label className="checkout__label" htmlFor="shippingOption">
-                Mode de livraison
-              </label>
-              <select
-                value={shippingDetails.shippingOption}
-                name="shippingOption"
-                className="checkout__select"
-              >
-                <option disabled>Select a shipping method</option>
-                {shippingDetails.shippingOptions.map((method, index) => {
-                  return (
-                    <option
-                      value={method.id}
-                      key={index}
-                    >{`${method.description} - $${method.price.formatted_with_code}`}</option>
-                  );
-                })}
-                ;
-              </select>
-            </Grid>
-
-            <Subtitle>Information de paiement</Subtitle>
-            <Grid item xs={12}>
-              <label className="checkout__label" htmlFor="cardNum">
-                Numéro de Carte de Crédit
-              </label>
-              <input
-                type="text"
-                name="cardNum"
-                value={customerDetails.cardNum}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <label htmlFor="expMonth">Expiry month</label>
-              <input
-                type="text"
-                name="expMonth"
-                value={customerDetails.expMonth}
-                placeholder="Card expiry month"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <label htmlFor="expYear">Expiry year</label>
-              <input
-                className="checkout__input"
-                type="text"
-                name="expYear"
-                value={customerDetails.expYear}
-                placeholder="Card expiry year"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <label className="checkout__label" htmlFor="ccv">
-                CCV
-              </label>
-              <input
-                className="checkout__input"
-                type="text"
-                name="ccv"
-                value={customerDetails.ccv}
-                placeholder="CCV (3 digits)"
-              />
-            </Grid>
-            <Grid item xs={12}></Grid>
-          </Grid>
-
-          <button className="checkout__btn-confirm">Confirm order</button>
+            <Box pt={4}>
+              <Button size="large" type="submit" variant="contained">
+                Confirmer la commande
+              </Button>
+            </Box>
+          </form>
         </Box>
-      </form>
+        <Box
+          p={2}
+          sx={{
+            width: "35%",
+            display: "inline-block",
+            position: "relative",
+            border: "1px solid #9f2e0e",
+          }}
+        >
+          <Grid container>
+            {props.cart.line_items.map((item) => (
+              <Grid item xs={12}>
+                <Grid container alignItems="center">
+                  <Grid item xs={4}>
+                    <img
+                      alt="A product of the cart"
+                      width="100px"
+                      src={item.image.url}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <label>
+                      {item.quantity} x {item.product_name}
+                    </label>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <label>{item.line_total.formatted_with_symbol}</label>
+                  </Grid>
+                </Grid>
+              </Grid>
+            ))}
+            <Box p={2}>
+              <Grid item xs={12}>
+                <label>
+                  Total: {props.cart.subtotal.formatted_with_symbol}
+                </label>
+              </Grid>
+            </Box>
+          </Grid>
+        </Box>
+      </Box>
     </>
   );
 };

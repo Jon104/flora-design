@@ -183,6 +183,7 @@ function App() {
                   return (
                     <Boutique
                       {...props}
+                      cart={cart}
                       productsByCategory={products}
                       onAddToCart={handleAddToCart}
                     />
