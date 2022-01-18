@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -23,21 +23,41 @@ const Subtitle = styled.p`
 `;
 
 const MiddleSection = styled.div`
-  position: relative;
-  display: block;
-`;
-
-const MiddleSectionImage = styled.img`
-  position: relative;
-  left: 0;
+  background: linear-gradient(
+      180deg,
+      #ffffff 10.92%,
+      rgba(255, 255, 255, 0) 103.49%
+    ),
+    url("./img/my_approach.png");
+  width: 100%;
+  height: 800px;
+  background-size: cover;
+  color: white;
+  padding: 20px;
+  background-position: center;
 `;
 
 const MyApproach = () => {
   return (
     <>
-      <Box px={{ xs: 2, sm: 8, md: 24 }} py={{ xs: 16 }}>
+      <Box px={8} py={{ xs: 12, md: 6 }}>
         <Container>
           <Title>MA DÉMARCHE ARTISTIQUE</Title>
+          <Box py={3}>
+            <Grid container justifyContent="center">
+              <Grid item xs={12}>
+                <iframe
+                  width="100%"
+                  height="450"
+                  src="https://www.youtube-nocookie.com/embed/ZTidn2dBYbY"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </Grid>
+            </Grid>
+          </Box>
           <Subtitle>
             Ça t'arrive de te dire que tout va trop vite?
             <Subtitle>
@@ -90,9 +110,13 @@ const MyApproach = () => {
         </Container>
       </Box>
 
-      <MiddleSection>
-        <MiddleSectionImage src="./img/main_alt.png" />
-      </MiddleSection>
+      <Box
+        sx={{
+          marginTop: -40,
+        }}
+      >
+        <MiddleSection />
+      </Box>
     </>
   );
 };
