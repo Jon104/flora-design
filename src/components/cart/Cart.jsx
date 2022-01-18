@@ -1,26 +1,28 @@
+import { Box, Drawer, Grid } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
 const Cart = (props) => {
+  const isCartEmpty = () => props.cart.total_unique_items === 0;
+
   const renderEmptyCart = () => {
-    const { cart } = props;
-    if (cart.total_unique_items && cart.total_unique_items > 0) {
-      return;
-    }
+    if (!isCartEmpty()) return;
 
     return (
-      <p className="cart__none">
-        You have no items in your shopping cart, start adding some!
-      </p>
+      <Box>
+        <p>Vous n'avez aucun item dans votre panier, commencer à en ajouter!</p>
+        <Link to="/boutique" onClick={props.onClose}>
+          Boutique
+        </Link>
+      </Box>
     );
   };
 
   const renderCart = () => {
     const { cart } = props;
-    if (cart.total_unique_items && cart.total_unique_items === 0) {
-      return;
-    }
+
+    if (isCartEmpty()) return;
 
     return (
       <>
@@ -29,35 +31,34 @@ const Cart = (props) => {
             <CartItem
               item={lineItem}
               key={lineItem.id}
-              className="cart__inner"
               onUpdateCartQty={props.onUpdateCartQty}
               onRemoveFromCart={props.onRemoveFromCart}
             />
           ))}
-        <div className="cart__total">
-          <p className="cart__total-title">Subtotal:</p>
-          <p className="cart__total-price">
-            {cart.subtotal && cart.subtotal.formatted_with_symbol}
-          </p>
-        </div>
+        <Grid container justifyContent="flex-end">
+          <Grid item xs={8} />
+          <Grid item xs={4}>
+            <p>Total: {cart.subtotal && cart.subtotal.formatted_with_symbol}</p>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Link to="/checkout" onClick={props.onClose}>
+              Passer la commande
+            </Link>
+          </Grid>
+        </Grid>
       </>
     );
   };
 
   return (
-    <div className="cart">
-      <h4 className="cart__heading">Your Shopping Cart</h4>
-      {renderEmptyCart()}
-      {renderCart()}
-      <div className="cart__footer">
-        <button className="cart__btn-empty" onClick={props.onEmptyCart}>
-          Empty cart
-        </button>
-        <Link className="cart__btn-checkout" to="/checkout">
-          Checkout
-        </Link>
-      </div>
-    </div>
+    <Drawer anchor="right" open={props.isOpen} onClose={props.onClose}>
+      <Box p={4}>
+        <h4>Votre panier</h4>
+        {renderEmptyCart()}
+        {renderCart()}
+      </Box>
+    </Drawer>
   );
 };
 

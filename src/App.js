@@ -9,13 +9,19 @@ import PersonalPiece from "./pages/PersonalPiece";
 import Thanks from "./pages/Thanks";
 import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Confirmation from "./pages/Confirmation";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom";
 import { createTheme, ThemeProvider as Mui } from "@mui/material/styles";
 import { useEffect, useState, useCallback } from "react";
 import { commerce } from "./lib/commerce";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Box, IconButton } from "@mui/material";
-import CartDrawer from "components/cart/CartDrawer";
+import { Badge, Box, IconButton } from "@mui/material";
+import Cart from "components/cart/Cart";
 import styled from "styled-components";
 import { groupProductsByCategory } from "services/ProductServices";
 
@@ -59,6 +65,31 @@ function App() {
   const [isOpen, toggleForm] = useState(false);
   const [cart, setCart] = useState({});
   const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState({});
+  const history = useHistory();
+
+  const handleCaptureCheckout = (checkoutTokenId, newOrder) => {
+    commerce.checkout
+      .capture(checkoutTokenId, newOrder)
+      .then((order) => {
+        setOrder(order);
+        refreshCart();
+        history.push("/confirmation");
+        window.sessionStorage.setItem("order_receipt", JSON.stringify(order));
+      })
+      .catch((error) => {
+        console.log("There was an error confirming your order", error);
+      });
+  };
+
+  const refreshCart = () =>
+    commerce.cart
+      .refresh()
+      .then((newCart) => setCart(newCart))
+      .catch((error) =>
+        console.log("There was an error refreshing your cart", error)
+      );
+
   const fetchProducts = useCallback(() => {
     commerce.products
       .list()
@@ -155,6 +186,7 @@ function App() {
                 right: 100,
                 justifyContent: "end",
                 display: "flex",
+                zIndex: 10,
               }}
             >
               <IconButton
@@ -162,16 +194,17 @@ function App() {
                 onClick={() => toggleForm(true)}
                 size="large"
               >
-                <ShoppingCartIcon color="primary" fontSize="inherit" />
+                <Badge badgeContent={cart.total_items} color="primary">
+                  <ShoppingCartIcon color="primary" fontSize="inherit" />
+                </Badge>
               </IconButton>
             </Box>
-            <CartDrawer
+            <Cart
               cart={cart}
               isOpen={isOpen}
               onClose={() => toggleForm(false)}
               onUpdateCartQty={handleUpdateCartQty}
               onRemoveFromCart={handleRemoveFromCart}
-              onEmptyCart={handleEmptyCart}
             />
             <BurgerMenu />
             <GlobalStyle />
@@ -194,7 +227,21 @@ function App() {
                 path="/checkout"
                 exact
                 render={(props) => {
-                  return <Checkout {...props} cart={cart} />;
+                  return (
+                    <Checkout
+                      {...props}
+                      cart={cart}
+                      onCaptureCheckout={handleCaptureCheckout}
+                    />
+                  );
+                }}
+              />
+              <Route
+                path="/confirmation"
+                exact
+                render={(props) => {
+                  if (!order) return history.push("/");
+                  return <Confirmation {...props} order={order} />;
                 }}
               />
               <Route path="/ma-démarche" component={MyApproach} />

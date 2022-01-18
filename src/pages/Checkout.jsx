@@ -115,6 +115,59 @@ const Checkout = (props) => {
       });
   };
 
+  const sanitizedLineItems = (lineItems) => {
+    return lineItems.reduce((data, lineItem) => {
+      const item = data;
+      let variantData = null;
+      if (lineItem.selected_options.length) {
+        variantData = {
+          [lineItem.selected_options[0].group_id]:
+            lineItem.selected_options[0].option_id,
+        };
+      }
+      item[lineItem.id] = {
+        quantity: lineItem.quantity,
+        variants: variantData,
+      };
+      return item;
+    }, {});
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const orderData = {
+      line_items: sanitizedLineItems(props.cart.line_items),
+      customer: {
+        firstname: customerDetails.firstName,
+        lastname: customerDetails.lastName,
+        email: customerDetails.email,
+      },
+      shipping: {
+        name: customerDetails.shippingName,
+        street: customerDetails.shippingStreet,
+        town_city: customerDetails.shippingCity,
+        county_state: customerDetails.shippingStateProvince,
+        postal_zip_code: customerDetails.shippingPostalZipCode,
+        country: customerDetails.shippingCountry,
+      },
+      fulfillment: {
+        shipping_method: customerDetails.shippingOption.id,
+      },
+      payment: {
+        gateway: "test_gateway", // todo
+        card: {
+          number: customerDetails.cardNumber,
+          expiry_month: customerDetails.expMonth,
+          expiry_year: customerDetails.expYear,
+          cvc: customerDetails.ccv,
+          postal_zip_code: customerDetails.billingPostalZipcode,
+        },
+      },
+    };
+    debugger;
+    props.onCaptureCheckout(checkoutToken, orderData);
+  };
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     console.log("UseEffect");
@@ -161,7 +214,7 @@ const Checkout = (props) => {
 
   return (
     <>
-      <Box>
+      <div>
         <Box
           padding={4}
           pt={16}
@@ -454,55 +507,82 @@ const Checkout = (props) => {
                 />
               </Grid>
             </Grid>
-
-            <Box pt={4}>
-              <Button size="large" type="submit" variant="contained">
-                Confirmer la commande
-              </Button>
-            </Box>
           </form>
         </Box>
-        <Box
-          p={2}
-          sx={{
-            width: "35%",
-            display: "inline-block",
-            position: "relative",
-            border: "1px solid #9f2e0e",
-          }}
-        >
-          <Grid container>
-            {props.cart.line_items.map((item) => (
-              <Grid item xs={12}>
-                <Grid container alignItems="center">
-                  <Grid item xs={4}>
-                    <img
-                      alt="A product of the cart"
-                      width="100px"
-                      src={item.image.url}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <label>
-                      {item.quantity} x {item.product_name}
-                    </label>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <label>{item.line_total.formatted_with_symbol}</label>
+
+        {props.cart.line_items > 0 && (
+          <Box
+            p={4}
+            sx={{
+              width: "40%",
+              position: "absolute",
+              border: "1px solid #9f2e0e",
+              display: "inline-block",
+              top: "150px",
+            }}
+          >
+            <Grid container>
+              <Box pb={4} sx={{ fontWeight: "bold" }}>
+                <Grid item xs={12}>
+                  <label>Résumé de la commande</label>
+                </Grid>
+              </Box>
+
+              {props.cart.line_items.map((item) => (
+                <Grid item xs={12}>
+                  <Grid
+                    container
+                    alignItems="center"
+                    justifyContent="space-around"
+                  >
+                    <Grid item xs={3}>
+                      <img
+                        alt="A product of the cart"
+                        width="100px"
+                        src={item.image.url}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <label>
+                        {item.quantity} x {item.product_name}
+                      </label>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <label>{item.line_total.formatted_with_symbol}</label>
+                    </Grid>
                   </Grid>
                 </Grid>
+              ))}
+              <Grid container justifyContent="end">
+                <Box pt={4} sx={{ fontSize: 20, fontWeight: "bold" }}>
+                  <Grid item xs={12}>
+                    <Grid container justifyContent="space-evenly">
+                      <Grid item xs={6}>
+                        <label>Montant Total:</label>
+                      </Grid>
+                      <Grid item xs={6}>
+                        {props.cart.subtotal.formatted_with_symbol}
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Box pt={4}>
+                      <Button
+                        onClick={onSubmit}
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                      >
+                        Confirmer la commande
+                      </Button>
+                    </Box>
+                  </Grid>
+                </Box>
               </Grid>
-            ))}
-            <Box p={2}>
-              <Grid item xs={12}>
-                <label>
-                  Total: {props.cart.subtotal.formatted_with_symbol}
-                </label>
-              </Grid>
-            </Box>
-          </Grid>
-        </Box>
-      </Box>
+            </Grid>
+          </Box>
+        )}
+      </div>
     </>
   );
 };
