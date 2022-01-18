@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import InstagramButton from "../buttons/InstagramButton";
 import FacebookButton from "../buttons/FacebookButton";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const BurgerMenu = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -27,14 +27,16 @@ const BurgerMenu = () => {
                 <Title href={item.link}>{item.name}</Title>
               </MenuItem>
             ))}
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <InstagramButton />
+            <Box pt={14}>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <InstagramButton />
+                </Grid>
+                <Grid>
+                  <FacebookButton />
+                </Grid>
               </Grid>
-              <Grid>
-                <FacebookButton />
-              </Grid>
-            </Grid>
+            </Box>
           </Container>
         </RightPanel>
       </Drawer>
@@ -190,12 +192,16 @@ const menuItems = [
 ];
 
 const Container = styled.div`
-  padding: 10rem;
-  padding-left: 6rem;
+  padding-top: 10rem;
+  padding-right: 8rem;
 
   @media (max-width: 1000px) {
-    padding: 4rem;
-    padding-top: 5rem;
+    padding-top: 10rem;
+    padding-right: 6rem;
+  }
+  @media (min-width: 1000px) {
+    padding-top: 12rem;
+    padding-right: 6rem;
   }
 `;
 
