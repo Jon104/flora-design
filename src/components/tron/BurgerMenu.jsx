@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import InstagramButton from "../buttons/InstagramButton";
 import FacebookButton from "../buttons/FacebookButton";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, keyframes } from "@mui/material";
+import { isMobile } from "react-device-detect";
 
 const BurgerMenu = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -17,17 +18,21 @@ const BurgerMenu = () => {
       </Label>
 
       <Drawer isChecked={isChecked}>
-        <LeftPanel>
-          <SideImage src="./img/burger_panel.jpg" alt="burger_panel_image" />
-        </LeftPanel>
-        <RightPanel>
-          <Container>
+        {!isMobile && (
+          <LeftPanel>
+            <SideImage src="./img/burger_panel.jpg" alt="burger_panel_image" />
+          </LeftPanel>
+        )}
+        <RightPanel isChecked={isChecked}>
+          <Box p={{ xs: 4, sm: 10 }} pt={{ xs: 14, sm: 20 }}>
             {menuItems.map((item, index) => (
               <MenuItem key={index} isChecked={isChecked}>
                 <Title href={item.link}>{item.name}</Title>
               </MenuItem>
             ))}
-            <Box pt={14}>
+          </Box>
+          <FadeIn isChecked={isChecked}>
+            <Box p={{ xs: 0, sm: 10 }} pr={{ xs: 2 }}>
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <InstagramButton />
@@ -37,12 +42,38 @@ const BurgerMenu = () => {
                 </Grid>
               </Grid>
             </Box>
-          </Container>
+          </FadeIn>
         </RightPanel>
       </Drawer>
     </>
   );
 };
+
+const FadeIn = styled.div`
+  opacity: 0;
+  transition: opacity 0.5s;
+  transition-delay: 0.7s;
+
+  @keyframes fadeinout {
+    0,
+    10%,
+    90%,
+    100% {
+      opacity: 0;
+    }
+    11%,
+    89% {
+      opacity: 1;
+    }
+  }
+
+  ${(props) =>
+    props.isChecked &&
+    css`
+      opacity: 1;
+      transition-delay: 0.7s;
+    `};
+`;
 
 const SideImage = styled.img`
   height: 100vh;
@@ -152,6 +183,12 @@ const RightPanel = styled.div`
   @media (max-width: 1000px) {
     width: 100%;
   }
+
+  ${(props) =>
+    props.isChecked &&
+    css`
+      width: 100%;
+    `};
 `;
 
 const LeftPanel = styled.div`
@@ -191,20 +228,6 @@ const menuItems = [
   },
 ];
 
-const Container = styled.div`
-  padding-top: 10rem;
-  padding-right: 8rem;
-
-  @media (max-width: 1000px) {
-    padding-top: 10rem;
-    padding-right: 6rem;
-  }
-  @media (min-width: 1000px) {
-    padding-top: 12rem;
-    padding-right: 6rem;
-  }
-`;
-
 const MenuItem = styled.div`
   padding-bottom: 48px;
   color: #ffffff;
@@ -220,6 +243,11 @@ const MenuItem = styled.div`
   line-height: 30px;
   letter-spacing: 0.30000001192092896px;
   text-align: right;
+
+  @media (max-width: 600px) {
+    font-size: 22px;
+    line-height: 20px;
+  }
 
   ${(props) =>
     props.isChecked &&

@@ -2,6 +2,7 @@ import { Box, Grid } from "@mui/material";
 import styled from "styled-components";
 import Bubble from "../components/Bubble";
 import { isMobile } from "react-device-detect";
+import Footer from "components/Footer";
 
 const Landing = () => {
   const BubblesContent = [
@@ -88,6 +89,7 @@ const Landing = () => {
           ))}
         </Grid>
       </Box>
+      <Footer />
     </>
   );
 };

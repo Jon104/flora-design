@@ -11,7 +11,9 @@ const Boutique = (props) => {
 
     return (
       <Grid container xs={12} justifyContent="center">
-        <CircularProgress />
+        <Box pt={8}>
+          <CircularProgress />
+        </Box>
       </Grid>
     );
   };

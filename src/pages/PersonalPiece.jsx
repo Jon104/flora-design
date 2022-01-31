@@ -6,6 +6,7 @@ import PersonalPieceForm from "components/forms/PersonalPieceForm";
 import { TopSection, SecondMiddleSection, Slides } from "./components/element";
 import { FullImage } from "./components/image";
 import { MainTitle, MainSubtitle } from "./components/typography";
+import Footer from "components/Footer";
 
 const Title = styled.p`
   position: relative;
@@ -217,6 +218,7 @@ const PersonalPiece = () => {
       <Drawer anchor="right" open={isOpen} onClose={() => toggleForm(false)}>
         <PersonalPieceForm onClose={() => toggleForm(false)} />
       </Drawer>
+      <Footer />
     </>
   );
 };

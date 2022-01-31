@@ -13,78 +13,97 @@ import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import InputMask from "react-input-mask";
 import React from "react";
-import NumberFormat from "react-number-format";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import { getCountrySubdivisions, countries } from "../texts/checkout";
 
 const Checkout = (props) => {
-  const [checkoutToken, setCheckoutToken] = useState({});
-  const handleCreditCardNumberInput = ({ target: { value } }) =>
-    setCustomerDetails({ ...customerDetails, cardNumber: value });
-
-  const [customerDetails, setCustomerDetails] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    // Shipping details
-    shippingName: "",
-    shippingStreet: "",
-    shippingStateProvince: "",
-    shippingCity: "",
-    shippingPostalZipCode: "",
-    shippingCountry: "",
-    shippingOption: "",
-    // Payment details
-    cardNumber: "",
-    expMonth: "",
-    expYear: "",
-    ccv: "",
-    billingPostalZipcode: "",
+  const validationSchema = Yup.object()
+    .shape({
+      firstName: Yup.string().required("Requis"),
+      lastName: Yup.string().required("Requis"),
+      email: Yup.string().required("Requis"),
+      shippingName: Yup.string().required("Requis"),
+      shippingStreet: Yup.string().required("Requis"),
+      shippingStateProvince: Yup.string().required("Requis"),
+      shippingCity: Yup.string().required("Requis"),
+      shippingPostalZipCode: Yup.string().required("Requis"),
+      shippingCountry: Yup.string().required("Requis"),
+      shippingOption: Yup.string().required("Requis"),
+      cardNumber: Yup.string().required("Requis"),
+      expMonth: Yup.string().required("Requis"),
+      expYear: Yup.string().required("Requis"),
+      ccv: Yup.string().required("Requis"),
+      billingPostalZipcode: Yup.string().required("Requis"),
+    })
+    .required();
+  const {
+    watch,
+    getValues,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      shippingName: "",
+      shippingStreet: "",
+      shippingStateProvince: "",
+      shippingCity: "",
+      shippingPostalZipCode: "",
+      shippingCountry: "CA",
+      shippingOption: "",
+      cardNumber: "",
+      expMonth: "",
+      expYear: "",
+      ccv: "",
+      billingPostalZipcode: "",
+    },
+    resolver: yupResolver(validationSchema),
+    reValidateMode: "onChange",
   });
+
+  const [checkoutToken, setCheckoutToken] = useState({});
+
+  // const [customerDetails, setCustomerDetails] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   // Shipping details
+  //   shippingName: "",
+  //   shippingStreet: "",
+  //   shippingStateProvince: "",
+  //   shippingCity: "",
+  //   shippingPostalZipCode: "",
+  //   shippingCountry: "",
+  //   shippingOption: "",
+  //   // Payment details
+  //   cardNumber: "",
+  //   expMonth: "",
+  //   expYear: "",
+  //   ccv: "",
+  //   billingPostalZipcode: "",
+  // });
+
   const [shippingDetails, setShippingDetails] = useState({
     shippingCountries: {},
     shippingSubdivisions: {},
     shippingOptions: [],
   });
 
-  const fetchShippingCountries = (checkoutTokenId) => {
-    commerce.services
-      .localeListShippingCountries(checkoutTokenId)
-      .then((countries) => {
-        setShippingDetails({
-          ...shippingDetails,
-          shippingCountries: countries.countries,
-        });
-      })
-      .catch((error) => {
-        console.log(
-          "There was an error fetching a list of shipping countries",
-          error
-        );
-      });
-  };
-
-  const fetchSubdivisions = (countryCode) => {
-    commerce.services
-      .localeListSubdivisions(countryCode)
-      .then((subdivisions) => {
-        setShippingDetails({
-          ...shippingDetails,
-          shippingSubdivisions: subdivisions.subdivisions,
-        });
-      })
-      .catch((error) => {
-        console.log("There was an error fetching the subdivisions", error);
-      });
-  };
-
   const generateCheckoutToken = () => {
     const { cart } = props;
     if (cart.line_items.length) {
+      console.log("generateToken_advanced");
       commerce.checkout
         .generateToken(cart.id, { type: "cart" })
         .then((token) => {
           setCheckoutToken(token);
-          fetchShippingCountries(token.id);
-          fetchShippingOptions(token.id, customerDetails.shippingCountry);
+          fetchShippingOptions(token.id, "CA");
         })
         .catch((error) => {
           console.log("There was an error in generating a token", error);
@@ -134,33 +153,34 @@ const Checkout = (props) => {
   };
 
   const onSubmit = (e) => {
+    const formValues = getValues();
     e.preventDefault();
     const orderData = {
       line_items: sanitizedLineItems(props.cart.line_items),
       customer: {
-        firstname: customerDetails.firstName,
-        lastname: customerDetails.lastName,
-        email: customerDetails.email,
+        firstname: formValues.firstName,
+        lastname: formValues.lastName,
+        email: formValues.email,
       },
       shipping: {
-        name: customerDetails.shippingName,
-        street: customerDetails.shippingStreet,
-        town_city: customerDetails.shippingCity,
-        county_state: customerDetails.shippingStateProvince,
-        postal_zip_code: customerDetails.shippingPostalZipCode,
-        country: customerDetails.shippingCountry,
+        name: formValues.shippingName,
+        street: formValues.shippingStreet,
+        town_city: formValues.shippingCity,
+        county_state: formValues.shippingStateProvince,
+        postal_zip_code: formValues.shippingPostalZipCode,
+        country: formValues.shippingCountry,
       },
       fulfillment: {
-        shipping_method: customerDetails.shippingOption.id,
+        shipping_method: formValues.shippingOption,
       },
       payment: {
-        gateway: "test_gateway", // todo
+        gateway: "test_gateway",
         card: {
-          number: customerDetails.cardNumber,
-          expiry_month: customerDetails.expMonth,
-          expiry_year: customerDetails.expYear,
-          cvc: customerDetails.ccv,
-          postal_zip_code: customerDetails.billingPostalZipcode,
+          number: formValues.cardNumber,
+          expiry_month: formValues.expiration.substring(0, 2),
+          expiry_year: formValues.expiration.substring(3, 5),
+          cvc: formValues.ccv,
+          postal_zip_code: formValues.shippingPostalZipCode,
         },
       },
     };
@@ -168,100 +188,61 @@ const Checkout = (props) => {
     props.onCaptureCheckout(checkoutToken, orderData);
   };
 
+  const isShippingStateDisabled = watch("shippingCountry") === undefined;
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    console.log("UseEffect");
     if (props.cart.line_items) {
-      console.log("ToGenerate");
       generateCheckoutToken();
-      fetchSubdivisions(customerDetails.shippingCountry);
     }
   }, [props.cart]);
 
-  const CreditCardNumber = (props) => {
-    return (
-      <InputMask
-        mask="(+1) 999 999 9999"
-        value={props.value}
-        onChange={props.onChange}
-      ></InputMask>
-    );
-  };
-
-  const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
-    props,
-    ref
-  ) {
-    const { onChange, ...other } = props;
-
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={ref}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        thousandSeparator
-        isNumericString
-      />
-    );
-  });
+  const countrySubdivisions = () =>
+    getCountrySubdivisions(getValues("shippingCountry"));
 
   return (
     <>
       <div>
         <Box
-          padding={4}
+          padding={18}
           pt={16}
           sx={{
-            width: "50%",
+            width: "30%",
             display: "inline-block",
           }}
         >
-          <form className="checkout__form">
-            <Grid container spacing={2} justifyContent="start">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2} justifyContent="space-evenly">
               <Grid item xs={12}>
                 <Subtitle>Informations client</Subtitle>
               </Grid>
 
               <Grid item xs={6}>
                 <TextField
+                  size="small"
                   required
                   fullWidth
-                  variant="filled"
+                  variant="outlined"
                   label="Prénom"
                   color="primary"
-                  value={customerDetails.firstName}
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      firstName: e.target.value,
-                    })
-                  }
+                  {...register("firstName", { required: true })}
                   name="firstName"
-                  type="text"
+                  error={Boolean(errors.firstName)}
+                  helperText={errors.firstName?.message}
                 />
               </Grid>
 
               <Grid item xs={6}>
                 <TextField
+                  size="small"
                   required
                   fullWidth
-                  variant="filled"
+                  variant="outlined"
                   label="Nom"
                   color="primary"
-                  value={customerDetails.lastName}
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      lastName: e.target.value,
-                    })
-                  }
+                  {...register("lastName", { required: true })}
+                  error={Boolean(errors.lastName)}
+                  helperText={errors.lastName?.message}
                   name="lastName"
                   type="text"
                 />
@@ -269,23 +250,18 @@ const Checkout = (props) => {
 
               <Grid item xs={12}>
                 <TextField
+                  size="small"
                   required
                   fullWidth
-                  variant="filled"
+                  variant="outlined"
                   label="Courriel"
                   color="primary"
-                  value={customerDetails.email}
                   name="email"
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      email: e.target.value,
-                    })
-                  }
-                  type="text"
+                  {...register("email", { required: true })}
+                  error={Boolean(errors.email)}
+                  helperText={errors.email?.message}
                 />
               </Grid>
-              <Grid item xs={6} />
 
               <Grid item xs={12}>
                 <Subtitle>Les détails d'expédition</Subtitle>
@@ -295,140 +271,125 @@ const Checkout = (props) => {
                 <TextField
                   required
                   fullWidth
-                  variant="filled"
+                  size="small"
+                  variant="outlined"
                   label="Nom complet"
                   color="primary"
-                  value={customerDetails.shippingName}
                   name="shippingName"
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      shippingName: e.target.value,
-                    })
-                  }
-                  type="text"
+                  {...register("shippingName", { required: true })}
+                  error={Boolean(errors.shippingName)}
+                  helperText={errors.shippingName?.message}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  variant="filled"
+                  size="small"
+                  variant="outlined"
                   label="Adresse"
                   color="primary"
-                  value={customerDetails.shippingStreet}
                   name="shippingStreet"
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      shippingStreet: e.target.value,
-                    })
-                  }
-                  type="text"
+                  {...register("shippingStreet", { required: true })}
+                  error={Boolean(errors.shippingStreet)}
+                  helperText={errors.shippingStreet?.message}
                 />
               </Grid>
 
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  variant="filled"
+                  size="small"
+                  variant="outlined"
                   label="Ville"
                   color="primary"
-                  value={customerDetails.shippingCity}
                   name="shippingCity"
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      shippingCity: e.target.value,
-                    })
-                  }
-                  type="text"
+                  {...register("shippingCity", { required: true })}
+                  error={Boolean(errors.shippingCity)}
+                  helperText={errors.shippingCity?.message}
                 />
               </Grid>
 
-              <Grid item xs={6}>
-                <TextField
-                  required
-                  fullWidth
-                  variant="filled"
-                  label="Code postal"
-                  color="primary"
-                  type="text"
-                />
-              </Grid>
-
-              <Grid item xs={6}>
-                <FormControl fullWidth>
+              <Grid item xs={4}>
+                <FormControl fullWidth size="small">
                   <InputLabel id="shippingCountry">Pays</InputLabel>
                   <Select
                     labelId="shippingCountry"
                     label="Pays"
-                    value={customerDetails.shippingCountry}
+                    defaultValue=""
                     name="shippingCountry"
-                    onChange={(e) =>
-                      setCustomerDetails({
-                        ...customerDetails,
-                        shippingCountry: e.target.value,
-                      })
-                    }
+                    {...register("shippingCountry", { required: true })}
+                    error={Boolean(errors.shippingCountry)}
+                    helperText={errors.shippingCountry?.message}
                   >
-                    {Object.keys(shippingDetails.shippingCountries).map(
-                      (index) => {
-                        return (
-                          <MenuItem key={index} value={index}>
-                            {shippingDetails.shippingCountries[index]}
-                          </MenuItem>
-                        );
-                      }
-                    )}
+                    {countries.map((country, index) => {
+                      return (
+                        <MenuItem key={index} value={country.value}>
+                          {country.value}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </Grid>
 
-              <Grid item xs={6}>
-                <FormControl fullWidth>
+              <Grid item xs={4}>
+                <FormControl
+                  fullWidth
+                  disabled={isShippingStateDisabled}
+                  size="small"
+                >
                   <InputLabel id="shippingStateProvince">
                     État/Province
                   </InputLabel>
                   <Select
                     labelId="shippingStateProvince"
+                    defaultValue=""
                     label="État/Province"
-                    value={customerDetails.shippingStateProvince}
                     name="shippingStateProvince"
-                    onChange={(e) =>
-                      setCustomerDetails({
-                        ...customerDetails,
-                        shippingStateProvince: e.target.value,
-                      })
-                    }
+                    {...register("shippingStateProvince", { required: true })}
+                    error={Boolean(errors.shippingStateProvince)}
+                    helperText={errors.shippingStateProvince?.message}
                   >
-                    {Object.keys(shippingDetails.shippingSubdivisions).map(
-                      (index) => {
-                        return (
-                          <MenuItem key={index} value={index}>
-                            {shippingDetails.shippingSubdivisions[index]}
-                          </MenuItem>
-                        );
-                      }
-                    )}
+                    {countrySubdivisions().map((province, index) => {
+                      return (
+                        <MenuItem key={index} value={province.value}>
+                          {province.text}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </Grid>
+
+              <Grid item xs={4}>
+                <TextField
+                  label="Code postal"
+                  size="small"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="shippingPostalZipCode"
+                  color="primary"
+                  {...register("shippingPostalZipCode", { required: true })}
+                  error={Boolean(errors.shippingPostalZipCode)}
+                  helperText={errors.shippingPostalZipCode?.message}
+                />
+              </Grid>
+
               <Grid item xs={12}>
-                <FormControl fullWidth>
+                <FormControl fullWidth size="small">
                   <InputLabel id="shippingOption">Mode de livraison</InputLabel>
                   <Select
+                    size="small"
+                    defaultValue=""
                     labelId="shippingOption"
                     label="Mode de livraison"
-                    value={shippingDetails.shippingOption}
                     name="shippingOption"
-                    onChange={(e) =>
-                      setShippingDetails({
-                        ...shippingDetails,
-                        shippingOption: e.target.value,
-                      })
-                    }
+                    {...register("shippingOption", { required: true })}
+                    error={Boolean(errors.shippingOption)}
+                    helperText={errors.shippingOption?.message}
                   >
                     {shippingDetails.shippingOptions.map((method, index) => {
                       return (
@@ -441,94 +402,101 @@ const Checkout = (props) => {
                 </FormControl>
               </Grid>
 
-              <Grid item xs={6} />
-
               <Grid item xs={12}>
                 <Subtitle>Information de paiement</Subtitle>
               </Grid>
 
               <Grid item xs={6}>
-                <TextField
-                  required
-                  fullWidth
-                  variant="filled"
-                  label="Numéro de carte de Crédit"
-                  color="primary"
-                  name="cardNumber"
-                  value={customerDetails.cardNumber}
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      cardNumber: e.target.value,
-                    })
-                  }
-                  InputProps={{
-                    inputComponent: NumberFormatCustom,
-                  }}
-                  type="text"
-                />
+                <InputMask
+                  mask="9999-9999-9999-9999"
+                  {...register("cardNumber", { required: true })}
+                >
+                  {() => (
+                    <TextField
+                      label="Numéro de carte de Crédit"
+                      required
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      name="cardNumber"
+                      color="primary"
+                      error={Boolean(errors.cardNumber)}
+                      helperText={errors.cardNumber?.message}
+                      {...register("cardNumber", { required: true })}
+                    />
+                  )}
+                </InputMask>
               </Grid>
 
               <Grid item xs={3}>
-                <TextField
-                  required
-                  fullWidth
-                  variant="filled"
-                  label="Expiration"
-                  color="primary"
-                  name="expMonth"
-                  value={customerDetails.expMonth}
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      expMonth: e.target.value,
-                    })
-                  }
-                  type="text"
-                />
+                <InputMask
+                  mask="99/99"
+                  disabled={false}
+                  placeholder="MM/YY"
+                  {...register("expiration", { required: true })}
+                >
+                  {() => (
+                    <TextField
+                      required
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      label="Expiration"
+                      color="primary"
+                      name="expMonth"
+                      error={Boolean(errors.expMonth)}
+                      helperText={errors.expMonth?.message}
+                      type="text"
+                      {...register("expiration", { required: true })}
+                    />
+                  )}
+                </InputMask>
               </Grid>
               <Grid item xs={3}>
-                <TextField
-                  required
-                  fullWidth
-                  variant="filled"
-                  label="CCV"
-                  color="primary"
-                  name="ccv"
-                  value={customerDetails.ccv}
-                  placeholder="CCV (3 digits)"
-                  onChange={(e) =>
-                    setCustomerDetails({
-                      ...customerDetails,
-                      ccv: e.target.value,
-                    })
-                  }
-                  type="text"
-                />
+                <InputMask mask="999" {...register("ccv", { required: true })}>
+                  {() => (
+                    <TextField
+                      required
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      label="CCV"
+                      color="primary"
+                      name="ccv"
+                      placeholder="CCV (3 digits)"
+                      {...register("ccv", { required: true })}
+                      error={Boolean(errors.ccv)}
+                      helperText={errors.ccv?.message}
+                      type="text"
+                    />
+                  )}
+                </InputMask>
               </Grid>
             </Grid>
           </form>
         </Box>
 
-        {props.cart.line_items > 0 && (
-          <Box
-            p={4}
-            sx={{
-              width: "40%",
-              position: "absolute",
-              border: "1px solid #9f2e0e",
-              display: "inline-block",
-              top: "150px",
-            }}
-          >
-            <Grid container>
-              <Box pb={4} sx={{ fontWeight: "bold" }}>
-                <Grid item xs={12}>
-                  <label>Résumé de la commande</label>
-                </Grid>
-              </Box>
+        <Box
+          p={8}
+          sx={{
+            backgroundColor: "#f2e8da",
+            height: "100vh",
+            width: "30%",
+            position: "absolute",
+            display: "inline-block",
+            paddingTop: "150px",
+            paddingRight: "30%",
+          }}
+        >
+          <Grid container spacing={2}>
+            <Box pb={4} sx={{ fontWeight: "bold" }}>
+              <Grid item xs={12}>
+                <label>Résumé de la commande</label>
+              </Grid>
+            </Box>
 
-              {props.cart.line_items.map((item) => (
+            {props.cart.line_items.length > 0 &&
+              props.cart.line_items.map((item) => (
                 <Grid item xs={12}>
                   <Grid
                     container
@@ -538,7 +506,7 @@ const Checkout = (props) => {
                     <Grid item xs={3}>
                       <img
                         alt="A product of the cart"
-                        width="100px"
+                        width="70px"
                         src={item.image.url}
                       />
                     </Grid>
@@ -553,35 +521,36 @@ const Checkout = (props) => {
                   </Grid>
                 </Grid>
               ))}
-              <Grid container justifyContent="end">
-                <Box pt={4} sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  <Grid item xs={12}>
-                    <Grid container justifyContent="space-evenly">
-                      <Grid item xs={6}>
-                        <label>Montant Total:</label>
-                      </Grid>
-                      <Grid item xs={6}>
-                        {props.cart.subtotal.formatted_with_symbol}
-                      </Grid>
+
+            <Grid container justifyContent="end">
+              <Box pt={4} sx={{ fontSize: 20, fontWeight: "bold" }}>
+                <Grid item xs={12}>
+                  <Grid container justifyContent="space-evenly">
+                    <Grid item xs={9}>
+                      <label>Montant Total:</label>
+                    </Grid>
+                    <Grid item xs={3}>
+                      {props.cart.subtotal &&
+                        props.cart.subtotal.formatted_with_symbol}
                     </Grid>
                   </Grid>
-                  <Grid item xs={12}>
-                    <Box pt={4}>
-                      <Button
-                        onClick={onSubmit}
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                      >
-                        Confirmer la commande
-                      </Button>
-                    </Box>
-                  </Grid>
-                </Box>
-              </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                  <Box pt={4}>
+                    <Button
+                      onClick={onSubmit}
+                      size="medium"
+                      type="submit"
+                      variant="contained"
+                    >
+                      Confirmer la commande
+                    </Button>
+                  </Box>
+                </Grid>
+              </Box>
             </Grid>
-          </Box>
-        )}
+          </Grid>
+        </Box>
       </div>
     </>
   );

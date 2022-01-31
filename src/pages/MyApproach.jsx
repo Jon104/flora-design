@@ -1,4 +1,6 @@
 import { Box, Grid } from "@mui/material";
+import Footer from "components/Footer";
+import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -11,6 +13,10 @@ const Container = styled.div`
 const Title = styled.p`
   font-size: 32px;
   color: #9f2e0e;
+
+  @media (max-width: 600px) {
+    font-size: 24px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -40,21 +46,21 @@ const MiddleSection = styled.div`
 const MyApproach = () => {
   return (
     <>
-      <Box px={8} py={{ xs: 12, md: 6 }}>
+      <Box px={{ xs: 1, sm: 8 }} py={{ xs: 12, sm: 6 }}>
         <Container>
           <Title>MA DÉMARCHE ARTISTIQUE</Title>
-          <Box py={3}>
+          <Box py={4}>
             <Grid container justifyContent="center">
-              <Grid item xs={12}>
+              <Grid item xs={12} md={12} lg={6}>
                 <iframe
+                  id="iframe"
                   width="100%"
-                  height="450"
-                  src="https://www.youtube-nocookie.com/embed/ZTidn2dBYbY"
+                  src="https://www.youtube.com/embed/J-JAxaAiFxU"
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
-                ></iframe>
+                />
               </Grid>
             </Grid>
           </Box>
@@ -117,6 +123,7 @@ const MyApproach = () => {
       >
         <MiddleSection />
       </Box>
+      <Footer />
     </>
   );
 };

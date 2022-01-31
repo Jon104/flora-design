@@ -6,6 +6,7 @@ import PanacheForm from "../components/forms/PanacheForm";
 import { TopSection, SecondMiddleSection, Slides } from "./components/element";
 import { FullImage } from "./components/image";
 import { MainTitle, MainSubtitle } from "./components/typography";
+import Footer from "components/Footer";
 
 const Title = styled.p`
   font-family: Lato;
@@ -221,6 +222,7 @@ const Panaches = () => {
       <Drawer anchor="right" open={isOpen} onClose={() => toggleForm(false)}>
         <PanacheForm onClose={() => toggleForm(false)} />
       </Drawer>
+      <Footer />
     </>
   );
 };

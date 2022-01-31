@@ -251,7 +251,6 @@ function App() {
               <Route path="/thanks" component={Thanks} />
               <Route path="/" component={Landing} />
             </Switch>
-            <Footer />
           </div>
         </ThemeProvider>
       </Mui>
