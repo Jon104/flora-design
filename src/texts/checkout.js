@@ -4,6 +4,11 @@ const getCountrySubdivisions = (countryCode) => {
   return [];
 };
 
+const getShippingOptions = (countryCode) => {
+  if (countryCode === "CA") return canadaCoastsShippingOptions;
+  if (countryCode === "US") return unitedStatesShippingOptions;
+};
+
 const canadianProvinces = [
   { value: "AB", text: "Alberta" },
   { value: "BC", text: "Colombie-Britanique" },
@@ -125,8 +130,23 @@ const canadaQuebecOntarioShippingOptions = [
   },
 ];
 
+const unitedStatesShippingOptions = [
+  {
+    id: "ship_7ZAMo1jEW5NJ4x",
+    description: "Par avion",
+    price: {
+      raw: 20,
+      formatted: "20.00",
+      formatted_with_symbol: "$20.00",
+      formatted_with_code: "20.00 CAD",
+    },
+    countries: ["US"],
+  },
+];
+
 export {
   getCountrySubdivisions,
+  getShippingOptions,
   canadaCoastsShippingOptions,
   canadaTerritoriesShippingOptions,
   canadaQuebecOntarioShippingOptions,

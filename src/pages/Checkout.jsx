@@ -16,7 +16,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { getCountrySubdivisions, countries } from "../texts/checkout";
+import {
+  getCountrySubdivisions,
+  getShippingOptions,
+  countries,
+} from "../texts/checkout";
 
 const Checkout = (props) => {
   const validationSchema = Yup.object()
@@ -69,37 +73,6 @@ const Checkout = (props) => {
 
   const [checkoutToken, setCheckoutToken] = useState({});
 
-  const [shippingDetails, setShippingDetails] = useState({
-    shippingCountries: {},
-    shippingSubdivisions: {},
-    shippingOptions: [],
-  });
-
-  const fetchShippingOptions = useCallback(
-    (checkoutTokenId, country, stateProvince = null) => {
-      commerce.checkout
-        .getShippingOptions(checkoutTokenId, {
-          country: country,
-          region: stateProvince,
-        })
-        .then((options) => {
-          const shippingOption = options[0] || null;
-          setShippingDetails({
-            ...shippingDetails,
-            shippingOptions: options,
-            shippingOption: shippingOption,
-          });
-        })
-        .catch((error) => {
-          console.log(
-            "There was an error fetching the shipping methods",
-            error
-          );
-        });
-    },
-    [shippingDetails]
-  );
-
   const generateCheckoutToken = useCallback(() => {
     const { cart } = props;
     if (cart.line_items.length) {
@@ -107,14 +80,14 @@ const Checkout = (props) => {
       commerce.checkout
         .generateToken(cart.id, { type: "cart" })
         .then((token) => {
+          console.log(token);
           setCheckoutToken(token);
-          fetchShippingOptions(token.id, "CA");
         })
         .catch((error) => {
           console.log("There was an error in generating a token", error);
         });
     }
-  }, [fetchShippingOptions, props]);
+  }, [props]);
 
   const sanitizedLineItems = (lineItems) => {
     return lineItems.reduce((data, lineItem) => {
@@ -152,6 +125,14 @@ const Checkout = (props) => {
         postal_zip_code: formValues.shippingPostalZipCode,
         country: formValues.shippingCountry,
       },
+      billing: {
+        name: formValues.shippingName,
+        street: formValues.shippingStreet,
+        town_city: formValues.shippingCity,
+        county_state: formValues.shippingStateProvince,
+        postal_zip_code: formValues.shippingPostalZipCode,
+        country: formValues.shippingCountry,
+      },
       fulfillment: {
         shipping_method: formValues.shippingOption,
       },
@@ -160,26 +141,27 @@ const Checkout = (props) => {
         card: {
           number: formValues.cardNumber,
           expiry_month: formValues.expiration.substring(0, 2),
-          expiry_year: formValues.expiration.substring(3, 5),
+          expiry_year: `20${formValues.expiration.substring(3, 5)}`,
           cvc: formValues.ccv,
           postal_zip_code: formValues.shippingPostalZipCode,
         },
       },
     };
-    props.onCaptureCheckout(checkoutToken, orderData);
+    props.onCaptureCheckout(checkoutToken.id, orderData);
   };
 
   const isShippingStateDisabled = watch("shippingCountry") === undefined;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (props.cart.line_items) {
-      generateCheckoutToken();
-    }
-  }, [generateCheckoutToken, props.cart]);
+    if (props.cart.line_items && checkoutToken !== {}) generateCheckoutToken();
+  }, []);
 
   const countrySubdivisions = () =>
     getCountrySubdivisions(getValues("shippingCountry"));
+
+  const shippingOptions = () =>
+    getShippingOptions(getValues("shippingCountry"));
 
   return (
     <>
@@ -372,7 +354,7 @@ const Checkout = (props) => {
                     error={Boolean(errors.shippingOption)}
                     helperText={errors.shippingOption?.message}
                   >
-                    {shippingDetails.shippingOptions.map((method, index) => {
+                    {shippingOptions().map((method, index) => {
                       return (
                         <MenuItem value={method.id} key={index}>
                           {`${method.description} - $${method.price.formatted_with_code}`}
@@ -389,7 +371,7 @@ const Checkout = (props) => {
 
               <Grid item xs={6}>
                 <InputMask
-                  mask="9999-9999-9999-9999"
+                  mask="9999 9999 9999 9999"
                   {...register("cardNumber", { required: true })}
                 >
                   {() => (
