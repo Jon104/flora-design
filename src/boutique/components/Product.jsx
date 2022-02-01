@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const Product = (props) => {
   debugger;
-  const [variantOption, setVariantOption] = useState(
+  const [variantOption] = useState(
     props.product.variant_groups[0]?.options[0].id
   );
   return (

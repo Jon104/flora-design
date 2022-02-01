@@ -152,9 +152,9 @@ const Checkout = (props) => {
 
   const isShippingStateDisabled = watch("shippingCountry") === undefined;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (props.cart.line_items && checkoutToken !== {}) generateCheckoutToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const countrySubdivisions = () =>
