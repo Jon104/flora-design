@@ -198,7 +198,7 @@ const LeftPanel = styled.div`
   width: 58%;
   background-color: ${({ theme }) => theme.primary};
   box-shadow: 0px 0px 20 px red;
-  z-index: 100;
+  z-index: 101;
 `;
 
 const menuItems = [
