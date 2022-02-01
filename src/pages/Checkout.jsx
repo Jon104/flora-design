@@ -6,7 +6,7 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Subtitle } from "services/TypoService";
 import { commerce } from "../lib/commerce";
 import TextField from "@mui/material/TextField";
@@ -69,33 +69,38 @@ const Checkout = (props) => {
 
   const [checkoutToken, setCheckoutToken] = useState({});
 
-  // const [customerDetails, setCustomerDetails] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   // Shipping details
-  //   shippingName: "",
-  //   shippingStreet: "",
-  //   shippingStateProvince: "",
-  //   shippingCity: "",
-  //   shippingPostalZipCode: "",
-  //   shippingCountry: "",
-  //   shippingOption: "",
-  //   // Payment details
-  //   cardNumber: "",
-  //   expMonth: "",
-  //   expYear: "",
-  //   ccv: "",
-  //   billingPostalZipcode: "",
-  // });
-
   const [shippingDetails, setShippingDetails] = useState({
     shippingCountries: {},
     shippingSubdivisions: {},
     shippingOptions: [],
   });
 
-  const generateCheckoutToken = () => {
+  const fetchShippingOptions = useCallback(
+    (checkoutTokenId, country, stateProvince = null) => {
+      commerce.checkout
+        .getShippingOptions(checkoutTokenId, {
+          country: country,
+          region: stateProvince,
+        })
+        .then((options) => {
+          const shippingOption = options[0] || null;
+          setShippingDetails({
+            ...shippingDetails,
+            shippingOptions: options,
+            shippingOption: shippingOption,
+          });
+        })
+        .catch((error) => {
+          console.log(
+            "There was an error fetching the shipping methods",
+            error
+          );
+        });
+    },
+    [shippingDetails]
+  );
+
+  const generateCheckoutToken = useCallback(() => {
     const { cart } = props;
     if (cart.line_items.length) {
       console.log("generateToken_advanced");
@@ -109,30 +114,7 @@ const Checkout = (props) => {
           console.log("There was an error in generating a token", error);
         });
     }
-  };
-
-  const fetchShippingOptions = (
-    checkoutTokenId,
-    country,
-    stateProvince = null
-  ) => {
-    commerce.checkout
-      .getShippingOptions(checkoutTokenId, {
-        country: country,
-        region: stateProvince,
-      })
-      .then((options) => {
-        const shippingOption = options[0] || null;
-        setShippingDetails({
-          ...shippingDetails,
-          shippingOptions: options,
-          shippingOption: shippingOption,
-        });
-      })
-      .catch((error) => {
-        console.log("There was an error fetching the shipping methods", error);
-      });
-  };
+  }, [fetchShippingOptions, props]);
 
   const sanitizedLineItems = (lineItems) => {
     return lineItems.reduce((data, lineItem) => {
