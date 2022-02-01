@@ -53,6 +53,7 @@ const MyApproach = () => {
               <Grid item xs={12} md={12} lg={6}>
                 <iframe
                   id="iframe"
+                  height="300px"
                   width="100%"
                   src="https://www.youtube.com/embed/J-JAxaAiFxU"
                   title="YouTube video player"
