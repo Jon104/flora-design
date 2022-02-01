@@ -1,6 +1,5 @@
 import { Box, Grid } from "@mui/material";
 import Footer from "components/Footer";
-import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 
 const Container = styled.div`

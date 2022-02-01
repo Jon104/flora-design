@@ -184,7 +184,6 @@ const Checkout = (props) => {
         },
       },
     };
-    debugger;
     props.onCaptureCheckout(checkoutToken, orderData);
   };
 
@@ -195,7 +194,7 @@ const Checkout = (props) => {
     if (props.cart.line_items) {
       generateCheckoutToken();
     }
-  }, [props.cart]);
+  }, [generateCheckoutToken, props.cart]);
 
   const countrySubdivisions = () =>
     getCountrySubdivisions(getValues("shippingCountry"));

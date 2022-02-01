@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import InstagramButton from "../buttons/InstagramButton";
 import FacebookButton from "../buttons/FacebookButton";
-import { Box, Grid, keyframes } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { isMobile } from "react-device-detect";
 
 const BurgerMenu = () => {

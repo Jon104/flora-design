@@ -8,7 +8,6 @@ import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./pages/PersonalPiece";
 import Thanks from "./pages/Thanks";
 import Checkout from "./pages/Checkout";
-import Footer from "./components/Footer";
 import Confirmation from "./pages/Confirmation";
 import {
   BrowserRouter as Router,
@@ -148,17 +147,6 @@ function App() {
           "There was an error removing the item from the cart",
           error
         );
-      });
-  };
-
-  const handleEmptyCart = () => {
-    commerce.cart
-      .empty()
-      .then((resp) => {
-        setCart(resp.cart);
-      })
-      .catch((error) => {
-        console.error("There was an error emptying the cart", error);
       });
   };
 
