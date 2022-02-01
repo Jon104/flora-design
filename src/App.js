@@ -2,7 +2,7 @@ import BurgerMenu from "components/tron/BurgerMenu";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Landing from "./pages/Landing";
 import Panaches from "./pages/Panaches";
-import Boutique from "./pages/Boutique";
+import Boutique from "./boutique/pages/Boutique";
 import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./pages/PersonalPiece";
@@ -114,9 +114,9 @@ function App() {
     fetchProducts();
   }, [fetchCart, fetchProducts]);
 
-  const handleAddToCart = (productId, quantity) => {
+  const handleAddToCart = (productId, quantity, variant = {}) => {
     commerce.cart
-      .add(productId, quantity)
+      .add(productId, quantity, variant)
       .then((item) => {
         setCart(item.cart);
       })
