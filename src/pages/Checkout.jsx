@@ -20,7 +20,7 @@ import {
   getCountrySubdivisions,
   getShippingOptions,
   countries,
-} from "../texts/checkout";
+} from "../boutique/helpers/checkoutHelpers";
 
 const Checkout = (props) => {
   const validationSchema = Yup.object()
@@ -49,7 +49,7 @@ const Checkout = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: "onBlur",
+    mode: "onChange",
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -59,7 +59,7 @@ const Checkout = (props) => {
       shippingStateProvince: "",
       shippingCity: "",
       shippingPostalZipCode: "",
-      shippingCountry: "CA",
+      shippingCountry: "",
       shippingOption: "",
       cardNumber: "",
       expMonth: "",
@@ -76,11 +76,9 @@ const Checkout = (props) => {
   const generateCheckoutToken = useCallback(() => {
     const { cart } = props;
     if (cart.line_items.length) {
-      console.log("generateToken_advanced");
       commerce.checkout
         .generateToken(cart.id, { type: "cart" })
         .then((token) => {
-          console.log(token);
           setCheckoutToken(token);
         })
         .catch((error) => {
@@ -150,309 +148,319 @@ const Checkout = (props) => {
     props.onCaptureCheckout(checkoutToken.id, orderData);
   };
 
-  const isShippingStateDisabled = watch("shippingCountry") === undefined;
-
   useEffect(() => {
     if (props.cart.line_items && checkoutToken !== {}) generateCheckoutToken();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const isShippingStateProvinceDisabled = !watch("shippingCountry");
+
   const countrySubdivisions = () =>
-    getCountrySubdivisions(getValues("shippingCountry"));
+    !isShippingStateProvinceDisabled
+      ? getCountrySubdivisions(getValues("shippingCountry"))
+      : [];
+
+  const isShippingOptionsDisabled = !(
+    watch("shippingCountry") && watch("shippingStateProvince")
+  );
 
   const shippingOptions = () =>
-    getShippingOptions(getValues("shippingCountry"));
+    !isShippingOptionsDisabled
+      ? getShippingOptions(getValues("shippingCountry"))
+      : [];
 
   return (
     <>
-      <div>
-        <Box
-          padding={18}
-          pt={16}
-          sx={{
-            width: "30%",
-            display: "inline-block",
-          }}
-        >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2} justifyContent="space-evenly">
-              <Grid item xs={12}>
-                <Subtitle>Informations client</Subtitle>
-              </Grid>
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <Box pt={16} px={{ xs: 4, md: 12 }}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Grid container spacing={2} justifyContent="space-evenly">
+                <Grid item xs={12}>
+                  <Subtitle>Informations client</Subtitle>
+                </Grid>
 
-              <Grid item xs={6}>
-                <TextField
-                  size="small"
-                  required
-                  fullWidth
-                  variant="outlined"
-                  label="Prénom"
-                  color="primary"
-                  {...register("firstName", { required: true })}
-                  name="firstName"
-                  error={Boolean(errors.firstName)}
-                  helperText={errors.firstName?.message}
-                />
-              </Grid>
-
-              <Grid item xs={6}>
-                <TextField
-                  size="small"
-                  required
-                  fullWidth
-                  variant="outlined"
-                  label="Nom"
-                  color="primary"
-                  {...register("lastName", { required: true })}
-                  error={Boolean(errors.lastName)}
-                  helperText={errors.lastName?.message}
-                  name="lastName"
-                  type="text"
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  size="small"
-                  required
-                  fullWidth
-                  variant="outlined"
-                  label="Courriel"
-                  color="primary"
-                  name="email"
-                  {...register("email", { required: true })}
-                  error={Boolean(errors.email)}
-                  helperText={errors.email?.message}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <Subtitle>Les détails d'expédition</Subtitle>
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  label="Nom complet"
-                  color="primary"
-                  name="shippingName"
-                  {...register("shippingName", { required: true })}
-                  error={Boolean(errors.shippingName)}
-                  helperText={errors.shippingName?.message}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  label="Adresse"
-                  color="primary"
-                  name="shippingStreet"
-                  {...register("shippingStreet", { required: true })}
-                  error={Boolean(errors.shippingStreet)}
-                  helperText={errors.shippingStreet?.message}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  size="small"
-                  variant="outlined"
-                  label="Ville"
-                  color="primary"
-                  name="shippingCity"
-                  {...register("shippingCity", { required: true })}
-                  error={Boolean(errors.shippingCity)}
-                  helperText={errors.shippingCity?.message}
-                />
-              </Grid>
-
-              <Grid item xs={4}>
-                <FormControl fullWidth size="small">
-                  <InputLabel id="shippingCountry">Pays</InputLabel>
-                  <Select
-                    labelId="shippingCountry"
-                    label="Pays"
-                    defaultValue=""
-                    name="shippingCountry"
-                    {...register("shippingCountry", { required: true })}
-                    error={Boolean(errors.shippingCountry)}
-                    helperText={errors.shippingCountry?.message}
-                  >
-                    {countries.map((country, index) => {
-                      return (
-                        <MenuItem key={index} value={country.value}>
-                          {country.value}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </Grid>
-
-              <Grid item xs={4}>
-                <FormControl
-                  fullWidth
-                  disabled={isShippingStateDisabled}
-                  size="small"
-                >
-                  <InputLabel id="shippingStateProvince">
-                    État/Province
-                  </InputLabel>
-                  <Select
-                    labelId="shippingStateProvince"
-                    defaultValue=""
-                    label="État/Province"
-                    name="shippingStateProvince"
-                    {...register("shippingStateProvince", { required: true })}
-                    error={Boolean(errors.shippingStateProvince)}
-                    helperText={errors.shippingStateProvince?.message}
-                  >
-                    {countrySubdivisions().map((province, index) => {
-                      return (
-                        <MenuItem key={index} value={province.value}>
-                          {province.text}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </Grid>
-
-              <Grid item xs={4}>
-                <TextField
-                  label="Code postal"
-                  size="small"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="shippingPostalZipCode"
-                  color="primary"
-                  {...register("shippingPostalZipCode", { required: true })}
-                  error={Boolean(errors.shippingPostalZipCode)}
-                  helperText={errors.shippingPostalZipCode?.message}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <FormControl fullWidth size="small">
-                  <InputLabel id="shippingOption">Mode de livraison</InputLabel>
-                  <Select
+                <Grid item xs={6}>
+                  <TextField
                     size="small"
-                    defaultValue=""
-                    labelId="shippingOption"
-                    label="Mode de livraison"
-                    name="shippingOption"
-                    {...register("shippingOption", { required: true })}
-                    error={Boolean(errors.shippingOption)}
-                    helperText={errors.shippingOption?.message}
+                    required
+                    fullWidth
+                    variant="outlined"
+                    label="Prénom"
+                    color="primary"
+                    {...register("firstName", { required: true })}
+                    name="firstName"
+                    error={Boolean(errors.firstName)}
+                    helperText={errors.firstName?.message}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    size="small"
+                    required
+                    fullWidth
+                    variant="outlined"
+                    label="Nom"
+                    color="primary"
+                    {...register("lastName", { required: true })}
+                    error={Boolean(errors.lastName)}
+                    helperText={errors.lastName?.message}
+                    name="lastName"
+                    type="text"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    size="small"
+                    required
+                    fullWidth
+                    variant="outlined"
+                    label="Courriel"
+                    color="primary"
+                    name="email"
+                    {...register("email", { required: true })}
+                    error={Boolean(errors.email)}
+                    helperText={errors.email?.message}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Subtitle>Les détails d'expédition</Subtitle>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    size="small"
+                    variant="outlined"
+                    label="Nom complet"
+                    color="primary"
+                    name="shippingName"
+                    {...register("shippingName", { required: true })}
+                    error={Boolean(errors.shippingName)}
+                    helperText={errors.shippingName?.message}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    size="small"
+                    variant="outlined"
+                    label="Adresse"
+                    color="primary"
+                    name="shippingStreet"
+                    {...register("shippingStreet", { required: true })}
+                    error={Boolean(errors.shippingStreet)}
+                    helperText={errors.shippingStreet?.message}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    size="small"
+                    variant="outlined"
+                    label="Ville"
+                    color="primary"
+                    name="shippingCity"
+                    {...register("shippingCity", { required: true })}
+                    error={Boolean(errors.shippingCity)}
+                    helperText={errors.shippingCity?.message}
+                  />
+                </Grid>
+
+                <Grid item xs={4}>
+                  <FormControl fullWidth size="small">
+                    <InputLabel id="shippingCountry">Pays</InputLabel>
+                    <Select
+                      labelId="shippingCountry"
+                      label="Pays"
+                      defaultValue=""
+                      name="shippingCountry"
+                      {...register("shippingCountry", { required: true })}
+                      error={Boolean(errors.shippingCountry)}
+                      helperText={errors.shippingCountry?.message}
+                    >
+                      {countries.map((country, index) => {
+                        return (
+                          <MenuItem key={index} value={country.value}>
+                            {country.value}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={4}>
+                  <FormControl
+                    fullWidth
+                    disabled={isShippingStateProvinceDisabled}
+                    size="small"
                   >
-                    {shippingOptions().map((method, index) => {
-                      return (
-                        <MenuItem value={method.id} key={index}>
-                          {`${method.description} - $${method.price.formatted_with_code}`}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
-                </FormControl>
-              </Grid>
+                    <InputLabel id="shippingStateProvince">
+                      État/Province
+                    </InputLabel>
+                    <Select
+                      labelId="shippingStateProvince"
+                      defaultValue=""
+                      label="État/Province"
+                      name="shippingStateProvince"
+                      {...register("shippingStateProvince", { required: true })}
+                      error={Boolean(errors.shippingStateProvince)}
+                      helperText={errors.shippingStateProvince?.message}
+                    >
+                      {countrySubdivisions().map((province, index) => {
+                        return (
+                          <MenuItem key={index} value={province.value}>
+                            {province.text}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Grid>
 
-              <Grid item xs={12}>
-                <Subtitle>Information de paiement</Subtitle>
-              </Grid>
+                <Grid item xs={4}>
+                  <TextField
+                    label="Code postal"
+                    size="small"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="shippingPostalZipCode"
+                    color="primary"
+                    {...register("shippingPostalZipCode", { required: true })}
+                    error={Boolean(errors.shippingPostalZipCode)}
+                    helperText={errors.shippingPostalZipCode?.message}
+                  />
+                </Grid>
 
-              <Grid item xs={6}>
-                <InputMask
-                  mask="9999 9999 9999 9999"
-                  {...register("cardNumber", { required: true })}
-                >
-                  {() => (
-                    <TextField
-                      label="Numéro de carte de Crédit"
-                      required
-                      fullWidth
+                <Grid item xs={12}>
+                  <FormControl
+                    fullWidth
+                    size="small"
+                    disabled={isShippingOptionsDisabled}
+                  >
+                    <InputLabel id="shippingOption">
+                      Mode de livraison
+                    </InputLabel>
+                    <Select
                       size="small"
-                      variant="outlined"
-                      name="cardNumber"
-                      color="primary"
-                      error={Boolean(errors.cardNumber)}
-                      helperText={errors.cardNumber?.message}
-                      {...register("cardNumber", { required: true })}
-                    />
-                  )}
-                </InputMask>
-              </Grid>
+                      defaultValue=""
+                      labelId="shippingOption"
+                      label="Mode de livraison"
+                      name="shippingOption"
+                      {...register("shippingOption", { required: true })}
+                      error={Boolean(errors.shippingOption)}
+                      helperText={errors.shippingOption?.message}
+                    >
+                      {shippingOptions().map((method, index) => {
+                        return (
+                          <MenuItem value={method.id} key={index}>
+                            {`${method.description} - $${method.price.formatted_with_code}`}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Grid>
 
-              <Grid item xs={3}>
-                <InputMask
-                  mask="99/99"
-                  disabled={false}
-                  placeholder="MM/YY"
-                  {...register("expiration", { required: true })}
-                >
-                  {() => (
-                    <TextField
-                      required
-                      fullWidth
-                      size="small"
-                      variant="outlined"
-                      label="Expiration"
-                      color="primary"
-                      name="expMonth"
-                      error={Boolean(errors.expMonth)}
-                      helperText={errors.expMonth?.message}
-                      type="text"
-                      {...register("expiration", { required: true })}
-                    />
-                  )}
-                </InputMask>
-              </Grid>
-              <Grid item xs={3}>
-                <InputMask mask="999" {...register("ccv", { required: true })}>
-                  {() => (
-                    <TextField
-                      required
-                      fullWidth
-                      size="small"
-                      variant="outlined"
-                      label="CCV"
-                      color="primary"
-                      name="ccv"
-                      placeholder="CCV (3 digits)"
-                      {...register("ccv", { required: true })}
-                      error={Boolean(errors.ccv)}
-                      helperText={errors.ccv?.message}
-                      type="text"
-                    />
-                  )}
-                </InputMask>
-              </Grid>
-            </Grid>
-          </form>
-        </Box>
+                <Grid item xs={12}>
+                  <Subtitle>Information de paiement</Subtitle>
+                </Grid>
 
-        <Box
-          p={8}
+                <Grid item xs={6}>
+                  <InputMask
+                    mask="9999 9999 9999 9999"
+                    {...register("cardNumber", { required: true })}
+                  >
+                    {() => (
+                      <TextField
+                        label="Numéro de carte de Crédit"
+                        required
+                        fullWidth
+                        size="small"
+                        variant="outlined"
+                        name="cardNumber"
+                        color="primary"
+                        error={Boolean(errors.cardNumber)}
+                        helperText={errors.cardNumber?.message}
+                        {...register("cardNumber", { required: true })}
+                      />
+                    )}
+                  </InputMask>
+                </Grid>
+
+                <Grid item xs={3}>
+                  <InputMask
+                    mask="99/99"
+                    disabled={false}
+                    placeholder="MM/YY"
+                    {...register("expiration", { required: true })}
+                  >
+                    {() => (
+                      <TextField
+                        required
+                        fullWidth
+                        size="small"
+                        variant="outlined"
+                        label="Expiration"
+                        color="primary"
+                        name="expMonth"
+                        error={Boolean(errors.expMonth)}
+                        helperText={errors.expMonth?.message}
+                        type="text"
+                        {...register("expiration", { required: true })}
+                      />
+                    )}
+                  </InputMask>
+                </Grid>
+                <Grid item xs={3}>
+                  <InputMask
+                    mask="999"
+                    {...register("ccv", { required: true })}
+                  >
+                    {() => (
+                      <TextField
+                        required
+                        fullWidth
+                        size="small"
+                        variant="outlined"
+                        label="CCV"
+                        color="primary"
+                        name="ccv"
+                        placeholder="CCV (3 digits)"
+                        {...register("ccv", { required: true })}
+                        error={Boolean(errors.ccv)}
+                        helperText={errors.ccv?.message}
+                        type="text"
+                      />
+                    )}
+                  </InputMask>
+                </Grid>
+              </Grid>
+            </form>
+          </Box>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          md={6}
+          pt={16}
           sx={{
             backgroundColor: "#f2e8da",
             height: "100vh",
-            width: "30%",
-            position: "absolute",
-            display: "inline-block",
-            paddingTop: "150px",
-            paddingRight: "30%",
           }}
         >
-          <Grid container spacing={2}>
-            <Box pb={4} sx={{ fontWeight: "bold" }}>
+          <Box px={6}>
+            <Box pb={6} sx={{ fontWeight: "bold" }}>
               <Grid item xs={12}>
                 <label>Résumé de la commande</label>
               </Grid>
@@ -485,7 +493,7 @@ const Checkout = (props) => {
                 </Grid>
               ))}
 
-            <Grid container justifyContent="end">
+            <Grid container xs={12} sm={6} justifyContent="end">
               <Box pt={4} sx={{ fontSize: 20, fontWeight: "bold" }}>
                 <Grid item xs={12}>
                   <Grid container justifyContent="space-evenly">
@@ -512,9 +520,9 @@ const Checkout = (props) => {
                 </Grid>
               </Box>
             </Grid>
-          </Grid>
-        </Box>
-      </div>
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
 };
