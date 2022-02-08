@@ -59,7 +59,7 @@ const Checkout = (props) => {
       shippingStateProvince: "",
       shippingCity: "",
       shippingPostalZipCode: "",
-      shippingCountry: "",
+      shippingCountry: "CA",
       shippingOption: "",
       cardNumber: "",
       expMonth: "",
@@ -153,12 +153,8 @@ const Checkout = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isShippingStateProvinceDisabled = !watch("shippingCountry");
-
   const countrySubdivisions = () =>
-    !isShippingStateProvinceDisabled
-      ? getCountrySubdivisions(getValues("shippingCountry"))
-      : [];
+    getCountrySubdivisions(getValues("shippingCountry"));
 
   const isShippingOptionsDisabled = !(
     watch("shippingCountry") && watch("shippingStateProvince")
@@ -166,7 +162,10 @@ const Checkout = (props) => {
 
   const shippingOptions = () =>
     !isShippingOptionsDisabled
-      ? getShippingOptions(getValues("shippingCountry"))
+      ? getShippingOptions(
+          getValues("shippingCountry"),
+          getValues("shippingStateProvince")
+        )
       : [];
 
   return (
@@ -280,7 +279,7 @@ const Checkout = (props) => {
                     <Select
                       labelId="shippingCountry"
                       label="Pays"
-                      defaultValue=""
+                      defaultValue="CA"
                       name="shippingCountry"
                       {...register("shippingCountry", { required: true })}
                       error={Boolean(errors.shippingCountry)}
@@ -298,11 +297,7 @@ const Checkout = (props) => {
                 </Grid>
 
                 <Grid item xs={4}>
-                  <FormControl
-                    fullWidth
-                    disabled={isShippingStateProvinceDisabled}
-                    size="small"
-                  >
+                  <FormControl fullWidth size="small">
                     <InputLabel id="shippingStateProvince">
                       État/Province
                     </InputLabel>

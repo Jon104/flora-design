@@ -4,9 +4,23 @@ const getCountrySubdivisions = (countryCode) => {
   return [];
 };
 
-const getShippingOptions = (countryCode) => {
-  if (countryCode === "CA") return canadaCoastsShippingOptions;
+const getShippingOptions = (countryCode, shippingStateProvince) => {
+  if (countryCode === "CA")
+    return getCanadianShippingOptions(shippingStateProvince);
   if (countryCode === "US") return unitedStatesShippingOptions;
+};
+
+const getCanadianShippingOptions = (shippingStateProvince) => {
+  if (["QC", "ON"].includes(shippingStateProvince))
+    return canadaQuebecOntarioShippingOptions;
+  else if (
+    ["AB", "BC", "MB", "NB", "NL", "NS", "PE", "SK"].includes(
+      shippingStateProvince
+    )
+  )
+    return canadaCoastsShippingOptions;
+  else if (["NT", "YT", "NU"].includes(shippingStateProvince))
+    return canadaTerritoriesShippingOptions;
 };
 
 const canadianProvinces = [
@@ -85,7 +99,7 @@ const americanStates = [
 
 const countries = [
   { value: "CA", text: "Canada" },
-  { value: "US", text: "États-Unis" },
+  // { value: "US", text: "États-Unis" },
 ];
 
 const canadaCoastsShippingOptions = [
