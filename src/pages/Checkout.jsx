@@ -461,8 +461,8 @@ const Checkout = (props) => {
               </Grid>
             </Box>
 
-            {props.cart.line_items.length > 0 &&
-              props.cart.line_items.map((item) => (
+            {props.cart.line_items?.length > 0 &&
+              props.cart.line_items?.map((item) => (
                 <Grid item xs={12}>
                   <Grid
                     container
