@@ -91,7 +91,9 @@ function App() {
 
   const fetchProducts = useCallback(() => {
     commerce.products
-      .list()
+      .list({
+        limit: 100,
+      })
       .then((products) => setProducts(groupProductsByCategory(products.data)))
       .catch((error) => {
         console.log("There was an error fetching the products", error);
