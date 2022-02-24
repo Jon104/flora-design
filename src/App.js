@@ -7,7 +7,7 @@ import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./pages/PersonalPiece";
 import Thanks from "./pages/Thanks";
-import Checkout from "./pages/Checkout";
+import Checkout from "./boutique/pages/Checkout";
 import Confirmation from "./pages/Confirmation";
 import {
   BrowserRouter as Router,
@@ -166,7 +166,7 @@ function App() {
     <Router>
       <Mui theme={themeMui}>
         <ThemeProvider theme={theme}>
-          <div className="App">
+          <div>
             <Logo src="./img/logo.png" alt="Logo" />
             <Box
               padding={1}
@@ -217,13 +217,7 @@ function App() {
                 path="/checkout"
                 exact
                 render={(props) => {
-                  return (
-                    <Checkout
-                      {...props}
-                      cart={cart}
-                      onCaptureCheckout={handleCaptureCheckout}
-                    />
-                  );
+                  return <Checkout url={cart.hosted_checkout_url} />;
                 }}
               />
               <Route

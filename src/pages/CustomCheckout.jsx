@@ -19,6 +19,7 @@ import * as Yup from "yup";
 import {
   getCountrySubdivisions,
   getShippingOptions,
+  getShippingPrice,
   countries,
 } from "../boutique/helpers/checkoutHelpers";
 
@@ -105,10 +106,9 @@ const Checkout = (props) => {
     }, {});
   };
 
-  const onSubmit = (e) => {
+  const getOrderData = () => {
     const formValues = getValues();
-    e.preventDefault();
-    const orderData = {
+    return {
       line_items: sanitizedLineItems(props.cart.line_items),
       customer: {
         firstname: formValues.firstName,
@@ -137,14 +137,20 @@ const Checkout = (props) => {
       payment: {
         gateway: "test_gateway",
         card: {
-          number: formValues.cardNumber,
+          number: formValues.cardNumber.replace(/\s/g, ""),
           expiry_month: formValues.expiration.substring(0, 2),
-          expiry_year: `20${formValues.expiration.substring(3, 5)}`,
+          expiry_year: formValues.expiration.substring(3, 5),
           cvc: formValues.ccv,
-          postal_zip_code: formValues.shippingPostalZipCode,
+          postal_zip_code: "94107", // formValues.shippingPostalZipCode,
         },
       },
     };
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const orderData = getOrderData();
     props.onCaptureCheckout(checkoutToken.id, orderData);
   };
 
@@ -160,6 +166,8 @@ const Checkout = (props) => {
     watch("shippingCountry") && watch("shippingStateProvince")
   );
 
+  const isShippingCostSelected = !watch("shippingOption");
+
   const shippingOptions = () =>
     !isShippingOptionsDisabled
       ? getShippingOptions(
@@ -167,6 +175,39 @@ const Checkout = (props) => {
           getValues("shippingStateProvince")
         )
       : [];
+
+  const getPaypalPaymentId = async () => {
+    try {
+      const data = {
+        getOrderData,
+        // Include PayPal action:
+        payment: {
+          gateway: "paypal",
+          paypal: {
+            action: "authorize",
+          },
+        },
+      };
+      console.log("paypalAuth");
+      console.log(data);
+      const paypalAuth = await commerce.checkout.capture(
+        checkoutToken.id,
+        data
+      );
+
+      // If we get here, we can now push the user to the PayPal URL.
+      // An example of rendering the PayPal button is below
+      // renderPaypalButton(paypalAuth); //todo
+      return;
+    } catch (response) {
+      // There was an issue with capturing the order with Commerce.js
+      console.log(response);
+      alert(response.message);
+      return;
+    } finally {
+      // Any loading state can be removed here.
+    }
+  };
 
   return (
     <>
@@ -491,6 +532,18 @@ const Checkout = (props) => {
             <Grid container xs={12} sm={6} justifyContent="end">
               <Box pt={4} sx={{ fontSize: 20, fontWeight: "bold" }}>
                 <Grid item xs={12}>
+                  <Grid item xs={9}>
+                    <label>Prix de l'expédition:</label>
+                  </Grid>
+                  {isShippingCostSelected && (
+                    <Grid item xs={3}>
+                      {
+                        getShippingPrice(getValues("shippingOption"))?.price
+                          .formatted_with_symbol
+                      }
+                    </Grid>
+                  )}
+
                   <Grid container justifyContent="space-evenly">
                     <Grid item xs={9}>
                       <label>Montant Total:</label>
