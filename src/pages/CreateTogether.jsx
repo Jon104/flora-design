@@ -2,6 +2,7 @@ import { Box, Grid } from "@mui/material";
 import Footer from "components/Footer";
 import { isMobile } from "react-device-detect";
 import styled from "styled-components";
+import FadeIn from "../components/effects/FadeIn";
 
 const Logo = styled.img`
   margin-left: auto;
@@ -66,7 +67,7 @@ const MiddleSection = styled.div`
 
 const MiddleSectionImage = styled.img`
   position: absolute;
-  z-index: 100;
+  z-index: 1;
   left: -50%;
   max-width: 160%;
 
@@ -83,6 +84,7 @@ const Bubble = styled.div`
   padding: 18px 28px 18px 40px;
   top: 75%;
   text-align: center;
+  background-color: white;
 `;
 
 const BubbleTag = styled.p`
@@ -219,11 +221,13 @@ const CreateTogether = () => {
                 xs={isMobile ? 12 : element.size}
                 sx={{ paddingRight: 4 }}
               >
-                <Bubble>
-                  <BubbleTag>{element.week}</BubbleTag>
-                  <BubbleTitle>{element.title}</BubbleTitle>
-                  <BubbleSubtitle>{element.content}</BubbleSubtitle>
-                </Bubble>
+                <FadeIn>
+                  <Bubble>
+                    <BubbleTag>{element.week}</BubbleTag>
+                    <BubbleTitle>{element.title}</BubbleTitle>
+                    <BubbleSubtitle>{element.content}</BubbleSubtitle>
+                  </Bubble>
+                </FadeIn>
               </Grid>
             </Grid>
           ))}
