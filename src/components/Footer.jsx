@@ -48,8 +48,8 @@ const Footer = () => (
                 lineHeight: "30px",
               }}
             >
-              {FooterListItems.map((item) => (
-                <ListItemButton component={Link} to={item.link}>
+              {FooterListItems.map((item, index) => (
+                <ListItemButton key={index} component={Link} to={item.link}>
                   <ListItemText
                     sx={{ textAlign: isMobile ? "center" : "flex-start" }}
                     primary={item.name}

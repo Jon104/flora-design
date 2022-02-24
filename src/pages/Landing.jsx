@@ -82,8 +82,8 @@ const Landing = () => {
           justifyContent="center"
           alignItems="center"
         >
-          {BubblesContent.map((element) => (
-            <Grid item xs={10} md={4}>
+          {BubblesContent.map((element, index) => (
+            <Grid item key={index} xs={10} md={4}>
               <Bubble title={element.title} content={element.subtitle} />
             </Grid>
           ))}
