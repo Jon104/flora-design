@@ -6,10 +6,10 @@ import Select from "../../components/common/Select";
 import { useState } from "react";
 
 const Product = (props) => {
-  debugger;
   const [variantOption] = useState(
     props.product.variant_groups[0]?.options[0].id
   );
+
   return (
     <>
       <Box py={2}>
