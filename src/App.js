@@ -5,7 +5,7 @@ import Panaches from "./pages/Panaches";
 import Boutique from "./boutique/pages/Boutique";
 import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
-import PersonalPiece from "./pages/PersonalPiece";
+import PersonalPiece from "./personalPiece/PersonalPiecePage";
 import Thanks from "./pages/Thanks";
 import Checkout from "./boutique/pages/Checkout";
 import Confirmation from "./pages/Confirmation";

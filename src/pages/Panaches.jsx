@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import Slide from "../components/Slide";
+import Slide from "../components/common/ImageSlider/Slide";
 import { Box, Button, Drawer, Grid } from "@mui/material";
 import PanacheForm from "../components/forms/PanacheForm";
 import { TopSection, SecondMiddleSection, Slides } from "./components/element";

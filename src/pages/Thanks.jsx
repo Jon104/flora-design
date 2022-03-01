@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import Slide from "../components/Slide";
+import Slide from "../components/common/ImageSlider/Slide";
 import { Box, Button } from "@mui/material";
 
 const Logo = styled.img`
