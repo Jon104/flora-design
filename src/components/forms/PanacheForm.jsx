@@ -187,18 +187,18 @@ const panachesInStock = [
   {
     id: 35,
     description: "J'aimerais une pièce sur un petit panache entier",
-    src: "35.png",
+    src: "35.jpg",
   },
   {
     id: 36,
     description: "J'aimerais une pièce sur un seul gros bois",
-    src: "36.png",
+    src: "36.jpg",
   },
   {
     id: 37,
     description:
       "J'aimerais intégrer un panache de chevreuil à une pièce sur bâton",
-    src: "37.png",
+    src: "37.jpg",
   },
 ];
 
