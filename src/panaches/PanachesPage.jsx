@@ -45,7 +45,10 @@ const Panaches = () => {
   return (
     <>
       <TopSection>
-        <FullImage src="./img/landing.jpg" alt="Landing page" />
+        <FullImage
+          src="./img/panaches_main.jpg"
+          alt="Panaches Page Header Picture"
+        />
         <MainTitle>MES OEUVRES SUR PANACHE</MainTitle>
         <MainSubtitle>
           La nature est ma principale source d'inspiration. Et quelle belle

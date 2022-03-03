@@ -170,7 +170,10 @@ const CreateTogether = () => {
   return (
     <>
       <Logo src="./img/logo.png" alt="Logo" />
-      <TopImage src="./img/landing.jpg" alt="Landing page" />
+      <TopImage
+        src="./img/createTogether_main.jpg"
+        alt="Create Together Header Picture"
+      />
       <Container>
         <Title>CRÉONS ENSEMBLE, EN ART-CONNEXION</Title>
         <Subtitle>
@@ -207,7 +210,9 @@ const CreateTogether = () => {
             toi-même, ne peut que t'amener plus de liberté et de clarté
             intérieure. Te permettre de te sentir plus alignée.
           </Subtitle>
-          <MiddleSectionImage src="./img/middle_section_long_image.jpeg" />
+          {!isMobile && (
+            <MiddleSectionImage src="./img/middle_section_long_image.jpeg" />
+          )}
           {bubblesContent.map((element) => (
             <Grid
               sx={{ paddingTop: 5 }}
