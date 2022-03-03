@@ -8,13 +8,7 @@ import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./personalPiece/PersonalPiecePage";
 import Thanks from "./pages/Thanks";
 import Checkout from "./boutique/pages/Checkout";
-import Confirmation from "./pages/Confirmation";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createTheme, ThemeProvider as Mui } from "@mui/material/styles";
 import { useEffect, useState, useCallback } from "react";
 import { commerce } from "./lib/commerce";
@@ -64,30 +58,6 @@ function App() {
   const [isOpen, toggleForm] = useState(false);
   const [cart, setCart] = useState({});
   const [products, setProducts] = useState([]);
-  const [order, setOrder] = useState({});
-  const history = useHistory();
-
-  const handleCaptureCheckout = (checkoutTokenId, newOrder) => {
-    commerce.checkout
-      .capture(checkoutTokenId, newOrder)
-      .then((order) => {
-        setOrder(order);
-        refreshCart();
-        history.push("/confirmation");
-        window.sessionStorage.setItem("order_receipt", JSON.stringify(order));
-      })
-      .catch((error) => {
-        console.log("There was an error confirming your order", error);
-      });
-  };
-
-  const refreshCart = () =>
-    commerce.cart
-      .refresh()
-      .then((newCart) => setCart(newCart))
-      .catch((error) =>
-        console.log("There was an error refreshing your cart", error)
-      );
 
   const fetchProducts = useCallback(() => {
     commerce.products
@@ -220,14 +190,14 @@ function App() {
                   return <Checkout url={cart.hosted_checkout_url} />;
                 }}
               />
-              <Route
+              {/* <Route
                 path="/confirmation"
                 exact
                 render={(props) => {
                   if (!order) return history.push("/");
                   return <Confirmation {...props} order={order} />;
                 }}
-              />
+              /> */}
               <Route path="/ma-démarche" component={MyApproach} />
               <Route path="/ensemble" component={CreateTogether} />
               <Route path="/personal-pieces" component={PersonalPiece} />

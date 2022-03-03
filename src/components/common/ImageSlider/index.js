@@ -1,11 +1,8 @@
 import Slide from "./Slide";
 import Slides from "./Slides";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 const ImageSlider = (props) => {
-  // const [slideIndex, setSlideIndex] = useState(0);
-  console.log(props.slides);
   return (
     <Slides>
       <button onClick={() => props.setSlideIndex(props.slideIndex + 1)} />
