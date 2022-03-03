@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import Slide from "../components/common/ImageSlider/Slide";
 import { Box, Button, Drawer, Grid } from "@mui/material";
 import PanacheForm from "../components/forms/PanacheForm";
-import { TopSection, SecondMiddleSection, Slides } from "./components/element";
-import { FullImage } from "./components/image";
-import { MainTitle, MainSubtitle } from "./components/typography";
+import { TopSection, SecondMiddleSection } from "../pages/components/element";
+import { FullImage } from "../pages/components/image";
+import { MainTitle, MainSubtitle } from "../pages/components/typography";
 import Footer from "components/Footer";
+import ImageSlider from "../components/common/ImageSlider";
+import panachesSlides from "./panachesSlides";
+import Testimonials from "../components/typography/Testimonials";
 
 const Title = styled.p`
   font-family: Lato;
@@ -36,122 +38,9 @@ const Subtitle = styled.p`
     `};
 `;
 
-const slides = [
-  {
-    image: "./img/panaches/anick.jpg",
-  },
-  {
-    image: "./img/panaches/cynthia.jpg",
-  },
-  {
-    image: "./img/panaches/jose.jpg",
-  },
-  {
-    image: "./img/panaches/martineA.jpg",
-  },
-  {
-    image: "./img/panaches/martineS.jpg",
-  },
-  {
-    image: "./img/panaches/noname.jpg",
-  },
-  {
-    image: "./img/panaches/rachel.jpg",
-  },
-  {
-    image: "./img/panaches/roxane.jpg",
-  },
-  {
-    image: "./img/panaches/tania.jpg",
-  },
-  {
-    image: "./img/panaches/vero.jpg",
-  },
-  {
-    image: "./img/panaches/viviane.jpg",
-  },
-];
-
-// const testimonials = [
-//   {
-//     source: "Marie-Pierwwww",
-//     text: "Tu vois tu lis dans la tête des gens sans même les connaître !! C'est fou!! De se baser seulement sur un questionnaire et wow les créations finales!! Je suis scotchée !",
-//   },
-//   {
-//     source: "Sultant",
-//     text: "Jesus je capote comment c'est beau!",
-//   },
-//   {
-//     source: "Peter",
-//     text: "Shartag",
-//   },
-//   {
-//     source: "Germain",
-//     text: "Bin oui!",
-//   },
-//   {
-//     source: "Marie-Pier",
-//     text: "Je capote",
-//   },
-// ];
-
-const initialState = {
-  slideIndex2: 5,
-};
-
-const slides2Reducer = (state, event) => {
-  if (event.type === "NEXT") {
-    return {
-      ...state,
-      slideIndex2: (state.slideIndex2 + 1) % slides.length,
-    };
-  }
-  if (event.type === "PREV") {
-    return {
-      ...state,
-      slideIndex2:
-        state.slideIndex2 === 0 ? slides.length - 1 : state.slideIndex2 - 1,
-    };
-  }
-};
-
-// const SlideContentInner = styled.div`
-//   height: 20vh;
-//   padding: 4% 10%;
-//   text-align: center;
-// `;
-
-// const Title2 = styled.p`
-//   font-size: 36px;
-//   color: #9f2e0e;
-//   font-family: Lato;
-//   font-size: 32px;
-//   font-style: italic;
-//   font-weight: 300;
-//   line-height: 43px;
-//   letter-spacing: 0.30000001192092896px;
-//   text-align: center;
-// `;
-
-// const Subtitle2 = styled.p`
-//   font-family: Barlow;
-//   font-size: 24px;
-//   color: #9f2e0e;
-// `;
-
 const Panaches = () => {
-  const [state, dispatch] = React.useReducer(slides2Reducer, initialState);
   const [isOpen, toggleForm] = useState(false);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(0);
-
-  const onNext = () => {
-    setSelectedTestimonial(selectedTestimonial + 1);
-    dispatch({ type: "NEXT" });
-  };
-  const onPrev = () => {
-    setSelectedTestimonial(selectedTestimonial - 1);
-    dispatch({ type: "PREV" });
-  };
+  const [slideIndex, setSlideIndex] = useState(0);
 
   return (
     <>
@@ -165,16 +54,24 @@ const Panaches = () => {
         </MainSubtitle>
       </TopSection>
 
-      <Box sx={{ marginBottom: 12 }} pt={{ xs: 8 }}>
-        <Slides>
-          <button onClick={() => onNext()} />
-
-          {[...slides, ...slides, ...slides].map((slide, i) => {
-            let offset = slides.length + (state.slideIndex2 - i);
-            return <Slide slide={slide} offset={offset} key={i} />;
-          })}
-          <button onClick={() => onPrev()} />
-        </Slides>
+      <Box pt={{ xs: 8 }}>
+        <ImageSlider
+          slides={panachesSlides}
+          slideIndex={slideIndex}
+          setSlideIndex={setSlideIndex}
+        />
+        <Grid container justifyContent="center">
+          <Grid item xs={6}>
+            <Box py={4}>
+              <Testimonials>
+                {
+                  panachesSlides[slideIndex + panachesSlides.length - 1]
+                    ?.testimonials
+                }
+              </Testimonials>
+            </Box>
+          </Grid>
+        </Grid>
       </Box>
 
       <SecondMiddleSection>

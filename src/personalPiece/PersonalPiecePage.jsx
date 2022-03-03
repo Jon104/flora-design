@@ -9,6 +9,7 @@ import { MainTitle, MainSubtitle } from "../pages/components/typography";
 import Footer from "components/Footer";
 import ImageSlider from "../components/common/ImageSlider";
 import personalPieceSlides from "./personalPieceSlides";
+import Testimonials from "../components/typography/Testimonials";
 
 const Title = styled.p`
   position: relative;
@@ -70,7 +71,7 @@ const PersonalPiece = () => {
         </MainSubtitle>
       </TopSection>
 
-      <Box sx={{ marginBottom: 10 }} pt={{ xs: 8 }}>
+      <Box pt={{ xs: 8 }}>
         <ImageSlider
           slides={personalPieceSlides}
           slideIndex={slideIndex}
@@ -78,12 +79,15 @@ const PersonalPiece = () => {
         />
         <Grid container justifyContent="center">
           <Grid item xs={6}>
-            <p>
-              {
-                personalPieceSlides[slideIndex + personalPieceSlides.length - 1]
-                  ?.testimonials
-              }
-            </p>
+            <Box py={4}>
+              <Testimonials>
+                {
+                  personalPieceSlides[
+                    slideIndex + personalPieceSlides.length - 1
+                  ]?.testimonials
+                }
+              </Testimonials>
+            </Box>
           </Grid>
         </Grid>
       </Box>

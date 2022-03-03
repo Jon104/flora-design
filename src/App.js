@@ -1,7 +1,7 @@
 import BurgerMenu from "components/tron/BurgerMenu";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Landing from "./pages/Landing";
-import Panaches from "./pages/Panaches";
+import Panaches from "./panaches/PanachesPage";
 import Boutique from "./boutique/pages/Boutique";
 import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
