@@ -6,6 +6,7 @@ import Boutique from "./boutique/pages/Boutique";
 import CreateTogether from "./pages/CreateTogether";
 import MyApproach from "./pages/MyApproach";
 import PersonalPiece from "./personalPiece/PersonalPiecePage";
+import Classes from "./classes/ClassesPage";
 import Thanks from "./pages/Thanks";
 import Checkout from "./boutique/pages/Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -202,6 +203,7 @@ function App() {
               <Route path="/ensemble" component={CreateTogether} />
               <Route path="/personal-pieces" component={PersonalPiece} />
               <Route path="/panaches" component={Panaches} />
+              <Route path="/cours-et-fournitures" component={Classes} />
               <Route path="/thanks" component={Thanks} />
               <Route path="/" component={Landing} />
             </Switch>

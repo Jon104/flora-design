@@ -223,6 +223,10 @@ const menuItems = [
     link: "/panaches",
   },
   {
+    name: "Cours et fournitures",
+    link: "/cours-et-fournitures",
+  },
+  {
     name: "Boutique",
     link: "/boutique",
   },
