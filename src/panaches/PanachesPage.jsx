@@ -46,7 +46,11 @@ const Panaches = () => {
     <>
       <TopSection>
         <FullImage
-          src="./img/panaches_main.jpg"
+          src={
+            isMobile
+              ? "./img/panaches_main_mobile.jpg"
+              : "./img/panaches_main.jpg"
+          }
           alt="Panaches Page Header Picture"
         />
         <MainTitle>MES OEUVRES SUR PANACHE</MainTitle>
