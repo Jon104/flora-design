@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Bubble from "../components/Bubble";
 import { isMobile } from "react-device-detect";
 import Footer from "components/Footer";
+import FadeIn from "../components/effects/FadeIn";
 
 const Landing = () => {
   const BubblesContent = [
@@ -59,7 +60,7 @@ const Landing = () => {
               reconnecter à leur essence !
             </MiddleSectionParagraph>
           </Grid>
-          <Grid item md={5} sm={12} pt={{ xs: isMobile ? 8 : 0 }}>
+          <Grid item md={6} sm={12} pt={{ xs: isMobile ? 8 : 0 }}>
             <Container>
               <RightPanel
                 src="./img/landing_middle_view.jpg"
@@ -138,6 +139,7 @@ const Container = styled.div`
 `;
 const RightPanel = styled.img`
   max-width: 100vw;
+  height: 80vh;
 `;
 
 const MiddleSectionTitle = styled.p`
