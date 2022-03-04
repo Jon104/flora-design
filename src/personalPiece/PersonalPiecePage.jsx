@@ -10,6 +10,7 @@ import Footer from "components/Footer";
 import ImageSlider from "../components/common/ImageSlider";
 import personalPieceSlides from "./personalPieceSlides";
 import Testimonials from "../components/typography/Testimonials";
+import { isMobile } from "react-device-detect";
 
 const Title = styled.p`
   position: relative;
@@ -61,7 +62,14 @@ const PersonalPiece = () => {
   return (
     <>
       <TopSection>
-        <FullImage src="./img/landing.jpg" alt="Landing page" />
+        <FullImage
+          src={
+            isMobile
+              ? "./img/personalPiece_mobile.jpg"
+              : "./img/personalPiece.jpg"
+          }
+          alt="Landing page"
+        />
         <MainTitle>MES PIÈCES PERSONNALISÉES</MainTitle>
         <MainSubtitle>
           Que dirais-tu si je te proposais de représenter un bout de toi à

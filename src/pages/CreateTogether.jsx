@@ -171,7 +171,11 @@ const CreateTogether = () => {
     <>
       <Logo src="./img/logo.png" alt="Logo" />
       <TopImage
-        src="./img/createTogether_main.jpg"
+        src={
+          isMobile
+            ? "./img/createTogether_main_mobile.jpg"
+            : "./img/createTogether_main.jpg"
+        }
         alt="Create Together Header Picture"
       />
       <Container>
