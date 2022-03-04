@@ -255,7 +255,7 @@ const CreateTogether = () => {
             boxShadow: "10px 10px 30px 0px #D0CFDC66",
           }}
         >
-          Joins-toi à ma communauté créative!
+          Écris-moi pour réserver ton appel découverte !
         </Button>
       </Box>
       <Footer />

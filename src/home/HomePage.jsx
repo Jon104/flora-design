@@ -25,7 +25,7 @@ const Landing = () => {
   return (
     <>
       <VideoBackground
-        src={isMobile ? "./vid/vertical.mov" : "./vid/main_video.mp4"}
+        src={isMobile ? "./vid/vertical.mp4" : "./vid/main_video.mp4"}
         autoPlay
         playsInline
         loop
