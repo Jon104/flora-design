@@ -24,7 +24,7 @@ const BurgerMenu = () => {
           </LeftPanel>
         )}
         <RightPanel isChecked={isChecked}>
-          <Box p={{ xs: 4, sm: 10 }} pt={{ xs: 14, sm: 20 }}>
+          <Box p={{ xs: 4, sm: 8 }} pt={{ xs: 14, sm: 16 }}>
             {menuItems.map((item, index) => (
               <MenuItem key={index} isChecked={isChecked}>
                 <Title href={item.link}>{item.name}</Title>

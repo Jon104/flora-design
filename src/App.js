@@ -1,10 +1,10 @@
 import BurgerMenu from "components/tron/BurgerMenu";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
-import Landing from "./pages/Landing";
+import Landing from "./home/HomePage";
 import Panaches from "./panaches/PanachesPage";
 import Boutique from "./boutique/pages/Boutique";
-import CreateTogether from "./pages/CreateTogether";
-import MyApproach from "./pages/MyApproach";
+import CreateTogether from "./createTogether/CreateTogetherPage";
+import MyApproach from "./myApproach/MyApproachPage";
 import PersonalPiece from "./personalPiece/PersonalPiecePage";
 import Classes from "./classes/ClassesPage";
 import Thanks from "./pages/Thanks";
