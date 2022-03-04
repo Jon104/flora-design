@@ -61,7 +61,6 @@ const Landing = () => {
           </Grid>
           <Grid item md={5} sm={12} pt={{ xs: isMobile ? 8 : 0 }}>
             <RightPanel
-              loading="lazy"
               src="./img/landing_middle_view.jpg"
               alt="Landing middle section"
             />
@@ -133,7 +132,7 @@ const Title = styled.p`
 `;
 
 const RightPanel = styled.img`
-  max-width: 700px;
+  width = 100%;
 `;
 
 const MiddleSectionTitle = styled.p`
