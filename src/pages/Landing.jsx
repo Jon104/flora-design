@@ -134,10 +134,10 @@ const Title = styled.p`
 `;
 
 const Container = styled.div`
-  max-width = 100%;
+  max-width = 100vw;
 `;
 const RightPanel = styled.img`
-  width = 100%;
+  max-width = 100vw;
 `;
 
 const MiddleSectionTitle = styled.p`
