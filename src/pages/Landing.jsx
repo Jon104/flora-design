@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Bubble from "../components/Bubble";
 import { isMobile } from "react-device-detect";
 import Footer from "components/Footer";
-import FadeIn from "../components/effects/FadeIn";
 
 const Landing = () => {
   const BubblesContent = [
@@ -41,7 +40,7 @@ const Landing = () => {
         </Grid>
       </Box>
 
-      <Box px={{ xs: 6, sm: 8, md: 18 }} paddingTop={{ xs: 10 }}>
+      <Box px={6} paddingTop={{ xs: 10 }}>
         <Grid container justifyContent="space-around">
           <Grid item md={5} sm={12}>
             <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS!</MiddleSectionTitle>
