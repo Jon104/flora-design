@@ -9,6 +9,7 @@ import Footer from "components/Footer";
 import ImageSlider from "../components/common/ImageSlider";
 import panachesSlides from "./panachesSlides";
 import Testimonials from "../components/typography/Testimonials";
+import { isMobile } from "react-device-detect";
 
 const Title = styled.p`
   font-family: Lato;
