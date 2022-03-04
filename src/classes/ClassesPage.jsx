@@ -104,7 +104,12 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
           </Grid>
           <Box my={6}>
             <Button
-              onClick={() => console.log("yo")}
+              onClick={() =>
+                window.open(
+                  "https://www.facebook.com/Flora-Design-2473490369540452/",
+                  "_blank"
+                )
+              }
               variant="contained"
               size="large"
               sx={{
@@ -127,7 +132,7 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
         {productsByCategory
           .filter((category) => category.name === "Fournitures")
           .map((category) => (
-            <Grid container xs={12} alignItems="self-start">
+            <Grid container xs={12} alignItems="end">
               <Grid item xs={12}>
                 <Box>
                   <Subtitle>{category.name}</Subtitle>

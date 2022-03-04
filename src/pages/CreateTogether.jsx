@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import Footer from "components/Footer";
 import { isMobile } from "react-device-detect";
 import styled from "styled-components";
@@ -237,6 +237,26 @@ const CreateTogether = () => {
             </Grid>
           ))}
         </MiddleSection>
+        <Button
+          onClick={() =>
+            window.open(
+              "https://www.facebook.com/Flora-Design-2473490369540452/",
+              "_blank"
+            )
+          }
+          variant="contained"
+          size="large"
+          sx={{
+            backgroundColor: "#F2E8DA",
+            color: "#9F2E0E",
+            fontSize: 15,
+            height: "3rem",
+            width: "26rem",
+            boxShadow: "10px 10px 30px 0px #D0CFDC66",
+          }}
+        >
+          Joins-toi à ma communauté créative!
+        </Button>
       </Box>
       <Footer />
     </>
