@@ -60,10 +60,12 @@ const Landing = () => {
             </MiddleSectionParagraph>
           </Grid>
           <Grid item md={5} sm={12} pt={{ xs: isMobile ? 8 : 0 }}>
-            <RightPanel
-              src="./img/landing_middle_view.jpg"
-              alt="Landing middle section"
-            />
+            <Container>
+              <RightPanel
+                src="./img/landing_middle_view.jpg"
+                alt="Landing middle section"
+              />
+            </Container>
           </Grid>
         </Grid>
       </Box>
@@ -131,6 +133,9 @@ const Title = styled.p`
   }
 `;
 
+const Container = styled.div`
+  max-width = 100%;
+`;
 const RightPanel = styled.img`
   width = 100%;
 `;
