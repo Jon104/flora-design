@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, CircularProgress, Grid } from "@mui/material";
 import { TopSection, SecondMiddleSection } from "../pages/components/element";
 import { FullImage } from "../pages/components/image";
 import { MainTitle, MainSubtitle } from "../pages/components/typography";
@@ -8,6 +8,8 @@ import Footer from "components/Footer";
 import Testimonials from "../components/typography/Testimonials";
 import classesTestimonials from "./classesTestimonials";
 import useInterval from "../hooks/useInterval";
+import Product from "../boutique/components/Product";
+import { isMobile } from "react-device-detect";
 
 const Title = styled.p`
   font-family: Lato;
@@ -37,10 +39,24 @@ const Subtitle = styled.p`
     `};
 `;
 
-const Classes = () => {
+const Classes = ({ onAddToCart, productsByCategory }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   useInterval(() => setSlideIndex(slideIndex + 1), 5000);
+
+  const cartIsLoaded = () => productsByCategory.length > 0;
+
+  const renderLoading = () => {
+    if (cartIsLoaded()) return;
+
+    return (
+      <Grid container xs={12} justifyContent="center">
+        <Box pt={8}>
+          <CircularProgress />
+        </Box>
+      </Grid>
+    );
+  };
 
   return (
     <>
@@ -105,6 +121,28 @@ const Classes = () => {
           </Box>
         </Grid>
       </SecondMiddleSection>
+
+      <Box padding={isMobile ? 1 : 8}>
+        {renderLoading()}
+        {productsByCategory
+          .filter((category) => category.name === "Fournitures")
+          .map((category) => (
+            <Grid container xs={12} alignItems="self-start">
+              <Grid item xs={12}>
+                <Box>
+                  <Subtitle>{category.name}</Subtitle>
+                </Box>
+              </Grid>
+
+              {category.data.map((product) => (
+                <Grid item sm={12} md={6} lg={4} xl={3} padding={4}>
+                  <Product onAddToCart={onAddToCart} product={product} />
+                </Grid>
+              ))}
+            </Grid>
+          ))}
+      </Box>
+
       <Footer />
     </>
   );

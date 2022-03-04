@@ -225,11 +225,7 @@ const CreateTogether = () => {
               justifyContent={isMobile ? "center" : "flex-end"}
               alignItems="space-around"
             >
-              <Grid
-                item
-                xs={isMobile ? 12 : element.size}
-                sx={{ paddingRight: 4 }}
-              >
+              <Grid item xs={isMobile ? 12 : element.size}>
                 <FadeIn>
                   <Bubble>
                     <BubbleTag>{element.week}</BubbleTag>

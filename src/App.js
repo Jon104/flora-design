@@ -177,7 +177,6 @@ function App() {
                   return (
                     <Boutique
                       {...props}
-                      cart={cart}
                       productsByCategory={products}
                       onAddToCart={handleAddToCart}
                     />
@@ -203,7 +202,15 @@ function App() {
               <Route path="/ensemble" component={CreateTogether} />
               <Route path="/personal-pieces" component={PersonalPiece} />
               <Route path="/panaches" component={Panaches} />
-              <Route path="/cours-et-fournitures" component={Classes} />
+              <Route
+                path="/cours-et-fournitures"
+                render={(props) => (
+                  <Classes
+                    productsByCategory={products}
+                    onAddToCart={handleAddToCart}
+                  />
+                )}
+              />
               <Route path="/thanks" component={Thanks} />
               <Route path="/" component={Landing} />
             </Switch>
