@@ -38,10 +38,13 @@ const Product = (props) => {
       </Grid>
 
       <Grid container alignItems="center" justifyContent="space-between">
-        <Grid item xs={11}>
+        <Grid item xs={9}>
           <Box pl={1.5}>
             <p>{props.product.name}</p>
           </Box>
+        </Grid>
+        <Grid item xs={1}>
+          <p>{props.product.price.raw}</p>
         </Grid>
         <Grid item xs={1}>
           <IconButton
