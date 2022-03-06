@@ -130,7 +130,11 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
       <Box padding={isMobile ? 1 : 8}>
         {renderLoading()}
         {productsByCategory
-          .filter((category) => category.name === "Fournitures")
+          .filter(
+            (category) =>
+              category.name === "Fournitures" ||
+              category.name === "Ensembles créatifs incluant cours en ligne"
+          )
           .map((category) => (
             <Grid container xs={12} alignItems="end">
               <Grid item xs={12}>
