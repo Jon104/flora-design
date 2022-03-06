@@ -72,9 +72,20 @@ function App() {
   }, []);
 
   const fetchCart = useCallback(() => {
+    debugger;
     commerce.cart
       .retrieve()
-      .then((cart) => {
+      .then(async (cart) => {
+        if (cart.subtotal.raw <= 75 && cart.discount.code === "MINUS10") {
+          await fetch(`https://api.chec.io/v1/carts/${cart.id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Authorization": process.env.REACT_APP_CHEC_PUBLIC_KEY,
+            },
+            body: JSON.stringify({ discount_code: "" }),
+          });
+        }
         setCart(cart);
       })
       .catch((error) => {
@@ -187,7 +198,9 @@ function App() {
                 path="/checkout"
                 exact
                 render={(props) => {
-                  return <Checkout url={cart.hosted_checkout_url} />;
+                  return (
+                    <Checkout cart={cart} url={cart.hosted_checkout_url} />
+                  );
                 }}
               />
               {/* <Route
