@@ -10,6 +10,13 @@ const Product = (props) => {
     props.product.variant_groups[0]?.options[0].id
   );
 
+  const onAddProduct = () => {
+    let variant = {};
+    if (props.product.variant_groups.length > 0)
+      variant[props.product.variant_groups[0].id] = variantOption;
+    props.onAddToCart(props.product.id, 1, variant);
+  };
+
   return (
     <>
       <Box py={2}>
@@ -47,13 +54,7 @@ const Product = (props) => {
           <p>{props.product.price.raw}</p>
         </Grid>
         <Grid item xs={1}>
-          <IconButton
-            onClick={() =>
-              props.onAddToCart(props.product.id, 1, {
-                [props.product.variant_groups[0].id]: variantOption,
-              })
-            }
-          >
+          <IconButton onClick={onAddProduct}>
             <AddIcon />
           </IconButton>
         </Grid>
