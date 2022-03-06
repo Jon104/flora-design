@@ -6,38 +6,51 @@ import Select from "../../components/common/Select";
 import { useState } from "react";
 
 const Product = (props) => {
-  const [variantOption] = useState(
+  const [variantOption, setVariantOption] = useState(
     props.product.variant_groups[0]?.options[0].id
   );
 
   return (
     <>
       <Box py={2}>
-        <img
-          src={props.product.image.url}
-          alt="yop"
-          height="auto"
-          width="100%"
-        />
+        <Grid container alignItems="center">
+          <Grid item>
+            <img
+              src={props.product.image.url}
+              alt="yop"
+              height="auto"
+              width="100%"
+            />
+          </Grid>
+        </Grid>
       </Box>
 
       <Grid container>
-        {props.product.variant_groups.map((variant) => (
-          <Grid item xs={12}>
+        <Grid item xs={12}>
+          {props.product.variant_groups.map((variant) => (
             <Select
+              onChange={(event) => setVariantOption(event.target.value)}
               value={variantOption}
               options={formatVariantOptions(variant.options)}
             />
-          </Grid>
-        ))}
+          ))}
+        </Grid>
       </Grid>
 
-      <Grid container alignItems="center" justifyContent="flex-end">
-        <Grid item xs={10}>
-          <p>{props.product.name}</p>
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item xs={11}>
+          <Box pl={1.5}>
+            <p>{props.product.name}</p>
+          </Box>
         </Grid>
-        <Grid item xs={2}>
-          <IconButton onClick={() => props.onAddToCart(props.product.id, 1)}>
+        <Grid item xs={1}>
+          <IconButton
+            onClick={() =>
+              props.onAddToCart(props.product.id, 1, {
+                [props.product.variant_groups[0].id]: variantOption,
+              })
+            }
+          >
             <AddIcon />
           </IconButton>
         </Grid>

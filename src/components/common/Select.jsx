@@ -15,6 +15,7 @@ const Select = (props) => {
         defaultValue={props.defaultValue}
         label={props.label}
         name={props.name}
+        onChange={props.onChange}
         value={props.value}
       >
         {props.options.map((option, index) => (
@@ -32,6 +33,7 @@ Select.propTypes = {
   isDisabled: PropTypes.bool,
   label: PropTypes.string,
   name: PropTypes.string,
+  onChange: PropTypes.func,
   options: PropTypes.shape({
     text: PropTypes.string,
     value: PropTypes.string,
