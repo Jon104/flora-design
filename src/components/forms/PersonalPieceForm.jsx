@@ -291,6 +291,24 @@ const PersonalPieceForm = ({ onClose }) => {
 
   const valuetext = (value) => `${value} po`;
 
+  /* const handleDrop = (files) => {
+    debugger;
+    const zip = require("jszip");
+
+    files.forEach((file) => zip.file(file.name, file));
+
+    zip.generateAsync({ type: "blob" }).then((blob) => {
+      const zippedFiles = new File([blob], "whatever.zip", {
+        lastModified: Date.now(),
+        type: "application/zip",
+      });
+
+      this.setState({
+        zippedFiles,
+      });
+    });
+  }; */
+
   return (
     <>
       <Box px={{ xs: 2, sm: 6 }} py={2}>
@@ -593,19 +611,17 @@ const PersonalPieceForm = ({ onClose }) => {
               </Grid>
             </Grid>
           </Grid>
+
+          {/* <Dropzone onDrop={(acceptedFiles) => handleDrop(acceptedFiles)}>
+            {({ getRootProps, getInputProps }) => (
+              <section>
                 <div {...getRootProps()}>
-                  <input name="file" {...getInputProps()} />
-                  {isDragActive ? (
-                    <p>Drop the files here ...</p>
-                  ) : (
-                    <p>
-                      Drag 'n' drop some files here, or click to select files
-                    </p>
-                  )}
+                  <input {...getInputProps()} />
+                  <p>Drag 'n' drop some files here, or click to select files</p>
                 </div>
-              </Grid>
-            </Grid> */}
-          </Grid>
+              </section>
+            )}
+          </Dropzone> */}
 
           <Grid
             container
