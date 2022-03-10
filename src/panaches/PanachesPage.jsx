@@ -49,7 +49,7 @@ const Panaches = () => {
         <FullImage
           src={
             isMobile
-              ? "./img/panaches_main_mobile.jpg"
+              ? "./img/panaches_main_mobile.png"
               : "./img/panaches_main.jpg"
           }
           alt="Panaches Page Header Picture"

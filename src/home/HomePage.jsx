@@ -4,7 +4,7 @@ import Bubble from "../components/Bubble";
 import { isMobile } from "react-device-detect";
 import Footer from "components/Footer";
 
-const Landing = () => {
+const HomePage = () => {
   const BubblesContent = [
     {
       title: "RESPECT DE LA NATURE",
@@ -26,13 +26,18 @@ const Landing = () => {
     <>
       <VideoBackground
         src={isMobile ? "./vid/vertical.mp4" : "./vid/main_video.mp4"}
+        alt="./img/main_alt.png"
         autoPlay
         playsInline
         loop
         muted
       />
 
-      <Box px={{ xs: 6, sm: 8, md: 18 }} py={{ xs: 2, md: 10 }}>
+      <Box
+        px={{ xs: 6, sm: 8, md: 18 }}
+        py={{ xs: 2, md: 10 }}
+        sx={{ position: "relative", zIndex: 1 }}
+      >
         <Grid container sx={{ height: "95vh" }} alignContent="center">
           <Grid item xs={12}>
             <Title>ART TEXTILE INSPIRÉ DE LA NATURE</Title>
@@ -95,7 +100,7 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default HomePage;
 
 const VideoBackground = styled.video`
   position: absolute;
@@ -103,8 +108,8 @@ const VideoBackground = styled.video`
   top: 0;
   min-width: 100%;
   height: 100%;
-  opacity: 0.3;
   z-index: 1;
+  opacity: 0.4;
 
   @media (min-aspect-ratio: 16/9) {
     width: 100%;
@@ -112,7 +117,6 @@ const VideoBackground = styled.video`
   }
   @media (max-aspect-ratio: 16/9) {
     height: 100vh;
-
     padding: 0;
   }
 `;
@@ -121,6 +125,7 @@ const Title = styled.p`
   font-size: 50px;
   color: #9f2e0e;
   text-shadow: 4px 4px 4px #00000040;
+  z-index: 1;
 
   @media (max-width: 1300px) {
     font-size: 50px;
