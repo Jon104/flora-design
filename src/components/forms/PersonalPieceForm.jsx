@@ -576,8 +576,23 @@ const PersonalPieceForm = ({ onClose }) => {
               </Grid>
             </Grid>
 
-            {/* <Grid container spacing={2} alignItems="center">
+            <Grid container spacing={2} alignItems="center">
               <Grid item>
+                <input
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  id="raised-button-file"
+                  type="file"
+                  name="image"
+                />
+                <label htmlFor="raised-button-file">
+                  <Button variant="raised" component="span">
+                    Téléverser
+                  </Button>
+                </label>
+              </Grid>
+            </Grid>
+          </Grid>
                 <div {...getRootProps()}>
                   <input name="file" {...getInputProps()} />
                   {isDragActive ? (
