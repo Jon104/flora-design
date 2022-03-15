@@ -72,7 +72,6 @@ function App() {
   }, []);
 
   const fetchCart = useCallback(() => {
-    debugger;
     commerce.cart
       .retrieve()
       .then(async (cart) => {
