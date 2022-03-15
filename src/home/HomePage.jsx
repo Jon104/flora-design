@@ -24,14 +24,16 @@ const HomePage = () => {
   ];
   return (
     <>
-      <VideoBackground
-        src={isMobile ? "./vid/vertical.mp4" : "./vid/main_video.mp4"}
-        alt="./img/main_alt.png"
-        autoPlay
-        playsInline
-        loop
-        muted
-      />
+      <div>
+        <VideoBackground
+          src={isMobile ? "./vid/vertical.mp4" : "./vid/main_video.mp4"}
+          alt="./img/main_alt.png"
+          autoPlay
+          playsInline
+          loop
+          muted
+        />
+      </div>
 
       <Box
         px={{ xs: 6, sm: 8, md: 18 }}
@@ -45,7 +47,7 @@ const HomePage = () => {
         </Grid>
       </Box>
 
-      <Box px={6} paddingTop={{ xs: 10 }}>
+      <Box px={6} pt={{ xs: 10 }} pb={4}>
         <Grid container justifyContent="space-around">
           <Grid item md={5} sm={12}>
             <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS!</MiddleSectionTitle>
@@ -106,8 +108,9 @@ const VideoBackground = styled.video`
   position: absolute;
   left: 0;
   top: 0;
-  min-width: 100%;
-  height: 100%;
+  right: 0;
+  width: 100%;
+  height: auto;
   z-index: 1;
   opacity: 0.4;
 
@@ -118,6 +121,7 @@ const VideoBackground = styled.video`
   @media (max-aspect-ratio: 16/9) {
     height: 100vh;
     padding: 0;
+    object-fit: fill;
   }
 `;
 
@@ -144,6 +148,10 @@ const Container = styled.div`
 const RightPanel = styled.img`
   max-width: 100vw;
   height: 80vh;
+
+  @media (max-aspect-ratio: 16/9) {
+    height: auto;
+  }
 `;
 
 const MiddleSectionTitle = styled.p`
@@ -152,6 +160,9 @@ const MiddleSectionTitle = styled.p`
 
   @media (max-width: 800px) {
     font-size: 22px;
+  }
+  @media (min-aspect-ratio: 16/9) {
+    padding-top: 6rem;
   }
 `;
 
