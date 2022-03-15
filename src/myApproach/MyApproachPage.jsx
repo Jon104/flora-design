@@ -38,7 +38,6 @@ const MiddleSection = styled.div`
   height: 800px;
   background-size: cover;
   color: white;
-  padding: 20px;
   background-position: center;
 `;
 
