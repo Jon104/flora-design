@@ -37,7 +37,7 @@ export const MainSubtitle = styled.p`
   margin: 0 auto;
   font-family: Barlow;
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 600;
   color: #9f2e0e;
 
   ${(props) =>

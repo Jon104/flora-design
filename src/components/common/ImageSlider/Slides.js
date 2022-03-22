@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export default styled.div`
   display: grid;
+
   > .slide {
     grid-area: 1 / -1;
   }
@@ -12,6 +13,11 @@ export default styled.div`
     min-width: 30vw;
     min-height: 40vw;
     color: #9f2e0e;
+
+    @media (max-aspect-ratio: 16/9) {
+      min-width: 30vw;
+      min-height: 60vw;
+    }
 
     border: none;
     color: white;

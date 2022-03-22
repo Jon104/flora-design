@@ -48,10 +48,16 @@ const SlideContent = styled.div`
 
   display: grid;
   align-content: center;
-  margin-left: -17rem;
+  margin-left: auto;
+  margin-right: auto;
   transform-style: preserve-3d;
   transform: perspective(1000px) translateX(calc(130% * var(--offset)))
     rotateY(calc(0deg * var(--dir)));
+
+  @media (max-aspect-ratio: 16/9) {
+    width: 50vw;
+    height: 50vw;
+  }
 `;
 
 const Slide = ({ slide, offset }) => {

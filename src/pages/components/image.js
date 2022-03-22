@@ -5,6 +5,6 @@ export const FullImage = styled.img`
   min-width: 100%;
   max-width: 100%;
   height: auto;
-  opacity: 0.4;
+  opacity: 0.3;
   z-index: 1;
 `;
