@@ -65,7 +65,7 @@ const PersonalPiece = () => {
         <FullImage
           src={
             isMobile
-              ? "./img/personalPiece_mobile.jpg"
+              ? "./img/personalPiece_mobile.png"
               : "./img/personalPiece.jpg"
           }
           alt="Landing page"
@@ -79,7 +79,7 @@ const PersonalPiece = () => {
         </MainSubtitle>
       </TopSection>
 
-      <Box pt={{ xs: 8 }}>
+      <Box pt={{ xs: 8 }} sx={{ width: "100%" }}>
         <ImageSlider
           slides={personalPieceSlides}
           slideIndex={slideIndex}
