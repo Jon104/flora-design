@@ -30,8 +30,8 @@ const Title = styled.p`
   @media (max-width: 1300px) {
     font-size: 35px;
   }
-  @media (max-width: 1000px) {
-    font-size: 30px;
+  @media (max-width: 600px) {
+    font-size: 20px;
   }
 `;
 
@@ -50,14 +50,14 @@ const Subtitle = styled.p`
   @media (max-width: 1300px) {
     font-size: 26px;
   }
-  @media (max-width: 1000px) {
-    font-size: 22px;
+  @media (max-width: 600px) {
+    font-size: 18px;
   }
 `;
 
 const PersonalPiece = () => {
   const [isOpen, toggleForm] = useState(false);
-  const [slideIndex, setSlideIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(-1);
 
   return (
     <>
@@ -79,20 +79,19 @@ const PersonalPiece = () => {
         </MainSubtitle>
       </TopSection>
 
-      <Box pt={{ xs: 8 }} sx={{ width: "100%" }}>
+      <Box pt={{ xs: 8 }} sx={{ overflowX: "hidden" }}>
         <ImageSlider
           slides={personalPieceSlides}
           slideIndex={slideIndex}
           setSlideIndex={setSlideIndex}
         />
         <Grid container justifyContent="center">
-          <Grid item xs={6}>
+          <Grid item xs={9} sm={6}>
             <Box py={4}>
               <Testimonials>
                 {
-                  personalPieceSlides[
-                    slideIndex + personalPieceSlides.length - 1
-                  ]?.testimonials
+                  personalPieceSlides[slideIndex + personalPieceSlides.length]
+                    ?.testimonials
                 }
               </Testimonials>
             </Box>
@@ -101,7 +100,7 @@ const PersonalPiece = () => {
       </Box>
 
       <SecondMiddleSection>
-        <Grid container p={6}>
+        <Grid container p={{ xs: 4, sm: 6 }}>
           <Grid item xs={12}>
             <Title primary>FLORA, CRÉE POUR MOI ... </Title>
           </Grid>

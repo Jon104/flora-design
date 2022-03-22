@@ -56,6 +56,6 @@ export const MainSubtitle = styled.p`
     top: 52%;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 14px;
+    font-size: 18px;
   }
 `;

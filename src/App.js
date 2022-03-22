@@ -18,6 +18,7 @@ import { Badge, Box, IconButton } from "@mui/material";
 import Cart from "components/cart/Cart";
 import styled from "styled-components";
 import { groupProductsByCategory } from "services/ProductServices";
+import { isMobile } from "react-device-detect";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -154,7 +155,7 @@ function App() {
               marginTop={1.5}
               sx={{
                 position: "fixed",
-                right: 100,
+                right: isMobile ? "5rem" : "6.5rem",
                 justifyContent: "end",
                 display: "flex",
                 zIndex: 10,

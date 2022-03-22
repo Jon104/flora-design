@@ -4,16 +4,6 @@ import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import FadeIn from "../components/effects/FadeIn";
 
-const Logo = styled.img`
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  top: 0;
-  left: 50%;
-  z-index: 100;
-  visibility: hidden;
-`;
-
 const TopImage = styled.img`
   position: absolute;
   left: 0;
@@ -26,10 +16,9 @@ const TopImage = styled.img`
 
 const Container = styled.div`
   position: relative;
-  margin: 5% 5%;
   z-index: 2;
   text-align: center;
-  text-shadow: 1px 1px 3px #9f2e0e;
+  padding-top: 10rem;
 `;
 
 const Title = styled.p`
@@ -37,7 +26,7 @@ const Title = styled.p`
   color: #9f2e0e;
 
   @media (max-width: 600px) {
-    font-size: 28px;
+    font-size: 22px;
   }
 `;
 
@@ -45,9 +34,10 @@ const Subtitle = styled.p`
   font-family: Barlow;
   font-size: 28px;
   color: #9f2e0e;
+  font-weight: 600;
 
   @media (max-width: 600px) {
-    font-size: 22px;
+    font-size: 18px;
   }
 `;
 
@@ -55,7 +45,7 @@ const MiddleSection = styled.div`
   position: relative;
   display: block;
   margin: 5% 5%;
-  padding-top: 10%;
+  padding-top: 10rem;
 
   @media (min-width: 1200px) {
     padding-top: 16%;
@@ -102,6 +92,10 @@ const BubbleTitle = styled.p`
   letter-spacing: 0.3px;
   color: #000000;
   text-transform: uppercase;
+
+  @media (max-width: 800px) {
+    font-size: 22px;
+  }
 `;
 
 const BubbleSubtitle = styled.p`
@@ -111,6 +105,7 @@ const BubbleSubtitle = styled.p`
   text-shadow: 1px 1px 5px #000000
   opacity: 0.8;
   font-size: 16px;
+  white-space: pre-line;
 
 `;
 
@@ -118,7 +113,7 @@ const bubblesContent = [
   {
     size: 6,
     week: "Semaine 1",
-    title: "L'appel découverte (sans engagement",
+    title: "L'appel découverte (sans engagement)",
     content:
       "On prend une quinzaine de minutes au téléphone où je réponds à tes questions et on voit ensemble si la démarche pourrait te convenir.",
   },
@@ -127,7 +122,7 @@ const bubblesContent = [
     week: "Semaine 2",
     title: "La rencontre",
     content:
-      "Lorsque tu es prête à plonger avec moi, on prend un rendez-vous d'une heure via zoom où le but est de se connecter à ton intérieur. - Première partie en exploration dirigée: parlons de toi. - Deuxième partie avec exercice de visualisation: un voyage au coeur de toi. - Troisième partie de présentation d'activités à faire à la maison: journal créatif, défi artistique que je vais cibler pour toi à partir de notre échange (tu n'as pas besoin d'ête douée en art).",
+      "Lorsque tu es prête à plonger avec moi, on prend un rendez-vous d'une heure via zoom où le but est de se connecter à ton intérieur. \n - Première partie en exploration dirigée: parlons de toi. \n - Deuxième partie avec exercice de visualisation: un voyage au coeur de toi. \n - Troisième partie de présentation d'activités à faire à la maison: journal créatif, défi artistique que je vais cibler pour toi à partir de notre échange (tu n'as pas besoin d'ête douée en art).",
   },
   {
     size: 6,
@@ -169,30 +164,31 @@ const bubblesContent = [
 const CreateTogether = () => {
   return (
     <>
-      <Logo src="./img/logo.png" alt="Logo" />
       <TopImage
         src={
           isMobile
-            ? "./img/createTogether_main_mobile.jpg"
+            ? "./img/createTogether_main_mobile.png"
             : "./img/createTogether_main.jpg"
         }
         alt="Create Together Header Picture"
       />
       <Container>
         <Title>CRÉONS ENSEMBLE, EN ART-CONNEXION</Title>
-        <Subtitle>
-          Parce qu'une oeuvre créée à partir de ton essence, est bien plus
-          porteuse de sens!
+        <Box pt={4}>
           <Subtitle>
-            Ici, le processus que je te propose, c’est l’expérience ultime Flora
-            Design! C’est un processus de co-création. C’est une expérience
-            d’Art-connexion. C'est une rencontre intime avec moi. C'est un
-            voyage à l'intérieur de toi.
+            Parce qu'une oeuvre créée à partir de ton essence, est bien plus
+            porteuse de sens!
+            <Subtitle>
+              Ici, le processus que je te propose, c’est l’expérience ultime
+              Flora Design! C’est un processus de co-création. C’est une
+              expérience d’Art-connexion. C'est une rencontre intime avec moi.
+              C'est un voyage à l'intérieur de toi.
+            </Subtitle>
           </Subtitle>
-        </Subtitle>
+        </Box>
       </Container>
 
-      <Box sx={{ padding: 2 }}>
+      <Box px={2}>
         <MiddleSection>
           <Title>Imagine...</Title>
           <Subtitle>
@@ -237,26 +233,28 @@ const CreateTogether = () => {
             </Grid>
           ))}
         </MiddleSection>
-        <Button
-          onClick={() =>
-            window.open(
-              "https://www.facebook.com/Flora-Design-2473490369540452/",
-              "_blank"
-            )
-          }
-          variant="contained"
-          size="large"
-          sx={{
-            backgroundColor: "#F2E8DA",
-            color: "#9F2E0E",
-            fontSize: 15,
-            height: "3rem",
-            width: "26rem",
-            boxShadow: "10px 10px 30px 0px #D0CFDC66",
-          }}
-        >
-          Écris-moi pour réserver ton appel découverte !
-        </Button>
+        <Box py={3}>
+          <Button
+            onClick={() =>
+              window.open(
+                "https://www.facebook.com/Flora-Design-2473490369540452/",
+                "_blank"
+              )
+            }
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: "#F2E8DA",
+              color: "#9F2E0E",
+              fontSize: 15,
+              height: "3rem",
+              paddingY: "2rem",
+              boxShadow: "10px 10px 30px 0px #D0CFDC66",
+            }}
+          >
+            Écris-moi pour réserver ton appel découverte !
+          </Button>
+        </Box>
       </Box>
       <Footer />
     </>

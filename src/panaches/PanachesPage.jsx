@@ -24,6 +24,13 @@ const Title = styled.p`
     css`
       color: #ffffff;
     `};
+
+  @media (max-width: 1300px) {
+    font-size: 35px;
+  }
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -37,11 +44,18 @@ const Subtitle = styled.p`
     css`
       color: #ffffff;
     `};
+
+  @media (max-width: 1300px) {
+    font-size: 26px;
+  }
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
 `;
 
 const Panaches = () => {
   const [isOpen, toggleForm] = useState(false);
-  const [slideIndex, setSlideIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(-1);
 
   return (
     <>
@@ -62,7 +76,7 @@ const Panaches = () => {
         </MainSubtitle>
       </TopSection>
 
-      <Box pt={{ xs: 8 }}>
+      <Box pt={{ xs: 8 }} sx={{ overflowX: "hidden" }}>
         <ImageSlider
           slides={panachesSlides}
           slideIndex={slideIndex}
@@ -83,7 +97,7 @@ const Panaches = () => {
       </Box>
 
       <SecondMiddleSection>
-        <Grid container p={6}>
+        <Grid container p={{ xs: 4, sm: 6 }}>
           <Grid item xs={12}>
             <Title primary>FLORA, CRÉE POUR MOI ... </Title>
           </Grid>
@@ -114,8 +128,6 @@ const Panaches = () => {
                 backgroundColor: "#F2E8DA",
                 color: "#9F2E0E",
                 fontSize: 15,
-                height: "3rem",
-                width: "26rem",
                 boxShadow: "10px 10px 30px 0px #D0CFDC66",
               }}
             >

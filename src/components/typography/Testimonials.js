@@ -9,4 +9,9 @@ export default styled.p`
   letter-spacing: 0.30000001192092896px;
   text-align: center;
   color: #9f2e0e;
+
+  @media (max-aspect-ratio: 16/9) {
+    font-size: 15px;
+    line-height: 20px;
+  }
 `;

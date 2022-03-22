@@ -24,6 +24,13 @@ const Title = styled.p`
     css`
       color: #ffffff;
     `};
+
+  @media (max-width: 1300px) {
+    font-size: 35px;
+  }
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -37,6 +44,13 @@ const Subtitle = styled.p`
     css`
       color: #ffffff;
     `};
+
+  @media (max-width: 1300px) {
+    font-size: 26px;
+  }
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
 `;
 
 const Classes = ({ onAddToCart, productsByCategory }) => {
@@ -116,8 +130,6 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
                 backgroundColor: "#F2E8DA",
                 color: "#9F2E0E",
                 fontSize: 15,
-                height: "3rem",
-                width: "26rem",
                 boxShadow: "10px 10px 30px 0px #D0CFDC66",
               }}
             >
