@@ -76,8 +76,12 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
     <>
       <TopSection>
         <FullImage
-          src="./img/panaches_main.jpg"
-          alt="Panaches Page Header Picture"
+          src={
+            isMobile
+              ? "./img/classes_main_mobile.jpg"
+              : "./img/classes_main.jpg"
+          }
+          alt="Classes Page Header Picture"
         />
         <MainTitle>Cours et Fournitures</MainTitle>
         <MainSubtitle>
