@@ -87,7 +87,7 @@ const Panaches = () => {
             <Box py={4}>
               <Testimonials>
                 {
-                  panachesSlides[slideIndex + panachesSlides.length - 1]
+                  panachesSlides[slideIndex + panachesSlides.length]
                     ?.testimonials
                 }
               </Testimonials>
