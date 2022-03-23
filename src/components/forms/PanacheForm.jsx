@@ -13,6 +13,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import CloseIcon from "@mui/icons-material/Close";
+import { isMobile } from "react-device-detect";
 // import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
@@ -408,7 +409,7 @@ const PanacheForm = ({ onClose }) => {
                   type="email"
                 />
               </Grid>
-              <Grid item xs="6" sx={{ paddingBottom: 4 }}>
+              <Grid item xs="12" sm="6" sx={{ paddingBottom: 4 }}>
                 <TextField
                   fullWidth
                   variant="filled"
@@ -418,109 +419,120 @@ const PanacheForm = ({ onClose }) => {
                 />
               </Grid>
 
-              <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                  <h3>Montre-moi une photo de ton panache</h3>
-                  <input hidden name="file" type="file" />
-                </Grid>
-              </Grid>
-
-              <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                  <h3>Quelles sont ses dimensions</h3>
-                  <input hidden name="size" type="text" />
-                  <TextField
-                    fullWidth
-                    variant="filled"
-                    label="Dimensions"
-                    name="size"
-                    type="text"
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                  <h3>Livraison</h3>
-                  <input hidden name="size" type="text" />
-                  <RadioGroup aria-label="livraison" name="radio-buttons-group">
-                    <FormControlLabel
-                      value="stoneham"
-                      control={<Radio />}
-                      label="Je préfère l'apporter en personne à Stoneham"
-                    />
-                    <FormControlLabel
-                      value="livraison"
-                      control={<Radio />}
-                      label="Je préfère le faire livrer? (Prévoir entre 30 et 80$ pour la livraison, dépendamment de la taille)"
-                    />
-                  </RadioGroup>
-                </Grid>
-              </Grid>
-
-              <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                  <h3>J'aimerais réserver un des panaches en stock </h3>
-                  <ImageList cols={4} rowHeight={400}>
-                    <input hidden name="panachesInstock" type="text" />
-                    {panachesInStock.map((item) => (
-                      <ImageListItem
-                        sx={{
-                          border: 4,
-                          borderColor: isPanacheSelected(item)
-                            ? "#9f2e0e"
-                            : "transparent",
-                        }}
-                        key={item.img}
-                        onClick={() => handleSelectPanache(item)}
-                      >
-                        <img
-                          src={`./img/forms/${item.src}`}
-                          alt={item.id}
-                          loading="lazy"
-                        />
-                      </ImageListItem>
-                    ))}
-                  </ImageList>
-                </Grid>
-              </Grid>
-
               <Grid item xs="12" sx={{ marginTop: 6, paddingBottom: 8 }}>
                 <Grid container spacing={2} alignItems="center">
-                  <Grid item xs="12">
-                    <h3>Quel type de projet t'intéresse: </h3>
-                    <ImageList cols={5} rowHeight={280}>
-                      <input
-                        hidden
-                        name="projectTypes"
-                        value={JSON.stringify(selectedProjectTypes)}
+                  <Grid item>
+                    <h3>Montre-moi une photo de ton panache</h3>
+                    <input hidden name="file" type="file" />
+                  </Grid>
+                </Grid>
+
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item>
+                    <h3>Quelles sont ses dimensions</h3>
+                    <input hidden name="size" type="text" />
+                    <TextField
+                      fullWidth
+                      variant="filled"
+                      label="Dimensions"
+                      name="size"
+                      type="text"
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item>
+                    <h3>Livraison</h3>
+                    <input hidden name="size" type="text" />
+                    <RadioGroup
+                      aria-label="livraison"
+                      name="radio-buttons-group"
+                    >
+                      <FormControlLabel
+                        value="stoneham"
+                        control={<Radio />}
+                        label="Je préfère l'apporter en personne à Stoneham"
                       />
-                      {projectTypes.map((item) => (
+                      <FormControlLabel
+                        value="livraison"
+                        control={<Radio />}
+                        label="Je préfère le faire livrer? (Prévoir entre 30 et 80$ pour la livraison, dépendamment de la taille)"
+                      />
+                    </RadioGroup>
+                  </Grid>
+                </Grid>
+
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item xs="12">
+                    <h3>J'aimerais réserver un des panaches en stock </h3>
+                    <ImageList
+                      cols={isMobile ? 1 : 3}
+                      rowHeight={isMobile ? 350 : 580}
+                    >
+                      <input hidden name="panachesInstock" type="text" />
+                      {panachesInStock.map((item) => (
                         <ImageListItem
                           sx={{
                             border: 4,
-                            borderColor: isProjectSelected(item)
+                            borderColor: isPanacheSelected(item)
                               ? "#9f2e0e"
                               : "transparent",
                           }}
                           key={item.img}
-                          onClick={() => handleSelectProject(item)}
+                          onClick={() => handleSelectPanache(item)}
                         >
                           <img
-                            src={`./img/personalPieceForm/${item.src}`}
+                            src={`./img/forms/${item.src}`}
                             alt={item.id}
                             loading="lazy"
                           />
                         </ImageListItem>
                       ))}
                     </ImageList>
-                    <TextField
-                      fullWidth
-                      variant="filled"
-                      label="Précise au besoin"
-                      name="projectTypes.description"
-                      type="text"
-                    />
+                  </Grid>
+                </Grid>
+
+                <Grid item xs="12" sx={{ marginTop: 6, paddingBottom: 8 }}>
+                  <Grid container spacing={2} alignItems="center">
+                    <Grid item xs="12">
+                      <h3>Quel type de projet t'intéresse: </h3>
+                      <ImageList
+                        cols={isMobile ? 1 : 3}
+                        rowHeight={isMobile ? 350 : 580}
+                      >
+                        <input
+                          hidden
+                          name="projectTypes"
+                          value={JSON.stringify(selectedProjectTypes)}
+                        />
+                        {projectTypes.map((item) => (
+                          <ImageListItem
+                            sx={{
+                              border: 4,
+                              borderColor: isProjectSelected(item)
+                                ? "#9f2e0e"
+                                : "transparent",
+                            }}
+                            key={item.img}
+                            onClick={() => handleSelectProject(item)}
+                          >
+                            <img
+                              src={`./img/personalPieceForm/${item.src}`}
+                              alt={item.id}
+                              loading="lazy"
+                            />
+                          </ImageListItem>
+                        ))}
+                      </ImageList>
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        label="Précise au besoin"
+                        name="projectTypes.description"
+                        type="text"
+                      />
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
@@ -563,7 +575,10 @@ const PanacheForm = ({ onClose }) => {
                 <h4>Quelles couleurs souhaites-tu ?</h4>
               </Grid>
               <Grid item xs="12">
-                <ImageList cols={4} rowHeight={400}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="colorTypes"
@@ -607,7 +622,10 @@ const PanacheForm = ({ onClose }) => {
               <Grid item xs="12">
                 <h3>Quelles formes de macramé préfères-tu ?</h3>
 
-                <ImageList cols={4} rowHeight={500}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="formatTypes"
@@ -651,7 +669,10 @@ const PanacheForm = ({ onClose }) => {
               <Grid item xs="12">
                 <h3>Préfères-tu un look:</h3>
 
-                <ImageList cols={4} rowHeight={400}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="lookTypes"
@@ -687,7 +708,10 @@ const PanacheForm = ({ onClose }) => {
             >
               <Grid item xs="12">
                 <h3>Quels motifs et effets te plaisent le plus:</h3>
-                <ImageList cols={4} rowHeight={400}>
+                <ImageList
+                  cols={isMobile ? 1 : 3}
+                  rowHeight={isMobile ? 350 : 580}
+                >
                   <input
                     hidden
                     name="motifTypes"
