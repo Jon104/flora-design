@@ -10,6 +10,7 @@ export const MainTitle = styled.p`
   letter-spacing: 0.30000001192092896px;
   font-size: 36px;
   color: #9f2e0e;
+  z-index: 2;
 
   ${(props) =>
     props.primary &&
@@ -39,6 +40,7 @@ export const MainSubtitle = styled.p`
   font-size: 32px;
   font-weight: 600;
   color: #9f2e0e;
+  z-index: 2;
 
   ${(props) =>
     props.primary &&
