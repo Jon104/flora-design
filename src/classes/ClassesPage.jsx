@@ -78,7 +78,7 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
         <FullImage
           src={
             isMobile
-              ? "./img/classes_main_mobile.jpg"
+              ? "./img/classes_main_mobile.png"
               : "./img/classes_main.jpg"
           }
           alt="Classes Page Header Picture"
