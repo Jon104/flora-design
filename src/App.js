@@ -76,7 +76,10 @@ function App() {
     commerce.cart
       .retrieve()
       .then(async (cart) => {
-        if (cart.subtotal.raw <= 75 && cart.discount.code === "MINUS10") {
+        if (
+          cart.subtotal.raw <= 75 &&
+          cart.discount.code === "CréditLivraison"
+        ) {
           await fetch(`https://api.chec.io/v1/carts/${cart.id}`, {
             method: "PUT",
             headers: {

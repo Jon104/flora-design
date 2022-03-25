@@ -10,14 +10,17 @@ const Checkout = (props) => {
     commerce.cart
       .retrieve()
       .then((cart) => {
-        if (cart.subtotal.raw >= 75 && cart.discount.code !== "MINUS10") {
+        if (
+          cart.subtotal.raw >= 75 &&
+          cart.discount.code !== "CréditLivraison"
+        ) {
           fetch(`https://api.chec.io/v1/carts/${cart.id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
               "X-Authorization": process.env.REACT_APP_CHEC_PUBLIC_KEY,
             },
-            body: JSON.stringify({ discount_code: "MINUS10" }),
+            body: JSON.stringify({ discount_code: "CréditLivraison" }),
           });
         }
       })
