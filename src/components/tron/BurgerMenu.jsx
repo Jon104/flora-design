@@ -86,7 +86,7 @@ const Label = styled.label`
   position: fixed;
   cursor: pointer;
   right: 30px;
-  top: 30px;
+  top: 50px;
   z-index: 99;
 `;
 

@@ -89,9 +89,17 @@ const PersonalPiece = () => {
           <Grid item xs={9} sm={6}>
             <Box py={4}>
               <Testimonials>
+                «
                 {
                   personalPieceSlides[slideIndex + personalPieceSlides.length]
                     ?.testimonials
+                }
+                »
+                <br />
+                -&nbsp;
+                {
+                  personalPieceSlides[slideIndex + personalPieceSlides.length]
+                    ?.name
                 }
               </Testimonials>
             </Box>

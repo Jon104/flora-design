@@ -86,10 +86,15 @@ const Panaches = () => {
           <Grid item xs={6}>
             <Box py={4}>
               <Testimonials>
+                «
                 {
                   panachesSlides[slideIndex + panachesSlides.length]
                     ?.testimonials
                 }
+                »
+                <br />
+                -&nbsp;
+                {panachesSlides[slideIndex + panachesSlides.length]?.name}
               </Testimonials>
             </Box>
           </Grid>

@@ -147,32 +147,61 @@ function App() {
     }
   `;
 
+  const Banner = styled.div`
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 2rem;
+    top: 0;
+    left: 0;
+    background-color: #9f2e0e;
+    opacity: 0.9;
+  `;
+
+  const BannerText = styled.p`
+    margin: 0;
+    margin-top: 5px;
+    font-family: Barlow;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+  `;
+
   return (
     <Router>
       <Mui theme={themeMui}>
         <ThemeProvider theme={theme}>
           <div>
-            <Logo src="./img/logo.png" alt="Logo" />
-            <Box
-              padding={1}
-              marginTop={1.5}
-              sx={{
-                position: "fixed",
-                right: isMobile ? "5rem" : "6.5rem",
-                justifyContent: "end",
-                display: "flex",
-                zIndex: 10,
-              }}
-            >
-              <IconButton
-                aria-label="shopping-cart"
-                onClick={() => toggleForm(true)}
-                size="large"
+            <Banner>
+              <BannerText>
+                Livraison gratuite au Québec pour tout achat au dessus de 75$
+              </BannerText>
+            </Banner>
+            <Box pt={3}>
+              <Logo src="./img/logo.png" alt="Logo" />
+              <Box
+                padding={1}
+                marginTop={1.5}
+                sx={{
+                  position: "fixed",
+                  right: isMobile ? "5rem" : "6.5rem",
+                  justifyContent: "end",
+                  display: "flex",
+                  zIndex: 10,
+                }}
               >
-                <Badge badgeContent={cart.total_items} color="primary">
-                  <ShoppingCartIcon color="primary" fontSize="inherit" />
-                </Badge>
-              </IconButton>
+                <IconButton
+                  aria-label="shopping-cart"
+                  onClick={() => toggleForm(true)}
+                  size="large"
+                >
+                  <Badge badgeContent={cart.total_items} color="primary">
+                    <ShoppingCartIcon color="primary" fontSize="inherit" />
+                  </Badge>
+                </IconButton>
+              </Box>
+              <BurgerMenu />
             </Box>
             <Cart
               cart={cart}
@@ -181,7 +210,6 @@ function App() {
               onUpdateCartQty={handleUpdateCartQty}
               onRemoveFromCart={handleRemoveFromCart}
             />
-            <BurgerMenu />
             <GlobalStyle />
             <Switch>
               <Route
