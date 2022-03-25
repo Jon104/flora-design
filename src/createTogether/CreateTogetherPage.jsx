@@ -188,7 +188,7 @@ const CreateTogether = () => {
         </Box>
       </Container>
 
-      <Box px={2}>
+      <Box px={2} py={{ xs: 0, lg: 20 }}>
         <MiddleSection>
           <Title>Imagine...</Title>
           <Subtitle>
