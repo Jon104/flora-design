@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { formatVariantOptions } from "../helpers/productHelpers";
 import Select from "../../components/common/Select";
 import { useState } from "react";
+import Slider from "infinite-react-carousel";
 
 const Product = (props) => {
   const [variantOption, setVariantOption] = useState(
@@ -17,19 +18,32 @@ const Product = (props) => {
     props.onAddToCart(props.product.id, 1, variant);
   };
 
+  console.log(props.product);
+
+  const settings = {
+    // adaptiveHeight: true,
+    // autoplay: true,
+    duration: 300,
+    shift: 100,
+    autoplaySpeed: 7000,
+  };
+
   return (
     <>
-      <Box py={2}>
-        <Grid container alignItems="center">
-          <Grid item>
-            <img
-              src={props.product.image.url}
-              alt="yop"
-              height="auto"
-              width="100%"
-            />
-          </Grid>
-        </Grid>
+      <Box pb={5}>
+        <Slider {...settings}>
+          {props.product.assets.map((image, i) => (
+            <div>
+              <img
+                key={i}
+                src={image.url}
+                alt="Product Assets"
+                height="auto"
+                width="100%"
+              />
+            </div>
+          ))}
+        </Slider>
       </Box>
 
       <Grid container>
