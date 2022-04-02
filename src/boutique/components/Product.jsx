@@ -5,6 +5,7 @@ import { formatVariantOptions } from "../helpers/productHelpers";
 import Select from "../../components/common/Select";
 import { useState } from "react";
 import Slider from "infinite-react-carousel";
+import styled from "styled-components";
 
 const Product = (props) => {
   const [variantOption, setVariantOption] = useState(
@@ -18,8 +19,6 @@ const Product = (props) => {
     props.onAddToCart(props.product.id, 1, variant);
   };
 
-  console.log(props.product);
-
   const settings = {
     // adaptiveHeight: true,
     // autoplay: true,
@@ -28,12 +27,19 @@ const Product = (props) => {
     autoplaySpeed: 7000,
   };
 
+  const ProductDescription = styled.div`
+    font-size: 12px;
+    padding: 15%;
+    color: white;
+  `;
+  console.log(ProductDescription);
+
   return (
     <>
-      <Box pb={5}>
+      <Box pb={1.5}>
         <Slider {...settings}>
           {props.product.assets.map((image, i) => (
-            <div>
+            <div class="container">
               <img
                 key={i}
                 src={image.url}
@@ -41,11 +47,18 @@ const Product = (props) => {
                 height="auto"
                 width="100%"
               />
+              <div class="overlay">
+                <ProductDescription
+                  class="text"
+                  dangerouslySetInnerHTML={{
+                    __html: props.product.description,
+                  }}
+                />
+              </div>
             </div>
           ))}
         </Slider>
       </Box>
-
       <Grid container>
         <Grid item xs={12}>
           {props.product.variant_groups.map((variant) => (
@@ -57,20 +70,23 @@ const Product = (props) => {
           ))}
         </Grid>
       </Grid>
-
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item xs={9}>
           <Box pl={1.5}>
             <p>{props.product.name}</p>
           </Box>
         </Grid>
-        <Grid item xs={1}>
-          <p>{props.product.price.raw}</p>
-        </Grid>
-        <Grid item xs={1}>
-          <IconButton onClick={onAddProduct}>
-            <AddIcon />
-          </IconButton>
+        <Grid item xs={3}>
+          <Grid container alignItems="center" justifyContent="end">
+            <Grid item>
+              <p>{props.product.price.raw}</p>
+            </Grid>
+            <Grid item>
+              <IconButton onClick={onAddProduct}>
+                <AddIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </>
