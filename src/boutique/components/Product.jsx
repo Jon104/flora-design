@@ -7,6 +7,12 @@ import { useState } from "react";
 import Slider from "infinite-react-carousel";
 import styled from "styled-components";
 
+const ProductDescription = styled.div`
+  font-size: 12px;
+  padding: 15%;
+  color: white;
+`;
+
 const Product = (props) => {
   const [variantOption, setVariantOption] = useState(
     props.product.variant_groups[0]?.options[0].id
@@ -27,19 +33,12 @@ const Product = (props) => {
     autoplaySpeed: 7000,
   };
 
-  const ProductDescription = styled.div`
-    font-size: 12px;
-    padding: 15%;
-    color: white;
-  `;
-  console.log(ProductDescription);
-
   return (
     <>
       <Box pb={1.5}>
         <Slider {...settings}>
           {props.product.assets.map((image, i) => (
-            <div class="container">
+            <div key={i} className="container">
               <img
                 key={i}
                 src={image.url}
@@ -47,9 +46,8 @@ const Product = (props) => {
                 height="auto"
                 width="100%"
               />
-              <div class="overlay">
+              <div className="overlay">
                 <ProductDescription
-                  class="text"
                   dangerouslySetInnerHTML={{
                     __html: props.product.description,
                   }}
@@ -61,8 +59,9 @@ const Product = (props) => {
       </Box>
       <Grid container>
         <Grid item xs={12}>
-          {props.product.variant_groups.map((variant) => (
+          {props.product.variant_groups.map((variant, i) => (
             <Select
+              key={i}
               onChange={(event) => setVariantOption(event.target.value)}
               value={variantOption}
               options={formatVariantOptions(variant.options)}

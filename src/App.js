@@ -56,6 +56,37 @@ const themeMui = createTheme({
   },
 });
 
+const Logo = styled.img`
+  position: absolute;
+  z-index: 2;
+  width: 150px;
+
+  @media (max-width: 600px) {
+    width: 100px;
+  }
+`;
+
+const Banner = styled.div`
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 2rem;
+  top: 0;
+  left: 0;
+  background-color: #9f2e0e;
+  opacity: 0.9;
+`;
+
+const BannerText = styled.p`
+  margin: 0;
+  margin-top: 5px;
+  font-family: Barlow;
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+`;
+
 function App() {
   const [isOpen, toggleForm] = useState(false);
   const [cart, setCart] = useState({});
@@ -136,37 +167,6 @@ function App() {
         );
       });
   };
-
-  const Logo = styled.img`
-    position: absolute;
-    z-index: 2;
-    width: 150px;
-
-    @media (max-width: 600px) {
-      width: 100px;
-    }
-  `;
-
-  const Banner = styled.div`
-    position: absolute;
-    z-index: 2;
-    width: 100%;
-    height: 2rem;
-    top: 0;
-    left: 0;
-    background-color: #9f2e0e;
-    opacity: 0.9;
-  `;
-
-  const BannerText = styled.p`
-    margin: 0;
-    margin-top: 5px;
-    font-family: Barlow;
-    font-size: 16px;
-    font-weight: 300;
-    color: white;
-    text-align: center;
-  `;
 
   return (
     <Router>
