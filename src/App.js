@@ -178,7 +178,7 @@ function App() {
                 Livraison gratuite au Québec pour tout achat au dessus de 75$
               </BannerText>
             </Banner>
-            <Box pt={3}>
+            <Box pt={7} pl={2}>
               <Logo src="./img/logo.png" alt="Logo" />
               <Box
                 padding={1}
