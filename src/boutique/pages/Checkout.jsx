@@ -1,11 +1,13 @@
 import React from "react";
-import { Box, CircularProgress } from "@mui/material";
+import { Backdrop, Box, CircularProgress, Grid } from "@mui/material";
 import { isMobile } from "react-device-detect";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { commerce } from "lib/commerce";
+import { useState } from "react";
 
 const Checkout = (props) => {
+  const [isLoadingCheckout, setIsLoadingCheckout] = useState(true);
   const fetchCart = useCallback(() => {
     commerce.cart
       .retrieve()
@@ -36,10 +38,22 @@ const Checkout = (props) => {
   return (
     <>
       <Box pt={{ xs: isMobile ? 14 : 0 }}>
-        <div style={{ position: "relative", paddingTop: "100vh" }}>
-          <CircularProgress />
+        <div style={{ position: "relative", height: "100vh" }}>
+          {isLoadingCheckout && (
+            <Backdrop
+              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={true}
+            >
+              <Grid container justifyContent="center">
+                <Box pt={8}>
+                  <CircularProgress />
+                </Box>
+              </Grid>
+            </Backdrop>
+          )}
           <iframe
-            id="myFrame"
+            onLoad={() => setIsLoadingCheckout(false)}
+            id="checkout_iframe"
             src={props.url}
             title="Chec.io hosted checkout"
             frameBorder="0"
