@@ -18,7 +18,7 @@ const Container = styled.div`
   position: relative;
   z-index: 2;
   text-align: center;
-  padding-top: 10rem;
+  padding-top: 2rem;
 `;
 
 const Title = styled.p`

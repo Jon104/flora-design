@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import InstagramButton from "../buttons/InstagramButton";
 import FacebookButton from "../buttons/FacebookButton";
 import { Box, Grid } from "@mui/material";
-import { isMobile } from "react-device-detect";
+import { isMobile, isTablet } from "react-device-detect";
 
 const BurgerMenu = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -18,9 +18,14 @@ const BurgerMenu = () => {
       </Label>
 
       <Drawer isChecked={isChecked}>
-        {!isMobile && (
+        {!isMobile && !isTablet && (
           <LeftPanel>
-            <SideImage src="./img/burger_panel.jpg" alt="burger_panel_image" />
+            <Box sx={{ width: "100%" }}>
+              <SideImage
+                src="./img/burger_panel.jpg"
+                alt="burger_panel_image"
+              />
+            </Box>
           </LeftPanel>
         )}
         <RightPanel isChecked={isChecked}>
@@ -86,8 +91,14 @@ const Label = styled.label`
   position: fixed;
   cursor: pointer;
   right: 30px;
-  top: 50px;
   z-index: 99;
+  top: 27px;
+
+  ${() =>
+    isMobile &&
+    css`
+      top: 29px;
+    `};
 `;
 
 const Input = styled.input`
@@ -199,6 +210,10 @@ const LeftPanel = styled.div`
   background-color: ${({ theme }) => theme.primary};
   box-shadow: 0px 0px 20 px red;
   z-index: 101;
+
+  @media (max-width: 1200px) {
+    visibility: hidden;
+  }
 `;
 
 const menuItems = [

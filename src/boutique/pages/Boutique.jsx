@@ -26,19 +26,19 @@ const Boutique = ({ onAddToCart, productsByCategory }) => {
 
   return (
     <>
-      <Box padding={isMobile ? 1 : 8} paddingTop={26}>
+      <Box paddingTop={14}>
         <Grid container alignItems="end">
           {renderLoading()}
           {productsByCategory.map((category, i) => (
             <Fragment key={i}>
               <Grid item xs={12}>
-                <Box>
+                <Box padding={isMobile ? 3 : 8}>
                   <Subtitle>{category.name}</Subtitle>
                 </Box>
               </Grid>
 
               {category.data.map((product, i) => (
-                <Grid key={i} item sm={12} md={6} lg={4} xl={3} padding={4}>
+                <Grid key={i} item xs={12} md={6} lg={4} xl={3} padding={4}>
                   <Product onAddToCart={onAddToCart} product={product} />
                 </Grid>
               ))}

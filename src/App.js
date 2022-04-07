@@ -14,11 +14,10 @@ import { createTheme, ThemeProvider as Mui } from "@mui/material/styles";
 import { useEffect, useState, useCallback } from "react";
 import { commerce } from "./lib/commerce";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, Box, IconButton } from "@mui/material";
+import { Badge, Box, Grid, IconButton } from "@mui/material";
 import Cart from "components/cart/Cart";
 import styled from "styled-components";
 import { groupProductsByCategory } from "services/ProductServices";
-import { isMobile } from "react-device-detect";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -57,34 +56,24 @@ const themeMui = createTheme({
 });
 
 const Logo = styled.img`
-  position: absolute;
-  z-index: 2;
   width: 150px;
+  top: 30px;
 
   @media (max-width: 600px) {
     width: 100px;
   }
 `;
 
-const Banner = styled.div`
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 2rem;
-  top: 0;
-  left: 0;
-  background-color: #9f2e0e;
-  opacity: 0.9;
-`;
-
 const BannerText = styled.p`
-  margin: 0;
-  margin-top: 5px;
   font-family: Barlow;
   font-size: 16px;
   font-weight: 300;
   color: white;
   text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 function App() {
@@ -173,19 +162,34 @@ function App() {
       <Mui theme={themeMui}>
         <ThemeProvider theme={theme}>
           <div>
-            <Banner>
-              <BannerText>
-                Livraison gratuite au Québec pour tout achat au dessus de 75$
-              </BannerText>
-            </Banner>
-            <Box pt={7} pl={2}>
+            <Grid
+              container
+              alignItems="center"
+              alignContent="center"
+              sx={{ position: "fixed", bottom: 0, zIndex: 10 }}
+            >
+              <Grid
+                item
+                xs={12}
+                sx={{ backgroundColor: "#9f2e0e", zIndex: 10 }}
+              >
+                <BannerText>
+                  Livraison gratuite au Québec pour tout achat au dessus de 75$
+                </BannerText>
+              </Grid>
+            </Grid>
+
+            <Box
+              sx={{
+                position: "absolute",
+              }}
+            >
               <Logo src="./img/logo.png" alt="Logo" />
               <Box
-                padding={1}
-                marginTop={1.5}
                 sx={{
                   position: "fixed",
-                  right: isMobile ? "5rem" : "6.5rem",
+                  top: "20px",
+                  right: "5rem",
                   justifyContent: "end",
                   display: "flex",
                   zIndex: 10,
@@ -195,6 +199,7 @@ function App() {
                   aria-label="shopping-cart"
                   onClick={() => toggleForm(true)}
                   size="large"
+                  sx={{ transform: "scale(1.4)", marginRight: "20px" }}
                 >
                   <Badge badgeContent={cart.total_items} color="primary">
                     <ShoppingCartIcon color="primary" fontSize="inherit" />

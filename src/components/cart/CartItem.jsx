@@ -1,6 +1,13 @@
 import { Box, Button, Grid, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import styled from "styled-components";
+
+const NewLabel = styled.label`
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+`;
 
 const CartItem = (props) => {
   const { item } = props;
@@ -12,17 +19,17 @@ const CartItem = (props) => {
     props.onRemoveFromCart(lineItemId);
 
   return (
-    <Box sx={{ width: 500 }} p={2}>
-      <Grid container alignItems="center" justifyContent="space-around">
-        <Grid item xs={3}>
+    <Box>
+      <Grid container alignItems="center">
+        <Grid item xs={4}>
           <img alt="A product of the cart" width="100px" src={item.image.url} />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Grid container>
             <Grid item xs={12}>
-              <label>
+              <NewLabel>
                 {item.quantity} x {item.name}
-              </label>
+              </NewLabel>
             </Grid>
             <Grid item xs={12}>
               <Box pt={0.5}>

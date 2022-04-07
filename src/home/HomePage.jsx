@@ -36,18 +36,18 @@ const HomePage = () => {
       </div>
 
       <Box
-        px={{ xs: 6, sm: 8, md: 18 }}
-        py={{ xs: 2, md: 10 }}
+        px={{ xs: 6, sm: 8, md: 16 }}
+        py={{ xs: 36, sm: 45 }}
         sx={{ position: "relative", zIndex: 1 }}
       >
-        <Grid container sx={{ height: "95vh" }} alignContent="center">
+        <Grid container alignContent="center">
           <Grid item xs={12}>
             <Title>ART TEXTILE INSPIRÉ DE LA NATURE</Title>
           </Grid>
         </Grid>
       </Box>
 
-      <Box px={6} pt={{ xs: 10 }} pb={4}>
+      <Box px={6} pt={{ xs: 4, sm: 30 }} pb={4}>
         <Grid container justifyContent="space-around">
           <Grid item md={5} sm={12}>
             <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS!</MiddleSectionTitle>
