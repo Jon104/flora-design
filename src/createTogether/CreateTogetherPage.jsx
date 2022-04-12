@@ -18,7 +18,7 @@ const Container = styled.div`
   position: relative;
   z-index: 2;
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 12rem;
 `;
 
 const Title = styled.p`
@@ -41,10 +41,37 @@ const Subtitle = styled.p`
   }
 `;
 
+const Subtitle2 = styled.p`
+  font-family: Barlow;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 38px;
+  letter-spacing: 0.30000001192092896px;
+  font-weight: bold;
+
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
+`;
+
+const Subtitle3 = styled.p`
+  font-family: Barlow;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 38px;
+  letter-spacing: 0.30000001192092896px;
+  font-weight: bold;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 18px;
+  }
+`;
+
 const MiddleSection = styled.div`
   position: relative;
   display: block;
-  margin: 5% 5%;
+  margin: 3% 5%;
   padding-top: 10rem;
 
   @media (min-width: 1200px) {
@@ -60,6 +87,11 @@ const MiddleSectionImage = styled.img`
   z-index: 1;
   left: -50%;
   max-width: 160%;
+
+  @media (max-width: 1500px) {
+    left: -70%;
+    max-width: 140%;
+  }
 
   @media (max-width: 1200px) {
     left: -60%;
@@ -161,6 +193,14 @@ const bubblesContent = [
   },
 ];
 
+const Container2 = styled.div`
+  max-width: 80vw;
+`;
+
+const RightImage = styled.img`
+  max-width: -webkit-fill-available;
+`;
+
 const CreateTogether = () => {
   return (
     <>
@@ -188,7 +228,7 @@ const CreateTogether = () => {
         </Box>
       </Container>
 
-      <Box px={2} py={{ xs: 0, lg: 20 }}>
+      <Box px={2} pt={{ xs: 0, lg: 20 }}>
         <MiddleSection>
           <Title>Imagine...</Title>
           <Subtitle>
@@ -233,27 +273,86 @@ const CreateTogether = () => {
             </Grid>
           ))}
         </MiddleSection>
-        <Box py={3}>
-          <Button
-            onClick={() =>
-              window.open(
-                "https://www.facebook.com/Flora-Design-2473490369540452/",
-                "_blank"
-              )
-            }
-            variant="contained"
-            size="large"
-            sx={{
-              backgroundColor: "#F2E8DA",
-              color: "#9F2E0E",
-              fontSize: 15,
-              height: "3rem",
-              paddingY: "2rem",
-              boxShadow: "10px 10px 30px 0px #D0CFDC66",
-            }}
-          >
-            Écris-moi pour réserver ton appel découverte !
-          </Button>
+        <Box py={6} px={isMobile ? 2 : 12}>
+          <Box pb={6}>
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Title>À QUOI SA RESSEMBLE?</Title>
+              </Grid>
+            </Grid>
+          </Box>
+          <Grid container justifyContent="space-between" alignItems="center">
+            <Grid item sm={12} md={6}>
+              <Grid container justifyContent="start">
+                <Grid item xs={12}>
+                  <Subtitle2>Déposer les arbres</Subtitle2>
+                  <Subtitle2>
+                    C'est le nom que j'ai donné à cette oeuvre.
+                  </Subtitle2>
+                  <Subtitle2>
+                    En lien avec le désir de ma cliente de déposer les armes
+                    pour s'abandonner à ses rêves.
+                  </Subtitle2>
+                  <Subtitle2>
+                    En lien aussi avec son désir de déposer ses rêves dans la
+                    réalité.
+                  </Subtitle2>
+                  <Subtitle2>
+                    Chaque branche de cette oeuvre représente donc un rêve que
+                    Caroline maintient en vie!
+                  </Subtitle2>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item sm={12} md={5}>
+              <Container2>
+                <RightImage
+                  src="./img/createTogether_deposer.png"
+                  alt="Produit de créons ensemble"
+                />
+              </Container2>
+            </Grid>
+          </Grid>
+          <Box py={6}>
+            <Grid container justifyContent="center">
+              <Grid item xs={10}>
+                <Subtitle3>Témoignages cliente :</Subtitle3>
+                <Subtitle3>
+                  "On sent que t'écoutes pas pour répondre mais vraiment pour
+                  comprendre"
+                </Subtitle3>
+                <Subtitle3>
+                  « Ce n’est pas tout le monde qui pourrait s’improviser à faire
+                  ça. Toi, on sent que c’est naturel pour toi d’accompagner dans
+                  l’introspection »
+                </Subtitle3>
+              </Grid>
+              <Box py={4}>
+                <Grid item>
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        "https://www.facebook.com/Flora-Design-2473490369540452/",
+                        "_blank"
+                      )
+                    }
+                    variant="contained"
+                    size="large"
+                    sx={{
+                      backgroundColor: "#F2E8DA",
+                      color: "#9F2E0E",
+                      fontSize: 15,
+                      height: "3rem",
+                      paddingY: "2rem",
+                      boxShadow: "10px 10px 30px 0px #D0CFDC66",
+                    }}
+                  >
+                    Écris-moi pour réserver ton appel découverte !
+                  </Button>
+                </Grid>
+              </Box>
+            </Grid>
+          </Box>
         </Box>
       </Box>
       <Footer />
