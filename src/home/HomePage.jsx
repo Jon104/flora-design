@@ -1,10 +1,14 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import styled from "styled-components";
 import Bubble from "../components/Bubble";
 import { isMobile } from "react-device-detect";
 import Footer from "components/Footer";
+import { useHistory } from "react-router-dom";
 
 const HomePage = () => {
+  const history = useHistory();
+  const handleClickToBoutique = () => history.push("/boutique");
+
   const BubblesContent = [
     {
       title: "RESPECT DE LA NATURE",
@@ -97,6 +101,46 @@ const HomePage = () => {
           ))}
         </Grid>
       </Box>
+
+      <Box p={12}>
+        <Grid container>
+          <Grid item>
+            <Box>
+              <MiddleSectionTitle>MES CRÉATIONS DU MOMENT</MiddleSectionTitle>
+            </Box>
+            <Box py={1}>
+              <MiddleSectionParagraph>
+                Il m'arrive de créer uniquement selon mon inspiration. D'avoir
+                la pulsion de concrétiser une idée qui grossit en moi (il y en a
+                tout le temps!).
+              </MiddleSectionParagraph>
+            </Box>
+            <MiddleSectionParagraph>
+              Et j'ai également quelques modèles de macramés muraux et
+              jardinières coup de coeur que je garde maintenant disponibles en
+              permanence sur ma boutique.
+            </MiddleSectionParagraph>
+            <Box py={4}>
+              <Button
+                onClick={() => handleClickToBoutique()}
+                variant="contained"
+                size="large"
+                sx={{
+                  backgroundColor: "#F2E8DA",
+                  color: "#9F2E0E",
+                  fontSize: 15,
+                  width: "20rem",
+                  height: "3.5rem",
+                  boxShadow: "10px 10px 30px 0px #D0CFDC66",
+                }}
+              >
+                Voir la boutique
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
       <Footer />
     </>
   );
