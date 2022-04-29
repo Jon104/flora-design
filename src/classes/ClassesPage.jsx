@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Box, Button, CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress, Grid } from "@mui/material";
 import { TopSection, SecondMiddleSection } from "../pages/components/element";
 import { FullImage } from "../pages/components/image";
 import { MainTitle, MainSubtitle } from "../pages/components/typography";
