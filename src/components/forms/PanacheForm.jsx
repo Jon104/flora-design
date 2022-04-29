@@ -16,17 +16,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { isMobile } from "react-device-detect";
 // import { useDropzone } from "react-dropzone";
 
-const projectTypes = [
-  {
-    id: 1,
-    src: "1.png",
-  },
-  {
-    id: 2,
-    src: "2.png",
-  },
-];
-
 const colorTypes = [
   {
     id: 3,
@@ -204,7 +193,6 @@ const panachesInStock = [
 ];
 
 const PanacheForm = ({ onClose }) => {
-  const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
   const [selectedPanache, setSelectedPanache] = useState([]);
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
@@ -225,22 +213,6 @@ const PanacheForm = ({ onClose }) => {
   //     onDrop,
   //   });
 
-  const isProjectSelected = (image) =>
-    selectedProjectTypes.find((element) => element.id === image.id);
-
-  const handleSelectProject = (image) => {
-    const alreadySelected = isProjectSelected(image);
-    if (alreadySelected) {
-      const index = selectedProjectTypes.findIndex(
-        (element) => element.id === image.id
-      );
-      setSelectedProjectTypes(selectedProjectTypes.splice(index, 0));
-      return;
-    }
-    const result = [...selectedProjectTypes, image];
-    setSelectedProjectTypes(result);
-  };
-
   const isPanacheSelected = (image) =>
     selectedPanache.find((element) => element.id === image.id);
 
@@ -253,8 +225,8 @@ const PanacheForm = ({ onClose }) => {
       setSelectedPanache(selectedPanache.splice(index, 0));
       return;
     }
-    const result = [...selectedProjectTypes, image];
-    setSelectedProjectTypes(result);
+    const result = [...selectedPanache, image];
+    setSelectedPanache(result);
   };
 
   const isColorSelected = (image) =>
