@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider as Mui } from "@mui/material/styles";
 import { useEffect, useState, useCallback } from "react";
 import { commerce } from "./lib/commerce";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, Box, Grid, IconButton } from "@mui/material";
+import { Badge, Box, IconButton } from "@mui/material";
 import Cart from "components/cart/Cart";
 import styled from "styled-components";
 import { groupProductsByCategory } from "services/ProductServices";
@@ -61,18 +61,6 @@ const Logo = styled.img`
 
   @media (max-width: 600px) {
     width: 100px;
-  }
-`;
-
-const BannerText = styled.p`
-  font-family: Barlow;
-  font-size: 16px;
-  font-weight: 300;
-  color: white;
-  text-align: center;
-
-  @media (max-width: 600px) {
-    font-size: 14px;
   }
 `;
 
@@ -162,23 +150,6 @@ function App() {
       <Mui theme={themeMui}>
         <ThemeProvider theme={theme}>
           <div>
-            <Grid
-              container
-              alignItems="center"
-              alignContent="center"
-              sx={{ position: "fixed", bottom: 0, zIndex: 10 }}
-            >
-              <Grid
-                item
-                xs={12}
-                sx={{ backgroundColor: "#9f2e0e", zIndex: 10 }}
-              >
-                <BannerText>
-                  Livraison gratuite au Québec pour tout achat au dessus de 75$
-                </BannerText>
-              </Grid>
-            </Grid>
-
             <Box
               sx={{
                 position: "absolute",

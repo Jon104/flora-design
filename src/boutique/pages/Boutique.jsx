@@ -1,8 +1,21 @@
+import styled from "styled-components";
 import { Backdrop, Box, CircularProgress, Grid } from "@mui/material";
 import { Fragment } from "react";
 import { isMobile } from "react-device-detect";
 import { Subtitle } from "services/TypoService";
 import Product from "../components/Product";
+
+const BannerText = styled.p`
+  font-family: Barlow;
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
+`;
 
 const Boutique = ({ onAddToCart, productsByCategory }) => {
   const cartIsLoaded = () => productsByCategory.length > 0;
@@ -26,6 +39,18 @@ const Boutique = ({ onAddToCart, productsByCategory }) => {
 
   return (
     <>
+      <Grid
+        container
+        alignItems="center"
+        alignContent="center"
+        sx={{ position: "fixed", bottom: 0, zIndex: 6 }}
+      >
+        <Grid item xs={12} sx={{ backgroundColor: "#9f2e0e", zIndex: 6 }}>
+          <BannerText>
+            Livraison gratuite au Québec pour toute commande de plus de 75$
+          </BannerText>
+        </Grid>
+      </Grid>
       <Box paddingTop={14}>
         <Grid container alignItems="end">
           {renderLoading()}
