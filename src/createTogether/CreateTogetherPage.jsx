@@ -277,7 +277,7 @@ const CreateTogether = () => {
           <Box pb={6}>
             <Grid container justifyContent="center">
               <Grid item>
-                <Title>À QUOI SA RESSEMBLE?</Title>
+                <Title>À QUOI ÇA RESSEMBLE ?</Title>
               </Grid>
             </Grid>
           </Box>
