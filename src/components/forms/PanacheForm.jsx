@@ -665,6 +665,13 @@ const PanacheForm = ({ onClose }) => {
                     </ImageListItem>
                   ))}
                 </ImageList>
+                <TextField
+                  fullWidth
+                  variant="filled"
+                  label="Motifs - Précise au besoin"
+                  name="motifTypes.description"
+                  type="text"
+                />
               </Grid>
             </Grid>
 

@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { isMobile } from "react-device-detect";
 import CloseIcon from "@mui/icons-material/Close";
+import BudgetSlider from "./components/BudgetSlider";
 // import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
@@ -424,9 +425,9 @@ const PersonalPieceForm = ({ onClose }) => {
               <input name="width" hidden value={width} />
               <Slider
                 onChange={(e, val) => setWidth(val)}
-                marks={widthMarks}
                 valueLabelDisplay="auto"
                 aria-label="width"
+                marks={widthMarks}
                 getAriaValueText={valuetext}
                 valueLabelFormat={valuetext}
                 value={width}
@@ -626,8 +627,23 @@ const PersonalPieceForm = ({ onClose }) => {
                     </div>
                   ))}
                 </ImageList>
+                <TextField
+                  fullWidth
+                  variant="filled"
+                  label="Motifs - Précise au besoin"
+                  name="motifTypes.description"
+                  type="text"
+                />
               </Grid>
             </Grid>
+
+            <Box py={6}>
+              <Grid item xs="12">
+                <h3>Et le budget dans tous ça?</h3>
+                <h4>Quel est ton budget?</h4>
+                <BudgetSlider />
+              </Grid>
+            </Box>
 
             <Grid container spacing={2} alignItems="center">
               <Grid item>
