@@ -109,10 +109,10 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
         />
         <MainTitle>Cours et Fournitures</MainTitle>
         <MainSubtitle>
-          "Le macramé, c'est comme méditer mais en créant "<br></br>- une
-          cliente satisfaite J’adore partager ma passion, et te permettre de
-          ressentir, toi aussi, les bienfaits de s’ancrer dans le moment présent
-          pour créer.
+          "Le macramé, c'est comme méditer mais en créant " - une cliente
+          satisfaite <br></br> <br></br> J’adore partager ma passion, et te
+          permettre de ressentir, toi aussi, les bienfaits de s’ancrer dans le
+          moment présent pour créer.
         </MainSubtitle>
       </TopSection>
 
