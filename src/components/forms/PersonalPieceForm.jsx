@@ -17,10 +17,14 @@ const projectTypes = [
   {
     id: 1,
     src: "1.png",
+    description:
+      "Une grande pièce murale (par exemple pour suspendre au-dessus d'un lit)",
   },
   {
     id: 2,
     src: "2.png",
+    description:
+      "Un luminaire / une étagère / une arche de mariage ou autre projet unique!",
   },
 ];
 
@@ -28,42 +32,52 @@ const colorTypes = [
   {
     id: 3,
     src: "3.png",
+    description: "Blanc naturel",
   },
   {
     id: 4,
     src: "4.png",
+    description: "Blanc pur",
   },
   {
     id: 5,
     src: "5.png",
+    description: "Teintes de gris",
   },
   {
     id: 6,
     src: "6.png",
+    description: "Teintes de vert / forêt / sauge",
   },
   {
     id: 7,
     src: "7.png",
+    description: "Noir",
   },
   {
     id: 8,
     src: "8.png",
+    description: "Teintes de jaune / moutarde / ocre",
   },
   {
     id: 9,
     src: "9.png",
+    description: "Teintes de brun",
   },
   {
     id: 10,
     src: "10.png",
+    description: "Teintes de rose",
   },
   {
     id: 11,
     src: "11.png",
+    description: "Teintes de bleu / turquoise",
   },
   {
     id: 12,
     src: "12.png",
+    description: "Teintes de taupe",
   },
 ];
 
@@ -71,18 +85,22 @@ const formatTypes = [
   {
     id: 13,
     src: "13.png",
+    description: "Les coupes pointues",
   },
   {
     id: 14,
     src: "14.png",
+    description: "Les coupes plus arrondies",
   },
   {
     id: 15,
     src: "15.png",
+    description: "Les coupes boho",
   },
   {
     id: 16,
     src: "16.png",
+    description: "Les macramés en 3 sections",
   },
 ];
 
@@ -90,10 +108,12 @@ const lookTypes = [
   {
     id: 17,
     src: "17.png",
+    description: "Plus dense. Où il n'y a pas ou peu d'espaces libres",
   },
   {
     id: 18,
     src: "18.png",
+    description: "Plus épuré et fluide. Où il y a des ouvertures",
   },
 ];
 
@@ -363,22 +383,25 @@ const PersonalPieceForm = ({ onClose }) => {
                         value={JSON.stringify(selectedProjectTypes)}
                       />
                       {projectTypes.map((item) => (
-                        <ImageListItem
-                          sx={{
-                            border: 4,
-                            borderColor: isProjectSelected(item)
-                              ? "#9f2e0e"
-                              : "transparent",
-                          }}
-                          key={item.img}
-                          onClick={() => handleSelectProject(item)}
-                        >
-                          <img
-                            src={`./img/personalPieceForm/${item.src}`}
-                            alt={item.id}
-                            loading="lazy"
-                          />
-                        </ImageListItem>
+                        <div>
+                          <ImageListItem
+                            sx={{
+                              border: 4,
+                              borderColor: isProjectSelected(item)
+                                ? "#9f2e0e"
+                                : "transparent",
+                            }}
+                            key={item.img}
+                            onClick={() => handleSelectProject(item)}
+                          >
+                            <img
+                              src={`./img/personalPieceForm/${item.src}`}
+                              alt={item.id}
+                              loading="lazy"
+                            />
+                          </ImageListItem>
+                          <p>{item.description}</p>
+                        </div>
                       ))}
                     </ImageList>
                     <TextField
@@ -440,22 +463,25 @@ const PersonalPieceForm = ({ onClose }) => {
                     value={JSON.stringify(selectedColorTypes)}
                   />
                   {colorTypes.map((item) => (
-                    <ImageListItem
-                      sx={{
-                        border: 4,
-                        borderColor: isColorSelected(item)
-                          ? "#9f2e0e"
-                          : "transparent",
-                      }}
-                      key={item.img}
-                      onClick={() => handleSelectColor(item)}
-                    >
-                      <img
-                        src={`./img/personalPieceForm/${item.src}`}
-                        alt={item.id}
-                        loading="lazy"
-                      />
-                    </ImageListItem>
+                    <div>
+                      <ImageListItem
+                        sx={{
+                          border: 4,
+                          borderColor: isColorSelected(item)
+                            ? "#9f2e0e"
+                            : "transparent",
+                        }}
+                        key={item.img}
+                        onClick={() => handleSelectColor(item)}
+                      >
+                        <img
+                          src={`./img/personalPieceForm/${item.src}`}
+                          alt={item.id}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                      <p>{item.description}</p>
+                    </div>
                   ))}
                 </ImageList>
                 <TextField
@@ -487,22 +513,25 @@ const PersonalPieceForm = ({ onClose }) => {
                     value={JSON.stringify(selectedFormatTypes)}
                   />
                   {formatTypes.map((item) => (
-                    <ImageListItem
-                      sx={{
-                        border: 4,
-                        borderColor: isFormatSelected(item)
-                          ? "#9f2e0e"
-                          : "transparent",
-                      }}
-                      key={item.img}
-                      onClick={() => handleSelectFormat(item)}
-                    >
-                      <img
-                        src={`./img/personalPieceForm/${item.src}`}
-                        alt={item.id}
-                        loading="lazy"
-                      />
-                    </ImageListItem>
+                    <div>
+                      <ImageListItem
+                        sx={{
+                          border: 4,
+                          borderColor: isFormatSelected(item)
+                            ? "#9f2e0e"
+                            : "transparent",
+                        }}
+                        key={item.img}
+                        onClick={() => handleSelectFormat(item)}
+                      >
+                        <img
+                          src={`./img/personalPieceForm/${item.src}`}
+                          alt={item.id}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                      <p>{item.description}</p>
+                    </div>
                   ))}
                 </ImageList>
                 <TextField
@@ -534,22 +563,25 @@ const PersonalPieceForm = ({ onClose }) => {
                     value={JSON.stringify(selectedLookTypes)}
                   />
                   {lookTypes.map((item) => (
-                    <ImageListItem
-                      sx={{
-                        border: 4,
-                        borderColor: isLookSelected(item)
-                          ? "#9f2e0e"
-                          : "transparent",
-                      }}
-                      key={item.img}
-                      onClick={() => handleSelectLook(item)}
-                    >
-                      <img
-                        src={`./img/personalPieceForm/${item.src}`}
-                        alt={item.id}
-                        loading="lazy"
-                      />
-                    </ImageListItem>
+                    <div>
+                      <ImageListItem
+                        sx={{
+                          border: 4,
+                          borderColor: isLookSelected(item)
+                            ? "#9f2e0e"
+                            : "transparent",
+                        }}
+                        key={item.img}
+                        onClick={() => handleSelectLook(item)}
+                      >
+                        <img
+                          src={`./img/personalPieceForm/${item.src}`}
+                          alt={item.id}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                      <p>{item.description}</p>
+                    </div>
                   ))}
                 </ImageList>
               </Grid>
@@ -573,22 +605,25 @@ const PersonalPieceForm = ({ onClose }) => {
                     value={JSON.stringify(selectedMotifTypes)}
                   />
                   {motifTypes.map((item) => (
-                    <ImageListItem
-                      sx={{
-                        border: 4,
-                        borderColor: isMotifSelected(item)
-                          ? "#9f2e0e"
-                          : "transparent",
-                      }}
-                      key={item.img}
-                      onClick={() => handleSelectMotif(item)}
-                    >
-                      <img
-                        src={`./img/personalPieceForm/${item.src}`}
-                        alt={item.id}
-                        loading="lazy"
-                      />
-                    </ImageListItem>
+                    <div>
+                      <ImageListItem
+                        sx={{
+                          border: 4,
+                          borderColor: isMotifSelected(item)
+                            ? "#9f2e0e"
+                            : "transparent",
+                        }}
+                        key={item.img}
+                        onClick={() => handleSelectMotif(item)}
+                      >
+                        <img
+                          src={`./img/personalPieceForm/${item.src}`}
+                          alt={item.id}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                      <p>{item.description}</p>
+                    </div>
                   ))}
                 </ImageList>
               </Grid>

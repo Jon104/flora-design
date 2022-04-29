@@ -61,7 +61,7 @@ const Footer = () => (
           <Grid item xs={12} sm={6}>
             <FooterText>
               Pour voir plus de créations, pour avoir des informations sur mes
-              offres saisonnières ou pour discuter avec moi, suivez-moi sur mes
+              offres saisonnières ou pour discuter avec moi, suis-moi sur mes
               réseaux sociaux!
             </FooterText>
             <Grid container justifyContent="flex-end">

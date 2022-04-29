@@ -492,49 +492,6 @@ const PanacheForm = ({ onClose }) => {
                     </ImageList>
                   </Grid>
                 </Grid>
-
-                <Grid item xs="12" sx={{ marginTop: 6, paddingBottom: 8 }}>
-                  <Grid container spacing={2} alignItems="center">
-                    <Grid item xs="12">
-                      <h3>Quel type de projet t'intéresse: </h3>
-                      <ImageList
-                        cols={isMobile ? 1 : 3}
-                        rowHeight={isMobile ? 350 : 580}
-                      >
-                        <input
-                          hidden
-                          name="projectTypes"
-                          value={JSON.stringify(selectedProjectTypes)}
-                        />
-                        {projectTypes.map((item) => (
-                          <ImageListItem
-                            sx={{
-                              border: 4,
-                              borderColor: isProjectSelected(item)
-                                ? "#9f2e0e"
-                                : "transparent",
-                            }}
-                            key={item.img}
-                            onClick={() => handleSelectProject(item)}
-                          >
-                            <img
-                              src={`./img/personalPieceForm/${item.src}`}
-                              alt={item.id}
-                              loading="lazy"
-                            />
-                          </ImageListItem>
-                        ))}
-                      </ImageList>
-                      <TextField
-                        fullWidth
-                        variant="filled"
-                        label="Précise au besoin"
-                        name="projectTypes.description"
-                        type="text"
-                      />
-                    </Grid>
-                  </Grid>
-                </Grid>
               </Grid>
             </Grid>
 

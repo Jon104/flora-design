@@ -109,10 +109,10 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
         />
         <MainTitle>Cours et Fournitures</MainTitle>
         <MainSubtitle>
-          "Le macramé, c'est comme méditer mais en créant " - une cliente
-          satisfaite J’adore partager ma passion, et te permettre de ressentir,
-          toi aussi, les bienfaits de s’ancrer dans le moment présent pour
-          créer.
+          "Le macramé, c'est comme méditer mais en créant "<br></br>- une
+          cliente satisfaite J’adore partager ma passion, et te permettre de
+          ressentir, toi aussi, les bienfaits de s’ancrer dans le moment présent
+          pour créer.
         </MainSubtitle>
       </TopSection>
 
@@ -140,8 +140,7 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
               créer de nouveaux cours pour approfondir l’apprentissage, être
               autonomes dans leurs créations et connaître mes trucs de pro!
               J’offre aussi une belle variété de cordes pour te permettre de
-              t’amuser !! Visite ma boutique Etsy pour voir tous mes cours et
-              fournitures.
+              t’amuser !!
             </Subtitle>
           </Grid>
           <Box my={6}>
