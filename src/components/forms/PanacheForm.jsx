@@ -15,6 +15,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import CloseIcon from "@mui/icons-material/Close";
 import { isMobile } from "react-device-detect";
 import BudgetSlider from "./components/BudgetSlider";
+import StyleRadioButton from "./components/StyleRadioButton";
 // import { useDropzone } from "react-dropzone";
 
 const colorTypes = [
@@ -498,7 +499,7 @@ const PanacheForm = ({ onClose }) => {
             </Grid>
           </Box>
 
-          <Grid item xs="12" sx={{ paddingTop: 10 }}>
+          <Grid item xs="12" sx={{ paddingTop: 4 }}>
             <Grid container spacing={2} alignItems="center">
               <Grid item xs="12">
                 <h3>Parlons design!</h3>
@@ -543,12 +544,9 @@ const PanacheForm = ({ onClose }) => {
               </Grid>
             </Grid>
 
-            <Grid
-              container
-              spacing={2}
-              alignItems="center"
-              sx={{ paddingTop: 14 }}
-            >
+            <StyleRadioButton />
+
+            <Grid container spacing={2} alignItems="center">
               <Grid item xs="12">
                 <h3>Quelles formes de macramé préfères-tu ?</h3>
 
@@ -634,7 +632,7 @@ const PanacheForm = ({ onClose }) => {
               container
               spacing={2}
               alignItems="center"
-              sx={{ paddingTop: 10 }}
+              sx={{ paddingTop: 4 }}
             >
               <Grid item xs="12">
                 <h3>Quels motifs et effets te plaisent le plus:</h3>
