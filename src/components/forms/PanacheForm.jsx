@@ -14,6 +14,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import CloseIcon from "@mui/icons-material/Close";
 import { isMobile } from "react-device-detect";
+import BudgetSlider from "./components/BudgetSlider";
 // import { useDropzone } from "react-dropzone";
 
 const colorTypes = [
@@ -674,6 +675,8 @@ const PanacheForm = ({ onClose }) => {
                 />
               </Grid>
             </Grid>
+
+            <BudgetSlider />
 
             {/* <Grid container spacing={2} alignItems="center">
               <Grid item>

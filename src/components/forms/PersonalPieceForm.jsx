@@ -637,13 +637,7 @@ const PersonalPieceForm = ({ onClose }) => {
               </Grid>
             </Grid>
 
-            <Box py={6}>
-              <Grid item xs="12">
-                <h3>Et le budget dans tous ça?</h3>
-                <h4>Quel est ton budget?</h4>
-                <BudgetSlider />
-              </Grid>
-            </Box>
+            <BudgetSlider />
 
             <Grid container spacing={2} alignItems="center">
               <Grid item>
