@@ -144,24 +144,7 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
             </Subtitle>
           </Grid>
           <Box my={6}>
-            <Button
-              onClick={() =>
-                window.open(
-                  "https://www.facebook.com/Flora-Design-2473490369540452/",
-                  "_blank"
-                )
-              }
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "#F2E8DA",
-                color: "#9F2E0E",
-                fontSize: 15,
-                boxShadow: "10px 10px 30px 0px #D0CFDC66",
-              }}
-            >
-              Joins-toi à ma communauté créative!
-            </Button>
+            <Subtitle primary>Joins-toi à ma communauté créative!</Subtitle>
           </Box>
         </Grid>
       </SecondMiddleSection>
