@@ -304,6 +304,12 @@ const PersonalPieceForm = ({ onClose }) => {
     setSelectedMotifTypes(result);
   };
 
+  const handleFileInputChange = (e, file) => {
+    console.log(file);
+    console.log(e);
+    debugger;
+  };
+
   const widthMarks = [
     {
       value: 45,
@@ -331,6 +337,30 @@ const PersonalPieceForm = ({ onClose }) => {
     });
   }; */
 
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  };
+
+  const handleSubmit = (e) => {
+    debugger;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "personal-piece",
+        image: e.target[25].value,
+      }),
+    })
+      .then(() => alert("Success!"))
+      .catch((error) => alert(error));
+
+    e.preventDefault();
+  };
+
   return (
     <>
       <Box px={{ xs: 2, sm: 6 }} py={2}>
@@ -344,7 +374,7 @@ const PersonalPieceForm = ({ onClose }) => {
             <CloseIcon color="primary" fontSize="inherit" />
           </IconButton>
         </Grid>
-        <form method="post">
+        <form method="post" onSubmit={handleSubmit}>
           <input type="hidden" name="form-name" value="personal-piece" />
           <Box pb={6} py={{ xs: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
@@ -650,6 +680,7 @@ const PersonalPieceForm = ({ onClose }) => {
                   id="raised-button-file"
                   type="file"
                   name="image"
+                  onChange={handleFileInputChange}
                 />
                 <label htmlFor="raised-button-file">
                   <Button variant="raised" component="span">
