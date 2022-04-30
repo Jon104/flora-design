@@ -211,6 +211,7 @@ const PersonalPieceForm = ({ onClose }) => {
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
+  const [file, setFile] = useState({});
   // const [file, setFile] = useState({});
 
   // const onDrop = useCallback(
@@ -304,10 +305,8 @@ const PersonalPieceForm = ({ onClose }) => {
     setSelectedMotifTypes(result);
   };
 
-  const handleFileInputChange = (e, file) => {
-    console.log(file);
-    console.log(e);
-    debugger;
+  const handleFileInputChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   const widthMarks = [
@@ -347,12 +346,14 @@ const PersonalPieceForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     debugger;
+    const form = e.target;
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
-        "form-name": "personal-piece",
-        image: e.target[25].value,
+        "form-name": form.getAttribute("name"),
+        image: file,
       }),
     })
       .then(() => alert("Success!"))
