@@ -12,7 +12,7 @@ import {
 import { isMobile } from "react-device-detect";
 import CloseIcon from "@mui/icons-material/Close";
 import BudgetSlider from "./components/BudgetSlider";
-import StyleRadioButton from "./components/StyleRadioButton";
+import StyleRadioButton from "./components/StyleFormQuestions";
 // import { useDropzone } from "react-dropzone";
 
 const projectTypes = [

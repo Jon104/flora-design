@@ -1,4 +1,5 @@
 import RadioGroup from "@mui/material/RadioGroup";
+import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import Box from "@mui/material/Box";
@@ -29,6 +30,13 @@ const StyleRadioButton = () => {
             label="Un style plus moderne"
           />
         </RadioGroup>
+        <TextField
+          fullWidth
+          variant="filled"
+          label="Styles - Précise au besoin"
+          name="style.description"
+          type="text"
+        />
       </Box>
     </>
   );
