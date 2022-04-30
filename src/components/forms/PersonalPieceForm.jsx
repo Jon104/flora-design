@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
   Box,
@@ -13,7 +13,7 @@ import { isMobile } from "react-device-detect";
 import CloseIcon from "@mui/icons-material/Close";
 import BudgetSlider from "./components/BudgetSlider";
 import StyleRadioButton from "./components/StyleFormQuestions";
-// import { useDropzone } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 
 const projectTypes = [
   {
@@ -211,19 +211,14 @@ const PersonalPieceForm = ({ onClose }) => {
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState();
   // const [file, setFile] = useState({});
 
-  // const onDrop = useCallback(
-  //   (acceptedFiles) => {
-  //     console.log(file);
-  //     setFile(acceptedFiles[0]);
-  //   },
-  //   [file]
-  // );
-  // const { getRootProps, getInputProps, isDragActive } = useDropzone({
-  //   onDrop,
-  // });
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+    setFile(acceptedFiles[0]);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -336,25 +331,29 @@ const PersonalPieceForm = ({ onClose }) => {
     });
   }; */
 
+  // const encode = (data) => {
+  //   return Object.keys(data)
+  //     .map(
+  //       (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+  //     )
+  //     .join("&");
+  // };
+
   const encode = (data) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      )
-      .join("&");
+    const formData = new FormData();
+    Object.keys(data).forEach((k) => {
+      formData.append(k, data[k]);
+    });
+    return formData;
   };
 
   const handleSubmit = (e) => {
-    debugger;
-    const form = e.target;
+    const data = { "form-name": "personal-piece", file };
 
     fetch("/", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": form.getAttribute("name"),
-        image: file,
-      }),
+      // headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode(data),
     })
       .then(() => alert("Success!"))
       .catch((error) => alert(error));
@@ -691,6 +690,15 @@ const PersonalPieceForm = ({ onClose }) => {
               </Grid>
             </Grid>
           </Grid>
+
+          <div {...getRootProps()}>
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <p>Drop the files here ...</p>
+            ) : (
+              <p>Drag 'n' drop some files here, or click to select files</p>
+            )}
+          </div>
 
           {/* <Dropzone onDrop={(acceptedFiles) => handleDrop(acceptedFiles)}>
             {({ getRootProps, getInputProps }) => (
