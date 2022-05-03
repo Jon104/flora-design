@@ -348,11 +348,21 @@ const PersonalPieceForm = ({ onClose }) => {
   };
 
   const handleSubmit = (e) => {
-    const data = { "form-name": "personal-piece", file };
+    const data = {
+      "form-name": "personal-piece",
+      file,
+      selectedProjectTypes,
+      width,
+      height,
+      selectedColorTypes,
+      selectedFormatTypes,
+      selectedLookTypes,
+      selectedMotifTypes,
+    };
 
     fetch("/", {
       method: "POST",
-      // headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      // headers: { "Content-Type": "application/x-www-form-urlencoded"},
       body: encode(data),
     })
       .then(() => alert("Success!"))
