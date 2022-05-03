@@ -14,6 +14,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import BudgetRadioButtons from "./components/BudgetRadioButtons";
 import StyleRadioButton from "./components/StyleFormQuestions";
 import UploadFileButton from "./components/UploadFileButton";
+import TellMeMore from "./components/TellMeMore";
+
 import { sendForm } from "./FormsService";
 
 const projectTypes = [
@@ -629,18 +631,37 @@ const PersonalPieceForm = ({ onClose }) => {
               </Grid>
             </Grid>
 
-            <BudgetRadioButtons />
-
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <UploadFileButton
                   title="Montre-moi tes photos inspiration si tu le désires. S'il s'agit de ma photo, je peux m'en inspirer fortement, bien que chaque création soit unique. S'il s'agit du travail de quelqu'un d'autre, je peux m'inspirer du style ou de certains éléments, mais je ne fais bien sûr pas de reproduction. Ceci par respect pour la propriété artistique, et pour m'assurer de mettre ma couleur dans chacune de mes créations!"
-                  name="image"
+                  name="images.inspiration"
                   handleFileInputChange={setFile}
+                />
+                <TellMeMore
+                  label="Ta réponse"
+                  title="Dis-moi ce qui te plait le plus de cette / ces photo(s)."
                 />
               </Grid>
             </Grid>
           </Grid>
+
+          <BudgetRadioButtons />
+
+          <h3>Pour m'inspirer</h3>
+          <h4>
+            C'est le moment de me partager ta vibe, ta couleur. Parce que ce
+            qu'on veut, c'est que ta pièce soit unique! Et parfaite pour toi!
+          </h4>
+          <UploadFileButton
+            title="Montre-moi si tu le désires la pièce de ta maison dans laquelle ma création ira. Tu peux aussi me montrer un élément déco avec lesquels tu aimerais agencer, Cela me permet de m'inspirer :)"
+            name="images.pièceDeLaMaison"
+            handleFileInputChange={setFile}
+          />
+          <TellMeMore
+            label="Ta réponse"
+            title="Dis-moi ce qui te plait le plus de cette / ces photo(s)."
+          />
 
           <Grid
             container
