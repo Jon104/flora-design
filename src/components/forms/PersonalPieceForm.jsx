@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { isMobile } from "react-device-detect";
 import CloseIcon from "@mui/icons-material/Close";
-import BudgetSlider from "./components/BudgetSlider";
+import BudgetRadioButtons from "./components/BudgetRadioButtons";
 import StyleRadioButton from "./components/StyleFormQuestions";
 import { useDropzone } from "react-dropzone";
 
@@ -670,7 +670,7 @@ const PersonalPieceForm = ({ onClose }) => {
               </Grid>
             </Grid>
 
-            <BudgetSlider />
+            <BudgetRadioButtons />
 
             <Grid container spacing={2} alignItems="center">
               <Grid item>
