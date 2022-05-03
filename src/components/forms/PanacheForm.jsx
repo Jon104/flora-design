@@ -309,7 +309,7 @@ const PanacheForm = ({ onClose }) => {
     e.preventDefault();
 
     const data = {
-      "form-name": "personal-piece",
+      "form-name": "panache",
       selectedPanache,
       width,
       height,
