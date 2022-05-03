@@ -318,10 +318,10 @@ const PersonalPieceForm = ({ onClose }) => {
       name,
       email,
       image,
-      selectedProjectTypes: selectedProjectTypes.map((element) =>
+      projectTypes: selectedProjectTypes.map((element) =>
         JSON.stringify(element.description)
       ),
-      projectTypeDescription,
+      "projectTypes.description": projectTypeDescription,
       width,
       height,
       selectedColorTypes: selectedColorTypes.map((element) =>
