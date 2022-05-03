@@ -207,14 +207,19 @@ const motifTypes = [
 ];
 
 const PersonalPieceForm = ({ onClose }) => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+
   const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
+  const [projectTypeDescription, setProjectTypeDescription] = useState();
+
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
   const [selectedColorTypes, setSelectedColorTypes] = useState([]);
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
-  const [file, setFile] = useState();
+  const [image, setFile] = useState();
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -310,15 +315,29 @@ const PersonalPieceForm = ({ onClose }) => {
 
     const data = {
       "form-name": "personal-piece",
-      file,
-      selectedProjectTypes,
+      name,
+      email,
+      image,
+      selectedProjectTypes: selectedProjectTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      projectTypeDescription,
       width,
       height,
-      selectedColorTypes,
-      selectedFormatTypes,
-      selectedLookTypes,
-      selectedMotifTypes,
+      selectedColorTypes: selectedColorTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      selectedFormatTypes: selectedFormatTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      selectedLookTypes: selectedLookTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      selectedMotifTypes: selectedMotifTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
     };
+
     sendForm(data);
   };
 
@@ -335,7 +354,15 @@ const PersonalPieceForm = ({ onClose }) => {
             <CloseIcon color="primary" fontSize="inherit" />
           </IconButton>
         </Grid>
-        <form method="post" onSubmit={handleSubmit}>
+        <form
+          method="post"
+          onSubmit={handleSubmit}
+          data-netlify="true"
+          netlify
+          netlify-honeypot="bot-field"
+          hidden
+          enctype="multipart/form-data"
+        >
           <input type="hidden" name="form-name" value="personal-piece" />
           <Box pb={6} py={{ xs: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
@@ -349,6 +376,8 @@ const PersonalPieceForm = ({ onClose }) => {
                   variant="filled"
                   label="Nom complet"
                   color="primary"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   name="name"
                   type="text"
                 />
@@ -360,6 +389,8 @@ const PersonalPieceForm = ({ onClose }) => {
                   label="Courriel"
                   name="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs="12" sx={{ marginTop: 6, paddingBottom: 8 }}>
@@ -397,12 +428,11 @@ const PersonalPieceForm = ({ onClose }) => {
                         </div>
                       ))}
                     </ImageList>
-                    <TextField
-                      fullWidth
-                      variant="filled"
+                    <TellMeMore
                       label="Précise au besoin"
                       name="projectTypes.description"
-                      type="text"
+                      value={projectTypeDescription}
+                      setValue={setProjectTypeDescription}
                     />
                   </Grid>
                 </Grid>
@@ -640,6 +670,7 @@ const PersonalPieceForm = ({ onClose }) => {
                 />
                 <TellMeMore
                   label="Ta réponse"
+                  name="images.inspiration.précision"
                   title="Dis-moi ce qui te plait le plus de cette / ces photo(s)."
                 />
               </Grid>
@@ -660,6 +691,7 @@ const PersonalPieceForm = ({ onClose }) => {
           />
           <TellMeMore
             label="Ta réponse"
+            name="images.pièceDeLaMaison.précision"
             title="Dis-moi ce qui te plait le plus de cette / ces photo(s)."
           />
 

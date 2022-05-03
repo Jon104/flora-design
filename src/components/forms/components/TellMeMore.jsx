@@ -11,8 +11,10 @@ const TellMeMore = (props) => {
         fullWidth
         variant="filled"
         label={props.label}
-        name="photosInspiration.précision"
+        name={props.name}
         type="text"
+        value={props.value}
+        onChange={(e) => props.setValue(e.target.value)}
       />
     </Box>
   );
