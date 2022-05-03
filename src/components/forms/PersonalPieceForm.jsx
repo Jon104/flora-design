@@ -634,6 +634,7 @@ const PersonalPieceForm = ({ onClose }) => {
             <Grid container spacing={2} alignItems="center">
               <Grid item>
                 <UploadFileButton
+                  title="Montre-moi tes photos inspiration si tu le désires. S'il s'agit de ma photo, je peux m'en inspirer fortement, bien que chaque création soit unique. S'il s'agit du travail de quelqu'un d'autre, je peux m'inspirer du style ou de certains éléments, mais je ne fais bien sûr pas de reproduction. Ceci par respect pour la propriété artistique, et pour m'assurer de mettre ma couleur dans chacune de mes créations!"
                   name="image"
                   handleFileInputChange={setFile}
                 />
