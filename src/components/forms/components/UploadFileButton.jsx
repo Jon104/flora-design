@@ -7,7 +7,7 @@ import { useDropzone } from "react-dropzone";
 const UploadFileButton = (props) => {
   const onDrop = useCallback(
     (acceptedFiles) => props.handleFileInputChange(acceptedFiles[0]),
-    []
+    [props]
   );
 
   const { getRootProps, getInputProps } = useDropzone({
