@@ -354,15 +354,7 @@ const PersonalPieceForm = ({ onClose }) => {
             <CloseIcon color="primary" fontSize="inherit" />
           </IconButton>
         </Grid>
-        <form
-          method="post"
-          onSubmit={handleSubmit}
-          data-netlify="true"
-          netlify
-          netlify-honeypot="bot-field"
-          hidden
-          enctype="multipart/form-data"
-        >
+        <form method="post" onSubmit={handleSubmit}>
           <input type="hidden" name="form-name" value="personal-piece" />
           <Box pb={6} py={{ xs: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
