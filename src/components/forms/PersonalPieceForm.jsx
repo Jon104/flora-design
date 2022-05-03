@@ -14,6 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import BudgetRadioButtons from "./components/BudgetRadioButtons";
 import StyleRadioButton from "./components/StyleFormQuestions";
 import { useDropzone } from "react-dropzone";
+import { sendForm } from "./FormsService";
 
 const projectTypes = [
   {
@@ -339,15 +340,9 @@ const PersonalPieceForm = ({ onClose }) => {
   //     .join("&");
   // };
 
-  const encode = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((k) => {
-      formData.append(k, data[k]);
-    });
-    return formData;
-  };
-
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     const data = {
       "form-name": "personal-piece",
       file,
@@ -359,16 +354,7 @@ const PersonalPieceForm = ({ onClose }) => {
       selectedLookTypes,
       selectedMotifTypes,
     };
-
-    fetch("/", {
-      method: "POST",
-      // headers: { "Content-Type": "application/x-www-form-urlencoded"},
-      body: encode(data),
-    })
-      .then(() => alert("Success!"))
-      .catch((error) => alert(error));
-
-    e.preventDefault();
+    sendForm(data);
   };
 
   return (

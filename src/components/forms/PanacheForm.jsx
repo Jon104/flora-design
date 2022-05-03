@@ -17,6 +17,7 @@ import { isMobile } from "react-device-detect";
 import BudgetRadioButtons from "./components/BudgetRadioButtons";
 import StyleRadioButton from "./components/StyleFormQuestions";
 // import { useDropzone } from "react-dropzone";
+import { sendForm } from "./FormsService";
 
 const colorTypes = [
   {
@@ -304,6 +305,22 @@ const PanacheForm = ({ onClose }) => {
 
   const valuetext = (value) => `${value} po`;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      "form-name": "personal-piece",
+      selectedPanache,
+      width,
+      height,
+      selectedColorTypes,
+      selectedFormatTypes,
+      selectedLookTypes,
+      selectedMotifTypes,
+    };
+    sendForm(data);
+  };
+
   // const colorsPicker = [
   //   {
   //     id: 3,
@@ -356,7 +373,7 @@ const PanacheForm = ({ onClose }) => {
             <CloseIcon color="primary" fontSize="inherit" />
           </IconButton>
         </Grid>
-        <form method="post">
+        <form method="post" onSubmit={handleSubmit}>
           <input type="hidden" name="form-name" value="panache" />
           <Box pb={6} py={{ xs: 6 }}>
             <Grid container spacing={2} sx={{ paddingBottom: 6 }}>
