@@ -21,7 +21,7 @@ const BudgetRadioButtons = () => {
     },
     {
       label:
-        "Je préfère ne pas établir de budget. Ce faisant, je souhaite que mon projet réponde complètement à mes critès et ne soit pas dééterminé par une limite de budget.",
+        "Je préfère ne pas établir de budget. Ce faisant, je souhaite que mon projet réponde complètement à mes critères et ne soit pas déterminé par une limite de budget.",
       value: "sky is the limit",
     },
   ];
