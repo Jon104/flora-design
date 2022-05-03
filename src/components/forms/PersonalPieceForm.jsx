@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
   Box,
@@ -13,7 +13,7 @@ import { isMobile } from "react-device-detect";
 import CloseIcon from "@mui/icons-material/Close";
 import BudgetRadioButtons from "./components/BudgetRadioButtons";
 import StyleRadioButton from "./components/StyleFormQuestions";
-import { useDropzone } from "react-dropzone";
+import UploadFileButton from "./components/UploadFileButton";
 import { sendForm } from "./FormsService";
 
 const projectTypes = [
@@ -213,13 +213,6 @@ const PersonalPieceForm = ({ onClose }) => {
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
   const [file, setFile] = useState();
-  // const [file, setFile] = useState({});
-
-  const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles);
-    setFile(acceptedFiles[0]);
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -301,10 +294,6 @@ const PersonalPieceForm = ({ onClose }) => {
     setSelectedMotifTypes(result);
   };
 
-  const handleFileInputChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
   const widthMarks = [
     {
       value: 45,
@@ -313,32 +302,6 @@ const PersonalPieceForm = ({ onClose }) => {
   ];
 
   const valuetext = (value) => `${value} po`;
-
-  /* const handleDrop = (files) => {
-    debugger;
-    const zip = require("jszip");
-
-    files.forEach((file) => zip.file(file.name, file));
-
-    zip.generateAsync({ type: "blob" }).then((blob) => {
-      const zippedFiles = new File([blob], "whatever.zip", {
-        lastModified: Date.now(),
-        type: "application/zip",
-      });
-
-      this.setState({
-        zippedFiles,
-      });
-    });
-  }; */
-
-  // const encode = (data) => {
-  //   return Object.keys(data)
-  //     .map(
-  //       (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-  //     )
-  //     .join("&");
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -670,42 +633,13 @@ const PersonalPieceForm = ({ onClose }) => {
 
             <Grid container spacing={2} alignItems="center">
               <Grid item>
-                <input
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  id="raised-button-file"
-                  type="file"
+                <UploadFileButton
                   name="image"
-                  onChange={handleFileInputChange}
+                  handleFileInputChange={setFile}
                 />
-                <label htmlFor="raised-button-file">
-                  <Button variant="raised" component="span">
-                    Téléverser
-                  </Button>
-                </label>
               </Grid>
             </Grid>
           </Grid>
-
-          <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            {isDragActive ? (
-              <p>Drop the files here ...</p>
-            ) : (
-              <p>Drag 'n' drop some files here, or click to select files</p>
-            )}
-          </div>
-
-          {/* <Dropzone onDrop={(acceptedFiles) => handleDrop(acceptedFiles)}>
-            {({ getRootProps, getInputProps }) => (
-              <section>
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <p>Drag 'n' drop some files here, or click to select files</p>
-                </div>
-              </section>
-            )}
-          </Dropzone> */}
 
           <Grid
             container
