@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import RadioButtons from "./common/RadioButtons";
 
-const BudgetRadioButtons = () => {
+const BudgetRadioButtons = (props) => {
   const options = [
     {
       label: "300$-500$",
@@ -33,6 +33,8 @@ const BudgetRadioButtons = () => {
           inputName="budget"
           options={options}
           title="Quel est ton budget?"
+          value={props.value}
+          setValue={props.setValue}
         />
       </Box>
     </>

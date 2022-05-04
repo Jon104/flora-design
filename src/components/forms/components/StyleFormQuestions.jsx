@@ -1,8 +1,8 @@
-import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import RadioButtons from "./common/RadioButtons";
+import TellMeMore from "./TellMeMore";
 
-const StyleRadioButton = () => {
+const StyleRadioButton = (props) => {
   const options = [
     {
       label: "Un look plus bohème",
@@ -17,13 +17,18 @@ const StyleRadioButton = () => {
   return (
     <>
       <Box py={6}>
-        <RadioButtons inputName="style" options={options} />
-        <TextField
-          fullWidth
-          variant="filled"
+        <RadioButtons
+          title="Quel style général souhaites-tu retrouver dans ton projet"
+          inputName="style"
+          options={options}
+          value={props.value}
+          setValue={props.setValue}
+        />
+        <TellMeMore
           label="Styles - Précise au besoin"
           name="style.description"
-          type="text"
+          value={props.styleDescription}
+          setValue={props.setStyleDescription}
         />
       </Box>
     </>

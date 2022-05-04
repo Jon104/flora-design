@@ -215,11 +215,28 @@ const PersonalPieceForm = ({ onClose }) => {
 
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
+
   const [selectedColorTypes, setSelectedColorTypes] = useState([]);
+  const [colorTypeDescription, setColorTypeDescription] = useState();
+
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
+  const [formatTypeDescription, setFormatTypeDescription] = useState();
+
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
+
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
-  const [image, setFile] = useState();
+  const [motifTypeDescription, setMotifTypeDescription] = useState();
+
+  const [budget, setBudget] = useState();
+
+  const [style, setStyle] = useState();
+  const [styleDescription, setStyleDescription] = useState();
+
+  const [imagesInspiration, setImagesInspiration] = useState();
+  const [imagesInspirationDescription, setImagesInspirationDescription] =
+    useState();
+  const [imagesRoom, setImagesRoom] = useState();
+  const [imagesRoomDescription, setImagesRoomDescription] = useState();
 
   const isProjectSelected = (image) =>
     selectedProjectTypes.find((element) => element.id === image.id);
@@ -312,30 +329,39 @@ const PersonalPieceForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    debugger;
     const data = {
       "form-name": "personal-piece",
+      budget,
       name,
       email,
-      image,
       projectTypes: selectedProjectTypes.map((element) =>
         JSON.stringify(element.description)
       ),
       "projectTypes.description": projectTypeDescription,
       width,
       height,
-      selectedColorTypes: selectedColorTypes.map((element) =>
+      colorTypes: selectedColorTypes.map((element) =>
         JSON.stringify(element.description)
       ),
-      selectedFormatTypes: selectedFormatTypes.map((element) =>
+      "colorTypes.description": colorTypeDescription,
+      formatTypes: selectedFormatTypes.map((element) =>
         JSON.stringify(element.description)
       ),
-      selectedLookTypes: selectedLookTypes.map((element) =>
+      "formatTypes.description": formatTypeDescription,
+      lookTypes: selectedLookTypes.map((element) =>
         JSON.stringify(element.description)
       ),
-      selectedMotifTypes: selectedMotifTypes.map((element) =>
+      motifTypes: selectedMotifTypes.map((element) =>
         JSON.stringify(element.description)
       ),
+      "motifTypes.description": motifTypeDescription,
+      style: style,
+      "style.description": styleDescription,
+      "images.inspiration": imagesInspiration,
+      "images.inspiration.précision": imagesInspirationDescription,
+      "images.pièceDeLaMaison": imagesRoom,
+      "images.pièceDeLaMaison.précision": imagesRoomDescription,
     };
 
     sendForm(data);
@@ -499,17 +525,21 @@ const PersonalPieceForm = ({ onClose }) => {
                     </div>
                   ))}
                 </ImageList>
-                <TextField
-                  fullWidth
-                  variant="filled"
+                <TellMeMore
                   label="Couleur - Précise au besoin"
                   name="colorTypes.description"
-                  type="text"
+                  value={colorTypeDescription}
+                  setValue={setColorTypeDescription}
                 />
               </Grid>
             </Grid>
 
-            <StyleRadioButton />
+            <StyleRadioButton
+              styleDescription={styleDescription}
+              setStyleDescription={setStyleDescription}
+              value={style}
+              setValue={setStyle}
+            />
 
             <Grid
               container
@@ -551,12 +581,11 @@ const PersonalPieceForm = ({ onClose }) => {
                     </div>
                   ))}
                 </ImageList>
-                <TextField
-                  fullWidth
-                  variant="filled"
+                <TellMeMore
                   label="Formats - Précise au besoin"
                   name="formatTypes.description"
-                  type="text"
+                  value={formatTypeDescription}
+                  setValue={setFormatTypeDescription}
                 />
               </Grid>
             </Grid>
@@ -643,12 +672,11 @@ const PersonalPieceForm = ({ onClose }) => {
                     </div>
                   ))}
                 </ImageList>
-                <TextField
-                  fullWidth
-                  variant="filled"
+                <TellMeMore
                   label="Motifs - Précise au besoin"
                   name="motifTypes.description"
-                  type="text"
+                  value={motifTypeDescription}
+                  setValue={setMotifTypeDescription}
                 />
               </Grid>
             </Grid>
@@ -658,18 +686,20 @@ const PersonalPieceForm = ({ onClose }) => {
                 <UploadFileButton
                   title="Montre-moi tes photos inspiration si tu le désires. S'il s'agit de ma photo, je peux m'en inspirer fortement, bien que chaque création soit unique. S'il s'agit du travail de quelqu'un d'autre, je peux m'inspirer du style ou de certains éléments, mais je ne fais bien sûr pas de reproduction. Ceci par respect pour la propriété artistique, et pour m'assurer de mettre ma couleur dans chacune de mes créations!"
                   name="images.inspiration"
-                  handleFileInputChange={setFile}
+                  handleFileInputChange={setImagesInspiration}
                 />
                 <TellMeMore
                   label="Ta réponse"
                   name="images.inspiration.précision"
                   title="Dis-moi ce qui te plait le plus de cette / ces photo(s)."
+                  value={imagesInspirationDescription}
+                  setValue={setImagesInspirationDescription}
                 />
               </Grid>
             </Grid>
           </Grid>
 
-          <BudgetRadioButtons />
+          <BudgetRadioButtons value={budget} setValue={setBudget} />
 
           <h3>Pour m'inspirer</h3>
           <h4>
@@ -679,13 +709,43 @@ const PersonalPieceForm = ({ onClose }) => {
           <UploadFileButton
             title="Montre-moi si tu le désires la pièce de ta maison dans laquelle ma création ira. Tu peux aussi me montrer un élément déco avec lesquels tu aimerais agencer, Cela me permet de m'inspirer :)"
             name="images.pièceDeLaMaison"
-            handleFileInputChange={setFile}
+            handleFileInputChange={setImagesRoom}
           />
           <TellMeMore
             label="Ta réponse"
             name="images.pièceDeLaMaison.précision"
-            title="Dis-moi ce qui te plait le plus de cette / ces photo(s)."
+            title="Donne-moi ici toute information pertinente que tu souhaites me partager pour me guider dans ma création"
+            value={imagesRoomDescription}
+            setValue={setImagesRoomDescription}
           />
+
+          <Box py={4}>
+            <h3>À mon tour maintenant</h3>
+            <h4>
+              J'aime donner de l'amour dans chacune de mes créations. Je tenais
+              à te poser toutes ces questions pour être certaine de bien cerner
+              tes goûts. J'adore le sur mesure! Je pense que quand j'arrive à
+              bien m'imprégner de ta demande (tes attentes, ton style, ta
+              couleur) et que je reste connectée sur mon élan créatif, le match
+              est parfait! Et les plus belles pièces en naissent! Pour ce faire,
+              j'ai besoin de ta confiance et de ta capacité à tolérer une part
+              de surprise! :) En m'envoyant tes réponses, je comprends que ma
+              démarches te parle et que tu aimes mon style!
+            </h4>
+          </Box>
+
+          <h3>Pour confirmer ta commande</h3>
+          <h4>
+            Après l'envoi de tes réponses, je te contacterai dans les 24 à 48
+            heures avec un estimé des coûts et mon délai actuel. Si tu acceptes
+            ma proposition, je t'enverrai une facture correspondant à environ
+            75% du montant estimé. Ta commande sera confirmée lorsque tu auras
+            payé cette facture. Le dernier versement sera quant à lui payable à
+            la fin du projet, selon mon calcul de prix (lequel peut varier
+            légèrement de l'estimé, mais jamais beaucoup). Merci d'avoir pris le
+            temps de répondre à mes questions! J'ai déjà hâte de créer pour toi!
+            :)
+          </h4>
 
           <Grid
             container
