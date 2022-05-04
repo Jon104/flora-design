@@ -359,9 +359,9 @@ const PersonalPieceForm = ({ onClose }) => {
       style: style,
       "style.description": styleDescription,
       "images.inspiration": imagesInspiration,
-      "images.inspiration.précision": imagesInspirationDescription,
+      "images.inspiration.description": imagesInspirationDescription,
       "images.pièceDeLaMaison": imagesRoom,
-      "images.pièceDeLaMaison.précision": imagesRoomDescription,
+      "images.pièceDeLaMaison.description": imagesRoomDescription,
     };
 
     sendForm(data);
