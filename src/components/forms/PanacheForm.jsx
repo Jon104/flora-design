@@ -26,6 +26,8 @@ import {
 } from "./PersonalPieceForm";
 import { isMobile } from "react-device-detect";
 import FormSalutation from "./components/FormSalutation";
+import RadioButtons from "./components/common/RadioButtons";
+import { yesNoOptions } from "./components/common/RadioButtons/options";
 
 const panachesInStock = [
   {
@@ -52,6 +54,10 @@ const PanacheForm = ({ onClose }) => {
   const [address, setAddress] = useState();
 
   const [budget, setBudget] = useState();
+  const [doYouHaveAPanache, setDoYouHaveAPanache] = useState();
+  const [imagePanache, setImagePanache] = useState();
+  const [panacheSize, setPanacheSize] = useState();
+
   const [selectedPanache, setSelectedPanache] = useState([]);
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
@@ -174,6 +180,9 @@ const PanacheForm = ({ onClose }) => {
       name,
       email,
       address,
+      doYouHaveAPanache,
+      imagePanache,
+      panacheSize,
       panachesInStock: selectedPanache,
       width,
       height,
@@ -261,46 +270,74 @@ const PanacheForm = ({ onClose }) => {
               <Grid item xs="12" sx={{ marginTop: 6, paddingBottom: 8 }}>
                 <Grid container spacing={2} alignItems="center">
                   <Grid item>
-                    <h3>Montre-moi une photo de ton panache</h3>
+                    <RadioButtons
+                      inputName="doYouHaveAPanache"
+                      options={yesNoOptions}
+                      title="As-tu un panache ?"
+                      value={doYouHaveAPanache}
+                      setValue={setDoYouHaveAPanache}
+                    />
                     <input hidden name="file" type="file" />
                   </Grid>
                 </Grid>
 
-                <Grid container spacing={2} alignItems="center">
-                  <Grid item>
-                    <h3>Quelles sont ses dimensions</h3>
-                    <input hidden name="size" type="text" />
-                    <TextField
-                      fullWidth
-                      variant="filled"
-                      label="Dimensions"
-                      name="size"
-                      type="text"
-                    />
-                  </Grid>
-                </Grid>
+                {doYouHaveAPanache && (
+                  <>
+                    <Box py={4}>
+                      <Grid container spacing={2} alignItems="center">
+                        <Grid item>
+                          <UploadFileButton
+                            title="Envoie moi une photo de ton panache !"
+                            name="imagePanache"
+                            handleFileInputChange={setImagePanache}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Box>
 
-                <Grid container spacing={2} alignItems="center">
-                  <Grid item>
-                    <h3>Livraison</h3>
-                    <input hidden name="size" type="text" />
-                    <RadioGroup
-                      aria-label="livraison"
-                      name="radio-buttons-group"
-                    >
-                      <FormControlLabel
-                        value="stoneham"
-                        control={<Radio />}
-                        label="Je préfère l'apporter en personne à Stoneham"
-                      />
-                      <FormControlLabel
-                        value="livraison"
-                        control={<Radio />}
-                        label="Je préfère le faire livrer? (Prévoir entre 30 et 80$ pour la livraison, dépendamment de la taille)"
-                      />
-                    </RadioGroup>
-                  </Grid>
-                </Grid>
+                    <Box py={4}>
+                      <Grid container spacing={2} alignItems="center">
+                        <Grid item>
+                          <h3>Quelles sont ses dimensions</h3>
+                          <input hidden name="size" type="text" />
+                          <TextField
+                            fullWidth
+                            variant="filled"
+                            label="Dimensions"
+                            name="size"
+                            type="text"
+                            value={panacheSize}
+                            onChange={(e) => setPanacheSize(e.target.value)}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Box>
+
+                    <Box py={4}>
+                      <Grid container spacing={2} alignItems="center">
+                        <Grid item>
+                          <h3>Livraison</h3>
+                          <input hidden name="size" type="text" />
+                          <RadioGroup
+                            aria-label="livraison"
+                            name="radio-buttons-group"
+                          >
+                            <FormControlLabel
+                              value="stoneham"
+                              control={<Radio />}
+                              label="Je préfère l'apporter en personne à Stoneham"
+                            />
+                            <FormControlLabel
+                              value="livraison"
+                              control={<Radio />}
+                              label="Je préfère le faire livrer? (Prévoir entre 30 et 80$ pour la livraison, dépendamment de la taille)"
+                            />
+                          </RadioGroup>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  </>
+                )}
 
                 <Grid container spacing={2} alignItems="center">
                   <Grid item xs="12">
@@ -575,13 +612,21 @@ const PanacheForm = ({ onClose }) => {
 
             <BudgetRadioButtons value={budget} setValue={setBudget} />
 
-            <h3>Pour m'inspirer</h3>
-            <h4>
-              C'est le moment de me partager ta vibe, ta couleur. Parce que ce
-              qu'on veut, c'est que ta pièce soit unique! Et parfaite pour toi!
-            </h4>
+            <Box py={4}>
+              <h3>Pour m'inspirer</h3>
+              <body>
+                C'est le moment de me partager ta vibe, ta couleur. Parce que ce
+                qu'on veut, c'est que ta pièce soit unique! Et parfaite pour
+                toi!
+              </body>
+              <br />
+              <body>
+                Montre-moi si tu le désires la pièce de ta maison dans laquelle
+                ma création ira. Tu peux aussi me montrer un élément déco avec
+                lesquels tu aimerais agencer, Cela me permet de m'inspirer :)
+              </body>
+            </Box>
             <UploadFileButton
-              title="Montre-moi si tu le désires la pièce de ta maison dans laquelle ma création ira. Tu peux aussi me montrer un élément déco avec lesquels tu aimerais agencer, Cela me permet de m'inspirer :)"
               name="images.pièceDeLaMaison"
               handleFileInputChange={setImagesRoom}
             />
@@ -596,16 +641,13 @@ const PanacheForm = ({ onClose }) => {
 
           <FormSalutation />
 
-          <Grid
-            container
-            sx={{ paddingTop: 2 }}
-            xs={12}
-            justifyContent="flex-end"
-          >
-            <Button size="large" type="submit" variant="contained">
-              Envoyer
-            </Button>
-          </Grid>
+          <Box p={4}>
+            <Grid container xs={12} justifyContent="flex-end">
+              <Button size="large" type="submit" variant="contained">
+                Envoyer
+              </Button>
+            </Grid>
+          </Box>
         </form>
       </Box>
     </>

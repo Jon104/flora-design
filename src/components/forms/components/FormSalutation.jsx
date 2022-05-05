@@ -5,7 +5,7 @@ const FormSalutations = () => {
     <>
       <Box py={4}>
         <h3>À mon tour maintenant</h3>
-        <h4>
+        <body>
           J'aime donner de l'amour dans chacune de mes créations. Je tenais à te
           poser toutes ces questions pour être certaine de bien cerner tes
           goûts. J'adore le sur mesure! Je pense que quand j'arrive à bien
@@ -15,10 +15,10 @@ const FormSalutations = () => {
           confiance et de ta capacité à tolérer une part de surprise! :) En
           m'envoyant tes réponses, je comprends que ma démarches te parle et que
           tu aimes mon style!
-        </h4>
+        </body>
       </Box>
       <h3>Pour confirmer ta commande</h3>
-      <h4>
+      <body>
         Après l'envoi de tes réponses, je te contacterai dans les 24 à 48 heures
         avec un estimé des coûts et mon délai actuel. Si tu acceptes ma
         proposition, je t'enverrai une facture correspondant à environ 75% du
@@ -27,7 +27,7 @@ const FormSalutations = () => {
         projet, selon mon calcul de prix (lequel peut varier légèrement de
         l'estimé, mais jamais beaucoup). Merci d'avoir pris le temps de répondre
         à mes questions! J'ai déjà hâte de créer pour toi! :)
-      </h4>
+      </body>
     </>
   );
 };

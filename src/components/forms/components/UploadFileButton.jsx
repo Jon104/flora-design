@@ -16,9 +16,7 @@ const UploadFileButton = (props) => {
 
   return (
     <>
-      <Box pb={4}>
-        <h3>{props.title}</h3>
-      </Box>
+      {props.title && <h3>{props.title}</h3>}
 
       <input
         accept="image/*"
