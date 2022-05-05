@@ -49,6 +49,8 @@ const panachesInStock = [
 const PanacheForm = ({ onClose }) => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [address, setAddress] = useState();
+
   const [budget, setBudget] = useState();
   const [selectedPanache, setSelectedPanache] = useState([]);
   const [width, setWidth] = useState([23, 40]);
@@ -171,6 +173,7 @@ const PanacheForm = ({ onClose }) => {
       budget,
       name,
       email,
+      address,
       panachesInStock: selectedPanache,
       width,
       height,
@@ -250,6 +253,8 @@ const PanacheForm = ({ onClose }) => {
                   label="Adresse"
                   name="adresse"
                   type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </Grid>
 
