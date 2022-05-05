@@ -17,7 +17,6 @@ import BudgetRadioButtons from "./components/BudgetRadioButtons";
 import StyleRadioButton from "./components/StyleFormQuestions";
 import UploadFileButton from "./components/UploadFileButton";
 import TellMeMore from "./components/TellMeMore";
-// import { useDropzone } from "react-dropzone";
 import { sendForm } from "./FormsService";
 import {
   colorTypes,
@@ -48,31 +47,32 @@ const panachesInStock = [
 ];
 
 const PanacheForm = ({ onClose }) => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
   const [budget, setBudget] = useState();
   const [selectedPanache, setSelectedPanache] = useState([]);
   const [width, setWidth] = useState([23, 40]);
   const [height, setHeight] = useState([17, 24]);
+
   const [selectedColorTypes, setSelectedColorTypes] = useState([]);
+  const [colorTypeDescription, setColorTypeDescription] = useState();
+
   const [selectedFormatTypes, setSelectedFormatTypes] = useState([]);
+  const [formatTypeDescription, setFormatTypeDescription] = useState();
+
   const [selectedLookTypes, setSelectedLookTypes] = useState([]);
+
   const [selectedMotifTypes, setSelectedMotifTypes] = useState([]);
+  const [motifTypeDescription, setMotifTypeDescription] = useState();
+
+  const [style, setStyle] = useState();
+  const [styleDescription, setStyleDescription] = useState();
 
   const [imagesInspiration, setImagesInspiration] = useState();
   const [imagesInspirationDescription, setImagesInspirationDescription] =
     useState();
   const [imagesRoom, setImagesRoom] = useState();
   const [imagesRoomDescription, setImagesRoomDescription] = useState();
-
-  //   const onDrop = useCallback(
-  //     (acceptedFiles) => {
-  //       console.log(file);
-  //       setFile(acceptedFiles[0]);
-  //     },
-  //     [file]
-  //   );
-  //   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-  //     onDrop,
-  //   });
 
   const isPanacheSelected = (image) =>
     selectedPanache.find((element) => element.id === image.id);
@@ -169,13 +169,28 @@ const PanacheForm = ({ onClose }) => {
     const data = {
       "form-name": "panache",
       budget,
+      name,
+      email,
       panachesInStock: selectedPanache,
       width,
       height,
-      selectedColorTypes,
-      selectedFormatTypes,
-      selectedLookTypes,
-      selectedMotifTypes,
+      colorTypes: selectedColorTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      "colorTypes.description": colorTypeDescription,
+      formatTypes: selectedFormatTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      "formatTypes.description": formatTypeDescription,
+      lookTypes: selectedLookTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      motifTypes: selectedMotifTypes.map((element) =>
+        JSON.stringify(element.description)
+      ),
+      "motifTypes.description": motifTypeDescription,
+      style: style,
+      "style.description": styleDescription,
       "images.inspiration": imagesInspiration,
       "images.inspiration.description": imagesInspirationDescription,
       "images.pièceDeLaMaison": imagesRoom,
@@ -211,6 +226,8 @@ const PanacheForm = ({ onClose }) => {
                   variant="filled"
                   label="Nom complet"
                   color="primary"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   name="name"
                   type="text"
                 />
@@ -222,6 +239,8 @@ const PanacheForm = ({ onClose }) => {
                   label="Courriel"
                   name="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs="12" sm="6" sx={{ paddingBottom: 4 }}>
@@ -381,17 +400,21 @@ const PanacheForm = ({ onClose }) => {
                     </div>
                   ))}
                 </ImageList>
-                <TextField
-                  fullWidth
-                  variant="filled"
+                <TellMeMore
                   label="Couleur - Précise au besoin"
                   name="colorTypes.description"
-                  type="text"
+                  value={colorTypeDescription}
+                  setValue={setColorTypeDescription}
                 />
               </Grid>
             </Grid>
 
-            <StyleRadioButton />
+            <StyleRadioButton
+              styleDescription={styleDescription}
+              setStyleDescription={setStyleDescription}
+              value={style}
+              setValue={setStyle}
+            />
 
             <Grid container spacing={2} alignItems="center">
               <Grid item xs="12">
@@ -428,12 +451,11 @@ const PanacheForm = ({ onClose }) => {
                     </div>
                   ))}
                 </ImageList>
-                <TextField
-                  fullWidth
-                  variant="filled"
+                <TellMeMore
                   label="Formats - Précise au besoin"
                   name="formatTypes.description"
-                  type="text"
+                  value={formatTypeDescription}
+                  setValue={setFormatTypeDescription}
                 />
               </Grid>
             </Grid>
@@ -520,12 +542,11 @@ const PanacheForm = ({ onClose }) => {
                     </div>
                   ))}
                 </ImageList>
-                <TextField
-                  fullWidth
-                  variant="filled"
+                <TellMeMore
                   label="Motifs - Précise au besoin"
                   name="motifTypes.description"
-                  type="text"
+                  value={motifTypeDescription}
+                  setValue={setMotifTypeDescription}
                 />
               </Grid>
             </Grid>
