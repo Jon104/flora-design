@@ -17,6 +17,15 @@ const BannerText = styled.p`
   }
 `;
 
+const MainTitle = styled.p`
+  font-family: Lato;
+  font-weight: 500;
+  line-height: 43px;
+  letter-spacing: 0.30000001192092896px;
+  font-size: 36px;
+  color: #9f2e0e;
+`;
+
 const Boutique = ({ onAddToCart, productsByCategory }) => {
   const cartIsLoaded = () => productsByCategory.length > 0;
 
@@ -54,6 +63,9 @@ const Boutique = ({ onAddToCart, productsByCategory }) => {
       <Box paddingTop={14}>
         <Grid container alignItems="end">
           {renderLoading()}
+          <Box px={3}>
+            <MainTitle>BOUTIQUE</MainTitle>
+          </Box>
           {productsByCategory.map((category, i) => (
             <Fragment key={i}>
               <Grid item xs={12}>
