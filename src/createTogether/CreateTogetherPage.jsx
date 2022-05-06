@@ -168,7 +168,7 @@ const bubblesContent = [
     week: "Semaine 4",
     title: "La co-création:",
     content:
-      "On se revoit pour un autre rendez-vous d'une heure. Tu me dis tout ce que tu as cogité. Tu me présentes ton défi artistique. Je te dis ce que moi j'ai imaginé pour toi. Je t'aide à traduire tout ça en mots et en symboles. Ensemble, on crée à partie de tout ça. On brainstorm, on mélange des idées, on parle concrètement des couleurs, de la taille et des designs. L'oeuvre prend forme dans nos têtes. Le sens se dégage. Je te propose quelques postes de réflexion pour approfondir encore plus le sens de l'oeuvre.",
+      "On se revoit pour un autre rendez-vous d'une heure. Tu me dis tout ce que tu as cogité. Tu me présentes ton défi artistique. Je te dis ce que moi j'ai imaginé pour toi. Je t'aide à traduire tout ça en mots et en symboles. Ensemble, on crée à partie de tout ça. On brainstorm, on mélange des idées, on parle concrètement des couleurs, de la taille et des designs. L'oeuvre prend forme dans nos têtes. Le sens se dégage. Je te propose quelques pistes de réflexion pour approfondir encore plus le sens de l'oeuvre.",
   },
   {
     size: 8,
