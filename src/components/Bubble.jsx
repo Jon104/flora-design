@@ -21,7 +21,6 @@ const Box = styled.div`
   border-radius: 30px;
   box-shadow: 10px 10px 30px 0px #d0cfdc66;
   padding: 40px 45px;
-  text-align: center;
 
   @media (max-width: 800px) {
     padding: 20px 25px;
@@ -50,7 +49,7 @@ const Tag = styled.p`
 
 const Subtitle = styled.p`
   font-family: Barlow;
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
@@ -60,9 +59,6 @@ const Subtitle = styled.p`
   opacity: 0.8;
 
   @media (max-width: 1300px) {
-    font-size: 16px;
-  }
-  @media (max-width: 1000px) {
     font-size: 16px;
   }
 `;
