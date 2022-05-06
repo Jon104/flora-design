@@ -102,7 +102,7 @@ const HomePage = () => {
         </Grid>
       </Box>
 
-      <Box p={12}>
+      <Box px={3}>
         <Grid container>
           <Grid item>
             <Box>
