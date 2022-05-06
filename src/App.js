@@ -153,6 +153,7 @@ function App() {
             <Box
               sx={{
                 position: "absolute",
+                zIndex: 100,
               }}
             >
               <Logo src="./img/logo.png" alt="Logo" />
