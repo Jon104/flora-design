@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import React from "react";
 
-const Bubble = ({ title, content }) => {
+const Bubble = ({ title, tag, content }) => {
   return (
     <Box>
-      {/* <Tag>Semaine 1</Tag> */}
+      <Tag>{tag}</Tag>
       <Title>{title}</Title>
       <Subtitle>{content}</Subtitle>
     </Box>
@@ -39,6 +39,15 @@ const Title = styled.p`
   color: #9f2e0e;
 `;
 
+const Tag = styled.p`
+  font-family: Lato;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.5px;
+`;
+
 const Subtitle = styled.p`
   font-family: Barlow;
   font-size: 14px;
@@ -54,6 +63,6 @@ const Subtitle = styled.p`
     font-size: 16px;
   }
   @media (max-width: 1000px) {
-    font-size: 14px;
+    font-size: 16px;
   }
 `;
