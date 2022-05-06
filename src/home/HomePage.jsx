@@ -51,35 +51,39 @@ const HomePage = () => {
         </Grid>
       </Box>
 
-      <Box px={6} pt={{ xs: 4, sm: 30 }} pb={4}>
-        <Grid container justifyContent="space-around">
-          <Grid item md={5} sm={12}>
-            <MiddleSectionTitle>BIENVENUE DANS MON UNIVERS!</MiddleSectionTitle>
-            <MiddleSectionParagraph>
-              Je suis Laurie, maman de 2 garçons. J'habite au coeur des belles
-              montagnes de Stoneham.
-            </MiddleSectionParagraph>
-            <MiddleSectionParagraph>
-              Plutôt rêveuse, toujours pleine d'idées, pis un peu intense quand
-              je m'embarque dans quelque chose.
-            </MiddleSectionParagraph>
-            <MiddleSectionParagraph>
-              J'espère réussir à te toucher par mon art. Tu remarqueras sans
-              doute ma signature végétale bien à moi. Par mes oeuvres et mes
-              cours de macramé, j'ai pour mission d'aider les femmes à se
-              reconnecter à leur essence !
-            </MiddleSectionParagraph>
+      <CustomContainer>
+        <Box px={6} pt={isMobile ? 0 : 30} pb={4}>
+          <Grid container justifyContent="space-around">
+            <Grid item md={5} sm={12}>
+              <MiddleSectionTitle>
+                BIENVENUE DANS MON UNIVERS!
+              </MiddleSectionTitle>
+              <MiddleSectionParagraph>
+                Je suis Laurie, maman de 2 garçons. J'habite au coeur des belles
+                montagnes de Stoneham.
+              </MiddleSectionParagraph>
+              <MiddleSectionParagraph>
+                Plutôt rêveuse, toujours pleine d'idées, pis un peu intense
+                quand je m'embarque dans quelque chose.
+              </MiddleSectionParagraph>
+              <MiddleSectionParagraph>
+                J'espère réussir à te toucher par mon art. Tu remarqueras sans
+                doute ma signature végétale bien à moi. Par mes oeuvres et mes
+                cours de macramé, j'ai pour mission d'aider les femmes à se
+                reconnecter à leur essence !
+              </MiddleSectionParagraph>
+            </Grid>
+            <Grid item md={6} sm={12} pt={{ xs: isMobile ? 8 : 0 }}>
+              <Container>
+                <RightPanel
+                  src="./img/landing_middle_view.jpg"
+                  alt="Landing middle section"
+                />
+              </Container>
+            </Grid>
           </Grid>
-          <Grid item md={6} sm={12} pt={{ xs: isMobile ? 8 : 0 }}>
-            <Container>
-              <RightPanel
-                src="./img/landing_middle_view.jpg"
-                alt="Landing middle section"
-              />
-            </Container>
-          </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </CustomContainer>
 
       <Box px={{ xs: 0, sm: 8, md: 18 }} pb={8}>
         <Grid container p={2} pl={4}>
@@ -147,6 +151,75 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+const CustomContainer = styled.div`
+  /* iphone 3 */
+  @media only screen and (min-device-width: 320px) and (max-device-height: 480px) and (-webkit-device-pixel-ratio: 1) {
+  }
+
+  /* iphone 4 */
+  @media only screen and (min-device-width: 320px) and (max-device-height: 480px) and (-webkit-device-pixel-ratio: 2) {
+  }
+
+  /* iphone 5 */
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+  }
+
+  /* iphone 6, 6s, 7, 8 */
+  @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
+  }
+
+  /* iphone 6+, 6s+, 7+, 8+ */
+  @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  }
+
+  /* iphone X , XS, 11 Pro, 12 Mini */
+  @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  }
+
+  /* iphone 12, 12 Pro */
+  @media only screen and (min-device-width: 390px) and (max-device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+    padding-top: 11rem;
+    padding-bottom: 0rem;
+  }
+
+  /* iphone XR, 11 */
+  @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+    padding-top: 14rem;
+    padding-bottom: 0rem;
+  }
+
+  /* iphone XS Max, 11 Pro Max */
+  @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+  }
+
+  /* iphone 12 Pro Max */
+  @media only screen and (min-device-width: 428px) and (max-device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
+  }
+
+  /* google pixel 4 xl */
+  @media only screen and (device-width: 412px) and (device-height: 869px) and (-webkit-device-pixel-ratio: 3.5) {
+    padding: 14rem 0;
+  }
+
+  /* google pixel 5 */
+  @media only screen and (device-width: 393px) and (device-height: 851px) and (-webkit-device-pixel-ratio: 2.75) {
+    padding-top: 14rem;
+    padding-bottom: 0rem;
+  }
+
+  /* samsung S20 Ultra */
+  @media only screen and (device-width: 412px) and (device-height: 915px) and (-webkit-device-pixel-ratio: 3.5) {
+    padding-top: 16rem;
+    padding-bottom: 0rem;
+  }
+
+  /* samsung S8+ */
+  @media only screen and (device-width: 360px) and (device-height: 740px) and (-webkit-device-pixel-ratio: 4) {
+    padding-top: 3rem;
+    padding-bottom: 0rem;
+  }
+`;
 
 const VideoBackground = styled.video`
   position: absolute;
