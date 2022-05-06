@@ -73,7 +73,9 @@ const PersonalPiece = () => {
         <MainTitle>MES PIÈCES PERSONNALISÉES</MainTitle>
         <MainSubtitle>
           Que dirais-tu si je te proposais de représenter un bout de toi à
-          partir de mes cordes et de mon intuition ?! <br />
+          partir de mes cordes et de mon intuition ?!
+          <br />
+          <br />
           Ma spécialité c'est les grandes pièces personnalisées! J’absorbe
           toutes les informations que tu me donnes, et je crée à partir de ça.
         </MainSubtitle>
