@@ -34,6 +34,7 @@ const MiddleSection = styled.div`
       rgba(255, 255, 255, 0) 103.49%
     ),
     url("./img/my_approach.png");
+  opacity: 0.5;
   width: 100%;
   height: 800px;
   background-size: cover;
@@ -117,7 +118,7 @@ const MyApproach = () => {
 
       <Box
         sx={{
-          marginTop: -40,
+          marginTop: -80,
         }}
       >
         <MiddleSection />
