@@ -102,7 +102,7 @@ const HomePage = () => {
         </Grid>
       </Box>
 
-      <Box px={3}>
+      <Box px={isMobile ? 3 : 10}>
         <Grid container>
           <Grid item>
             <Box>
@@ -120,7 +120,7 @@ const HomePage = () => {
               jardinières coup de coeur que je garde maintenant disponibles en
               permanence sur ma boutique.
             </MiddleSectionParagraph>
-            <Box py={4}>
+            <Box py={6}>
               <Button
                 onClick={() => handleClickToBoutique()}
                 variant="contained"
