@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { isMobile } from "react-device-detect";
 import { Subtitle } from "services/TypoService";
 import Product from "../components/Product";
+import Footer from "components/Footer";
 
 const BannerText = styled.p`
   font-family: Barlow;
@@ -83,6 +84,8 @@ const Boutique = ({ onAddToCart, productsByCategory }) => {
           ))}
         </Grid>
       </Box>
+
+      <Footer />
     </>
   );
 };
