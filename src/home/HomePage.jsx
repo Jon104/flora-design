@@ -199,7 +199,8 @@ const CustomContainer = styled.div`
 
   /* google pixel 4 xl */
   @media only screen and (device-width: 412px) and (device-height: 869px) and (-webkit-device-pixel-ratio: 3.5) {
-    padding: 14rem 0;
+    padding-top: 14rem;
+    padding-bottom: 0rem;
   }
 
   /* google pixel 5 */
