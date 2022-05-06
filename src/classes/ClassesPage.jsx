@@ -107,7 +107,7 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
           }
           alt="Classes Page Header Picture"
         />
-        <MainTitle>Cours et Fournitures</MainTitle>
+        <MainTitle>COURS ET FOURNITURES</MainTitle>
         <MainSubtitle>
           "Le macramé, c'est comme méditer mais en créant " - une cliente
           satisfaite <br></br> <br></br> J’adore partager ma passion, et te
