@@ -191,6 +191,7 @@ const Container = styled.div`
 `;
 const RightPanel = styled.img`
   max-width: 100vw;
+  max-height: 70vh;
   height: 80vh;
 
   @media (max-aspect-ratio: 16/9) {
