@@ -297,7 +297,4 @@ const MiddleSectionParagraph = styled.p`
   @media (max-width: 1000px) {
     font-size: 18px;
   }
-  @media (max-width: 800px) {
-    font-size: 14px;
-  }
 `;
