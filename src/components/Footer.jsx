@@ -7,23 +7,23 @@ import { isMobile } from "react-device-detect";
 
 const FooterListItems = [
   {
-    name: "Accueil",
+    name: "ACCUEIL",
     link: "/",
   },
   {
-    name: "Ma démarche artistique",
+    name: "MA DÉMARCHE ARTISTIQUE",
     link: "/ma-démarche",
   },
   {
-    name: "Créons ensemble, en art-connexion",
+    name: "CRÉONS ENSEMBLE, EN ART-CONNEXION",
     link: "/ensemble",
   },
   {
-    name: "Mes oeuvres sur panache",
+    name: "MES OEUVRES SUR PANACHE",
     link: "/panaches",
   },
   {
-    name: "Boutique",
+    name: "BOUTIQUE",
     link: "/boutique",
   },
 ];
@@ -39,19 +39,18 @@ const Footer = () => (
       <Box sx={{ paddingBottom: 5, paddingTop: 4 }} px={2}>
         <Grid px={2} container spacing={5}>
           <Grid item xs={12} sm={6}>
-            <List
-              sx={{
-                color: "#ffffff",
-                fontFamily: "Lato",
-                fontSize: "25px",
-                fontWeight: "400",
-                lineHeight: "30px",
-              }}
-            >
+            <List>
               {FooterListItems.map((item, index) => (
                 <ListItemButton key={index} component={Link} to={item.link}>
                   <ListItemText
-                    sx={{ textAlign: isMobile ? "center" : "flex-start" }}
+                    sx={{
+                      textAlign: isMobile ? "center" : "flex-start",
+                      color: "#ffffff",
+                      fontFamily: "Lato",
+                      fontSize: "18px",
+                      fontWeight: "400",
+                    }}
+                    disableTypography="true"
                     primary={item.name}
                   />
                 </ListItemButton>
