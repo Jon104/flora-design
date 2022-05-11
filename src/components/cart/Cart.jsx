@@ -73,8 +73,8 @@ const Cart = (props) => {
       </Box>
 
       <TotalAmount>
-        <Box pr={8}>
-          <Grid container justifyContent="end">
+        <Box px={3}>
+          <Grid container>
             <Grid item>
               <b>
                 <p>
@@ -87,11 +87,13 @@ const Cart = (props) => {
       </TotalAmount>
 
       <GoToCheckout onClick={handleGoToCheckout}>
-        <Grid container justifyContent="center">
-          <Grid item>
-            <h3>Passer la commande</h3>
+        <Box px={3}>
+          <Grid container>
+            <Grid item xs={2}>
+              <h3>Passer la commande</h3>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
       </GoToCheckout>
     </Drawer>
   );
