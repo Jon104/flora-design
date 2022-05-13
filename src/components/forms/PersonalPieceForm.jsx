@@ -433,6 +433,7 @@ const PersonalPieceForm = ({ onClose }) => {
                               borderColor: isProjectSelected(item)
                                 ? "#9f2e0e"
                                 : "transparent",
+                              overflow: "hidden",
                             }}
                             key={item.img}
                             onClick={() => handleSelectProject(item)}
@@ -512,6 +513,7 @@ const PersonalPieceForm = ({ onClose }) => {
                           borderColor: isColorSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectColor(item)}
@@ -568,6 +570,7 @@ const PersonalPieceForm = ({ onClose }) => {
                           borderColor: isFormatSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectFormat(item)}
@@ -617,6 +620,7 @@ const PersonalPieceForm = ({ onClose }) => {
                           borderColor: isLookSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectLook(item)}
@@ -659,6 +663,7 @@ const PersonalPieceForm = ({ onClose }) => {
                           borderColor: isMotifSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectMotif(item)}

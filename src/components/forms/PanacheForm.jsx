@@ -355,6 +355,7 @@ const PanacheForm = ({ onClose }) => {
                               borderColor: isPanacheSelected(item)
                                 ? "#9f2e0e"
                                 : "transparent",
+                              overflow: "hidden",
                             }}
                             key={item.img}
                             onClick={() => handleSelectPanache(item)}
@@ -428,6 +429,7 @@ const PanacheForm = ({ onClose }) => {
                           borderColor: isColorSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectColor(item)}
@@ -479,6 +481,7 @@ const PanacheForm = ({ onClose }) => {
                           borderColor: isFormatSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectFormat(item)}
@@ -528,6 +531,7 @@ const PanacheForm = ({ onClose }) => {
                           borderColor: isLookSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectLook(item)}
@@ -570,6 +574,7 @@ const PanacheForm = ({ onClose }) => {
                           borderColor: isMotifSelected(item)
                             ? "#9f2e0e"
                             : "transparent",
+                          overflow: "hidden",
                         }}
                         key={item.img}
                         onClick={() => handleSelectMotif(item)}
