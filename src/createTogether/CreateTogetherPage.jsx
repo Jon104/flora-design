@@ -287,8 +287,8 @@ const CreateTogether = () => {
               <Grid item xs={10}>
                 <Subtitle3>Témoignages cliente :</Subtitle3>
                 <Subtitle3>
-                  "On sent que t'écoutes pas pour répondre mais vraiment pour
-                  comprendre"
+                  « On sent que t'écoutes pas pour répondre mais vraiment pour
+                  comprendre »
                 </Subtitle3>
                 <Subtitle3>
                   « Ce n’est pas tout le monde qui pourrait s’improviser à faire

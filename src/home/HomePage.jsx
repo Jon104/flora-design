@@ -23,7 +23,7 @@ const HomePage = () => {
     {
       title: "SIMPLICITÉ",
       subtitle:
-        "Je suis une grande fervente du 'acheter moins, acheter mieux'. Parce que vivre dans une maison qui prend vie grâce à quelques trésors choisis avec amour, ça n'a pas de prix.",
+        "Je suis une grande fervente du « acheter moins, acheter mieux ». Parce que vivre dans une maison qui prend vie grâce à quelques trésors choisis avec amour, ça n'a pas de prix.",
     },
   ];
   return (
