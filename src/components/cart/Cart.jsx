@@ -89,7 +89,7 @@ const Cart = (props) => {
       <GoToCheckout onClick={handleGoToCheckout}>
         <Box px={3}>
           <Grid container>
-            <Grid item xs={2}>
+            <Grid item>
               <h3>Passer la commande</h3>
             </Grid>
           </Grid>
