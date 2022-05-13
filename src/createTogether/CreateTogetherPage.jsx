@@ -123,7 +123,7 @@ const bubblesContent = [
     week: "Semaine 7",
     title: "La remise",
     content:
-      "Tu reçois ta pièce, accompagné d'un certificat d'authenticité et d'un porte-clé souvenir. Ce porte-clé sera un extrait de l'oeuvre finale, et un symbole du processus qu'on a vécu ensembe, que tu pourras traîner partout avec toi! Je te remets aussi un cahier souvenir avec mon design exclusif, dans lequel tu trouveras mes notes sur notre démarche, et que tu pourras ensuite compléter selon ton inspiration. Ensemble, on fait un bilan de l'expérience tu as vécue.",
+      "Tu reçois ta pièce, accompagnée d'un certificat d'authenticité et d'un porte-clé souvenir. Ce porte-clé sera un extrait de l'oeuvre finale, et un symbole du processus qu'on a vécu ensembe, que tu pourras traîner partout avec toi! Je te remets aussi un cahier souvenir avec mon design exclusif, dans lequel tu trouveras mes notes sur notre démarche, que tu pourras ensuite compléter selon ton inspiration. Ensemble, on fait un bilan de l'expérience que tu as vécue.",
   },
 ];
 
