@@ -199,7 +199,7 @@ const CreateTogether = () => {
           ))}
         </MiddleSection>
         <Box py={6} px={isMobile ? 2 : 12}>
-          <Box pb={6}>
+          <Box pb={2}>
             <Grid container justifyContent="center">
               <Grid item>
                 <Title>À QUOI ÇA RESSEMBLE ?</Title>
