@@ -64,6 +64,20 @@ const Logo = styled.img`
   }
 `;
 
+function reportWindowSize(e) {
+  document.documentElement.style.setProperty("overflow", "auto");
+  const metaViewport = document.querySelector("meta[name=viewport]");
+  metaViewport.setAttribute(
+    "content",
+    "height=" + window.innerHeight + "px, width=device-width, initial-scale=1.0"
+  );
+
+  // const metaViewport = document.querySelector(‘meta[name=viewport]’)
+  // metaViewport.setAttribute(‘content’, ‘width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0’);
+}
+
+window.onresize = reportWindowSize;
+
 function App() {
   const [isOpen, toggleForm] = useState(false);
   const [cart, setCart] = useState({});
