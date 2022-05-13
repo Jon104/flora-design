@@ -121,7 +121,7 @@ const BottomLine = styled.div`
   margin: -2px 0 0 0;
   width: 40px;
   transform-origin: 50% 50%;
-  box-shadow: 0px 0px 4px rgb(255 255 255 / 82%);
+  box-shadow: 0px 0px 10px rgb(255 255 255 / 80%);
   ${(props) =>
     props.isChecked &&
     css`
@@ -137,7 +137,7 @@ const MiddleLine = styled.div`
   left: 0;
   width: 20px;
   transform-origin: 0 50%;
-  box-shadow: 0px 0px 4px rgb(255 255 255 / 82%);
+  box-shadow: 0px 0px 10px rgb(255 255 255 / 80%);
   ${(props) =>
     props.isChecked &&
     css`
@@ -156,7 +156,7 @@ const TopLine = styled.div`
   transform-origin: 100% 50%;
   transform: translate(-12px, 0);
   width: 28px;
-  box-shadow: 0px 0px 4px rgb(255 255 255 / 82%);
+  box-shadow: 0px 0px 10px rgb(255 255 255 / 80%);
   ${(props) =>
     props.isChecked &&
     css`
