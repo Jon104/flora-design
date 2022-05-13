@@ -4,23 +4,7 @@ import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import FadeIn from "../components/effects/FadeIn";
 import Bubble from "../components/Bubble";
-
-const TopImage = styled.img`
-  position: absolute;
-  left: 0;
-  top: 0;
-  max-width: 100%;
-  height: auto;
-  opacity: 0.4;
-  z-index: 1;
-`;
-
-const Container = styled.div`
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding-top: 12rem;
-`;
+import TopSectionImage from "../components/common/TopSectionImage";
 
 const Title = styled.p`
   font-size: 32px;
@@ -28,17 +12,6 @@ const Title = styled.p`
 
   @media (max-width: 600px) {
     font-size: 22px;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-family: Barlow;
-  font-size: 28px;
-  color: #9f2e0e;
-  font-weight: 600;
-
-  @media (max-width: 600px) {
-    font-size: 18px;
   }
 `;
 
@@ -73,14 +46,6 @@ const MiddleSection = styled.div`
   position: relative;
   display: block;
   margin: 3% 5%;
-  padding-top: 10rem;
-
-  @media (min-width: 1200px) {
-    padding-top: 16%;
-  }
-  @media (min-width: 800px) {
-    padding-top: 16%;
-  }
 `;
 
 const MiddleSectionImage = styled.img`
@@ -173,31 +138,22 @@ const RightImage = styled.img`
 const CreateTogether = () => {
   return (
     <>
-      <TopImage
-        src={
-          isMobile
-            ? "./img/createTogether_main_mobile.png"
-            : "./img/createTogether_main.jpg"
-        }
-        alt="Create Together Header Picture"
-      />
-      <Container>
-        <Title>CRÉONS ENSEMBLE, EN ART-CONNEXION</Title>
-        <Box pt={4}>
-          <Subtitle>
-            Parce qu'une oeuvre créée à partir de ton essence, est bien plus
-            porteuse de sens!
-            <Subtitle>
-              Ici, le processus que je te propose, c’est l’expérience ultime
+      <TopSectionImage
+        title="CRÉONS ENSEMBLE, EN ART-CONNEXION"
+        subtitle="Parce qu'une oeuvre créée à partir de ton essence, est bien plus
+            porteuse de sens!"
+        subtitle2="Ici, le processus que je te propose, c’est l’expérience ultime
               Flora Design! C’est un processus de co-création. C’est une
               expérience d’Art-connexion. C'est une rencontre intime avec moi.
-              C'est un voyage à l'intérieur de toi.
-            </Subtitle>
-          </Subtitle>
-        </Box>
-      </Container>
+              C'est un voyage à l'intérieur de toi."
+        images={[
+          "./img/createTogether_main_mobile.png",
+          "./img/createTogether_main.jpg",
+        ]}
+        alt="Create Together Header Picture"
+      />
 
-      <Box px={2} pt={{ xs: 0, lg: 20 }}>
+      <Box px={2} py={2}>
         <MiddleSection>
           <Title>Imagine...</Title>
           <Subtitle4>
