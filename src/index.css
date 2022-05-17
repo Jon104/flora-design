@@ -48,3 +48,9 @@ svg {
 .container:hover .overlay {
   opacity: 1;
 }
+.container img {
+  object-fit: cover;
+  object-position: center;
+  height: 50vh;
+  overflow: hidden;
+}
