@@ -248,11 +248,13 @@ const PersonalPieceForm = ({ onClose }) => {
       const index = selectedProjectTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedProjectTypes(selectedProjectTypes.splice(index, 0));
-      return;
+      selectedProjectTypes.splice(index, 1);
+      const result = [...selectedProjectTypes];
+      setSelectedProjectTypes(result);
+    } else {
+      const result = [...selectedProjectTypes, image];
+      setSelectedProjectTypes(result);
     }
-    const result = [...selectedProjectTypes, image];
-    setSelectedProjectTypes(result);
   };
 
   const isColorSelected = (image) =>
@@ -264,11 +266,13 @@ const PersonalPieceForm = ({ onClose }) => {
       const index = selectedColorTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedColorTypes(selectedColorTypes.splice(index, 0));
-      return;
+      selectedColorTypes.splice(index, 1);
+      const result = [...selectedColorTypes];
+      setSelectedColorTypes(result);
+    } else {
+      const result = [...selectedColorTypes, image];
+      setSelectedColorTypes(result);
     }
-    const result = [...selectedColorTypes, image];
-    setSelectedColorTypes(result);
   };
 
   const isFormatSelected = (image) =>
@@ -280,11 +284,13 @@ const PersonalPieceForm = ({ onClose }) => {
       const index = selectedFormatTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedFormatTypes(selectedFormatTypes.splice(index, 0));
-      return;
+      selectedFormatTypes.splice(index, 1);
+      const result = [...selectedFormatTypes];
+      setSelectedFormatTypes(result);
+    } else {
+      const result = [...selectedFormatTypes, image];
+      setSelectedFormatTypes(result);
     }
-    const result = [...selectedFormatTypes, image];
-    setSelectedFormatTypes(result);
   };
 
   const isLookSelected = (image) =>
@@ -296,11 +302,13 @@ const PersonalPieceForm = ({ onClose }) => {
       const index = selectedLookTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedLookTypes(selectedLookTypes.splice(index, 0));
-      return;
+      selectedLookTypes.splice(index, 1);
+      const result = [...selectedLookTypes];
+      setSelectedLookTypes(result);
+    } else {
+      const result = [...selectedLookTypes, image];
+      setSelectedLookTypes(result);
     }
-    const result = [...selectedLookTypes, image];
-    setSelectedLookTypes(result);
   };
 
   const isMotifSelected = (image) =>
@@ -312,11 +320,13 @@ const PersonalPieceForm = ({ onClose }) => {
       const index = selectedMotifTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedMotifTypes(selectedMotifTypes.splice(index, 0));
-      return;
+      selectedMotifTypes.splice(index, 1);
+      const result = [...selectedMotifTypes];
+      setSelectedMotifTypes(result);
+    } else {
+      const result = [...selectedMotifTypes, image];
+      setSelectedMotifTypes(result);
     }
-    const result = [...selectedMotifTypes, image];
-    setSelectedMotifTypes(result);
   };
 
   const widthMarks = [

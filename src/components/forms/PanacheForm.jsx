@@ -91,11 +91,13 @@ const PanacheForm = ({ onClose }) => {
       const index = selectedPanache.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedPanache(selectedPanache.splice(index, 0));
-      return;
+      selectedPanache.splice(index, 1);
+      const result = [...selectedPanache];
+      setSelectedPanache(result);
+    } else {
+      const result = [...selectedPanache, image];
+      setSelectedPanache(result);
     }
-    const result = [...selectedPanache, image];
-    setSelectedPanache(result);
   };
 
   const isColorSelected = (image) =>
@@ -107,11 +109,13 @@ const PanacheForm = ({ onClose }) => {
       const index = selectedColorTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedColorTypes(selectedColorTypes.splice(index, 0));
-      return;
+      selectedColorTypes.splice(index, 1);
+      const result = [...selectedColorTypes];
+      setSelectedColorTypes(result);
+    } else {
+      const result = [...selectedColorTypes, image];
+      setSelectedColorTypes(result);
     }
-    const result = [...selectedColorTypes, image];
-    setSelectedColorTypes(result);
   };
 
   const isFormatSelected = (image) =>
@@ -123,11 +127,13 @@ const PanacheForm = ({ onClose }) => {
       const index = selectedFormatTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedFormatTypes(selectedFormatTypes.splice(index, 0));
-      return;
+      selectedFormatTypes.splice(index, 1);
+      const result = [...selectedFormatTypes];
+      setSelectedFormatTypes(result);
+    } else {
+      const result = [...selectedFormatTypes, image];
+      setSelectedFormatTypes(result);
     }
-    const result = [...selectedFormatTypes, image];
-    setSelectedFormatTypes(result);
   };
 
   const isLookSelected = (image) =>
@@ -139,15 +145,18 @@ const PanacheForm = ({ onClose }) => {
       const index = selectedLookTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedLookTypes(selectedLookTypes.splice(index, 0));
-      return;
+      selectedLookTypes.splice(index, 1);
+      const result = [...selectedLookTypes];
+      setSelectedLookTypes(result);
+    } else {
+      const result = [...selectedLookTypes, image];
+      setSelectedLookTypes(result);
     }
-    const result = [...selectedLookTypes, image];
-    setSelectedLookTypes(result);
   };
 
-  const isMotifSelected = (image) =>
-    selectedMotifTypes.find((element) => element.id === image.id);
+  const isMotifSelected = (image) => {
+    return selectedMotifTypes.find((element) => element.id === image.id);
+  };
 
   const handleSelectMotif = (image) => {
     const alreadySelected = isMotifSelected(image);
@@ -155,11 +164,13 @@ const PanacheForm = ({ onClose }) => {
       const index = selectedMotifTypes.findIndex(
         (element) => element.id === image.id
       );
-      setSelectedMotifTypes(selectedMotifTypes.splice(index, 0));
-      return;
+      selectedMotifTypes.splice(index, 1);
+      const result = [...selectedMotifTypes];
+      setSelectedMotifTypes(result);
+    } else {
+      const result = [...selectedMotifTypes, image];
+      setSelectedMotifTypes(result);
     }
-    const result = [...selectedMotifTypes, image];
-    setSelectedMotifTypes(result);
   };
 
   const widthMarks = [
@@ -211,6 +222,8 @@ const PanacheForm = ({ onClose }) => {
     sendForm(data);
   };
 
+  console.log("Selection");
+  console.log(selectedMotifTypes);
   return (
     <>
       <Box px={{ xs: 2, sm: 6 }} py={2}>
