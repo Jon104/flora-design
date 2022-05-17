@@ -158,7 +158,7 @@ const PanacheForm = ({ onClose }) => {
       setSelectedMotifTypes(selectedMotifTypes.splice(index, 0));
       return;
     }
-    const result = [...selectedLookTypes, image];
+    const result = [...selectedMotifTypes, image];
     setSelectedMotifTypes(result);
   };
 
