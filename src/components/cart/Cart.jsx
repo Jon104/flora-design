@@ -106,6 +106,7 @@ const GoToCheckout = styled.div`
   bottom: 0;
   width: 100%;
   height: 4rem;
+  cursor: pointer;
 `;
 
 const TotalAmount = styled.div`
