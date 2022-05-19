@@ -25,7 +25,7 @@ import {
   motifTypes,
 } from "./PersonalPieceForm";
 import { isMobile } from "react-device-detect";
-import FormSalutation from "./components/FormSalutation";
+import FormSalutations from "./components/FormSalutations";
 import RadioButtons from "./components/common/RadioButtons";
 import { yesNoOptions } from "./components/common/RadioButtons/options";
 
@@ -657,7 +657,7 @@ const PanacheForm = ({ onClose }) => {
             />
           </Grid>
 
-          <FormSalutation />
+          <FormSalutations />
 
           <Box p={4}>
             <Grid container xs={12} justifyContent="flex-end">

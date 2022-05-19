@@ -15,7 +15,7 @@ import BudgetRadioButtons from "./components/BudgetRadioButtons";
 import StyleRadioButton from "./components/StyleFormQuestions";
 import UploadFileButton from "./components/UploadFileButton";
 import TellMeMore from "./components/TellMeMore";
-import FormSalutation from "./components/FormSalutation";
+import FormSalutations from "./components/FormSalutations";
 
 import { sendForm } from "./FormsService";
 
@@ -735,7 +735,7 @@ const PersonalPieceForm = ({ onClose }) => {
             setValue={setImagesRoomDescription}
           />
 
-          <FormSalutation />
+          <FormSalutations />
 
           <Grid
             container
