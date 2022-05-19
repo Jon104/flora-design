@@ -107,21 +107,21 @@ const bubblesContent = [
   {
     size: 8,
     week: "Semaine 5",
-    title: "La naissance",
+    title: "LA NAISSANCE",
     content:
       "Je t'invite à me partager d'autres inspirations, réflexions ou flashs que notre dernier rendez-vous aura fait germer. De mon côté, je travaille fort pour que tout ce qu'on a créé ensemble se matérialise à travers mes cordes.",
   },
   {
     size: 9,
     week: "Semaine 6",
-    title: "Le dévoilement",
+    title: "LE DÉVOILEMENT",
     content:
       "On se fixe un dernier rendez-vous d'une quinzaine de minutes où je te présente l'oeuvre finale. Je t'explique comment j'ai construit ta pièce. On élabore ce que tout ça représente pour toi.",
   },
   {
     size: 12,
     week: "Semaine 7",
-    title: "La remise",
+    title: "LA REMISE",
     content:
       "Tu reçois ta pièce, accompagnée d'un certificat d'authenticité et d'un porte-clé souvenir. Ce porte-clé sera un extrait de l'oeuvre finale, et un symbole du processus qu'on a vécu ensembe, que tu pourras traîner partout avec toi! Je te remets aussi un cahier souvenir avec mon design exclusif, dans lequel tu trouveras mes notes sur notre démarche, que tu pourras ensuite compléter selon ton inspiration. Ensemble, on fait un bilan de l'expérience que tu as vécue.",
   },
