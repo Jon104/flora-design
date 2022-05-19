@@ -17,7 +17,7 @@ const Cart = (props) => {
 
     return (
       <Box>
-        <p>Vous n'avez aucun item dans votre panier, commencer à en ajouter!</p>
+        <p>Vous n'avez aucun item dans votre panier, commencez à en ajouter!</p>
         <Link to="/boutique" onClick={props.onClose}>
           Boutique
         </Link>
