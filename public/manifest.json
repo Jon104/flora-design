@@ -1,25 +1,87 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "FloraDesign",
+  "short_name": "FloraDesign",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#fff",
+  "theme_color": "#9f2e0e",
+  "description": "FloraDesign create high quality macrame",
+  "icons": [
+    {
+      "src": "img/icons/FloraDesign_AppIcon_36.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_55.png",
+      "sizes": "55x55",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_57.png",
+      "sizes": "57x57",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_76.png",
+      "sizes": "76x76",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_80.png",
+      "sizes": "80x80",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_88.png",
+      "sizes": "88x88",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_172.png",
+      "sizes": "172x172",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_196.png",
+      "sizes": "196x196",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/FloraDesign_AppIcon_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
