@@ -185,7 +185,7 @@ function App() {
                   aria-label="shopping-cart"
                   onClick={() => toggleForm(true)}
                   size="large"
-                  sx={{ transform: "scale(1.4)", marginRight: "20px" }}
+                  sx={{ transform: "scale(1.2)", marginRight: "20px" }}
                 >
                   <Badge badgeContent={cart.total_items} color="primary">
                     <ShoppingCartIcon color="primary" fontSize="inherit" />
