@@ -1,10 +1,11 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Footer from "components/Footer";
 import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import FadeIn from "../components/effects/FadeIn";
 import Bubble from "../components/Bubble";
 import TopSectionImage from "../components/common/TopSectionImage";
+import Button from "../components/buttons/Button";
 
 const Title = styled.p`
   font-size: 32px;
@@ -254,24 +255,7 @@ const CreateTogether = () => {
               </Grid>
               <Box py={4}>
                 <Grid item>
-                  <Button
-                    onClick={() =>
-                      window.open(
-                        "https://www.facebook.com/Flora-Design-2473490369540452/",
-                        "_blank"
-                      )
-                    }
-                    variant="contained"
-                    size="large"
-                    sx={{
-                      backgroundColor: "#F2E8DA",
-                      color: "#9F2E0E",
-                      fontSize: 15,
-                      height: "3rem",
-                      paddingY: "2rem",
-                      boxShadow: "10px 10px 30px 0px #D0CFDC66",
-                    }}
-                  >
+                  <Button onClick="https://www.facebook.com/Flora-Design-2473490369540452/">
                     Écris-moi pour réserver ton appel découverte !
                   </Button>
                 </Grid>
