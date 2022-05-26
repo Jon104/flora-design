@@ -4,6 +4,7 @@ import { Box, Grid } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import styled from "styled-components";
 
 const UploadFileButton = (props) => {
   const [file, setFile] = useState();
@@ -36,21 +37,30 @@ const UploadFileButton = (props) => {
         <input {...getInputProps()} />
         <Grid container alignItems="center">
           <Box p={2}>
-            <Grid item>
+            <Grid item xs={12}>
               <LoadingButton variant="outlined">
                 <FileUploadIcon color="primary" />
                 <Box px={2}>Téléverser</Box>
               </LoadingButton>
             </Grid>
           </Box>
-          <Box pt={0.5} px={1}>
-            <Grid item>{!!file && <CheckCircleOutlineIcon />}</Grid>
-          </Box>
-          <Grid item>{!!file && file.name}</Grid>
+          <Grid container>
+            <Box px={4}>
+              <Grid item>
+                {!!file && <CheckCircleOutlineIcon fontSize="x-small" />}
+              </Grid>
+            </Box>
+            <Grid item>{!!file && <FileName>file.name</FileName>}</Grid>
+          </Grid>
         </Grid>
       </div>
     </>
   );
 };
+
+const FileName = styled.p`
+  margin: 0;
+  font-size: 12px;
+`;
 
 export default UploadFileButton;

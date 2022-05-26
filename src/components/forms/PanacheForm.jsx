@@ -222,8 +222,6 @@ const PanacheForm = ({ onClose }) => {
     sendForm(data);
   };
 
-  console.log("Selection");
-  console.log(selectedMotifTypes);
   return (
     <>
       <Box px={{ xs: 2, sm: 6 }} py={2}>
