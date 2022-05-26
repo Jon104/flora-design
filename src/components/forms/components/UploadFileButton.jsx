@@ -36,7 +36,7 @@ const UploadFileButton = (props) => {
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         <Grid container alignItems="center">
-          <Box p={2}>
+          <Box p={0.5}>
             <Grid item xs={12}>
               <LoadingButton variant="outlined">
                 <FileUploadIcon color="primary" />
@@ -45,12 +45,12 @@ const UploadFileButton = (props) => {
             </Grid>
           </Box>
           <Grid container>
-            <Box px={4}>
+            <Box px={1}>
               <Grid item>
                 {!!file && <CheckCircleOutlineIcon fontSize="x-small" />}
               </Grid>
             </Box>
-            <Grid item>{!!file && <FileName>file.name</FileName>}</Grid>
+            <Grid item>{!!file && <FileName>{file.name}</FileName>}</Grid>
           </Grid>
         </Grid>
       </div>
