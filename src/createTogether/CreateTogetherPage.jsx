@@ -255,7 +255,14 @@ const CreateTogether = () => {
               </Grid>
               <Box py={4}>
                 <Grid item>
-                  <Button onClick="https://www.facebook.com/Flora-Design-2473490369540452/">
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        "https://www.facebook.com/Flora-Design-2473490369540452/",
+                        "_blank"
+                      )
+                    }
+                  >
                     Écris-moi pour réserver ton appel découverte !
                   </Button>
                 </Grid>

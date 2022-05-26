@@ -2,7 +2,7 @@ import MuiButton from "@mui/material/Button";
 
 const Button = (props) => (
   <MuiButton
-    onClick={() => window.open(props.onClick, "_blank")}
+    onClick={props.onClick}
     variant="contained"
     size="large"
     sx={{
