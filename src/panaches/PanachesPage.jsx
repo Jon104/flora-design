@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Box, Button, Drawer, Grid } from "@mui/material";
+import { Box, Drawer, Grid } from "@mui/material";
+import Button from "components/buttons/Button";
 import PanacheForm from "../components/forms/PanacheForm";
 import { TopSection, SecondMiddleSection } from "../pages/components/element";
 import { FullImage } from "../pages/components/image";
@@ -125,17 +126,7 @@ const Panaches = () => {
             </Subtitle>
           </Grid>
           <Box my={6}>
-            <Button
-              onClick={() => toggleForm(true)}
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: "#F2E8DA",
-                color: "#9F2E0E",
-                fontSize: 15,
-                boxShadow: "10px 10px 30px 0px #D0CFDC66",
-              }}
-            >
+            <Button onClick={() => toggleForm(true)}>
               Élaborons ton projet ensemble
             </Button>
           </Box>

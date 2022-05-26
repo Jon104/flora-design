@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
-import { Box, Button, Drawer, Grid } from "@mui/material";
+import { Box, Drawer, Grid } from "@mui/material";
+import Button from "components/buttons/Button";
 import PersonalPieceForm from "components/forms/PersonalPieceForm";
 import { TopSection, SecondMiddleSection } from "../pages/components/element";
 import { FullImage } from "../pages/components/image";

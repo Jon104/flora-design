@@ -1,4 +1,5 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
+import Button from "../components/buttons/Button";
 import styled from "styled-components";
 import Bubble from "../components/Bubble";
 import { isMobile } from "react-device-detect";
@@ -125,19 +126,7 @@ const HomePage = () => {
               permanence sur ma boutique.
             </MiddleSectionParagraph>
             <Box py={6}>
-              <Button
-                onClick={() => handleClickToBoutique()}
-                variant="contained"
-                size="large"
-                sx={{
-                  backgroundColor: "#F2E8DA",
-                  color: "#9F2E0E",
-                  fontSize: 15,
-                  width: "20rem",
-                  height: "3.5rem",
-                  boxShadow: "10px 10px 30px 0px #D0CFDC66",
-                }}
-              >
+              <Button onClick={() => handleClickToBoutique()}>
                 Voir la boutique
               </Button>
             </Box>
