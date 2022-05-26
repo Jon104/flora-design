@@ -11,6 +11,7 @@ const TopSectionImage = (props) => {
         />
         <MainTitle>{props.title}</MainTitle>
         <MainSubtitle>{props.subtitle}</MainSubtitle>
+        <SecondSubtitle>{props.subtitle2}</SecondSubtitle>
       </TopSection>
     </>
   );
@@ -63,6 +64,36 @@ export const MainTitle = styled.p`
 export const MainSubtitle = styled.p`
   position: absolute;
   top: 46%;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-family: Barlow;
+  font-size: 32px;
+  font-weight: 600;
+  color: #9f2e0e;
+  z-index: 2;
+
+  ${(props) =>
+    props.primary &&
+    css`
+      color: #ffffff;
+    `};
+
+  @media (max-width: 1300px) {
+    font-size: 22px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 20px;
+  }
+  @media (max-width: 800px) {
+    top: 20rem;
+    font-size: 14px;
+  }
+`;
+
+export const SecondSubtitle = styled.p`
+  position: absolute;
+  top: 55%;
   padding-left: 10rem;
   padding-right: 10rem;
   text-align: center;
@@ -86,10 +117,10 @@ export const MainSubtitle = styled.p`
     font-size: 20px;
   }
   @media (max-width: 800px) {
-    top: 52%;
+    top: 23rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 
