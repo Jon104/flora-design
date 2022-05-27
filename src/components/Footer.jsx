@@ -50,7 +50,6 @@ const Footer = () => (
                       fontSize: "18px",
                       fontWeight: "400",
                     }}
-                    disableTypography="true"
                     primary={item.name}
                   />
                 </ListItemButton>
