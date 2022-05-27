@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
   Box,
-  Button,
   Grid,
   IconButton,
   ImageList,
   ImageListItem,
   Slider,
 } from "@mui/material";
+import Button from "components/buttons/Button";
 import { isMobile } from "react-device-detect";
 import CloseIcon from "@mui/icons-material/Close";
 import BudgetRadioButtons from "./components/BudgetRadioButtons";
@@ -338,9 +338,11 @@ const PersonalPieceForm = ({ onClose }) => {
 
   const valuetext = (value) => `${value} po`;
 
-  const handleSubmit = (e) => {
+  //TODO reusable form component
+  const [isSendingForm, setIsSendingForm] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    debugger;
     const data = {
       "form-name": "personal-piece",
       budget,
@@ -375,7 +377,9 @@ const PersonalPieceForm = ({ onClose }) => {
       "images.pièceDeLaMaison.description": imagesRoomDescription,
     };
 
-    sendForm(data);
+    setIsSendingForm(true);
+    await sendForm(data, onClose);
+    setIsSendingForm(false);
   };
 
   return (
@@ -744,7 +748,11 @@ const PersonalPieceForm = ({ onClose }) => {
             xs={12}
           >
             <Grid item>
-              <Button size="large" type="submit" variant="contained">
+              <Button
+                isLoading={isSendingForm}
+                size="large"
+                variant="contained"
+              >
                 Envoyer
               </Button>
             </Grid>

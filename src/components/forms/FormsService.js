@@ -1,10 +1,11 @@
-const sendForm = (data) =>
+const sendForm = async (data, callback) =>
   fetch("/", {
     method: "POST",
     // headers: { "Content-Type": "application/x-www-form-urlencoded"},
     body: encode(data),
   })
-    .then(() => alert("Success!"))
+    .then(() => console.log("form sent"))
+    .then(callback)
     .catch((error) => alert(error));
 
 // Utilities

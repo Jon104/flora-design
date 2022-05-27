@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
-import { Box, Drawer, Grid } from "@mui/material";
+import { Box, Drawer, Grid, Snackbar } from "@mui/material";
 import Button from "components/buttons/Button";
 import PersonalPieceForm from "components/forms/PersonalPieceForm";
 import { TopSection, SecondMiddleSection } from "../pages/components/element";
@@ -58,7 +58,13 @@ const Subtitle = styled.p`
 
 const PersonalPiece = () => {
   const [isOpen, toggleForm] = useState(false);
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [slideIndex, setSlideIndex] = useState(-1);
+
+  const handleCloseForm = () => {
+    toggleForm(false);
+    setIsSnackbarOpen(true);
+  };
 
   return (
     <>
@@ -150,8 +156,16 @@ const PersonalPiece = () => {
           </Box>
         </Grid>
       </SecondMiddleSection>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        severity="success"
+        open={isSnackbarOpen}
+        onClose={() => setIsSnackbarOpen(false)}
+        autoHideDuration={2000}
+        message="Formulaire envoyé !"
+      />
       <Drawer anchor="right" open={isOpen} onClose={() => toggleForm(false)}>
-        <PersonalPieceForm onClose={() => toggleForm(false)} />
+        <PersonalPieceForm onClose={handleCloseForm} />
       </Drawer>
       <Footer />
     </>

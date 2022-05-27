@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
   Box,
-  Button,
   Grid,
   IconButton,
   ImageList,
   ImageListItem,
   Slider,
 } from "@mui/material";
+import Button from "components/buttons/Button";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -183,7 +183,7 @@ const PanacheForm = ({ onClose }) => {
 
   const valuetext = (value) => `${value} po`;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -220,13 +220,18 @@ const PanacheForm = ({ onClose }) => {
       "images.pièceDeLaMaison": imagesRoom,
       "images.pièceDeLaMaison.description": imagesRoomDescription,
     };
-    sendForm(data);
+
+    setIsSendingForm(true);
+    await sendForm(data, onClose);
+    setIsSendingForm(false);
   };
 
   const toggle = useCallback(
     () => setDoYouHaveAPanache(!!!doYouHaveAPanache),
     [doYouHaveAPanache, setDoYouHaveAPanache]
   );
+
+  const [isSendingForm, setIsSendingForm] = useState(false);
 
   return (
     <>
@@ -667,7 +672,11 @@ const PanacheForm = ({ onClose }) => {
 
           <Box p={4}>
             <Grid container xs={12} justifyContent="flex-end">
-              <Button size="large" type="submit" variant="contained">
+              <Button
+                isLoading={isSendingForm}
+                size="large"
+                variant="contained"
+              >
                 Envoyer
               </Button>
             </Grid>

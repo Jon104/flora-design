@@ -1,7 +1,9 @@
-import MuiButton from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const Button = (props) => (
-  <MuiButton
+  <LoadingButton
+    type="submit"
+    loading={props.isLoading}
     onClick={props.onClick}
     variant="contained"
     size="large"
@@ -18,7 +20,7 @@ const Button = (props) => (
     }}
   >
     {props.children}
-  </MuiButton>
+  </LoadingButton>
 );
 
 export default Button;
