@@ -28,6 +28,7 @@ import { isMobile } from "react-device-detect";
 import FormSalutations from "./components/FormSalutations";
 import RadioButtons from "./components/common/RadioButtons";
 import { yesNoOptions } from "./components/common/RadioButtons/options";
+import { useCallback } from "react";
 
 const panachesInStock = [
   {
@@ -222,6 +223,11 @@ const PanacheForm = ({ onClose }) => {
     sendForm(data);
   };
 
+  const toggle = useCallback(
+    () => setDoYouHaveAPanache(!!!doYouHaveAPanache),
+    [doYouHaveAPanache, setDoYouHaveAPanache]
+  );
+
   return (
     <>
       <Box px={{ xs: 2, sm: 6 }} py={2}>
@@ -286,7 +292,7 @@ const PanacheForm = ({ onClose }) => {
                       options={yesNoOptions}
                       title="As-tu un panache ?"
                       value={doYouHaveAPanache}
-                      setValue={setDoYouHaveAPanache}
+                      setValue={toggle}
                     />
                     <input hidden name="file" type="file" />
                   </Grid>
@@ -350,39 +356,41 @@ const PanacheForm = ({ onClose }) => {
                   </>
                 )}
 
-                <Grid container spacing={2} alignItems="center">
-                  <Grid item xs="12">
-                    <h3>J'aimerais réserver un des panaches en stock </h3>
-                    <ImageList
-                      cols={isMobile ? 1 : 3}
-                      rowHeight={isMobile ? 350 : 580}
-                    >
-                      <input hidden name="panachesInstock" type="text" />
-                      {panachesInStock.map((item) => (
-                        <div>
-                          <ImageListItem
-                            sx={{
-                              border: 4,
-                              borderColor: isPanacheSelected(item)
-                                ? "#9f2e0e"
-                                : "transparent",
-                              overflow: "hidden",
-                            }}
-                            key={item.img}
-                            onClick={() => handleSelectPanache(item)}
-                          >
-                            <img
-                              src={`./img/forms/${item.src}`}
-                              alt={item.id}
-                              loading="lazy"
-                            />
-                          </ImageListItem>
-                          <p>{item.description}</p>
-                        </div>
-                      ))}
-                    </ImageList>
+                {doYouHaveAPanache && (
+                  <Grid container spacing={2} alignItems="center">
+                    <Grid item xs="12">
+                      <h3>J'aimerais réserver un des panaches en stock </h3>
+                      <ImageList
+                        cols={isMobile ? 1 : 3}
+                        rowHeight={isMobile ? 350 : 580}
+                      >
+                        <input hidden name="panachesInstock" type="text" />
+                        {panachesInStock.map((item) => (
+                          <div>
+                            <ImageListItem
+                              sx={{
+                                border: 4,
+                                borderColor: isPanacheSelected(item)
+                                  ? "#9f2e0e"
+                                  : "transparent",
+                                overflow: "hidden",
+                              }}
+                              key={item.img}
+                              onClick={() => handleSelectPanache(item)}
+                            >
+                              <img
+                                src={`./img/forms/${item.src}`}
+                                alt={item.id}
+                                loading="lazy"
+                              />
+                            </ImageListItem>
+                            <p>{item.description}</p>
+                          </div>
+                        ))}
+                      </ImageList>
+                    </Grid>
                   </Grid>
-                </Grid>
+                )}
               </Grid>
             </Grid>
 
