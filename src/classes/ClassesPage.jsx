@@ -68,7 +68,10 @@ const BannerText = styled.p`
 const Classes = ({ onAddToCart, productsByCategory }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
-  useInterval(() => setSlideIndex(slideIndex + 1), 5000);
+  useInterval(() => {
+    if (slideIndex + 1 === classesTestimonials.length) setSlideIndex(0);
+    else setSlideIndex(slideIndex + 1);
+  }, 5000);
 
   const cartIsLoaded = () => productsByCategory.length > 0;
 
