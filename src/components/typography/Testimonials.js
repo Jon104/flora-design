@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default styled.p`
   font-family: Lato;
-  font-size: 28px;
+  font-size: 24px;
   font-style: italic;
   font-weight: 300;
   line-height: 43px;
@@ -10,7 +10,7 @@ export default styled.p`
   text-align: center;
   color: #9f2e0e;
 
-  @media (max-aspect-ratio: 16/9) {
+  @media (max-aspect-ratio: 9/16) {
     font-size: 15px;
     line-height: 20px;
   }

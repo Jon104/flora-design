@@ -8,15 +8,17 @@ export default styled.div`
   }
 
   > button {
+    width: 15vw;
+
     appearance: none;
     background: transparent;
-    min-width: 30vw;
-    min-height: 40vw;
     color: #9f2e0e;
 
     @media (max-aspect-ratio: 16/9) {
-      min-width: 30vw;
-      min-height: 60vw;
+      height: 30vw;
+    }
+    @media (max-aspect-ratio: 9/16) {
+      height: 70vw;
     }
 
     border: none;
@@ -24,7 +26,7 @@ export default styled.div`
     position: absolute;
     font-size: 5rem;
     transition: opacity 1s;
-    opacity: 0.7;
+    opacity: 0.5;
     z-index: 5;
 
     &:hover {

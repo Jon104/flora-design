@@ -39,8 +39,6 @@ const useTilt = (active) => {
 };
 
 const SlideContent = styled.div`
-  width: 35vw;
-  height: 35vw;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -55,8 +53,12 @@ const SlideContent = styled.div`
     rotateY(calc(0deg * var(--dir)));
 
   @media (max-aspect-ratio: 16/9) {
-    width: 50vw;
-    height: 50vw;
+    width: 30vw;
+    height: 30vw;
+  }
+  @media (max-aspect-ratio: 9/16) {
+    width: 70vw;
+    height: 70vw;
   }
 `;
 
