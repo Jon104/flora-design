@@ -8,7 +8,7 @@ import Slider from "infinite-react-carousel";
 import styled from "styled-components";
 
 const ProductDescription = styled.div`
-  font-size: 12px;
+  font-size: 16px;
   padding: 15%;
   color: white;
 `;
@@ -28,6 +28,7 @@ const Product = (props) => {
   const settings = {
     // adaptiveHeight: true,
     // autoplay: true,
+    // centerMode: true,
     duration: 300,
     shift: 100,
     autoplaySpeed: 7000,
