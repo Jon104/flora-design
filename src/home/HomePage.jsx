@@ -126,9 +126,7 @@ const HomePage = () => {
               permanence sur ma boutique.
             </MiddleSectionParagraph>
             <Box py={6}>
-              <Button onClick={() => handleClickToBoutique()}>
-                Voir la boutique
-              </Button>
+              <Button onClick={handleClickToBoutique}>Voir la boutique</Button>
             </Box>
           </Grid>
         </Grid>

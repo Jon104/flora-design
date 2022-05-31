@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Backdrop, Box, CircularProgress, Grid } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { Subtitle } from "services/TypoService";
 import Product from "../components/Product";
@@ -29,6 +29,10 @@ const MainTitle = styled.p`
 
 const Boutique = ({ onAddToCart, productsByCategory }) => {
   const cartIsLoaded = () => productsByCategory.length > 0;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const renderLoading = () => {
     if (cartIsLoaded()) return;
