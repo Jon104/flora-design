@@ -34,6 +34,25 @@ const Product = (props) => {
     autoplaySpeed: 7000,
   };
 
+  const VariantOption = () => {
+    if (props.product.variant_groups.length > 0) {
+      return props.product.variant_groups.map((variant, i) => (
+        <Select
+          key={i}
+          onChange={(event) => setVariantOption(event.target.value)}
+          value={variantOption}
+          options={formatVariantOptions(variant.options)}
+        />
+      ));
+    } else {
+      return (
+        <>
+          <Box my={5} />
+        </>
+      );
+    }
+  };
+
   return (
     <>
       <Box pb={1.5}>
@@ -60,14 +79,7 @@ const Product = (props) => {
       </Box>
       <Grid container>
         <Grid item xs={12}>
-          {props.product.variant_groups.map((variant, i) => (
-            <Select
-              key={i}
-              onChange={(event) => setVariantOption(event.target.value)}
-              value={variantOption}
-              options={formatVariantOptions(variant.options)}
-            />
-          ))}
+          {VariantOption()}
         </Grid>
       </Grid>
       <Grid container alignItems="center" justifyContent="space-between">
