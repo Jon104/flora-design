@@ -60,9 +60,10 @@ const Panaches = () => {
 
   const [slideIndex, setSlideIndex] = useState(-1);
 
-  const handleCloseForm = () => {
+  const handleCloseForm = (isFormSent) => {
     toggleForm(false);
-    setIsSnackbarOpen(true);
+    console.log(isFormSent);
+    if (isFormSent) setIsSnackbarOpen(true);
   };
 
   return (

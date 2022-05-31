@@ -61,9 +61,9 @@ const PersonalPiece = () => {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [slideIndex, setSlideIndex] = useState(-1);
 
-  const handleCloseForm = () => {
+  const handleCloseForm = (isFormSent) => {
     toggleForm(false);
-    setIsSnackbarOpen(true);
+    if (isFormSent) setIsSnackbarOpen(true);
   };
 
   return (

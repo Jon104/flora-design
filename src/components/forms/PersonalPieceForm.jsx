@@ -378,7 +378,7 @@ const PersonalPieceForm = ({ onClose }) => {
     };
 
     setIsSendingForm(true);
-    await sendForm(data, onClose);
+    await sendForm(data, onClose(true));
     setIsSendingForm(false);
   };
 
@@ -388,7 +388,7 @@ const PersonalPieceForm = ({ onClose }) => {
         <Grid container justifyContent="flex-end">
           <IconButton
             aria-label="close-form"
-            onClick={onClose}
+            onClick={() => onClose(false)}
             size="large"
             right
           >
