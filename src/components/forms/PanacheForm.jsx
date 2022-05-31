@@ -32,20 +32,14 @@ import { useCallback } from "react";
 
 const panachesInStock = [
   {
-    id: 35,
-    description: "J'aimerais une pièce sur un petit panache entier",
-    src: "35.jpg",
-  },
-  {
     id: 36,
-    description: "J'aimerais une pièce sur un seul gros bois",
+    description: "J'aimerais une pièce sur un petit panache entier",
     src: "36.jpg",
   },
   {
-    id: 37,
-    description:
-      "J'aimerais intégrer un panache de chevreuil à une pièce sur bâton",
-    src: "37.jpg",
+    id: 35,
+    description: "J'aimerais une pièce sur un seul gros bois",
+    src: "35.jpg",
   },
 ];
 
@@ -352,7 +346,7 @@ const PanacheForm = ({ onClose }) => {
                             <FormControlLabel
                               value="livraison"
                               control={<Radio />}
-                              label="Je préfère le faire livrer? (Prévoir entre 30 et 80$ pour la livraison, dépendamment de la taille)"
+                              label="Je préfère le faire livrer (Prévoir entre 30 et 80$ pour la livraison, dépendamment de la taille)"
                             />
                           </RadioGroup>
                         </Grid>
