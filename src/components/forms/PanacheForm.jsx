@@ -361,7 +361,7 @@ const PanacheForm = ({ onClose }) => {
                   </>
                 )}
 
-                {doYouHaveAPanache && (
+                {!doYouHaveAPanache && (
                   <Grid container spacing={2} alignItems="center">
                     <Grid item xs="12">
                       <h3>J'aimerais réserver un des panaches en stock </h3>

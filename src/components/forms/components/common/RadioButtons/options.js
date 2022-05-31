@@ -1,10 +1,10 @@
 export const yesNoOptions = [
   {
-    label: "Non",
+    label: "Oui",
     value: true,
   },
   {
-    label: "Oui",
+    label: "Non",
     value: false,
   },
 ];
