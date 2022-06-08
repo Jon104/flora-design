@@ -72,6 +72,21 @@ const Cart = (props) => {
         {renderCart()}
       </Box>
 
+      <CartNote>
+        <Box px={3}>
+          <Grid container>
+            <Grid item>
+              <b>
+                <p>
+                  Attendez-vous à un délais de 2 semaines pour la fabrication de
+                  votre oeuvre.
+                </p>
+              </b>
+            </Grid>
+          </Grid>
+        </Box>
+      </CartNote>
+
       <TotalAmount>
         <Box px={3}>
           <Grid container>
@@ -116,6 +131,15 @@ const TotalAmount = styled.div`
   bottom: 0;
   width: 100%;
   box-shadow: 0px 20px 16px 14px #00000054;
+`;
+
+const CartNote = styled.div`
+  font-size: 12px;
+  position: fixed;
+  background-color: white;
+  padding-bottom: 7.5rem;
+  bottom: 0;
+  width: 100%;
 `;
 
 export default Cart;
