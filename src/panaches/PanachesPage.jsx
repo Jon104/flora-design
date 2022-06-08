@@ -122,7 +122,7 @@ const Panaches = () => {
               les cervidés perdent leur bois naturellement tous les ans?),
               parfois issus de la chasse (les animaux sont chassés pour leur
               nourriture, pourquoi ne pas rendre hommage à leur vie en
-              récupérant toutes leurs parties! )
+              récupérant toutes leurs parties! ).
             </Subtitle>
           </Grid>
           <Grid item xs={12}>

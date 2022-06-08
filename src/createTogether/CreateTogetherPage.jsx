@@ -89,7 +89,7 @@ const bubblesContent = [
     week: "Semaine 2",
     title: "LA RENCONTRE",
     content:
-      "Lorsque tu es prête à plonger avec moi, on prend un rendez-vous d'une heure via zoom où le but est de se connecter à ton intérieur. \n - Première partie en exploration dirigée: parlons de toi. \n - Deuxième partie avec exercice de visualisation: un voyage au coeur de toi. \n - Troisième partie de présentation d'activités à faire à la maison: journal créatif, défi artistique que je vais cibler pour toi à partir de notre échange (tu n'as pas besoin d'ête douée en art).",
+      "Lorsque tu es prête à plonger avec moi, on prend un rendez-vous d'une heure via zoom où le but est de se connecter à ton intérieur. \n - Première partie en exploration dirigée: parlons de toi. \n - Deuxième partie avec exercice de visualisation: un voyage au coeur de toi. \n - Troisième partie de présentation d'activités à faire à la maison: journal créatif, défi artistique que je vais cibler pour toi à partir de notre échange (tu n'as pas besoin d'être douée en art).",
   },
   {
     size: 6,
@@ -124,7 +124,7 @@ const bubblesContent = [
     week: "Semaine 7",
     title: "LA REMISE",
     content:
-      "Tu reçois ta pièce, accompagnée d'un certificat d'authenticité et d'un porte-clé souvenir. Ce porte-clé sera un extrait de l'oeuvre finale, et un symbole du processus qu'on a vécu ensembe, que tu pourras traîner partout avec toi! Je te remets aussi un cahier souvenir avec mon design exclusif, dans lequel tu trouveras mes notes sur notre démarche, que tu pourras ensuite compléter selon ton inspiration. Ensemble, on fait un bilan de l'expérience que tu as vécue.",
+      "Tu reçois ta pièce, accompagnée d'un certificat d'authenticité et d'un porte-clé souvenir. Ce porte-clé sera un extrait de l'oeuvre finale, et un symbole du processus qu'on a vécu ensemble, que tu pourras traîner partout avec toi! Je te remets aussi un cahier souvenir avec mon design exclusif, dans lequel tu trouveras mes notes sur notre démarche, que tu pourras ensuite compléter selon ton inspiration. Ensemble, on fait un bilan de l'expérience que tu as vécue.",
   },
 ];
 

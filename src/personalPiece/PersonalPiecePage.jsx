@@ -127,7 +127,7 @@ const PersonalPiece = () => {
               partir de ça. Parle-moi de toi, de tes goûts, de ton décor, du
               style que tu recherches, de tes pièces coup de coeur, de tes
               motifs et couleurs désirés, de ton budget... je veux tout savoir!
-              Ensuite je te demande de tolérer une part de surprise et de me
+              Ensuite, je te demande de tolérer une part de surprise et de me
               laisser aller ! Cet espace me permet de me connecter sur ta vibe
               et sur mon élan créatif pour créer ta pièce unique!
             </Subtitle>
