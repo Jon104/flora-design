@@ -18,6 +18,7 @@ import { Badge, Box, IconButton } from "@mui/material";
 import Cart from "components/cart/Cart";
 import styled from "styled-components";
 import { groupProductsByCategory } from "services/ProductServices";
+import ScrollToTop from "./ScrollToTop";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -161,71 +162,73 @@ function App() {
 
   return (
     <Router>
-      <Mui theme={themeMui}>
-        <ThemeProvider theme={theme}>
-          <div>
-            <Box
-              sx={{
-                position: "absolute",
-                zIndex: 100,
-              }}
-            >
-              <Logo src="./img/logo.png" alt="Logo" />
+      <ScrollToTop>
+        <Mui theme={themeMui}>
+          <ThemeProvider theme={theme}>
+            <div>
               <Box
                 sx={{
-                  position: "fixed",
-                  top: "20px",
-                  right: "5rem",
-                  justifyContent: "end",
-                  display: "flex",
-                  zIndex: 10,
+                  position: "absolute",
+                  zIndex: 100,
                 }}
               >
-                <IconButton
-                  aria-label="shopping-cart"
-                  onClick={() => toggleForm(true)}
-                  size="large"
-                  sx={{ transform: "scale(1.2)", marginRight: "20px" }}
+                <Logo src="./img/logo.png" alt="Logo" />
+                <Box
+                  sx={{
+                    position: "fixed",
+                    top: "20px",
+                    right: "5rem",
+                    justifyContent: "end",
+                    display: "flex",
+                    zIndex: 10,
+                  }}
                 >
-                  <Badge badgeContent={cart.total_items} color="primary">
-                    <ShoppingCartIcon color="primary" fontSize="inherit" />
-                  </Badge>
-                </IconButton>
+                  <IconButton
+                    aria-label="shopping-cart"
+                    onClick={() => toggleForm(true)}
+                    size="large"
+                    sx={{ transform: "scale(1.2)", marginRight: "20px" }}
+                  >
+                    <Badge badgeContent={cart.total_items} color="primary">
+                      <ShoppingCartIcon color="primary" fontSize="inherit" />
+                    </Badge>
+                  </IconButton>
+                </Box>
+                <BurgerMenu />
               </Box>
-              <BurgerMenu />
-            </Box>
-            <Cart
-              cart={cart}
-              isOpen={isOpen}
-              onClose={() => toggleForm(false)}
-              onUpdateCartQty={handleUpdateCartQty}
-              onRemoveFromCart={handleRemoveFromCart}
-            />
-            <GlobalStyle />
-            <Switch>
-              <Route
-                path="/boutique"
-                exact
-                render={(props) => {
-                  return (
-                    <Boutique
-                      {...props}
-                      productsByCategory={products}
-                      onAddToCart={handleAddToCart}
-                    />
-                  );
-                }}
+              <Cart
+                cart={cart}
+                isOpen={isOpen}
+                onClose={() => toggleForm(false)}
+                onUpdateCartQty={handleUpdateCartQty}
+                onRemoveFromCart={handleRemoveFromCart}
               />
-              <Route
-                path="/checkout"
-                exact
-                render={(props) => {
-                  return (
-                    <Checkout cart={cart} url={cart.hosted_checkout_url} />
-                  );
-                }}
-              />
-              {/* <Route
+              <GlobalStyle />
+
+              <Switch>
+                <Route
+                  path="/boutique"
+                  exact
+                  render={(props) => {
+                    return (
+                      <Boutique
+                        {...props}
+                        productsByCategory={products}
+                        onAddToCart={handleAddToCart}
+                      />
+                    );
+                  }}
+                />
+                <Route
+                  path="/checkout"
+                  exact
+                  render={(props) => {
+                    return (
+                      <Checkout cart={cart} url={cart.hosted_checkout_url} />
+                    );
+                  }}
+                />
+                {/* <Route
                 path="/confirmation"
                 exact
                 render={(props) => {
@@ -233,25 +236,26 @@ function App() {
                   return <Confirmation {...props} order={order} />;
                 }}
               /> */}
-              <Route path="/ma-démarche" component={MyApproach} />
-              <Route path="/ensemble" component={CreateTogether} />
-              <Route path="/personal-pieces" component={PersonalPiece} />
-              <Route path="/panaches" component={Panaches} />
-              <Route
-                path="/cours-et-fournitures"
-                render={(props) => (
-                  <Classes
-                    productsByCategory={products}
-                    onAddToCart={handleAddToCart}
-                  />
-                )}
-              />
-              <Route path="/thanks" component={Thanks} />
-              <Route path="/" component={Landing} />
-            </Switch>
-          </div>
-        </ThemeProvider>
-      </Mui>
+                <Route path="/ma-démarche" component={MyApproach} />
+                <Route path="/ensemble" component={CreateTogether} />
+                <Route path="/personal-pieces" component={PersonalPiece} />
+                <Route path="/panaches" component={Panaches} />
+                <Route
+                  path="/cours-et-fournitures"
+                  render={(props) => (
+                    <Classes
+                      productsByCategory={products}
+                      onAddToCart={handleAddToCart}
+                    />
+                  )}
+                />
+                <Route path="/thanks" component={Thanks} />
+                <Route path="/" component={Landing} />
+              </Switch>
+            </div>
+          </ThemeProvider>
+        </Mui>
+      </ScrollToTop>
     </Router>
   );
 }
