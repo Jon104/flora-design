@@ -15,12 +15,20 @@ const FooterListItems = [
     link: "/ma-démarche",
   },
   {
+    name: "MES PIÈCES PERSONNALISÉES",
+    link: "/pièces-personnalisées",
+  },
+  {
     name: "CRÉONS ENSEMBLE, EN ART-CONNEXION",
     link: "/ensemble",
   },
   {
     name: "MES OEUVRES SUR PANACHE",
     link: "/panaches",
+  },
+  {
+    name: "COURS ET FOURNITURES",
+    link: "/cours-et-fournitures",
   },
   {
     name: "BOUTIQUE",
