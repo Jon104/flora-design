@@ -8,7 +8,7 @@ export default styled.div`
   }
 
   > button {
-    width: 15vw;
+    width: 8vw;
 
     appearance: none;
     background: transparent;
@@ -23,11 +23,10 @@ export default styled.div`
     }
 
     border: none;
-    color: white;
     position: absolute;
     font-size: 5rem;
     transition: opacity 1s;
-    opacity: 0.5;
+    opacity: 0.7;
     z-index: 5;
 
     &:hover {
