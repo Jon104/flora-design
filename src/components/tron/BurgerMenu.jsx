@@ -230,7 +230,7 @@ const menuItems = [
   },
   {
     name: "Mes pièces personnalisées",
-    link: "/personal-pieces",
+    link: "/pièces-personnalisées",
   },
   {
     name: "Créons ensemble, en art-connexion",

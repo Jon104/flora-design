@@ -79,6 +79,30 @@ function reportWindowSize(e) {
 
 window.onresize = reportWindowSize;
 
+const Turn = styled.div`
+  margin: auto;
+  font-size: 24px;
+  z-index: 100000;
+  opacity: 0.9;
+  color: white;
+`;
+
+const Flex = styled.div`
+  height: 100vh;
+  background-color: black;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+
+  @media (max-width: 1024px) and (orientation: landscape) {
+    display: flex;
+  }
+  @media (max-width: 1024px) and (orientation: portrait) {
+    display: none;
+  }
+`;
+
 function App() {
   const [isOpen, toggleForm] = useState(false);
   const [cart, setCart] = useState({});
@@ -166,6 +190,12 @@ function App() {
         <Mui theme={themeMui}>
           <ThemeProvider theme={theme}>
             <div>
+              <Flex>
+                <Turn>
+                  Veuillez pivoter votre appareil en orientation portrait
+                </Turn>
+              </Flex>
+
               <Box
                 sx={{
                   position: "absolute",
