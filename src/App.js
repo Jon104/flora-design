@@ -238,7 +238,10 @@ function App() {
               /> */}
                 <Route path="/ma-démarche" component={MyApproach} />
                 <Route path="/ensemble" component={CreateTogether} />
-                <Route path="/personal-pieces" component={PersonalPiece} />
+                <Route
+                  path="/pièces-personnalisées"
+                  component={PersonalPiece}
+                />
                 <Route path="/panaches" component={Panaches} />
                 <Route
                   path="/cours-et-fournitures"
