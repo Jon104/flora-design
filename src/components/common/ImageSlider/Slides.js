@@ -14,10 +14,11 @@ export default styled.div`
     background: transparent;
     color: #9f2e0e;
 
-    @media (max-aspect-ratio: 16/9) {
+    @media (min-width: 1025px) {
       height: 30vw;
     }
-    @media (max-aspect-ratio: 9/16) {
+
+    @media (max-width: 1025px) {
       height: 70vw;
     }
 
