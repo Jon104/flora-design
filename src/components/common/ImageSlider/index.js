@@ -1,6 +1,8 @@
 import Slide from "./Slide";
 import Slides from "./Slides";
 import PropTypes from "prop-types";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const ImageSlider = (props) => {
   const onLeftClick = () => {
@@ -14,14 +16,18 @@ const ImageSlider = (props) => {
 
   return (
     <Slides>
-      <button onClick={onLeftClick} />
+      <button onClick={onLeftClick}>
+        <ArrowBackIosIcon sx={{ opacity: 1 }} />
+      </button>
 
       {props.slides.map((slide, i) => {
         let offset = props.slides.length + (props.slideIndex - i);
         return <Slide slide={slide} offset={offset} key={i} />;
       })}
 
-      <button onClick={onRightClick} />
+      <button onClick={onRightClick}>
+        <ArrowForwardIosIcon color="black" />
+      </button>
     </Slides>
   );
 };
