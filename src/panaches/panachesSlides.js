@@ -30,8 +30,8 @@ export const panachesSlides = [
       "Cette pièce est tout simplement majestueuse, tout en étant douce et imposante à la fois! Elle inspire en effet force et grâce!! Tu as su rendre un bel hommage et fierté à ce panache et à cet animal qui l'a si bien porté!! Je te laisse avec  une image de mon nouveau décor inspirant!!❤️ Merci encore et au plaisir!! Continue ton beau travail, tu transformes de simples pièces en œuvres d'art! Bravo à ton talent!!😉🤗🤩",
   },
   {
-    image: "./img/panaches/noname.jpg",
-    name: "Martine A.", // TODO: Who is this?
+    image: "./img/personalPieceForm/7.png",
+    name: "Martine A.",
     testimonials:
       "Tu lis en moi même à distance! C’est vraiment trop spécial je n’ai jamais rencontré quelqu’un que je connais que par écrit qui vient me boulversé autant dans mes émotions. C’est super je suis impressionnée!",
   },
