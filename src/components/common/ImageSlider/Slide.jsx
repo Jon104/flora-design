@@ -52,11 +52,12 @@ const SlideContent = styled.div`
   transform: perspective(1000px) translateX(calc(130% * var(--offset)))
     rotateY(calc(0deg * var(--dir)));
 
-  @media (max-aspect-ratio: 16/9) {
+  @media (min-width: 1025px) {
     width: 30vw;
     height: 30vw;
   }
-  @media (max-aspect-ratio: 9/16) {
+
+  @media (max-width: 1025px) {
     width: 70vw;
     height: 70vw;
   }
