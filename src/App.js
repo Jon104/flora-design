@@ -19,6 +19,7 @@ import Cart from "components/cart/Cart";
 import styled from "styled-components";
 import { groupProductsByCategory } from "services/ProductServices";
 import ScrollToTop from "./ScrollToTop";
+import Logo from "./home/Logo";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -55,15 +56,6 @@ const themeMui = createTheme({
     },
   },
 });
-
-const Logo = styled.img`
-  width: 150px;
-  top: 30px;
-
-  @media (max-width: 600px) {
-    width: 100px;
-  }
-`;
 
 function reportWindowSize(e) {
   document.documentElement.style.setProperty("overflow", "auto");
@@ -202,7 +194,7 @@ function App() {
                   zIndex: 100,
                 }}
               >
-                <Logo src="./img/logo.png" alt="Logo" />
+                <Logo />
                 <Box
                   sx={{
                     position: "fixed",
