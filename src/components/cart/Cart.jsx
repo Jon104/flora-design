@@ -78,8 +78,7 @@ const Cart = (props) => {
             <Grid item>
               <b>
                 <p>
-                  Attendez-vous à un délais de 2 semaines pour la fabrication de
-                  votre oeuvre.
+                  Attends-toi à un délai d'envoi maximal de 5 jours pour le prêt-à-partir, et de 2 semaines pour les pièces faites sur demande!
                 </p>
               </b>
             </Grid>
@@ -139,7 +138,7 @@ const CartNote = styled.div`
   background-color: white;
   padding-bottom: 7.5rem;
   bottom: 0;
-  width: 100%;
+  width: 30%;
 `;
 
 export default Cart;
