@@ -207,6 +207,24 @@ const CustomContainer = styled.div`
     padding-top: 3rem;
     padding-bottom: 0rem;
   }
+
+  /* iPad air */
+  @media only screen and (device-width: 820px) and (device-height: 1180px) {
+    padding-top: 22rem;
+    padding-bottom: 0rem;
+  }
+
+  /* iPad mini */
+  @media only screen and (device-width: 768px) and (device-height: 1024px) {
+    padding-top: 15rem;
+    padding-bottom: 0rem;
+  }
+
+  /* Surface Pro 7 */
+  @media only screen and (device-width: 912px) and (device-height: 1368px) {
+    padding-top: 32rem;
+    padding-bottom: 0rem;
+  }
 `;
 
 const VideoBackground = styled.video`
