@@ -162,6 +162,7 @@ const CustomContainer = styled.div`
 
   /* iphone X , XS, 11 Pro, 12 Mini */
   @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    padding-top: 10rem;
   }
 
   /* iphone 12, 12 Pro */
@@ -208,6 +209,12 @@ const CustomContainer = styled.div`
     padding-bottom: 0rem;
   }
 
+  /* samsung S8 */
+  @media only screen and (device-width: 360px) and (device-height: 740px)  {
+    padding-top: 5rem;
+    padding-bottom: 0rem;
+  }
+
   /* samsung A51/A71 */
   @media only screen and (device-width: 412px) and (device-height: 914px) {
     padding-top: 18rem;
@@ -231,6 +238,19 @@ const CustomContainer = styled.div`
     padding-top: 32rem;
     padding-bottom: 0rem;
   }
+
+  /* iPad Pro */
+  @media only screen and (device-width: 1024px) and (device-height: 1366px) {
+    padding-top: 32rem;
+    padding-bottom: 0rem;
+  }
+
+  /* Galaxy Tab S4 */
+  @media only screen and (device-width: 712px) and (device-height: 1138px) {
+    padding-top: 26rem;
+    padding-bottom: 0rem;
+  }
+
 `;
 
 const VideoBackground = styled.video`
