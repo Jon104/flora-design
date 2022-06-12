@@ -53,17 +53,17 @@ const Subtitle = styled.p`
   }
 `;
 
-const BannerText = styled.p`
-  font-family: Barlow;
-  font-size: 16px;
-  font-weight: 300;
-  color: white;
-  text-align: center;
+// const BannerText = styled.p`
+//   font-family: Barlow;
+//   font-size: 16px;
+//   font-weight: 300;
+//   color: white;
+//   text-align: center;
 
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-`;
+//   @media (max-width: 600px) {
+//     font-size: 14px;
+//   }
+// `;
 
 const Classes = ({ onAddToCart, productsByCategory }) => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -89,7 +89,7 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
 
   return (
     <>
-      <Grid
+      {/* <Grid
         container
         alignItems="center"
         alignContent="center"
@@ -100,7 +100,7 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
             Livraison gratuite au Québec pour toute commande de plus de 75$
           </BannerText>
         </Grid>
-      </Grid>
+      </Grid> */}
       <TopSection>
         <FullImage
           src={

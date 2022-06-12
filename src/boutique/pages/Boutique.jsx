@@ -6,17 +6,17 @@ import { Subtitle } from "services/TypoService";
 import Product from "../components/Product";
 import Footer from "components/Footer";
 
-const BannerText = styled.p`
-  font-family: Barlow;
-  font-size: 16px;
-  font-weight: 300;
-  color: white;
-  text-align: center;
+// const BannerText = styled.p`
+//   font-family: Barlow;
+//   font-size: 16px;
+//   font-weight: 300;
+//   color: white;
+//   text-align: center;
 
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-`;
+//   @media (max-width: 600px) {
+//     font-size: 14px;
+//   }
+// `;
 
 const MainTitle = styled.p`
   font-family: Lato;
@@ -53,7 +53,7 @@ const Boutique = ({ onAddToCart, productsByCategory }) => {
 
   return (
     <>
-      <Grid
+      {/* <Grid
         container
         alignItems="center"
         alignContent="center"
@@ -64,7 +64,7 @@ const Boutique = ({ onAddToCart, productsByCategory }) => {
             Livraison gratuite au Québec pour toute commande de plus de 75$
           </BannerText>
         </Grid>
-      </Grid>
+      // </Grid> */}
       <Box paddingTop={14}>
         <Grid container alignItems="end">
           {renderLoading()}
