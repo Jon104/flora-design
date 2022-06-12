@@ -208,6 +208,12 @@ const CustomContainer = styled.div`
     padding-bottom: 0rem;
   }
 
+  /* samsung A51/A71 */
+  @media only screen and (device-width: 412px) and (device-height: 914px) {
+    padding-top: 18rem;
+    padding-bottom: 0rem;
+  }
+
   /* iPad air */
   @media only screen and (device-width: 820px) and (device-height: 1180px) {
     padding-top: 22rem;
