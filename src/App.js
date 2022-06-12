@@ -80,6 +80,8 @@ const Turn = styled.div`
 `;
 
 const Flex = styled.div`
+  position: fixed;
+  width: 100%;
   height: 100vh;
   background-color: black;
 
