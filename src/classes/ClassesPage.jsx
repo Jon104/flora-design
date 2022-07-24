@@ -65,13 +65,6 @@ const Subtitle = styled.p`
 //   }
 // `;
 
-const Container = styled.div`
-  height: 200px;
-  padding: 4px 4px;
-  line-height: 200px;
-  text-align: center;
-`
-
 const Classes = ({ onAddToCart, productsByCategory }) => {
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -126,12 +119,8 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
         </MainSubtitle>
       </TopSection>
 
-      <Container>
-        <Testimonials>{classesTestimonials[slideIndex]}</Testimonials>
-      </Container>
+      <Testimonials height="200px">{classesTestimonials[slideIndex]}</Testimonials>
               
-     
-
       <SecondMiddleSection>
         <Grid container p={6}>
           <Grid item xs={12}>

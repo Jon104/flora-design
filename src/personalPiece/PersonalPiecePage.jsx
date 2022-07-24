@@ -97,7 +97,7 @@ const PersonalPiece = () => {
         <Grid container justifyContent="center">
           <Grid item xs={9} sm={6}>
             <Box py={4}>
-              <Testimonials>
+              <Testimonials height="250px">
                 «
                 {
                   personalPieceSlides[slideIndex + personalPieceSlides.length]
