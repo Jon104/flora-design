@@ -91,23 +91,18 @@ const Panaches = () => {
           slideIndex={slideIndex}
           setSlideIndex={setSlideIndex}
         />
-        <Grid container justifyContent="center">
-          <Grid item xs={9} sm={6}>
-            <Box py={4}>
-              <Testimonials height="180px">
-                «
-                {
-                  panachesSlides[slideIndex + panachesSlides.length]
-                    ?.testimonials
-                }
-                »
-                <br />
-                -&nbsp;
-                {panachesSlides[slideIndex + panachesSlides.length]?.name}
-              </Testimonials>
-            </Box>
-          </Grid>
-        </Grid>
+        
+        <Testimonials height="180px">
+          «
+          {
+            panachesSlides[slideIndex + panachesSlides.length]
+              ?.testimonials
+          }
+          »
+          <br />
+          -&nbsp;
+          {panachesSlides[slideIndex + panachesSlides.length]?.name}
+        </Testimonials>
       </Box>
 
       <SecondMiddleSection>

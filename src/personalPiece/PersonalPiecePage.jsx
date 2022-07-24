@@ -94,26 +94,20 @@ const PersonalPiece = () => {
           slideIndex={slideIndex}
           setSlideIndex={setSlideIndex}
         />
-        <Grid container justifyContent="center">
-          <Grid item xs={9} sm={6}>
-            <Box py={4}>
-              <Testimonials height="250px">
-                «
-                {
-                  personalPieceSlides[slideIndex + personalPieceSlides.length]
-                    ?.testimonials
-                }
-                »
-                <br />
-                -&nbsp;
-                {
-                  personalPieceSlides[slideIndex + personalPieceSlides.length]
-                    ?.name
-                }
-              </Testimonials>
-            </Box>
-          </Grid>
-        </Grid>
+        <Testimonials height="250px">
+          «
+          {
+            personalPieceSlides[slideIndex + personalPieceSlides.length]
+              ?.testimonials
+          }
+          »
+          <br />
+          -&nbsp;
+          {
+            personalPieceSlides[slideIndex + personalPieceSlides.length]
+              ?.name
+          }
+        </Testimonials>
       </Box>
 
       <SecondMiddleSection>
