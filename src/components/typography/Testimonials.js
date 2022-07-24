@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export default styled.p`
+export default styled.span`
+  display: inline-block;
+  vertical-align: middle;
+  width: 80vw;
+
   font-family: Lato;
   font-size: 24px;
   font-style: italic;
