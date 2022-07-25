@@ -119,7 +119,16 @@ const Classes = ({ onAddToCart, productsByCategory }) => {
         </MainSubtitle>
       </TopSection>
 
-      <Testimonials height="200px">{classesTestimonials[slideIndex]}</Testimonials>
+      <Testimonials height="200px">
+        «
+        {
+          classesTestimonials[slideIndex].testimonials
+        }
+        »
+        <br />
+        -&nbsp;
+        {classesTestimonials[slideIndex]?.name}
+      </Testimonials>
               
       <SecondMiddleSection>
         <Grid container p={6}>
